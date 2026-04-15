@@ -12,8 +12,8 @@ html {
   scroll-behavior: smooth;
   text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-  /* Offset scroll position to account for fixed classification bar + navbar */
-  scroll-padding-top: calc(var(--classbar-height) + var(--nav-height) + var(--space-6));
+  /* Offset scroll position to account for sticky navbar */
+  scroll-padding-top: calc(var(--nav-height) + var(--space-6));
 }
 
 body {
@@ -25,8 +25,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  /* Push content below fixed classification bar */
-  padding-top: var(--classbar-height);
+  padding-top: 0;
 }
 
 img, video, svg {

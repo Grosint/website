@@ -155,6 +155,10 @@
 .float-label--amber  { color: var(--color-amber); }
 .float-label--muted  { color: var(--color-text-muted); }
 
+@media (max-width: 767px) {
+  .float-label { display: none; }
+}
+
 @keyframes label-fade {
   0%, 5%    { opacity: 0; }
   15%, 85%  { opacity: 0.5; }

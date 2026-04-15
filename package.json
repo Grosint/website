@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Grosint — Sovereign Intelligence Platform — Marketing Website",
   "scripts": {
-    "dev": "npx postcss css/style.css -o dist/style.css --watch",
+    "dev": "npx concurrently \"npx postcss css/style.css -o dist/style.css --watch\" \"npx serve .\"",
     "build": "NODE_ENV=production npx postcss css/style.css -o dist/style.css",
     "watch": "npx postcss css/style.css -o dist/style.css --watch"
   },

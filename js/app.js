@@ -227,9 +227,15 @@ function initHeroScene() {
   canvas.parentElement.appendChild(labelRenderer.domElement);
 
   // ── Scene + Camera ────────────────────────────────────────
+  // On portrait/mobile screens the radar ring (radius 22) clips at the sides.
+  // Increase FOV and pull camera back so the full ring stays in view.
+  const isMobile = W / H < 0.9;
+  const heroFov  = isMobile ? 100 : 60;
+  const heroCamZ = isMobile ? 42  : 35;
+
   const scene  = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(60, W / H, 0.1, 500);
-  camera.position.set(0, 0, 35);
+  const camera = new THREE.PerspectiveCamera(heroFov, W / H, 0.1, 500);
+  camera.position.set(0, 0, heroCamZ);
 
   // ── Post-processing: Bloom + Film grain ───────────────────
   const composer = new EffectComposer(renderer);
@@ -282,7 +288,9 @@ function initHeroScene() {
   }
 
   // ── Floating intelligence labels (CSS2DObjects) ────────────
+  // Skip on mobile — reduces clutter on narrow screens
   const labelObjects = [];
+  if (isMobile) labelRenderer.domElement.style.display = 'none';
   INTEL_LABELS.forEach((text, i) => {
     const div = document.createElement('div');
     div.textContent = text;
@@ -472,6 +480,8 @@ function initHeroScene() {
   const resizeObserver = new ResizeObserver(([entry]) => {
     const { width, height } = entry.contentRect;
     camera.aspect = width / height;
+    camera.fov = camera.aspect < 0.9 ? 100 : 60;
+    camera.position.z = camera.aspect < 0.9 ? 42 : 35;
     camera.updateProjectionMatrix();
     renderer.setSize(width, height);
     composer.setSize(width, height);
