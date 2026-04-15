@@ -1,0 +1,113 @@
+/* ============================================================
+   GROSINT — ANIMATIONS
+   All @keyframes. Referenced via CSS custom property durations
+   in tokens.css. Never hardcode durations here.
+   ============================================================ */
+
+/* ── 3D Float Drift — floating HUD labels ───────────────────── */
+@keyframes float-drift {
+  0%, 100% { transform: translateY(0px) translateZ(0px); }
+  33%       { transform: translateY(-14px) translateZ(12px); }
+  66%       { transform: translateY(7px)  translateZ(-6px); }
+}
+
+/* ── HUD Reticle Pulse ──────────────────────────────────────── */
+@keyframes reticle-pulse {
+  0%, 100% { opacity: 0.25; transform: scale(1); }
+  50%       { opacity: 0.85; transform: scale(1.12); }
+}
+
+/* ── Scan Lines Scroll ──────────────────────────────────────── */
+@keyframes scan-scroll {
+  from { transform: translateY(0); }
+  to   { transform: translateY(4px); }
+}
+
+/* ── Radar Sweep ────────────────────────────────────────────── */
+@keyframes radar-sweep {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ── Orbit Breathe ──────────────────────────────────────────── */
+@keyframes orbit-breathe {
+  0%, 100% { transform: scale(1);    opacity: 0.5; }
+  50%       { transform: scale(1.08); opacity: 1; }
+}
+
+/* ── Brand Glow Pulse (amber drop-shadow) ───────────────────── */
+@keyframes brand-glow-pulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 10px rgba(232, 125, 20, 0.4))
+            drop-shadow(0 0 30px rgba(232, 125, 20, 0.1));
+  }
+  50% {
+    filter: drop-shadow(0 0 24px rgba(245, 166, 35, 0.9))
+            drop-shadow(0 0 60px rgba(245, 166, 35, 0.3));
+  }
+}
+
+/* ── Cyan Border Trace (section entry) ──────────────────────── */
+@keyframes border-trace {
+  from { clip-path: inset(0 100% 100% 0); }
+  to   { clip-path: inset(0 0% 0% 0); }
+}
+
+/* ── Glitch Frame 1 (cyan — upper clip) ─────────────────────── */
+@keyframes glitch-1 {
+  0%,  88%, 100% { transform: translate(0); opacity: 0; }
+  90%            { transform: translate(-3px,  1px); opacity: 0.7; }
+  92%            { transform: translate( 3px, -1px); opacity: 0.7; }
+  94%            { transform: translate(-2px,  2px); opacity: 0.7; }
+  96%            { transform: translate( 2px,  0px); opacity: 0.7; }
+  98%            { transform: translate(-1px, -1px); opacity: 0.7; }
+}
+
+/* ── Glitch Frame 2 (pink — lower clip) ─────────────────────── */
+@keyframes glitch-2 {
+  0%,  88%, 100% { transform: translate(0); opacity: 0; }
+  91%            { transform: translate( 3px,  1px); opacity: 0.7; }
+  93%            { transform: translate(-3px, -1px); opacity: 0.7; }
+  95%            { transform: translate( 2px, -2px); opacity: 0.7; }
+  97%            { transform: translate(-2px,  0px); opacity: 0.7; }
+  99%            { transform: translate( 1px,  1px); opacity: 0.7; }
+}
+
+/* ── Pipeline Data Packet ───────────────────────────────────── */
+@keyframes pipeline-packet {
+  from { offset-distance: 0%;   opacity: 1; }
+  70%  { opacity: 1; }
+  to   { offset-distance: 100%; opacity: 0; }
+}
+
+/* ── Pipeline Connecting Line Dot ───────────────────────────── */
+@keyframes pipeline-dot {
+  from { left: 0%;   opacity: 0.9; }
+  80%  { opacity: 0.9; }
+  to   { left: 100%; opacity: 0; }
+}
+
+/* ── Section Reveal (fade + slide up) ───────────────────────── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Pulse Ring ─────────────────────────────────────────────── */
+@keyframes pulse-ring {
+  0%   { transform: scale(1);   opacity: 0.6; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* ── Dot Scan (cardinal orbit dots, from Anveshak) ──────────── */
+@keyframes dot-scan {
+  0%        { opacity: 0; transform: scale(0.4); }
+  10%, 30%  { opacity: 1; transform: scale(1); }
+  60%, 100% { opacity: 0; transform: scale(0.4); }
+}
+
+/* ── Neon Flicker (subtle, for accent elements) ─────────────── */
+@keyframes neon-flicker {
+  0%,  19%,  21%,  23%,  25%,  54%,  56%,  100% { opacity: 1; }
+  20%, 24%, 55% { opacity: 0.4; }
+}

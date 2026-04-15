@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Dark background -->
+  <rect width="64" height="64" rx="12" fill="#07090F"/>
+  <!-- Outer ring -->
+  <circle cx="32" cy="32" r="28" stroke="#B86810" stroke-width="1"/>
+  <!-- Inner ring -->
+  <circle cx="32" cy="32" r="21" stroke="#E87D14" stroke-width="0.8"/>
+  <!-- Eagle simplified — body -->
+  <ellipse cx="32" cy="22" rx="4" ry="5" fill="#F5A623"/>
+  <polygon points="28,26 36,26 38,36 32,34 26,36" fill="#F5A623"/>
+  <polygon points="26,36 38,36 36,44 32,46 28,44" fill="#E87D14"/>
+  <!-- Wings -->
+  <polygon points="28,28 10,20 8,30 22,34" fill="#E87D14"/>
+  <polygon points="36,28 54,20 56,30 42,34" fill="#E87D14"/>
+  <!-- Centre dot -->
+  <circle cx="32" cy="32" r="2.5" fill="#F5A623"/>
+</svg>

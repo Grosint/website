@@ -1,0 +1,277 @@
+/* ============================================================
+   GROSINT — HUD ELEMENTS
+   Crosshair reticles, scan lines, floating intelligence labels,
+   glitch text effect, neon border trace. CSS-only, no Three.js.
+   ============================================================ */
+
+/* ── Classification Bar ─────────────────────────────────────── */
+.classbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-nav);
+  height: var(--classbar-height);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding-inline: var(--container-pad);
+  background: rgba(0, 0, 0, 0.95);
+  border-bottom: 1px solid var(--color-border);
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+  user-select: none;
+}
+
+.classbar__accent {
+  width: 3px;
+  height: 14px;
+  background: var(--color-amber);
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+  animation: brand-glow-pulse var(--anim-glow) ease-in-out infinite;
+}
+
+/* ── Crosshair Reticle ──────────────────────────────────────── */
+.reticle {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  pointer-events: none;
+  z-index: var(--z-hud);
+}
+
+.reticle::before,
+.reticle::after {
+  content: '';
+  position: absolute;
+  background: var(--color-cyan);
+  animation: reticle-pulse var(--anim-reticle) ease-in-out infinite;
+}
+
+/* Horizontal bar with centre gap */
+.reticle::before {
+  width: 100%;
+  height: 1px;
+  top: 50%;
+  transform: translateY(-50%);
+  clip-path: polygon(
+    0% 0%,   32% 0%,  32% 100%, 0% 100%,
+    68% 0%, 100% 0%, 100% 100%, 68% 100%
+  );
+}
+
+/* Vertical bar with centre gap */
+.reticle::after {
+  height: 100%;
+  width: 1px;
+  left: 50%;
+  transform: translateX(-50%);
+  clip-path: polygon(
+    0%   0%,  100%  0%,  100%  32%, 0%  32%,
+    0%  68%,  100%  68%, 100% 100%, 0% 100%
+  );
+}
+
+/* Colour variants */
+.reticle--cyan  { }
+.reticle--pink  { }
+.reticle--pink::before, .reticle--pink::after { background: var(--color-pink); }
+.reticle--amber { }
+.reticle--amber::before, .reticle--amber::after { background: var(--color-amber); }
+
+/* Corner-bracket only reticle (L-shapes, no cross) */
+.reticle--corners {
+  width: 32px;
+  height: 32px;
+}
+
+.reticle--corners::before,
+.reticle--corners::after {
+  background: none;
+  width: 100%;
+  height: 100%;
+  clip-path: none;
+  border: 1.5px solid currentColor;
+  animation: reticle-pulse var(--anim-reticle) ease-in-out infinite;
+}
+
+.reticle--corners::before {
+  /* Top-left + top-right L brackets via clip */
+  border-right: none;
+  border-bottom: none;
+  top: 0;
+  left: 0;
+  color: var(--color-cyan);
+}
+
+.reticle--corners::after {
+  /* Bottom-right L bracket */
+  border-left: none;
+  border-top: none;
+  top: auto;
+  bottom: 0;
+  right: 0;
+  left: auto;
+  color: var(--color-cyan);
+}
+
+/* ── Scan Lines Overlay ─────────────────────────────────────── */
+.scan-lines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: var(--z-hud);
+  background: repeating-linear-gradient(
+    0deg,
+    transparent              0px,
+    transparent              2px,
+    rgba(0, 200, 255, 0.018) 2px,
+    rgba(0, 200, 255, 0.018) 4px
+  );
+  animation: scan-scroll var(--anim-scan) linear infinite;
+}
+
+/* ── Floating Intelligence Labels ───────────────────────────── */
+.float-label {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-cyan);
+  opacity: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  animation: float-drift var(--anim-float) ease-in-out infinite,
+             label-fade  var(--anim-float) ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
+  z-index: var(--z-hud);
+}
+
+.float-label--pink   { color: var(--color-pink); }
+.float-label--amber  { color: var(--color-amber); }
+.float-label--muted  { color: var(--color-text-muted); }
+
+@keyframes label-fade {
+  0%, 5%    { opacity: 0; }
+  15%, 85%  { opacity: 0.5; }
+  95%, 100% { opacity: 0; }
+}
+
+/* ── Glitch Text Effect ─────────────────────────────────────── */
+.glitch {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Cyan ghost — upper half clip */
+.glitch::before {
+  color: var(--color-cyan);
+  animation: glitch-1 var(--anim-glitch) infinite steps(1);
+  clip-path: polygon(0 0, 100% 0, 100% 40%, 0 40%);
+  opacity: 0;
+}
+
+/* Pink ghost — lower half clip */
+.glitch::after {
+  color: var(--color-pink);
+  animation: glitch-2 var(--anim-glitch) infinite steps(1);
+  clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+  opacity: 0;
+}
+
+/* ── Neon Border Trace (entry animation) ────────────────────── */
+.border-trace {
+  position: relative;
+  overflow: hidden;
+}
+
+.border-trace::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--color-cyan);
+  border-radius: inherit;
+  opacity: 0;
+  animation: border-trace-anim 1.2s ease forwards;
+  animation-play-state: paused;
+  pointer-events: none;
+}
+
+.border-trace.visible::before {
+  animation-play-state: running;
+}
+
+@keyframes border-trace-anim {
+  0%   { clip-path: inset(0 100% 100% 0 round inherit); opacity: 1; }
+  100% { clip-path: inset(0 0 0 0 round inherit);       opacity: 1; }
+}
+
+/* ── Section Reveal ─────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity    var(--anim-reveal) ease,
+    transform  var(--anim-reveal) ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children — nth-child sets --stagger-delay */
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity   var(--anim-reveal) ease var(--stagger-delay, 0ms),
+    transform var(--anim-reveal) ease var(--stagger-delay, 0ms);
+}
+
+.reveal-stagger > *:nth-child(1) { --stagger-delay: 0ms;   }
+.reveal-stagger > *:nth-child(2) { --stagger-delay: 80ms;  }
+.reveal-stagger > *:nth-child(3) { --stagger-delay: 160ms; }
+.reveal-stagger > *:nth-child(4) { --stagger-delay: 240ms; }
+.reveal-stagger > *:nth-child(5) { --stagger-delay: 320ms; }
+.reveal-stagger > *:nth-child(6) { --stagger-delay: 400ms; }
+
+.reveal-stagger.visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Ambient Glow Orbs (decorative background spots) ────────── */
+.glow-orb {
+  position: absolute;
+  border-radius: var(--radius-full);
+  filter: blur(80px);
+  pointer-events: none;
+  opacity: 0.15;
+}
+
+.glow-orb--amber {
+  background: var(--color-amber);
+}
+
+.glow-orb--cyan {
+  background: var(--color-cyan);
+}
+
+.glow-orb--pink {
+  background: var(--color-pink);
+}

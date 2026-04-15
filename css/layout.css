@@ -1,0 +1,143 @@
+/* ============================================================
+   GROSINT — LAYOUT
+   Container, section wrapper, and structural grid/flex.
+   ============================================================ */
+
+/* ── Container ─────────────────────────────────────────────── */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+/* ── Section Wrapper ────────────────────────────────────────── */
+.section {
+  padding-block: var(--section-pad-y);
+  position: relative;   /* anchor for absolute HUD overlay decorations */
+  overflow: hidden;
+}
+
+.section--dark    { background: var(--color-bg-base); }
+.section--surface { background: var(--color-bg-surface); }
+
+/* ── Section Heading Group ──────────────────────────────────── */
+.section-heading {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-12);
+}
+
+.section-heading--centre {
+  align-items: center;
+  text-align: center;
+}
+
+.section-heading--centre .section-sub {
+  margin-inline: auto;
+}
+
+/* ── Products Grid — auto-reflow, no breakpoints needed ─────── */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-6);
+}
+
+/* ── Pillars Grid — auto-reflow ─────────────────────────────── */
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-8);
+}
+
+/* ── Who We Serve Grid ──────────────────────────────────────── */
+.serve-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .serve-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .serve-grid { grid-template-columns: repeat(6, 1fr); }
+}
+
+/* ── Pipeline ───────────────────────────────────────────────── */
+.pipeline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+}
+
+@media (min-width: 1024px) {
+  .pipeline { flex-wrap: nowrap; }
+}
+
+/* ── Two-column content layout (product pages) ──────────────── */
+.content-split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-12);
+}
+
+@media (min-width: 768px) {
+  .content-split { grid-template-columns: 1fr 1fr; align-items: start; }
+}
+
+/* ── 3-column capabilities grid ─────────────────────────────── */
+.capabilities-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 640px) {
+  .capabilities-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .capabilities-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ── Hero actions row ───────────────────────────────────────── */
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-4);
+}
+
+/* ── Footer grid ────────────────────────────────────────────── */
+.footer-inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+}
+
+@media (min-width: 768px) {
+  .footer-inner {
+    grid-template-columns: auto 1fr auto;
+    align-items: start;
+  }
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+}
+
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4);
+}

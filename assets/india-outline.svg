@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" fill="none">
+  <!--
+    Simplified geometric India outline for hero radar overlay.
+    Intentionally abstracted — used at low opacity as a visual motif.
+    Not a precise cartographic representation.
+  -->
+  <path
+    d="
+      M 160,20
+      L 200,15
+      L 240,22
+      L 265,35
+      L 275,55
+      L 290,70
+      L 295,90
+      L 310,100
+      L 320,120
+      L 315,140
+      L 305,155
+      L 310,175
+      L 300,195
+      L 295,220
+      L 280,240
+      L 270,260
+      L 255,275
+      L 240,295
+      L 225,315
+      L 215,335
+      L 210,360
+      L 205,385
+      L 200,410
+      L 195,385
+      L 190,360
+      L 185,335
+      L 175,315
+      L 160,295
+      L 145,275
+      L 130,260
+      L 118,240
+      L 105,220
+      L 100,195
+      L 90,175
+      L 95,155
+      L 85,140
+      L 80,120
+      L 90,100
+      L 105,90
+      L 108,70
+      L 120,55
+      L 135,35
+      Z
+    "
+    stroke="#E87D14"
+    stroke-width="1.2"
+    stroke-linejoin="round"
+    opacity="0.6"
+  />
+  <!-- Kashmir region (approximate upper notch) -->
+  <path
+    d="M 155,22 L 145,10 L 160,5 L 175,8 L 185,18 L 200,15"
+    stroke="#E87D14"
+    stroke-width="0.8"
+    opacity="0.4"
+  />
+  <!-- Northeast region (approximate bump) -->
+  <path
+    d="M 265,60 L 285,55 L 300,65 L 310,80 L 295,90"
+    stroke="#E87D14"
+    stroke-width="0.8"
+    opacity="0.4"
+  />
+  <!-- Sri Lanka (separate small island) -->
+  <ellipse cx="215" cy="435" rx="8" ry="14" stroke="#E87D14" stroke-width="0.8" opacity="0.3"/>
+
+  <!-- Scatter data points across India -->
+  <g fill="#00C8FF" opacity="0.7">
+    <circle cx="200" cy="120" r="2.5"/>  <!-- Delhi -->
+    <circle cx="165" cy="200" r="2"/>    <!-- Mumbai -->
+    <circle cx="240" cy="200" r="2"/>    <!-- Kolkata -->
+    <circle cx="195" cy="310" r="2"/>    <!-- Hyderabad -->
+    <circle cx="175" cy="370" r="2"/>    <!-- Bengaluru -->
+    <circle cx="215" cy="380" r="2"/>    <!-- Chennai -->
+    <circle cx="140" cy="160" r="1.5"/> <!-- Ahmedabad -->
+    <circle cx="260" cy="140" r="1.5"/> <!-- Patna -->
+    <circle cx="220" cy="260" r="1.5"/> <!-- Bhubaneswar -->
+    <circle cx="130" cy="240" r="1.5"/> <!-- Pune -->
+  </g>
+
+  <!-- Pulse rings on major nodes -->
+  <circle cx="200" cy="120" r="6" stroke="#00C8FF" stroke-width="0.8" opacity="0.3">
+    <animate attributeName="r" from="4" to="14" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" from="0.5" to="0" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="175" cy="370" r="5" stroke="#E87D14" stroke-width="0.8" opacity="0.3">
+    <animate attributeName="r" from="3" to="12" dur="4s" begin="1s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" from="0.5" to="0" dur="4s" begin="1s" repeatCount="indefinite"/>
+  </circle>
+</svg>

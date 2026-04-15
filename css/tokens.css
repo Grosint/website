@@ -1,0 +1,139 @@
+/* ============================================================
+   GROSINT — DESIGN TOKENS
+   Single source of truth for all CSS custom properties.
+   Every colour, spacing, type, animation, and z-index value
+   lives here. Never hardcode values in component files.
+   ============================================================ */
+
+:root {
+  /* ── Colour: Backgrounds ─────────────────────────────────── */
+  --color-bg-base:        #000000;          /* Pure black — reference HUD aesthetic */
+  --color-bg-surface:     #080C14;          /* Deep navy for cards / surfaces */
+  --color-bg-card:        #0D1117;          /* Card background */
+  --color-bg-hover:       #111827;          /* Hover state */
+  --color-bg-glass:       rgba(8, 12, 20, 0.75);
+
+  /* ── Colour: Borders ─────────────────────────────────────── */
+  --color-border:         #1A2540;
+  --color-border-accent:  rgba(0, 200, 255, 0.25);  /* Cyan accent border */
+  --color-border-amber:   rgba(232, 125, 20, 0.30); /* Amber accent border */
+  --color-border-pink:    rgba(255, 45, 120, 0.25); /* Pink accent border */
+
+  /* ── Colour: Brand (Amber / Saffron — from Drishti & Anveshak) */
+  --color-amber:          #E87D14;
+  --color-amber-glow:     #F5A623;
+  --color-amber-dark:     #B86810;
+  --color-amber-subtle:   rgba(232, 125, 20, 0.08);
+
+  /* ── Colour: HUD Neons ───────────────────────────────────── */
+  --color-cyan:           #00C8FF;          /* Primary neon — reticles, data */
+  --color-cyan-dim:       rgba(0, 200, 255, 0.15);
+  --color-pink:           #FF2D78;          /* Secondary neon — crosshair accents */
+  --color-pink-dim:       rgba(255, 45, 120, 0.15);
+  --color-purple:         #7B2FBE;          /* Tertiary — Drishti fusion product */
+  --color-purple-dim:     rgba(123, 47, 190, 0.20);
+  --color-green-wa:       #25D366;          /* WhatsApp green */
+
+  /* ── Colour: Text ────────────────────────────────────────── */
+  --color-text-primary:   #E6EDF3;
+  --color-text-muted:     #8B949E;
+  --color-text-faint:     #3D4451;
+  --color-text-mono:      #00C8FF;          /* Cyan for HUD / mono text */
+
+  /* ── Colour: Status ──────────────────────────────────────── */
+  --color-success:        #3FB950;
+  --color-warning:        #D29922;
+  --color-danger:         #F85149;
+
+  /* ── Colour: Glows ───────────────────────────────────────── */
+  --glow-amber:    0 0 20px rgba(232, 125, 20, 0.5),  0 0 60px rgba(232, 125, 20, 0.2);
+  --glow-cyan:     0 0 20px rgba(0, 200, 255, 0.5),   0 0 60px rgba(0, 200, 255, 0.2);
+  --glow-pink:     0 0 20px rgba(255, 45, 120, 0.5),  0 0 60px rgba(255, 45, 120, 0.15);
+  --glow-purple:   0 0 20px rgba(123, 47, 190, 0.5),  0 0 60px rgba(123, 47, 190, 0.15);
+  --glow-card:     0 8px 32px rgba(0, 0, 0, 0.6),     0 0 0 1px rgba(0, 200, 255, 0.08);
+  --glow-wa:       0 0 24px rgba(37, 211, 102, 0.4);
+
+  /* ── Typography ──────────────────────────────────────────── */
+  --font-display:  'Space Grotesk', system-ui, sans-serif;
+  --font-body:     'Inter', system-ui, sans-serif;
+  --font-mono:     'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Fluid type scale — uses clamp() for smooth scaling */
+  --text-2xs:   0.6875rem;                              /* 11px */
+  --text-xs:    0.75rem;                                /* 12px */
+  --text-sm:    0.875rem;                               /* 14px */
+  --text-base:  1rem;                                   /* 16px */
+  --text-lg:    1.125rem;                               /* 18px */
+  --text-xl:    1.25rem;                                /* 20px */
+  --text-2xl:   1.5rem;                                 /* 24px */
+  --text-3xl:   2rem;                                   /* 32px */
+  --text-4xl:   clamp(2rem, 5vw, 3rem);                /* 32–48px fluid */
+  --text-hero:  clamp(2.5rem, 7vw, 4.5rem);            /* 40–72px fluid */
+
+  /* ── Spacing ─────────────────────────────────────────────── */
+  --space-1:   0.25rem;    /* 4px */
+  --space-2:   0.5rem;     /* 8px */
+  --space-3:   0.75rem;    /* 12px */
+  --space-4:   1rem;       /* 16px */
+  --space-5:   1.25rem;    /* 20px */
+  --space-6:   1.5rem;     /* 24px */
+  --space-8:   2rem;       /* 32px */
+  --space-10:  2.5rem;     /* 40px */
+  --space-12:  3rem;       /* 48px */
+  --space-16:  4rem;       /* 64px */
+  --space-20:  5rem;       /* 80px */
+  --space-24:  6rem;       /* 96px */
+  --space-32:  8rem;       /* 128px */
+
+  /* ── Layout ──────────────────────────────────────────────── */
+  --container-max:   1280px;
+  --container-pad:   clamp(1rem, 5vw, 2rem);
+  --section-pad-y:   clamp(4rem, 10vw, 8rem);
+  --nav-height:      64px;
+  --classbar-height: 24px;
+
+  /* ── Borders & Radius ────────────────────────────────────── */
+  --radius-sm:    4px;
+  --radius-md:    8px;
+  --radius-lg:    16px;
+  --radius-xl:    24px;
+  --radius-full:  9999px;
+
+  /* ── Shadows ─────────────────────────────────────────────── */
+  --shadow-card:  0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3);
+  --shadow-hover: 0 20px 40px rgba(0,0,0,0.6);
+  --shadow-deep:  0 32px 64px rgba(0,0,0,0.8);
+
+  /* ── Z-index Scale ───────────────────────────────────────── */
+  --z-bg:       -2;
+  --z-canvas:   -1;
+  --z-base:      0;
+  --z-raised:   10;
+  --z-hud:      20;
+  --z-overlay: 100;
+  --z-nav:     200;
+  --z-toast:   300;
+
+  /* ── Transitions ─────────────────────────────────────────── */
+  --transition-fast:   150ms ease;
+  --transition-base:   250ms ease;
+  --transition-slow:   400ms ease;
+  --transition-3d:     300ms cubic-bezier(0.23, 1, 0.32, 1);
+  --transition-spring: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ── 3D Perspective ──────────────────────────────────────── */
+  --perspective-card:   800px;
+  --perspective-scene: 1200px;
+  --perspective-deep:  2000px;
+
+  /* ── Animation Durations ─────────────────────────────────── */
+  --anim-float:     6s;
+  --anim-orbit:     5s;
+  --anim-glow:      3s;
+  --anim-reticle:   2s;
+  --anim-scan:      8s;
+  --anim-radar:     4s;
+  --anim-reveal:    0.6s;
+  --anim-pipeline:  3s;
+  --anim-glitch:    4s;
+}

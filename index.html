@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="#000000"/>
+  <title>Grosint — Bharat's Sovereign Intelligence Infrastructure</title>
+  <meta name="description" content="End-to-end OSINT, fusion, and decision intelligence — built for Indian defence, operated on Indian soil. Grosint, Anveshak, Drishti."/>
+
+  <!-- OG / Social -->
+  <meta property="og:title"       content="Grosint — Sovereign Intelligence Platform"/>
+  <meta property="og:description" content="End-to-end OSINT, fusion, and decision intelligence built for Indian defence."/>
+  <meta property="og:type"        content="website"/>
+  <meta property="og:url"         content="https://grosint.in"/>
+  <meta property="og:image"       content="https://grosint.in/assets/og-image.png"/>
+  <meta name="twitter:card"       content="summary_large_image"/>
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://grosint.in"/>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg"/>
+
+  <!-- Fonts — preconnect for zero layout shift -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+
+  <!-- Compiled CSS -->
+  <link rel="stylesheet" href="./dist/style.css"/>
+
+  <!-- Three.js via CDN (ES module) -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three":                   "https://unpkg.com/three@0.165.0/build/three.module.js",
+        "three/addons/":           "https://unpkg.com/three@0.165.0/examples/jsm/"
+      }
+    }
+  </script>
+
+  <!-- Prevent flash on load -->
+  <style>
+    html { background: #000; }
+    body { opacity: 0; transition: opacity 0.3s ease; }
+    body.loaded { opacity: 1; }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════
+       CLASSIFICATION BAR — always visible, 24px fixed top
+       ═══════════════════════════════════════════════════════ -->
+  <div class="classbar" role="banner" aria-label="Platform classification">
+    <span class="classbar__accent" aria-hidden="true"></span>
+    SOVEREIGN INTELLIGENCE PLATFORM — GARUD RESEARCH &amp; TECH PVT. LTD.
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       NAVBAR
+       ═══════════════════════════════════════════════════════ -->
+  <nav class="navbar" id="navbar" aria-label="Main navigation">
+    <div class="container navbar__inner">
+
+      <!-- Logo -->
+      <a href="/" class="navbar__logo" aria-label="Grosint home">
+        <img src="./assets/garud-mark.svg" alt="" class="navbar__logo-mark" aria-hidden="true" width="36" height="36"/>
+        <span class="navbar__wordmark"><span>GR</span>OSINT</span>
+      </a>
+
+      <!-- Desktop links -->
+      <ul class="navbar__links" role="list">
+        <li>
+          <a href="#products">Products</a>
+        </li>
+        <li><a href="#sovereign">Why Sovereign</a></li>
+        <li><a href="/about.html">About</a></li>
+      </ul>
+
+      <!-- CTA -->
+      <a
+        href="https://wa.me/919901938800?text=Hi%2C%20I%27d%20like%20to%20request%20a%20briefing%20on%20Grosint."
+        class="btn btn--primary navbar__cta"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Request briefing on WhatsApp"
+      >
+        Request Briefing
+      </a>
+
+      <!-- Hamburger -->
+      <button class="navbar__hamburger" id="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="nav-links">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
+
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- ═══════════════════════════════════════════════════
+         HERO — Three.js WebGL scene + content overlay
+         ═══════════════════════════════════════════════════ -->
+    <section class="hero" id="hero" aria-label="Hero">
+
+      <!-- Three.js canvas — injected by JS -->
+      <canvas class="hero__canvas" id="hero-canvas" aria-hidden="true"></canvas>
+
+      <!-- Scan lines overlay -->
+      <div class="scan-lines" aria-hidden="true"></div>
+
+      <!-- Ambient glow orbs -->
+      <div class="glow-orb glow-orb--amber" style="width:500px;height:500px;top:-100px;left:-100px;" aria-hidden="true"></div>
+      <div class="glow-orb glow-orb--cyan"  style="width:400px;height:400px;bottom:-80px;right:-80px;" aria-hidden="true"></div>
+
+      <!-- India map underlay -->
+      <img src="./assets/india-outline.svg" alt="" class="hero__india-map" aria-hidden="true"
+        style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0.05;z-index:2;pointer-events:none;"/>
+
+      <!-- HUD floating labels -->
+      <span class="float-label" style="top:18%;left:8%;  --float-delay:0s">/pivot</span>
+      <span class="float-label" style="top:12%;right:12%;--float-delay:0.8s">/identify</span>
+      <span class="float-label" style="top:35%;left:4%;  --float-delay:1.6s">/locate</span>
+      <span class="float-label" style="top:60%;left:10%; --float-delay:2.4s">/enumerate</span>
+      <span class="float-label float-label--pink" style="top:28%;right:6%;--float-delay:0.4s">/correlate</span>
+      <span class="float-label float-label--pink" style="top:55%;right:8%;--float-delay:1.2s">/surveil</span>
+      <span class="float-label float-label--amber" style="top:70%;left:5%;--float-delay:2s">/classify</span>
+      <span class="float-label float-label--amber" style="top:75%;right:10%;--float-delay:3s">/fuse</span>
+      <span class="float-label float-label--muted" style="top:42%;right:3%;--float-delay:1.8s">/resolve</span>
+      <span class="float-label float-label--muted" style="top:20%;left:25%;--float-delay:2.6s">/alert</span>
+
+      <!-- HUD Reticles -->
+      <div class="reticle reticle--cyan" style="top:22%;left:22%;transform:scale(1.5);" aria-hidden="true"></div>
+      <div class="reticle reticle--pink" style="top:65%;right:18%;transform:scale(1.2);" aria-hidden="true"></div>
+      <div class="reticle reticle--amber" style="bottom:20%;left:12%;transform:scale(0.8);" aria-hidden="true"></div>
+
+      <!-- Hero content -->
+      <div class="container hero__content">
+
+        <span class="hero__label">// EYES THAT NEVER CLOSE</span>
+
+        <h1
+          class="hero__headline glitch"
+          data-text="Bharat's Sovereign Intelligence Infrastructure"
+        >
+          Bharat's Sovereign<br>Intelligence<br>Infrastructure
+        </h1>
+
+        <p class="hero__sub">
+          End-to-end OSINT, fusion, and decision intelligence —
+          built for Indian defence, operated on Indian soil.
+        </p>
+
+        <div class="hero__actions">
+          <a href="#products" class="btn btn--primary btn--lg">
+            Explore the Platform
+          </a>
+          <a
+            href="https://wa.me/919901938800?text=Hi%2C%20I%27d%20like%20to%20request%20a%20briefing%20on%20Grosint."
+            class="btn btn--ghost btn--lg"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Request Briefing
+          </a>
+        </div>
+
+        <!-- Trust indicators -->
+        <div style="display:flex;align-items:center;gap:var(--space-6);flex-wrap:wrap;justify-content:center;margin-top:var(--space-4);">
+          <span class="text-mono" style="font-size:var(--text-2xs);">✦ AIR-GAP CAPABLE</span>
+          <span class="text-mono" style="font-size:var(--text-2xs);color:var(--color-border);">|</span>
+          <span class="text-mono" style="font-size:var(--text-2xs);">✦ NO FOREIGN CLOUD</span>
+          <span class="text-mono" style="font-size:var(--text-2xs);color:var(--color-border);">|</span>
+          <span class="text-mono" style="font-size:var(--text-2xs);">✦ NO FOREIGN RAILS. NO COMPROMISE.</span>
+        </div>
+
+      </div>
+
+      <!-- Scroll hint -->
+      <div class="hero__scroll-hint" aria-hidden="true">
+        <span>SCROLL</span>
+        <div class="hero__scroll-line"></div>
+      </div>
+
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         PRODUCT SUITE — 3 products, 3D tilt cards
+         ═══════════════════════════════════════════════════ -->
+    <section class="section section--surface" id="products" aria-labelledby="products-title">
+
+      <!-- Ambient orb -->
+      <div class="glow-orb glow-orb--cyan" style="width:300px;height:300px;top:0;right:10%;opacity:0.08;" aria-hidden="true"></div>
+
+      <div class="container">
+
+        <div class="section-heading reveal">
+          <span class="section-label">// THE SUITE</span>
+          <h2 class="section-title" id="products-title">Intelligence at Every Layer</h2>
+          <p class="section-sub">
+            Three precision tools — from identifier lookup to full sovereign fusion.
+            Deploy one, grow into all three.
+          </p>
+        </div>
+
+        <div class="products-grid reveal-stagger">
+
+          <!-- Grosint SMINT -->
+          <div class="card-3d-wrapper">
+            <article class="card card--glass card--cyan card--hud card-3d product-card" data-tilt>
+              <div class="card-3d__layer--front product-card__header">
+                <div class="product-card__icon" style="color:var(--color-cyan);">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="m21 21-4.35-4.35"/>
+                    <path d="M11 8v6M8 11h6"/>
+                  </svg>
+                </div>
+                <span class="badge badge--entry">SMINT</span>
+              </div>
+              <div class="card-3d__layer--mid">
+                <h3 class="product-card__name">Grosint</h3>
+                <p class="product-card__tagline">Identifier to Intelligence. Instantly.</p>
+              </div>
+              <ul class="product-card__bullets card-3d__layer--back">
+                <li>Mobile number → full digital profile</li>
+                <li>Email address → social graph pivot</li>
+                <li>On-premise, air-gap capable</li>
+              </ul>
+              <a href="./products/grosint.html" class="product-card__link">
+                Explore Grosint <span aria-hidden="true">→</span>
+              </a>
+            </article>
+          </div>
+
+          <!-- Anveshak OSINT -->
+          <div class="card-3d-wrapper">
+            <article class="card card--glass card--amber card--hud card-3d product-card" data-tilt>
+              <div class="card-3d__layer--front product-card__header">
+                <div class="product-card__icon" style="color:var(--color-amber);">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                    <path d="M12 2v2M12 20v2M2 12H4M20 12h2"/>
+                  </svg>
+                </div>
+                <span class="badge badge--osint">OSINT</span>
+              </div>
+              <div class="card-3d__layer--mid">
+                <h3 class="product-card__name">Anveshak</h3>
+                <p class="product-card__tagline">Eyes Across the Open Web.</p>
+              </div>
+              <ul class="product-card__bullets card-3d__layer--back">
+                <li>AI-powered multi-source monitoring</li>
+                <li>Deepfake detection + media verification</li>
+                <li>LLM report generation — fully local</li>
+              </ul>
+              <a href="./products/anveshak.html" class="product-card__link">
+                Explore Anveshak <span aria-hidden="true">→</span>
+              </a>
+            </article>
+          </div>
+
+          <!-- Drishti Fusion -->
+          <div class="card-3d-wrapper">
+            <article class="card card--glass card--purple card--hud card-3d product-card" data-tilt>
+              <div class="card-3d__layer--front product-card__header">
+                <div class="product-card__icon" style="color:#A78BFA;">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                    <polyline points="2 17 12 22 22 17"/>
+                    <polyline points="2 12 12 17 22 12"/>
+                  </svg>
+                </div>
+                <span class="badge badge--fusion">FUSION</span>
+              </div>
+              <div class="card-3d__layer--mid">
+                <h3 class="product-card__name">Drishti</h3>
+                <p class="product-card__tagline">Every Signal. One Picture.</p>
+              </div>
+              <ul class="product-card__bullets card-3d__layer--back">
+                <li>Cross-domain entity fusion at scale</li>
+                <li>Real-time alert engine — ACID compliant</li>
+                <li>Court-admissible evidence bundles</li>
+              </ul>
+              <a href="./products/drishti.html" class="product-card__link">
+                Explore Drishti <span aria-hidden="true">→</span>
+              </a>
+            </article>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         WHY SOVEREIGN — 4 pillars with 3D cube icon
+         ═══════════════════════════════════════════════════ -->
+    <section class="section section--dark" id="sovereign" aria-labelledby="sovereign-title">
+
+      <div class="glow-orb glow-orb--amber" style="width:350px;height:350px;bottom:0;left:5%;opacity:0.07;" aria-hidden="true"></div>
+
+      <!-- HUD reticle decoration -->
+      <div class="reticle reticle--corners" style="position:absolute;top:var(--space-12);right:var(--space-12);transform:scale(2);" aria-hidden="true"></div>
+
+      <div class="container">
+
+        <div class="section-heading section-heading--centre reveal">
+          <span class="section-label section-label--centre">// DOCTRINE</span>
+          <h2 class="section-title" id="sovereign-title">Why Sovereign</h2>
+          <p class="section-sub">
+            Intelligence infrastructure that leaves Indian soil is a liability.
+            Every Grosint product is designed to operate within your perimeter.
+          </p>
+        </div>
+
+        <div class="pillars-grid reveal-stagger">
+
+          <!-- Pillar 1: No foreign cloud -->
+          <div class="pillar">
+            <div class="cube-wrapper" aria-hidden="true">
+              <div class="cube">
+                <div class="cube__face cube__face--front">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  </svg>
+                </div>
+                <div class="cube__face cube__face--back">NO FOREIGN<br>CLOUD</div>
+              </div>
+            </div>
+            <h3 class="pillar__title">No Foreign Cloud</h3>
+            <p class="pillar__text">
+              Intelligence data never leaves Indian infrastructure.
+              No AWS, no Azure, no GCP. Your data stays within your perimeter — always.
+            </p>
+          </div>
+
+          <!-- Pillar 2: Air-gap capable -->
+          <div class="pillar">
+            <div class="cube-wrapper" aria-hidden="true">
+              <div class="cube">
+                <div class="cube__face cube__face--front">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="2" y="3" width="20" height="14" rx="2"/>
+                    <path d="M8 21h8M12 17v4"/>
+                    <path d="M9 10l-2-2 2-2M15 10l2-2-2-2"/>
+                  </svg>
+                </div>
+                <div class="cube__face cube__face--back">AIR-GAP<br>CAPABLE</div>
+              </div>
+            </div>
+            <h3 class="pillar__title">Air-Gap Capable</h3>
+            <p class="pillar__text">
+              Anveshak runs on a single machine with no internet.
+              Drishti deploys on k3s on-premise. One officer, one machine, full capability.
+            </p>
+          </div>
+
+          <!-- Pillar 3: Audit-ready -->
+          <div class="pillar">
+            <div class="cube-wrapper" aria-hidden="true">
+              <div class="cube">
+                <div class="cube__face cube__face--front">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                    <polyline points="10 9 9 9 8 9"/>
+                  </svg>
+                </div>
+                <div class="cube__face cube__face--back">AUDIT<br>READY</div>
+              </div>
+            </div>
+            <h3 class="pillar__title">Audit-Ready</h3>
+            <p class="pillar__text">
+              SHA-256 immutable evidence chain. Every raw payload stored to MinIO,
+              every alert backed by a court-admissible evidence bundle.
+            </p>
+          </div>
+
+          <!-- Pillar 4: Open stack -->
+          <div class="pillar">
+            <div class="cube-wrapper" aria-hidden="true">
+              <div class="cube">
+                <div class="cube__face cube__face--front">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <polyline points="16 18 22 12 16 6"/>
+                    <polyline points="8 6 2 12 8 18"/>
+                  </svg>
+                </div>
+                <div class="cube__face cube__face--back">OPEN<br>STACK</div>
+              </div>
+            </div>
+            <h3 class="pillar__title">Open Stack</h3>
+            <p class="pillar__text">
+              No vendor lock-in. Redpanda, MinIO, PostgreSQL, Ollama — all open-source.
+              You own the infrastructure. We build the intelligence layer on top.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         PIPELINE — 3D isometric intelligence flow
+         ═══════════════════════════════════════════════════ -->
+    <section class="section section--surface" id="pipeline" aria-labelledby="pipeline-title">
+      <div class="container">
+
+        <div class="section-heading section-heading--centre reveal">
+          <span class="section-label section-label--centre">// ARCHITECTURE</span>
+          <h2 class="section-title" id="pipeline-title">The Intelligence Pipeline</h2>
+          <p class="section-sub">
+            From raw signal to actionable alert — every stage is auditable,
+            immutable, and defensible.
+          </p>
+        </div>
+
+        <div class="pipeline-3d-scene reveal">
+          <div class="pipeline pipeline-3d-track">
+
+            <!-- Node 1: Source -->
+            <div class="pipeline-node pipeline-node-3d">
+              <div class="pipeline-node-3d__face pipeline-node-3d__face--top"></div>
+              <div class="pipeline-node-3d__face pipeline-node-3d__face--front">
+                <div class="pipeline-node">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-amber)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                  <span class="pipeline-node__step">01</span>
+                  <span class="pipeline-node__label">SOURCE</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="pipeline-line" style="--line-delay:0s;"></div>
+
+            <!-- Node 2: Ingest -->
+            <div class="pipeline-node pipeline-node-3d">
+              <div class="pipeline-node-3d__face pipeline-node-3d__face--top"></div>
+              <div class="pipeline-node-3d__face pipeline-node-3d__face--front">
+                <div class="pipeline-node">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-cyan)" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                  <span class="pipeline-node__step">02</span>
+                  <span class="pipeline-node__label">INGEST</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="pipeline-line" style="--line-delay:0.5s;"></div>
+
+            <!-- Node 3: Normalise -->
+            <div class="pipeline-node pipeline-node-3d">
+              <div class="pipeline-node-3d__face pipeline-node-3d__face--top"></div>
+              <div class="pipeline-node-3d__face pipeline-node-3d__face--front">
+                <div class="pipeline-node">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-amber)" stroke-width="1.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                  <span class="pipeline-node__step">03</span>
+                  <span class="pipeline-node__label">NORMALISE</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="pipeline-line" style="--line-delay:1s;"></div>
+
+            <!-- Node 4: Fuse -->
+            <div class="pipeline-node pipeline-node-3d">
+              <div class="pipeline-node-3d__face pipeline-node-3d__face--top"></div>
+              <div class="pipeline-node-3d__face pipeline-node-3d__face--front">
+                <div class="pipeline-node">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-cyan)" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M6 12H3M21 12h-3M12 6V3M12 21v-3M7.05 7.05 4.93 4.93M19.07 19.07l-2.12-2.12M16.95 7.05l2.12-2.12M4.93 19.07l2.12-2.12"/></svg>
+                  <span class="pipeline-node__step">04</span>
+                  <span class="pipeline-node__label">FUSE</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="pipeline-line" style="--line-delay:1.5s;"></div>
+
+            <!-- Node 5: Alert -->
+            <div class="pipeline-node pipeline-node-3d">
+              <div class="pipeline-node-3d__face pipeline-node-3d__face--top"></div>
+              <div class="pipeline-node-3d__face pipeline-node-3d__face--front">
+                <div class="pipeline-node">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-pink)" stroke-width="1.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                  <span class="pipeline-node__step">05</span>
+                  <span class="pipeline-node__label">ALERT</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="pipeline-line" style="--line-delay:2s;"></div>
+
+            <!-- Node 6: Act -->
+            <div class="pipeline-node pipeline-node-3d">
+              <div class="pipeline-node-3d__face pipeline-node-3d__face--top"></div>
+              <div class="pipeline-node-3d__face pipeline-node-3d__face--front">
+                <div class="pipeline-node">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-amber-glow)" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                  <span class="pipeline-node__step">06</span>
+                  <span class="pipeline-node__label">ACT</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Pipeline footnote -->
+        <p style="text-align:center;font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-text-faint);margin-top:var(--space-8);letter-spacing:0.1em;" class="reveal">
+          EVERY STAGE — IMMUTABLE · AUDITABLE · DEFENSIBLE
+        </p>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         WHO WE SERVE — 6 domain tiles
+         ═══════════════════════════════════════════════════ -->
+    <section class="section section--dark" id="serve" aria-labelledby="serve-title">
+
+      <div class="glow-orb glow-orb--purple" style="width:400px;height:400px;top:50%;right:0;transform:translateY(-50%);opacity:0.06;" aria-hidden="true"></div>
+
+      <div class="container">
+
+        <div class="section-heading section-heading--centre reveal">
+          <span class="section-label section-label--centre">// DOMAIN</span>
+          <h2 class="section-title" id="serve-title">Who We Serve</h2>
+          <p class="section-sub">
+            Purpose-built for Indian national security — across every domain of operations.
+          </p>
+        </div>
+
+        <div class="serve-grid reveal-stagger">
+
+          <!-- Indian Air Force — fighter jet -->
+          <div class="domain-tile tile-3d">
+            <div class="domain-tile__icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                <path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
+              </svg>
+            </div>
+            <span class="domain-tile__name">Indian Air Force</span>
+          </div>
+
+          <!-- Indian Army — crossed swords / military star -->
+          <div class="domain-tile tile-3d">
+            <div class="domain-tile__icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+            </div>
+            <span class="domain-tile__name">Indian Army</span>
+          </div>
+
+          <!-- Indian Navy — anchor -->
+          <div class="domain-tile tile-3d">
+            <div class="domain-tile__icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                <circle cx="12" cy="5" r="3"/>
+                <line x1="12" y1="22" x2="12" y2="8"/>
+                <path d="M5 12H2a10 10 0 0 0 20 0h-3"/>
+              </svg>
+            </div>
+            <span class="domain-tile__name">Indian Navy</span>
+          </div>
+
+          <!-- Paramilitary — shield + badge -->
+          <div class="domain-tile tile-3d">
+            <div class="domain-tile__icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <circle cx="12" cy="11" r="2.5"/>
+                <path d="M8.5 16.5c.8-1.5 2-2.5 3.5-2.5s2.7 1 3.5 2.5"/>
+              </svg>
+            </div>
+            <span class="domain-tile__name">Paramilitary</span>
+          </div>
+
+          <!-- State Intelligence — radar sweep -->
+          <div class="domain-tile tile-3d">
+            <div class="domain-tile__icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/>
+                <circle cx="12" cy="11" r="2"/>
+              </svg>
+            </div>
+            <span class="domain-tile__name">State Intelligence</span>
+          </div>
+
+          <!-- Critical Infrastructure — power grid / cpu -->
+          <div class="domain-tile tile-3d">
+            <div class="domain-tile__icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                <rect x="4" y="4" width="16" height="16" rx="2"/>
+                <rect x="9" y="9" width="6" height="6"/>
+                <line x1="9" y1="1" x2="9" y2="4"/>
+                <line x1="15" y1="1" x2="15" y2="4"/>
+                <line x1="9" y1="20" x2="9" y2="23"/>
+                <line x1="15" y1="20" x2="15" y2="23"/>
+                <line x1="20" y1="9" x2="23" y2="9"/>
+                <line x1="20" y1="14" x2="23" y2="14"/>
+                <line x1="1" y1="9" x2="4" y2="9"/>
+                <line x1="1" y1="14" x2="4" y2="14"/>
+              </svg>
+            </div>
+            <span class="domain-tile__name">Critical Infrastructure</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         CTA SECTION — WhatsApp briefing request
+         ═══════════════════════════════════════════════════ -->
+    <section class="section section--surface" id="cta" aria-labelledby="cta-title">
+      <div class="container">
+        <div class="cta-card reveal">
+
+          <!-- HUD corners on the card -->
+          <div class="reticle reticle--corners" style="position:absolute;top:var(--space-6);left:var(--space-6);transform:scale(2.5);" aria-hidden="true"></div>
+          <div class="reticle reticle--corners" style="position:absolute;bottom:var(--space-6);right:var(--space-6);transform:scale(2.5) rotate(180deg);" aria-hidden="true"></div>
+
+          <span class="section-label section-label--centre">// ENGAGE</span>
+
+          <h2 class="cta-card__title" id="cta-title">
+            Request a<br>Classified Briefing
+          </h2>
+
+          <p class="cta-card__sub">
+            Engagements are by direct outreach.
+            Reach our team on WhatsApp — we respond fast.
+          </p>
+
+          <a
+            href="https://wa.me/919901938800?text=Hi%2C%20I%27d%20like%20to%20request%20a%20briefing%20on%20Grosint."
+            class="btn btn--whatsapp"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Message Grosint on WhatsApp"
+          >
+            <!-- WhatsApp icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+            </svg>
+            Message us on WhatsApp
+          </a>
+
+          <p style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-text-faint);letter-spacing:0.1em;">
+            +91 9901938800
+          </p>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+
+      <div class="footer-inner">
+
+        <!-- Brand -->
+        <div>
+          <div class="footer__logo">
+            <img src="./assets/garud-mark.svg" alt="" width="28" height="28" aria-hidden="true"/>
+            <span class="footer__wordmark">GROSINT</span>
+          </div>
+          <p class="footer__registered">Garud Research &amp; Tech Private Limited</p>
+        </div>
+
+        <!-- Links -->
+        <nav aria-label="Footer navigation">
+          <ul class="footer-links footer__links" role="list" style="flex-direction:column;gap:var(--space-3);">
+            <li style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-text-faint);letter-spacing:0.1em;text-transform:uppercase;">Products</li>
+            <ul class="footer-links footer__links footer__links--products" role="list">
+              <li><a href="./products/grosint.html">Grosint</a></li>
+              <li><a href="./products/anveshak.html">Anveshak</a></li>
+              <li><a href="./products/drishti.html">Drishti</a></li>
+            </ul>
+          </ul>
+        </nav>
+
+        <!-- Tagline -->
+        <div class="footer__tagline">
+          <p style="margin-bottom:var(--space-2);">Made in Bharat. For Bharat.</p>
+          <p style="font-size:var(--text-2xs);">🇮🇳 © 2025 Garud Research &amp; Tech Pvt. Ltd.</p>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom" style="margin-top:var(--space-8);padding-top:var(--space-6);border-top:1px solid var(--color-border);">
+        <span style="font-family:var(--font-mono);font-size:var(--text-2xs);color:var(--color-text-faint);letter-spacing:0.1em;">
+          SOVEREIGN · AUDITABLE · IMMUTABLE
+        </span>
+        <nav aria-label="Legal">
+          <ul class="footer-links" role="list" style="gap:var(--space-4);">
+            <li><a href="#" style="font-size:var(--text-xs);color:var(--color-text-faint);">Privacy</a></li>
+            <li><a href="#" style="font-size:var(--text-xs);color:var(--color-text-faint);">Security</a></li>
+            <li><a href="/contact.html" style="font-size:var(--text-xs);color:var(--color-text-faint);">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════════════════
+       JAVASCRIPT
+       ═══════════════════════════════════════════════════════ -->
+  <script type="module" src="./js/app.js"></script>
+
+</body>
+</html>

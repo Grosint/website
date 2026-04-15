@@ -1,0 +1,34 @@
+/* ============================================================
+   GROSINT — ROOT STYLESHEET
+   All @import must come first (postcss-import requirement),
+   then Tailwind directives.
+   ============================================================ */
+
+/* Design tokens — single source of truth */
+@import './tokens.css';
+
+/* Reset */
+@import './reset.css';
+
+/* Typography */
+@import './typography.css';
+
+/* Layout utilities */
+@import './layout.css';
+
+/* Animation keyframes */
+@import './animations.css';
+
+/* 3D CSS transforms */
+@import './three-d.css';
+
+/* HUD elements */
+@import './hud.css';
+
+/* Component mixins */
+@import './components.css';
+
+/* Tailwind directives — after all imports */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
