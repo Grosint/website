@@ -1,6 +1,7 @@
 /**
  * GROSINT — Main Application Script
- * Handles: Nav, scroll reveals, 3D card tilt, Three.js hero + background scenes.
+ * Handles: Preloader, Lenis smooth scroll, GSAP scroll reveals,
+ * custom HUD cursor, scroll-aware nav, 3D card tilt, Three.js hero + background scenes.
  */
 
 import * as THREE from 'three';
@@ -26,18 +27,103 @@ const INTEL_LABELS = [
   '/intercept', '/decode', '/triangulate', '/pattern',
 ];
 
-// ─── Page Load ──────────────────────────────────────────────────────────────
+const PRELOADER_WORDS = [
+  'INITIALIZING', 'CALIBRATING', 'SCANNING', 'ENCRYPTING',
+  'RESOLVING', 'TRIANGULATING', 'LOCKING',
+];
 
-document.body.classList.add('loaded');
+// ─── Preloader ──────────────────────────────────────────────────────────────
+
+const preloader = document.getElementById('preloader');
+const preloaderText = document.getElementById('preloader-text');
+let preloaderWordIndex = 0;
+
+const preloaderInterval = setInterval(() => {
+  preloaderWordIndex = (preloaderWordIndex + 1) % PRELOADER_WORDS.length;
+  if (preloaderText) preloaderText.textContent = PRELOADER_WORDS[preloaderWordIndex];
+}, 400);
+
+function dismissPreloader() {
+  clearInterval(preloaderInterval);
+  if (preloader) {
+    preloader.classList.add('done');
+    setTimeout(() => { preloader.remove(); }, 600);
+  }
+  document.body.classList.add('loaded');
+}
+
+// Dismiss after load + minimum display time
+const loadStart = performance.now();
+const MIN_DISPLAY = 1500;
+
+window.addEventListener('load', () => {
+  const elapsed = performance.now() - loadStart;
+  const remaining = Math.max(0, MIN_DISPLAY - elapsed);
+  setTimeout(dismissPreloader, remaining);
+});
+
+// Fallback: dismiss after 4s regardless
+setTimeout(dismissPreloader, 4000);
+
+// ─── Lenis Smooth Scroll ────────────────────────────────────────────────────
+
+let lenis = null;
+
+async function initLenis() {
+  try {
+    const { default: Lenis } = await import('lenis');
+    lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      touchMultiplier: 2,
+      infinite: false,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+  } catch (e) {
+    // Lenis failed to load — site works fine without it
+  }
+}
+
+initLenis();
 
 // ─── Navigation ─────────────────────────────────────────────────────────────
 
 const navbar     = document.getElementById('navbar');
 const hamburger  = document.getElementById('hamburger');
 
-// Sticky scrolled state
+// Scroll-aware nav: hide on scroll down, show on scroll up
+let lastScrollY = 0;
+const NAV_THRESHOLD = 100;
+
 window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 20);
+  const currentY = window.scrollY;
+
+  // Scrolled state (background change)
+  navbar.classList.toggle('scrolled', currentY > 20);
+
+  // Don't hide nav when mobile menu is open
+  if (navbar.classList.contains('open')) {
+    lastScrollY = currentY;
+    return;
+  }
+
+  // Hide/show based on direction
+  if (currentY > NAV_THRESHOLD) {
+    if (currentY > lastScrollY) {
+      navbar.classList.add('nav-hidden');
+    } else {
+      navbar.classList.remove('nav-hidden');
+    }
+  } else {
+    navbar.classList.remove('nav-hidden');
+  }
+
+  lastScrollY = currentY;
 }, { passive: true });
 
 // Mobile menu toggle
@@ -45,6 +131,8 @@ hamburger?.addEventListener('click', () => {
   const isOpen = navbar.classList.toggle('open');
   hamburger.setAttribute('aria-expanded', isOpen);
   document.body.style.overflow = isOpen ? 'hidden' : '';
+  // Always show nav when menu is open
+  navbar.classList.remove('nav-hidden');
 });
 
 // Close on nav link click (mobile)
@@ -56,29 +144,218 @@ document.querySelectorAll('.navbar__links a').forEach(link => {
   });
 });
 
-// ─── Scroll Reveal — IntersectionObserver ──────────────────────────────────
+// ─── Scroll Progress Bar ────────────────────────────────────────────────────
 
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      revealObserver.unobserve(entry.target); // fire once
+const scrollProgress = document.getElementById('scroll-progress');
+
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
+  if (scrollProgress) scrollProgress.style.width = `${pct}%`;
+}, { passive: true });
+
+// ─── Custom HUD Cursor ─────────────────────────────────────────────────────
+
+const hudCursor = document.getElementById('hud-cursor');
+const isTouch = matchMedia('(hover: none)').matches;
+
+if (hudCursor && !isTouch) {
+  let cursorX = 0, cursorY = 0;
+  let renderX = 0, renderY = 0;
+
+  document.addEventListener('mousemove', (e) => {
+    cursorX = e.clientX;
+    cursorY = e.clientY;
+  }, { passive: true });
+
+  // Smooth follow with lerp
+  function updateCursor() {
+    renderX += (cursorX - renderX) * 0.15;
+    renderY += (cursorY - renderY) * 0.15;
+    hudCursor.style.transform = `translate(${renderX}px, ${renderY}px)`;
+    requestAnimationFrame(updateCursor);
+  }
+  requestAnimationFrame(updateCursor);
+
+  // Hover state on interactive elements
+  const interactiveSelector = 'a, button, [data-tilt], input, textarea, select, .navbar__hamburger';
+
+  document.addEventListener('mouseover', (e) => {
+    if (e.target.closest(interactiveSelector)) {
+      hudCursor.classList.add('hovering');
+    }
+  }, { passive: true });
+
+  document.addEventListener('mouseout', (e) => {
+    if (e.target.closest(interactiveSelector)) {
+      hudCursor.classList.remove('hovering');
+    }
+  }, { passive: true });
+
+  // Click pulse
+  document.addEventListener('mousedown', () => hudCursor.classList.add('clicking'), { passive: true });
+  document.addEventListener('mouseup',   () => hudCursor.classList.remove('clicking'), { passive: true });
+}
+
+// ─── GSAP Scroll Reveals ────────────────────────────────────────────────────
+
+async function initScrollAnimations() {
+  try {
+    const gsapModule = await import('gsap');
+    const stModule = await import('gsap/ScrollTrigger');
+
+    const gsap = gsapModule.gsap || gsapModule.default;
+    const ScrollTrigger = stModule.ScrollTrigger || stModule.default;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Connect Lenis to ScrollTrigger
+    if (lenis) {
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+      gsap.ticker.lagSmoothing(0);
+    }
+
+    // ── Section heading reveals ──
+    gsap.utils.toArray('.reveal').forEach(el => {
+      gsap.from(el, {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 88%',
+          toggleActions: 'play none none none',
+          once: true,
+        },
+      });
+    });
+
+    // ── Stagger grid children ──
+    gsap.utils.toArray('.reveal-stagger').forEach(container => {
+      const children = container.children;
+      gsap.from(children, {
+        y: 30,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.12,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: container,
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+          once: true,
+        },
+      });
+    });
+
+    // ── Border trace reveals ──
+    gsap.utils.toArray('.border-trace').forEach(el => {
+      ScrollTrigger.create({
+        trigger: el,
+        start: 'top 85%',
+        once: true,
+        onEnter: () => el.classList.add('visible'),
+      });
+    });
+
+    // ── Word-by-word hero headline reveal ──
+    splitAndAnimate('.hero__headline', gsap);
+
+    // ── Word-by-word section title reveals ──
+    gsap.utils.toArray('.section-title').forEach(el => {
+      splitAndAnimate(el, gsap, true);
+    });
+
+    // ── Word-by-word CTA title reveal ──
+    splitAndAnimate('.cta-card__title', gsap, true);
+
+  } catch (e) {
+    // GSAP failed to load — fall back to CSS-based IntersectionObserver reveals
+    initFallbackReveals();
+  }
+}
+
+function splitAndAnimate(target, gsap, useScrollTrigger = false) {
+  const el = typeof target === 'string' ? document.querySelector(target) : target;
+  if (!el) return;
+
+  // Preserve the data-text attribute for glitch effect
+  const dataText = el.getAttribute('data-text');
+
+  // Get the text content, preserving line breaks from <br>
+  const html = el.innerHTML;
+  const parts = html.split(/(<br\s*\/?>)/gi);
+
+  el.innerHTML = '';
+  const words = [];
+
+  parts.forEach(part => {
+    if (part.match(/^<br\s*\/?>$/i)) {
+      el.appendChild(document.createElement('br'));
+    } else {
+      part.split(/\s+/).filter(Boolean).forEach(word => {
+        const span = document.createElement('span');
+        span.textContent = word + ' ';
+        span.style.display = 'inline-block';
+        span.style.willChange = 'transform, opacity';
+        el.appendChild(span);
+        words.push(span);
+      });
     }
   });
-}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-document.querySelectorAll('.reveal, .reveal-stagger, .border-trace').forEach(el => {
-  revealObserver.observe(el);
-});
+  // Re-apply data-text for glitch
+  if (dataText) el.setAttribute('data-text', dataText);
+
+  const animConfig = {
+    y: 30,
+    opacity: 0,
+    rotateX: -15,
+    duration: 0.5,
+    stagger: 0.04,
+    ease: 'power3.out',
+  };
+
+  if (useScrollTrigger) {
+    animConfig.scrollTrigger = {
+      trigger: el,
+      start: 'top 85%',
+      toggleActions: 'play none none none',
+      once: true,
+    };
+  } else {
+    animConfig.delay = 0.5;
+  }
+
+  gsap.from(words, animConfig);
+}
+
+// Fallback for when GSAP doesn't load
+function initFallbackReveals() {
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal, .reveal-stagger, .border-trace').forEach(el => {
+    revealObserver.observe(el);
+  });
+}
+
+initScrollAnimations();
 
 // ─── 3D Card Tilt — Mouse Parallax ──────────────────────────────────────────
 
 document.querySelectorAll('[data-tilt]').forEach(card => {
-  const wrapper = card.parentElement; // card-3d-wrapper
-
   card.addEventListener('mousemove', e => {
     const rect = card.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width  - 0.5; // -0.5 → 0.5
+    const x = (e.clientX - rect.left) / rect.width  - 0.5;
     const y = (e.clientY - rect.top)  / rect.height - 0.5;
 
     card.style.setProperty('--rx', `${-y * 14}deg`);
@@ -92,7 +369,6 @@ document.querySelectorAll('[data-tilt]').forEach(card => {
     card.style.setProperty('--ry', '0deg');
   });
 
-  // Touch support — reset on touch end
   card.addEventListener('touchend', () => {
     card.style.setProperty('--rx', '0deg');
     card.style.setProperty('--ry', '0deg');
@@ -121,7 +397,6 @@ function initBackgroundScene() {
   const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
   camera.position.z = 40;
 
-  // Particle geometry — 600 drifting dots
   const count  = 600;
   const positions = new Float32Array(count * 3);
   const colours   = new Float32Array(count * 3);
@@ -140,7 +415,6 @@ function initBackgroundScene() {
     colours[i * 3 + 1] = col.g;
     colours[i * 3 + 2] = col.b;
 
-    // Individual drift velocity
     velocities.push({
       x: (Math.random() - 0.5) * 0.005,
       y: (Math.random() - 0.5) * 0.005,
@@ -161,13 +435,10 @@ function initBackgroundScene() {
     sizeAttenuation: true,
   });
 
-  const points = new THREE.Points(geo, mat);
-  scene.add(points);
+  scene.add(new THREE.Points(geo, mat));
 
-  let frameId;
   let paused = false;
 
-  // Pause when tab hidden (saves GPU)
   document.addEventListener('visibilitychange', () => {
     paused = document.hidden;
     if (!paused) animate();
@@ -175,7 +446,7 @@ function initBackgroundScene() {
 
   function animate() {
     if (paused) return;
-    frameId = requestAnimationFrame(animate);
+    requestAnimationFrame(animate);
 
     const t = performance.now() * 0.001;
     const pos = geo.attributes.position.array;
@@ -208,14 +479,12 @@ function initHeroScene() {
   const W = canvas.parentElement.clientWidth;
   const H = canvas.parentElement.clientHeight;
 
-  // ── Renderer ──────────────────────────────────────────────
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.setSize(W, H);
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.2;
 
-  // ── CSS2D overlay renderer (floating text labels) ─────────
   const labelRenderer = new CSS2DRenderer();
   labelRenderer.setSize(W, H);
   labelRenderer.domElement.style.cssText = `
@@ -226,9 +495,6 @@ function initHeroScene() {
   `;
   canvas.parentElement.appendChild(labelRenderer.domElement);
 
-  // ── Scene + Camera ────────────────────────────────────────
-  // On portrait/mobile screens the radar ring (radius 22) clips at the sides.
-  // Increase FOV and pull camera back so the full ring stays in view.
   const isMobile = W / H < 0.9;
   const heroFov  = isMobile ? 100 : 60;
   const heroCamZ = isMobile ? 42  : 35;
@@ -237,22 +503,17 @@ function initHeroScene() {
   const camera = new THREE.PerspectiveCamera(heroFov, W / H, 0.1, 500);
   camera.position.set(0, 0, heroCamZ);
 
-  // ── Post-processing: Bloom + Film grain ───────────────────
   const composer = new EffectComposer(renderer);
   composer.addPass(new RenderPass(scene, camera));
 
   const bloom = new UnrealBloomPass(
     new THREE.Vector2(W, H),
-    0.8,   // strength
-    0.4,   // radius
-    0.85   // threshold
+    0.8, 0.4, 0.85
   );
   composer.addPass(bloom);
+  composer.addPass(new FilmPass(0.2, false));
 
-  const film = new FilmPass(0.2, false);
-  composer.addPass(film);
-
-  // ── Particle field — 800 points (hero foreground) ─────────
+  // Particle field — 800 points
   {
     const count = 800;
     const pos   = new Float32Array(count * 3);
@@ -276,19 +537,16 @@ function initHeroScene() {
     geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
     geo.setAttribute('color',    new THREE.BufferAttribute(col, 3));
 
-    const mat = new THREE.PointsMaterial({
+    scene.add(new THREE.Points(geo, new THREE.PointsMaterial({
       size: 0.12,
       vertexColors: true,
       transparent: true,
       opacity: 0.6,
       sizeAttenuation: true,
-    });
-
-    scene.add(new THREE.Points(geo, mat));
+    })));
   }
 
-  // ── Floating intelligence labels (CSS2DObjects) ────────────
-  // Skip on mobile — reduces clutter on narrow screens
+  // Floating intelligence labels (CSS2DObjects)
   const labelObjects = [];
   if (isMobile) labelRenderer.domElement.style.display = 'none';
   INTEL_LABELS.forEach((text, i) => {
@@ -313,7 +571,6 @@ function initHeroScene() {
     );
     scene.add(label);
 
-    // Fade in with stagger, then cycle opacity
     const delay = i * 300 + 500;
     setTimeout(() => {
       div.style.opacity = '0.55';
@@ -321,17 +578,15 @@ function initHeroScene() {
     }, delay);
   });
 
-  // ── Crosshair reticles (LineSegments) ─────────────────────
+  // Crosshair reticles
   function makeReticle(color, x, y, z, scale = 1) {
     const mat = new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.7 });
     const s = scale * 2;
     const gap = s * 0.28;
 
-    // Horizontal segments (left + right of gap)
     const pts = [
       new THREE.Vector3(-s, 0, 0), new THREE.Vector3(-gap, 0, 0),
       new THREE.Vector3( gap, 0, 0), new THREE.Vector3( s, 0, 0),
-      // Vertical segments
       new THREE.Vector3(0, -s, 0), new THREE.Vector3(0, -gap, 0),
       new THREE.Vector3(0,  gap, 0), new THREE.Vector3(0,  s, 0),
     ];
@@ -351,9 +606,8 @@ function initHeroScene() {
     makeReticle(COLORS.cyan,   14,  7,  1, 0.6),
   ];
 
-  // ── Garud eagle wireframe (centre-back) ───────────────────
+  // Garud eagle wireframe
   {
-    // Approximate eagle outline as wireframe polygon
     const pts = [
       [0,  10], [-3,  8], [-6,  6], [-14,  8], [-20, 5], [-22, 2],
       [-16,  1], [-8, 3], [-4,  0], [-5, -4], [-3, -8],
@@ -361,75 +615,52 @@ function initHeroScene() {
       [22, 2], [20, 5], [14, 8], [6, 6], [3, 8],
     ].map(([x, y]) => new THREE.Vector3(x * 0.6, y * 0.6, -8));
 
-    const geo = new THREE.BufferGeometry().setFromPoints([...pts, pts[0]]); // close
-    const mat = new THREE.LineBasicMaterial({
+    const geo = new THREE.BufferGeometry().setFromPoints([...pts, pts[0]]);
+    const eagle = new THREE.Line(geo, new THREE.LineBasicMaterial({
       color: COLORS.amber,
       transparent: true,
       opacity: 0.25,
-    });
-
-    const eagle = new THREE.Line(geo, mat);
+    }));
     scene.add(eagle);
-
-    // Slow Y rotation
     eagle.userData.rotate = true;
   }
 
-  // ── Radar sweep disc ──────────────────────────────────────
+  // Radar sweep
   {
-    const geo = new THREE.CircleGeometry(22, 64);
-    const mat = new THREE.MeshBasicMaterial({
-      color: COLORS.amber,
-      transparent: true,
-      opacity: 0.0,
-      side: THREE.DoubleSide,
-    });
-
-    // Build sweep as a thin wedge (pie slice) instead of full disc
     const sweepGeo = new THREE.CircleGeometry(22, 64, 0, Math.PI * 0.15);
-    const sweepMat = new THREE.MeshBasicMaterial({
+    const sweep = new THREE.Mesh(sweepGeo, new THREE.MeshBasicMaterial({
       color: COLORS.amber,
       transparent: true,
       opacity: 0.06,
       side: THREE.DoubleSide,
       depthWrite: false,
-    });
-
-    const sweep = new THREE.Mesh(sweepGeo, sweepMat);
+    }));
     sweep.position.z = -6;
     sweep.userData.isSweep = true;
     scene.add(sweep);
 
     // Radar ring
-    const ringGeo = new THREE.RingGeometry(21.5, 22, 64);
-    const ringMat = new THREE.MeshBasicMaterial({
-      color: COLORS.amber,
-      transparent: true,
-      opacity: 0.3,
-      side: THREE.DoubleSide,
-    });
-    const ring = new THREE.Mesh(ringGeo, ringMat);
+    const ring = new THREE.Mesh(
+      new THREE.RingGeometry(21.5, 22, 64),
+      new THREE.MeshBasicMaterial({ color: COLORS.amber, transparent: true, opacity: 0.3, side: THREE.DoubleSide })
+    );
     ring.position.z = -6;
     scene.add(ring);
 
     // Inner rings
     [14, 8].forEach(r => {
-      const rg = new THREE.RingGeometry(r - 0.2, r, 64);
-      const rm = new THREE.MeshBasicMaterial({
-        color: COLORS.amber,
-        transparent: true,
-        opacity: 0.12,
-        side: THREE.DoubleSide,
-      });
-      scene.add(new THREE.Mesh(rg, rm)).position.z = -6;
+      const m = new THREE.Mesh(
+        new THREE.RingGeometry(r - 0.2, r, 64),
+        new THREE.MeshBasicMaterial({ color: COLORS.amber, transparent: true, opacity: 0.12, side: THREE.DoubleSide })
+      );
+      m.position.z = -6;
+      scene.add(m);
     });
   }
 
-  // ── Ambient light ─────────────────────────────────────────
   scene.add(new THREE.AmbientLight(0xffffff, 0.1));
 
-  // ── Animation loop ────────────────────────────────────────
-  let frameId;
+  // Animation loop
   let paused = false;
 
   document.addEventListener('visibilitychange', () => {
@@ -439,33 +670,29 @@ function initHeroScene() {
 
   function animate() {
     if (paused) return;
-    frameId = requestAnimationFrame(animate);
+    requestAnimationFrame(animate);
 
     const t = performance.now() * 0.001;
 
-    // Rotate radar sweep
     scene.traverse(obj => {
       if (obj.userData?.isSweep) {
-        obj.rotation.z = -t * (Math.PI / 2); // one full rotation per 4s
+        obj.rotation.z = -t * (Math.PI / 2);
       }
       if (obj.userData?.rotate) {
         obj.rotation.y = Math.sin(t * 0.1) * 0.15;
       }
     });
 
-    // Pulse reticles
     reticles.forEach((r, i) => {
       r.material.opacity = 0.3 + Math.sin(t * 1.2 + r.userData.phase) * 0.4;
       r.rotation.z = t * 0.1 * (i % 2 === 0 ? 1 : -1);
     });
 
-    // Float labels
-    labelObjects.forEach(({ label, div, phase, speed }) => {
+    labelObjects.forEach(({ label, phase, speed }) => {
       label.position.y += Math.sin(t * speed + phase) * 0.004;
       label.position.x += Math.cos(t * speed * 0.6 + phase) * 0.002;
     });
 
-    // Subtle camera drift
     camera.position.x = Math.sin(t * 0.07) * 1.5;
     camera.position.y = Math.cos(t * 0.05) * 0.8;
     camera.lookAt(0, 0, 0);
@@ -476,7 +703,6 @@ function initHeroScene() {
 
   animate();
 
-  // ── Resize ────────────────────────────────────────────────
   const resizeObserver = new ResizeObserver(([entry]) => {
     const { width, height } = entry.contentRect;
     camera.aspect = width / height;
@@ -493,10 +719,8 @@ function initHeroScene() {
 
 // ─── Init ────────────────────────────────────────────────────────────────────
 
-// Background particle field — loads immediately
 initBackgroundScene();
 
-// Hero scene — waits for DOM ready (canvas exists)
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initHeroScene);
 } else {

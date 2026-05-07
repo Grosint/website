@@ -225,38 +225,201 @@
 }
 
 /* ── Section Reveal ─────────────────────────────────────────── */
+/* GSAP handles the animation; these provide fallback styling */
 .reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition:
-    opacity    var(--anim-reveal) ease,
-    transform  var(--anim-reveal) ease;
+  will-change: transform, opacity;
 }
 
+.reveal-stagger > * {
+  will-change: transform, opacity;
+}
+
+/* Fallback for when GSAP doesn't load (IO adds .visible) */
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Stagger children — nth-child sets --stagger-delay */
-.reveal-stagger > * {
-  opacity: 0;
-  transform: translateY(20px);
-  transition:
-    opacity   var(--anim-reveal) ease var(--stagger-delay, 0ms),
-    transform var(--anim-reveal) ease var(--stagger-delay, 0ms);
-}
-
-.reveal-stagger > *:nth-child(1) { --stagger-delay: 0ms;   }
-.reveal-stagger > *:nth-child(2) { --stagger-delay: 80ms;  }
-.reveal-stagger > *:nth-child(3) { --stagger-delay: 160ms; }
-.reveal-stagger > *:nth-child(4) { --stagger-delay: 240ms; }
-.reveal-stagger > *:nth-child(5) { --stagger-delay: 320ms; }
-.reveal-stagger > *:nth-child(6) { --stagger-delay: 400ms; }
-
 .reveal-stagger.visible > * {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* ── Preloader ──────────────────────────────────────────────── */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-6);
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.preloader.done {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.preloader__ring {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 1px solid rgba(232, 125, 20, 0.3);
+  position: relative;
+  box-shadow: 0 0 30px rgba(232, 125, 20, 0.15), inset 0 0 30px rgba(232, 125, 20, 0.08);
+  animation: preloader-pulse 2s ease-in-out infinite;
+}
+
+.preloader__sweep {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, transparent 0deg, rgba(232, 125, 20, 0.2) 60deg, transparent 60deg);
+  animation: radar-sweep 2s linear infinite;
+  mask-image: radial-gradient(circle, transparent 20%, black 70%);
+  -webkit-mask-image: radial-gradient(circle, transparent 20%, black 70%);
+}
+
+.preloader__tick {
+  position: absolute;
+  background: var(--color-amber);
+  opacity: 0.7;
+}
+
+.preloader__tick--n, .preloader__tick--s {
+  width: 1px;
+  height: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.preloader__tick--n { top: 6px; }
+.preloader__tick--s { bottom: 6px; }
+
+.preloader__tick--e, .preloader__tick--w {
+  width: 8px;
+  height: 1px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.preloader__tick--e { right: 6px; }
+.preloader__tick--w { left: 6px; }
+
+.preloader__icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: brand-glow-pulse 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.preloader__text {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  color: var(--color-amber);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  animation: neon-flicker 3s ease-in-out infinite;
+}
+
+@keyframes preloader-pulse {
+  0%, 100% { border-color: rgba(232, 125, 20, 0.3); box-shadow: 0 0 30px rgba(232, 125, 20, 0.15), inset 0 0 30px rgba(232, 125, 20, 0.08); }
+  50%      { border-color: rgba(232, 125, 20, 0.6); box-shadow: 0 0 50px rgba(232, 125, 20, 0.3), inset 0 0 40px rgba(232, 125, 20, 0.12); }
+}
+
+/* ── Custom HUD Cursor ─────────────────────────────────────── */
+.hud-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  display: none;
+}
+
+/* Only show on non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+  .hud-cursor { display: block; }
+  body { cursor: none !important; }
+  a, button, [data-tilt], .navbar__hamburger, input, textarea, select { cursor: none !important; }
+}
+
+.hud-cursor__ring {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--color-cyan);
+  border-radius: 50%;
+  position: relative;
+  transform: translate(-50%, -50%);
+  transition: transform 0.15s ease, border-color 0.2s ease, width 0.2s ease, height 0.2s ease;
+  will-change: transform;
+}
+
+.hud-cursor.hovering .hud-cursor__ring {
+  width: 52px;
+  height: 52px;
+  border-color: var(--color-pink);
+}
+
+.hud-cursor__tick {
+  position: absolute;
+  background: var(--color-cyan);
+  transition: background 0.2s ease, transform 0.3s ease;
+}
+
+.hud-cursor.hovering .hud-cursor__tick {
+  background: var(--color-pink);
+}
+
+.hud-cursor__tick--n, .hud-cursor__tick--s {
+  width: 1px;
+  height: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.hud-cursor__tick--n { top: -8px; }
+.hud-cursor__tick--s { bottom: -8px; }
+
+.hud-cursor__tick--e, .hud-cursor__tick--w {
+  width: 6px;
+  height: 1px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.hud-cursor__tick--e { right: -8px; }
+.hud-cursor__tick--w { left: -8px; }
+
+.hud-cursor.hovering .hud-cursor__tick--n { transform: translateX(-50%) rotate(45deg); }
+.hud-cursor.hovering .hud-cursor__tick--s { transform: translateX(-50%) rotate(45deg); }
+.hud-cursor.hovering .hud-cursor__tick--e { transform: translateY(-50%) rotate(45deg); }
+.hud-cursor.hovering .hud-cursor__tick--w { transform: translateY(-50%) rotate(45deg); }
+
+.hud-cursor__dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--color-amber);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translate(-20px, -20px);
+  box-shadow: 0 0 6px var(--color-amber);
+  transition: background 0.2s ease;
+}
+
+.hud-cursor.hovering .hud-cursor__dot {
+  background: var(--color-pink);
+  box-shadow: 0 0 8px var(--color-pink);
+}
+
+.hud-cursor.clicking .hud-cursor__ring {
+  transform: translate(-50%, -50%) scale(0.85);
 }
 
 /* ── Ambient Glow Orbs (decorative background spots) ────────── */
@@ -278,4 +441,8 @@
 
 .glow-orb--pink {
   background: var(--color-pink);
+}
+
+.glow-orb--purple {
+  background: var(--color-purple);
 }

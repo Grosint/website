@@ -29,12 +29,15 @@
   <!-- Compiled CSS -->
   <link rel="stylesheet" href="./dist/style.css"/>
 
-  <!-- Three.js via CDN (ES module) -->
+  <!-- Three.js + GSAP + Lenis via CDN (ES module) -->
   <script type="importmap">
     {
       "imports": {
         "three":                   "https://unpkg.com/three@0.165.0/build/three.module.js",
-        "three/addons/":           "https://unpkg.com/three@0.165.0/examples/jsm/"
+        "three/addons/":           "https://unpkg.com/three@0.165.0/examples/jsm/",
+        "gsap":                    "https://cdn.jsdelivr.net/npm/gsap@3.12.7/index.js",
+        "gsap/ScrollTrigger":      "https://cdn.jsdelivr.net/npm/gsap@3.12.7/ScrollTrigger.js",
+        "lenis":                   "https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.mjs"
       }
     }
   </script>
@@ -42,12 +45,49 @@
   <!-- Prevent flash on load -->
   <style>
     html { background: #000; }
-    body { opacity: 0; transition: opacity 0.3s ease; }
+    body { opacity: 0; transition: opacity 0.6s ease; }
     body.loaded { opacity: 1; }
+  </style>
+
+  <!-- Lenis smooth scroll CSS -->
+  <style>
+    html.lenis, html.lenis body { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto !important; }
+    .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+    .lenis.lenis-stopped { overflow: clip; }
   </style>
 </head>
 
 <body>
+
+  <!-- ═══════════════════════════════════════════════════════
+       PRELOADER — radar-themed loading overlay
+       ═══════════════════════════════════════════════════════ -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__ring">
+      <div class="preloader__sweep"></div>
+      <div class="preloader__tick preloader__tick--n"></div>
+      <div class="preloader__tick preloader__tick--e"></div>
+      <div class="preloader__tick preloader__tick--s"></div>
+      <div class="preloader__tick preloader__tick--w"></div>
+    </div>
+    <img src="./assets/garud-mark.svg" alt="" class="preloader__icon" width="48" height="48"/>
+    <span class="preloader__text" id="preloader-text">INITIALIZING</span>
+  </div>
+
+  <!-- Scroll progress indicator -->
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- Custom HUD cursor (desktop only) -->
+  <div class="hud-cursor" id="hud-cursor" aria-hidden="true">
+    <div class="hud-cursor__ring">
+      <span class="hud-cursor__tick hud-cursor__tick--n"></span>
+      <span class="hud-cursor__tick hud-cursor__tick--e"></span>
+      <span class="hud-cursor__tick hud-cursor__tick--s"></span>
+      <span class="hud-cursor__tick hud-cursor__tick--w"></span>
+    </div>
+    <div class="hud-cursor__dot"></div>
+  </div>
 
   <!-- ═══════════════════════════════════════════════════════
        NAVBAR
