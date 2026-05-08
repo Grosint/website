@@ -284,9 +284,10 @@ function splitAndAnimate(target, gsap, useScrollTrigger = false) {
   // Preserve the data-text attribute for glitch effect
   const dataText = el.getAttribute('data-text');
 
-  // Get the text content, preserving line breaks from <br>
+  // Get the content, preserving line breaks and inline HTML elements
   const html = el.innerHTML;
-  const parts = html.split(/(<br\s*\/?>)/gi);
+  // Split by <br> tags and inline HTML elements (e.g. <span class="...">...</span>)
+  const parts = html.split(/(<br\s*\/?>|<[^>]+>.*?<\/[^>]+>)/gi);
 
   el.innerHTML = '';
   const words = [];
@@ -294,6 +295,14 @@ function splitAndAnimate(target, gsap, useScrollTrigger = false) {
   parts.forEach(part => {
     if (part.match(/^<br\s*\/?>$/i)) {
       el.appendChild(document.createElement('br'));
+    } else if (part.match(/^<[^>]+>.*<\/[^>]+>$/i)) {
+      // Inline HTML element — wrap it in an animated span preserving inner HTML
+      const wrapper = document.createElement('span');
+      wrapper.innerHTML = part;
+      wrapper.style.display = 'inline-block';
+      wrapper.style.willChange = 'transform, opacity';
+      el.appendChild(wrapper);
+      words.push(wrapper);
     } else {
       part.split(/\s+/).filter(Boolean).forEach(word => {
         const span = document.createElement('span');
