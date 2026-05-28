@@ -120,7 +120,7 @@
     <!-- ══════════════════════════════════════════════════════════
          2. STATS BAR
          ══════════════════════════════════════════════════════════ -->
-    <section class="section section--surface" style="padding-block:var(--space-8);" aria-label="Key metrics">
+    <section class="section section--surface py-8" aria-label="Key metrics">
       <div class="container">
         <div class="stats-bar reveal-stagger">
           <div class="stat-box">
@@ -273,7 +273,7 @@
         </div>
 
         <!-- Flow steps -->
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--space-6);margin-top:var(--space-8);position:relative;" class="reveal-stagger">
+        <div class="grid-auto-fit-180 gap-6 mt-8" style="position:relative;" class="reveal-stagger">
 
           <!-- Step 1: INPUT -->
           <div class="card card--glass card--cyan card--hud card-3d" data-tilt style="text-align:center;position:relative;">
@@ -355,21 +355,21 @@
             <div class="case-panel active" id="panel-police" role="tabpanel" aria-labelledby="tab-police">
               <span class="text-mono" style="color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.2em;display:block;margin-bottom:var(--space-4);" data-i18n="grosint.cases.police.agency">CASE STUDY · STATE POLICE</span>
               <h3 class="case-panel__title" data-i18n="grosint.cases.police.title">"Operation Digital Trail" — Kidnapping Suspect Network Mapped</h3>
-              <div class="case-panel__metrics" style="margin-bottom:var(--space-4);">
+              <div class="case-panel__metrics mb-4">
                 <div class="case-metric"><span class="case-metric__value">1</span><span class="case-metric__label" data-i18n="grosint.cases.police.metric1.label">Phone Number Input</span></div>
                 <div class="case-metric"><span class="case-metric__value">47</span><span class="case-metric__label" data-i18n="grosint.cases.police.metric2.label">Data Points Recovered</span></div>
                 <div class="case-metric"><span class="case-metric__value">4</span><span class="case-metric__label" data-i18n="grosint.cases.police.metric3.label">Linked Suspects</span></div>
                 <div class="case-metric"><span class="case-metric__value">4 min</span><span class="case-metric__label" data-i18n="grosint.cases.police.metric4.label">Total Time</span></div>
               </div>
 
-              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+              <div class="card card--glass p-5 mb-4">
                 <span class="text-mono" style="color:var(--color-amber);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="grosint.cases.label.situation">THE SITUATION</span>
                 <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;margin-top:var(--space-2);" data-i18n="grosint.cases.police.situation">
                   A suspect in a kidnapping case has abandoned their primary phone. Police have only a secondary number found on a scrap of paper at the suspect's last known location. The cyber cell has been tasked with building the suspect's digital profile, but manual OSINT would take 2-3 days.
                 </p>
               </div>
 
-              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+              <div class="card card--glass p-5 mb-4">
                 <span class="text-mono" style="color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="grosint.cases.label.solution">WHAT GROSINT DOES</span>
                 <ul data-i18n="grosint.cases.police.timeline" data-i18n-html style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.8;margin-top:var(--space-2);padding-left:var(--space-5);list-style:disc;">
                   <li><strong style="color:var(--color-text-primary);">T+0s</strong> — Number entered into Grosint. Parallel queries fire across telecom, social, and breach databases simultaneously.</li>
@@ -397,21 +397,21 @@
             <div class="case-panel" id="panel-nia" role="tabpanel" aria-labelledby="tab-nia">
               <span class="text-mono" style="color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.2em;display:block;margin-bottom:var(--space-4);" data-i18n="grosint.cases.nia.agency">CASE STUDY · NATIONAL INVESTIGATION AGENCY</span>
               <h3 class="case-panel__title" data-i18n="grosint.cases.nia.title">"Operation Shadow Network" — Burner SIM to Watch-Listed Entity</h3>
-              <div class="case-panel__metrics" style="margin-bottom:var(--space-4);">
+              <div class="case-panel__metrics mb-4">
                 <div class="case-metric"><span class="case-metric__value">1</span><span class="case-metric__label" data-i18n="grosint.cases.nia.metric1.label">Burner SIM</span></div>
                 <div class="case-metric"><span class="case-metric__value">3</span><span class="case-metric__label" data-i18n="grosint.cases.nia.metric2.label">Identity Layers</span></div>
                 <div class="case-metric"><span class="case-metric__value">2</span><span class="case-metric__label" data-i18n="grosint.cases.nia.metric3.label">Watch-List Matches</span></div>
                 <div class="case-metric"><span class="case-metric__value">6 min</span><span class="case-metric__label" data-i18n="grosint.cases.nia.metric4.label">Total Time</span></div>
               </div>
 
-              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+              <div class="card card--glass p-5 mb-4">
                 <span class="text-mono" style="color:var(--color-amber);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="grosint.cases.label.situation">THE SITUATION</span>
                 <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;margin-top:var(--space-2);" data-i18n="grosint.cases.nia.situation">
                   NIA intercepts a burner SIM number from a hawala transaction. The number appears clean — no obvious social media presence, no caller ID registration. Traditional investigative tools return nothing. The number appears to be a dead end.
                 </p>
               </div>
 
-              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+              <div class="card card--glass p-5 mb-4">
                 <span class="text-mono" style="color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="grosint.cases.label.solution">WHAT GROSINT DOES</span>
                 <ul data-i18n="grosint.cases.nia.timeline" data-i18n-html style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.8;margin-top:var(--space-2);padding-left:var(--space-5);list-style:disc;">
                   <li><strong style="color:var(--color-text-primary);">T+0s</strong> — Burner SIM number entered. Parallel lookups initiated across all available data sources.</li>
@@ -439,21 +439,21 @@
             <div class="case-panel" id="panel-border" role="tabpanel" aria-labelledby="tab-border">
               <span class="text-mono" style="color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.2em;display:block;margin-bottom:var(--space-4);" data-i18n="grosint.cases.border.agency">CASE STUDY · BORDER FORCE</span>
               <h3 class="case-panel__title" data-i18n="grosint.cases.border.title">"Operation Gateway" — Fraudulent Identity Detected at Checkpoint</h3>
-              <div class="case-panel__metrics" style="margin-bottom:var(--space-4);">
+              <div class="case-panel__metrics mb-4">
                 <div class="case-metric"><span class="case-metric__value">2</span><span class="case-metric__label" data-i18n="grosint.cases.border.metric1.label">Identifiers Checked</span></div>
                 <div class="case-metric"><span class="case-metric__value">3</span><span class="case-metric__label" data-i18n="grosint.cases.border.metric2.label">Discrepancies Found</span></div>
                 <div class="case-metric"><span class="case-metric__value">90s</span><span class="case-metric__label" data-i18n="grosint.cases.border.metric3.label">Detection Time</span></div>
                 <div class="case-metric"><span class="case-metric__value">1</span><span class="case-metric__label" data-i18n="grosint.cases.border.metric4.label">Fraudulent Entry Prevented</span></div>
               </div>
 
-              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+              <div class="card card--glass p-5 mb-4">
                 <span class="text-mono" style="color:var(--color-amber);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="grosint.cases.label.situation">THE SITUATION</span>
                 <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;margin-top:var(--space-2);" data-i18n="grosint.cases.border.situation">
                   A traveller at an international checkpoint presents documents that pass visual inspection. The border officer wants a rapid digital footprint check on the passport number and declared phone number before clearance. The queue is growing — the officer has less than 2 minutes for a decision.
                 </p>
               </div>
 
-              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+              <div class="card card--glass p-5 mb-4">
                 <span class="text-mono" style="color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="grosint.cases.label.solution">WHAT GROSINT DOES</span>
                 <ul data-i18n="grosint.cases.border.timeline" data-i18n-html style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.8;margin-top:var(--space-2);padding-left:var(--space-5);list-style:disc;">
                   <li><strong style="color:var(--color-text-primary);">T+0s</strong> — Phone number and passport details entered into Grosint. Both lookups fire simultaneously.</li>
@@ -480,21 +480,21 @@
             <div class="case-panel" id="panel-cyber" role="tabpanel" aria-labelledby="tab-cyber">
               <span class="text-mono" style="color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.2em;display:block;margin-bottom:var(--space-4);" data-i18n="grosint.cases.cyber.agency">CASE STUDY · CYBER CRIME CELL</span>
               <h3 class="case-panel__title" data-i18n="grosint.cases.cyber.title">"Operation Phish Net" — 12 Numbers, 1 Operator</h3>
-              <div class="case-panel__metrics" style="margin-bottom:var(--space-4);">
+              <div class="case-panel__metrics mb-4">
                 <div class="case-metric"><span class="case-metric__value">12</span><span class="case-metric__label" data-i18n="grosint.cases.cyber.metric1.label">Numbers Input</span></div>
                 <div class="case-metric"><span class="case-metric__value">1</span><span class="case-metric__label" data-i18n="grosint.cases.cyber.metric2.label">Operator Identified</span></div>
                 <div class="case-metric"><span class="case-metric__value">15 min</span><span class="case-metric__label" data-i18n="grosint.cases.cyber.metric3.label">Total Time</span></div>
                 <div class="case-metric"><span class="case-metric__value">Court-Ready</span><span class="case-metric__label" data-i18n="grosint.cases.cyber.metric4.label">Evidence Package</span></div>
               </div>
 
-              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+              <div class="card card--glass p-5 mb-4">
                 <span class="text-mono" style="color:var(--color-amber);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="grosint.cases.label.situation">THE SITUATION</span>
                 <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;margin-top:var(--space-2);" data-i18n="grosint.cases.cyber.situation">
                   A phishing campaign targeting Indian banks uses rotating phone numbers for OTP collection. The cyber crime cell has extracted a list of 12 phone numbers from phishing kits. Each number appears unrelated to the others. Manual investigation of each would take the team weeks.
                 </p>
               </div>
 
-              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+              <div class="card card--glass p-5 mb-4">
                 <span class="text-mono" style="color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="grosint.cases.label.solution">WHAT GROSINT DOES</span>
                 <ul data-i18n="grosint.cases.cyber.timeline" data-i18n-html style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.8;margin-top:var(--space-2);padding-left:var(--space-5);list-style:disc;">
                   <li><strong style="color:var(--color-text-primary);">T+0s</strong> — All 12 phone numbers entered for batch lookup. 12 parallel query sets fire simultaneously — over 100 individual lookups in total.</li>
@@ -521,21 +521,21 @@
             <div class="case-panel" id="panel-ci" role="tabpanel" aria-labelledby="tab-ci">
               <span class="text-mono" style="color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.2em;display:block;margin-bottom:var(--space-4);" data-i18n="grosint.cases.ci.agency">CASE STUDY · COUNTER-INTELLIGENCE</span>
               <h3 class="case-panel__title" data-i18n="grosint.cases.ci.title">"Operation Mirror" — Foreign Contact Network Mapped</h3>
-              <div class="case-panel__metrics" style="margin-bottom:var(--space-4);">
+              <div class="case-panel__metrics mb-4">
                 <div class="case-metric"><span class="case-metric__value">1</span><span class="case-metric__label" data-i18n="grosint.cases.ci.metric1.label">International Number</span></div>
                 <div class="case-metric"><span class="case-metric__value">2</span><span class="case-metric__label" data-i18n="grosint.cases.ci.metric2.label">Mutual Connections</span></div>
                 <div class="case-metric"><span class="case-metric__value">Full</span><span class="case-metric__label" data-i18n="grosint.cases.ci.metric3.label">Network Mapped</span></div>
                 <div class="case-metric"><span class="case-metric__value">Court-Ready</span><span class="case-metric__label" data-i18n="grosint.cases.ci.metric4.label">Evidence Chain</span></div>
               </div>
 
-              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+              <div class="card card--glass p-5 mb-4">
                 <span class="text-mono" style="color:var(--color-amber);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="grosint.cases.label.situation">THE SITUATION</span>
                 <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;margin-top:var(--space-2);" data-i18n="grosint.cases.ci.situation">
                   A defence establishment employee is suspected of unauthorized contact with a foreign national. Counter-Intelligence has the foreign number but no other leads. The employee denies any such contact. CI needs to establish the relationship and map the foreign contact's identity — without alerting either party.
                 </p>
               </div>
 
-              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+              <div class="card card--glass p-5 mb-4">
                 <span class="text-mono" style="color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="grosint.cases.label.solution">WHAT GROSINT DOES</span>
                 <ul data-i18n="grosint.cases.ci.timeline" data-i18n-html style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.8;margin-top:var(--space-2);padding-left:var(--space-5);list-style:disc;">
                   <li><strong style="color:var(--color-text-primary);">T+0s</strong> — International number entered. Grosint initiates lookups adjusted for the foreign carrier and registration country.</li>
@@ -762,7 +762,7 @@
           <p class="section-sub sub-centered" data-i18n="grosint.tech.subtitle">No proprietary black boxes. Every layer is auditable and replaceable.</p>
         </div>
 
-        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-3);margin-top:var(--space-8);" class="reveal">
+        <div class="flex-wrap-center gap-3 mt-8" class="reveal">
           <span class="badge badge--entry badge--padded">Python 3.12</span>
           <span class="badge badge--entry badge--padded">FastAPI</span>
           <span class="badge badge--entry badge--padded">PostgreSQL 16</span>
@@ -786,7 +786,7 @@
           <h2 class="section-title" data-i18n="grosint.suite.title">Grosint is Just the Beginning</h2>
           <p class="section-sub sub-centered" data-i18n="grosint.suite.subtitle">As your intelligence requirements grow, the suite grows with you.</p>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--space-4);margin-top:var(--space-8);" class="reveal-stagger">
+        <div class="grid-auto-fit-200 gap-4 mt-8" class="reveal-stagger">
           <div class="card card--glass card--cyan" style="text-align:center;box-shadow:var(--glow-cyan);">
             <div style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-cyan);margin-bottom:var(--space-2);">YOU ARE HERE</div>
             <div style="font-family:var(--font-display);font-size:var(--text-xl);font-weight:700;color:var(--color-text-primary);">Grosint</div>
