@@ -75,7 +75,7 @@
     <!-- ══════════════════════════════════════════════════════════
          1. HERO
          ══════════════════════════════════════════════════════════ -->
-    <section class="section" style="min-height:60vh;display:grid;place-items:center;background:var(--color-bg-base);position:relative;overflow:hidden;" aria-label="Product hero">
+    <section class="section" class="section--product-hero" aria-label="Product hero">
       <div class="glow-orb glow-orb--amber" style="width:450px;height:450px;top:-100px;right:-80px;opacity:0.1;" aria-hidden="true"></div>
       <div class="glow-orb glow-orb--pink"  style="width:250px;height:250px;bottom:-40px;left:10%;opacity:0.07;" aria-hidden="true"></div>
       <div class="scan-lines" aria-hidden="true"></div>
@@ -88,10 +88,10 @@
       <div class="reticle reticle--corners" style="position:absolute;bottom:var(--space-16);right:var(--space-16);transform:scale(3);" aria-hidden="true"></div>
       <div class="reticle reticle--pink" style="position:absolute;top:30%;left:40%;transform:scale(0.6);opacity:0.4;" aria-hidden="true"></div>
 
-      <div class="container" style="position:relative;z-index:2;">
-        <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--space-6);">
+      <div class="container" class="z-2">
+        <div class="flex-col-center gap-6">
 
-          <div style="display:flex;align-items:center;gap:var(--space-3);">
+          <div class="flex-center gap-3">
             <span class="badge badge--osint" data-i18n="hero.badge.osint">OSINT PLATFORM</span>
             <span class="badge" style="color:var(--color-text-faint);border-color:var(--color-border);font-size:var(--text-2xs);" data-i18n="hero.badge.idex">iDEX ADITI 4.0 · PS-18</span>
           </div>
@@ -105,25 +105,25 @@
           </div>
 
           <h1 class="hero__headline glitch" data-text="Anveshak" style="font-size:var(--text-4xl);" data-i18n="hero.headline">Anveshak</h1>
-          <p class="section-sub" style="text-align:center;margin-inline:auto;" data-i18n="hero.subtitle">
+          <p class="section-sub sub-centered" data-i18n="hero.subtitle">
             अन्वेषक — Eyes Across the Open Web.<br>
             AI-powered OSINT monitoring, media verification, and local LLM reporting.
             Runs on one machine. No internet required.
           </p>
 
-          <div style="display:flex;flex-wrap:wrap;gap:var(--space-4);justify-content:center;">
+          <div class="flex-wrap-center gap-4">
             <a href="https://wa.me/919901938800?text=Hi%2C%20I%27d%20like%20to%20request%20an%20evaluation%20of%20Anveshak." class="btn btn--primary btn--lg" target="_blank" rel="noopener noreferrer" data-i18n="hero.cta.eval">Request Evaluation</a>
             <a href="/#products" class="btn btn--ghost btn--lg" data-i18n="hero.cta.products">← All Products</a>
           </div>
 
           <!-- Capability badges -->
-          <div style="display:flex;flex-wrap:wrap;gap:var(--space-3);justify-content:center;margin-top:var(--space-2);">
-            <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">Multi-Source Monitoring</span>
-            <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">Deepfake Detection</span>
-            <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">200+ Languages</span>
-            <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">Real-Time Alerts</span>
-            <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">Sovereign AI</span>
-            <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">Court-Ready Evidence</span>
+          <div class="badge-row--center mt-2">
+            <span class="badge badge--osint badge--padded-sm">Multi-Source Monitoring</span>
+            <span class="badge badge--osint badge--padded-sm">Deepfake Detection</span>
+            <span class="badge badge--osint badge--padded-sm">200+ Languages</span>
+            <span class="badge badge--osint badge--padded-sm">Real-Time Alerts</span>
+            <span class="badge badge--osint badge--padded-sm">Sovereign AI</span>
+            <span class="badge badge--osint badge--padded-sm">Court-Ready Evidence</span>
           </div>
 
         </div>
@@ -133,7 +133,7 @@
     <!-- ══════════════════════════════════════════════════════════
          2. STATS BAR
          ══════════════════════════════════════════════════════════ -->
-    <section class="section section--surface" style="padding-block:var(--space-8);" aria-label="Key metrics">
+    <section class="section section--surface py-8" aria-label="Key metrics">
       <div class="container">
         <div class="stats-bar reveal-stagger">
           <div class="stat-box">
@@ -168,17 +168,17 @@
          3. 3D PIPELINE VISUALIZATION
          ══════════════════════════════════════════════════════════ -->
     <!-- Pipeline heading (outside the pinned section so it scrolls normally) -->
-    <section class="section section--dark" style="padding-bottom:0;" aria-labelledby="pipeline-title">
+    <section class="section section--dark pb-0" aria-labelledby="pipeline-title">
       <div class="container">
         <div class="section-heading section-heading--centre reveal">
           <span class="section-label section-label--centre" data-i18n="pipeline.label">// INTELLIGENCE PIPELINE</span>
           <h2 class="section-title" id="pipeline-title" data-i18n="pipeline.title">12-Stage Processing Pipeline</h2>
-          <p class="section-sub" style="text-align:center;margin-inline:auto;" data-i18n="pipeline.subtitle">From raw OSINT data to actionable intelligence — every stage automated, audit-logged, and sovereign.</p>
+          <p class="section-sub sub-centered" data-i18n="pipeline.subtitle">From raw OSINT data to actionable intelligence — every stage automated, audit-logged, and sovereign.</p>
         </div>
       </div>
     </section>
 
-    <section class="section section--dark pipeline-section" id="pipeline-section" style="padding-top:0;">
+    <section class="section section--dark pipeline-section pt-0" id="pipeline-section">
       <!-- Three.js Canvas (desktop) — this entire section gets pinned -->
       <div class="pipeline-canvas-wrapper" id="pipeline-canvas-wrapper">
         <canvas id="pipeline-canvas"></canvas>
@@ -276,100 +276,100 @@
         <div class="section-heading section-heading--centre reveal">
           <span class="section-label section-label--centre" data-i18n="ingestion.label">// DATA INGESTION</span>
           <h2 class="section-title" id="ingestion-title" data-i18n="ingestion.title">We Ingest Everything</h2>
-          <p class="section-sub" style="text-align:center;margin-inline:auto;" data-i18n="ingestion.subtitle">Any open-source intelligence — from global news to dark web forums, from satellite imagery metadata to encrypted messaging channels. If it's on the open web, Anveshak can collect, deduplicate, translate, and analyse it.</p>
+          <p class="section-sub sub-centered" data-i18n="ingestion.subtitle">Any open-source intelligence — from global news to dark web forums, from satellite imagery metadata to encrypted messaging channels. If it's on the open web, Anveshak can collect, deduplicate, translate, and analyse it.</p>
         </div>
 
         <!-- Source Categories Grid -->
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--space-6);margin-top:var(--space-8);" class="reveal-stagger">
+        <div class="grid-auto-fit-280 gap-6 mt-8" class="reveal-stagger">
 
           <!-- Social Media -->
-          <div class="card card--glass card--hud" style="border-top:2px solid var(--color-cyan);">
+          <div class="card card--glass card--hud card--top-cyan">
             <span class="text-mono" style="display:block;margin-bottom:var(--space-4);color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.2em;" data-i18n="ingestion.social.label">SOCIAL MEDIA</span>
-            <div style="display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-4);">
-              <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">Telegram</span>
-              <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">X / Twitter</span>
-              <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">Reddit</span>
-              <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">Bluesky</span>
-              <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">Facebook</span>
-              <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">Instagram</span>
-              <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">VKontakte</span>
-              <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">Weibo</span>
+            <div class="badge-row">
+              <span class="badge badge--entry badge--padded-sm">Telegram</span>
+              <span class="badge badge--entry badge--padded-sm">X / Twitter</span>
+              <span class="badge badge--entry badge--padded-sm">Reddit</span>
+              <span class="badge badge--entry badge--padded-sm">Bluesky</span>
+              <span class="badge badge--entry badge--padded-sm">Facebook</span>
+              <span class="badge badge--entry badge--padded-sm">Instagram</span>
+              <span class="badge badge--entry badge--padded-sm">VKontakte</span>
+              <span class="badge badge--entry badge--padded-sm">Weibo</span>
             </div>
             <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="ingestion.social.desc">Real-time adapters monitor public channels, groups, and feeds. Keyword-based and channel-based collection. Engagement metrics captured for amplification analysis.</p>
           </div>
 
           <!-- News & Web -->
-          <div class="card card--glass card--hud" style="border-top:2px solid var(--color-amber);">
+          <div class="card card--glass card--hud card--top-amber">
             <span class="text-mono" style="display:block;margin-bottom:var(--space-4);color:var(--color-amber);font-size:var(--text-2xs);letter-spacing:0.2em;" data-i18n="ingestion.news.label">NEWS & WEB</span>
-            <div style="display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-4);">
-              <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">News Websites</span>
-              <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">RSS / Atom Feeds</span>
-              <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">Online Newspapers</span>
-              <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">Government Portals</span>
-              <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">Press Releases</span>
-              <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">Think Tank Reports</span>
-              <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">Academic Papers</span>
-              <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">Blogs & Forums</span>
+            <div class="badge-row">
+              <span class="badge badge--osint badge--padded-sm">News Websites</span>
+              <span class="badge badge--osint badge--padded-sm">RSS / Atom Feeds</span>
+              <span class="badge badge--osint badge--padded-sm">Online Newspapers</span>
+              <span class="badge badge--osint badge--padded-sm">Government Portals</span>
+              <span class="badge badge--osint badge--padded-sm">Press Releases</span>
+              <span class="badge badge--osint badge--padded-sm">Think Tank Reports</span>
+              <span class="badge badge--osint badge--padded-sm">Academic Papers</span>
+              <span class="badge badge--osint badge--padded-sm">Blogs & Forums</span>
             </div>
             <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="ingestion.news.desc">Headless browser rendering handles JavaScript-heavy sites. Follow-link crawling for deep content extraction. Paywall and boilerplate detection. 30-second polling cycles.</p>
           </div>
 
           <!-- Messaging & Encrypted -->
-          <div class="card card--glass card--hud" style="border-top:2px solid var(--color-pink);">
+          <div class="card card--glass card--hud card--top-pink">
             <span class="text-mono" style="display:block;margin-bottom:var(--space-4);color:var(--color-pink);font-size:var(--text-2xs);letter-spacing:0.2em;" data-i18n="ingestion.messaging.label">MESSAGING & FORUMS</span>
-            <div style="display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-4);">
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">Telegram Channels</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">Discord Servers</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">Dark Web Forums</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">Paste Sites</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">IRC Channels</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">Hacker Forums</span>
+            <div class="badge-row">
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">Telegram Channels</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">Discord Servers</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">Dark Web Forums</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">Paste Sites</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">IRC Channels</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">Hacker Forums</span>
             </div>
             <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="ingestion.messaging.desc">Monitor public channels in messaging platforms. Dark web collection via Tor-routed adapters. Paste site monitoring for leaked data and threat indicators.</p>
           </div>
 
           <!-- Visual & Media -->
-          <div class="card card--glass card--hud" style="border-top:2px solid #A78BFA;">
+          <div class="card card--glass card--hud card--top-purple">
             <span class="text-mono" style="display:block;margin-bottom:var(--space-4);color:#A78BFA;font-size:var(--text-2xs);letter-spacing:0.2em;" data-i18n="ingestion.visual.label">VISUAL & MEDIA</span>
-            <div style="display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-4);">
-              <span class="badge badge--fusion" style="padding:var(--space-1) var(--space-3);">Images & Photos</span>
-              <span class="badge badge--fusion" style="padding:var(--space-1) var(--space-3);">Video Streams</span>
-              <span class="badge badge--fusion" style="padding:var(--space-1) var(--space-3);">Satellite Imagery</span>
-              <span class="badge badge--fusion" style="padding:var(--space-1) var(--space-3);">PDF Documents</span>
-              <span class="badge badge--fusion" style="padding:var(--space-1) var(--space-3);">Infographics</span>
-              <span class="badge badge--fusion" style="padding:var(--space-1) var(--space-3);">Maps & GeoData</span>
+            <div class="badge-row">
+              <span class="badge badge--fusion badge--padded-sm">Images & Photos</span>
+              <span class="badge badge--fusion badge--padded-sm">Video Streams</span>
+              <span class="badge badge--fusion badge--padded-sm">Satellite Imagery</span>
+              <span class="badge badge--fusion badge--padded-sm">PDF Documents</span>
+              <span class="badge badge--fusion badge--padded-sm">Infographics</span>
+              <span class="badge badge--fusion badge--padded-sm">Maps & GeoData</span>
             </div>
             <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="ingestion.visual.desc">Automatic media download from all text sources. Object detection on images, deepfake analysis on photos and video frames, EXIF metadata extraction, and perceptual hashing for reverse search.</p>
           </div>
 
           <!-- Structured Data -->
-          <div class="card card--glass card--hud" style="border-top:2px solid var(--color-success);">
+          <div class="card card--glass card--hud card--top-success">
             <span class="text-mono" style="display:block;margin-bottom:var(--space-4);color:var(--color-success);font-size:var(--text-2xs);letter-spacing:0.2em;" data-i18n="ingestion.structured.label">STRUCTURED DATA</span>
-            <div style="display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-4);">
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-success);border-color:rgba(63,185,80,0.2);background:rgba(63,185,80,0.04);">CERT-In Advisories</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-success);border-color:rgba(63,185,80,0.2);background:rgba(63,185,80,0.04);">CVE Databases</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-success);border-color:rgba(63,185,80,0.2);background:rgba(63,185,80,0.04);">Sanctions Lists</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-success);border-color:rgba(63,185,80,0.2);background:rgba(63,185,80,0.04);">Company Registries</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-success);border-color:rgba(63,185,80,0.2);background:rgba(63,185,80,0.04);">Court Records</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-success);border-color:rgba(63,185,80,0.2);background:rgba(63,185,80,0.04);">Patent Filings</span>
+            <div class="badge-row">
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-success);border-color:rgba(63,185,80,0.2);background:rgba(63,185,80,0.04);">CERT-In Advisories</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-success);border-color:rgba(63,185,80,0.2);background:rgba(63,185,80,0.04);">CVE Databases</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-success);border-color:rgba(63,185,80,0.2);background:rgba(63,185,80,0.04);">Sanctions Lists</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-success);border-color:rgba(63,185,80,0.2);background:rgba(63,185,80,0.04);">Company Registries</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-success);border-color:rgba(63,185,80,0.2);background:rgba(63,185,80,0.04);">Court Records</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-success);border-color:rgba(63,185,80,0.2);background:rgba(63,185,80,0.04);">Patent Filings</span>
             </div>
             <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="ingestion.structured.desc">Ingest from structured databases, government registries, vulnerability databases, and official advisories. Data normalised and merged into the same pipeline as unstructured content.</p>
           </div>
 
           <!-- Multilingual -->
-          <div class="card card--glass card--hud" style="border-top:2px solid var(--color-warning);">
+          <div class="card card--glass card--hud card--top-warning">
             <span class="text-mono" style="display:block;margin-bottom:var(--space-4);color:var(--color-warning);font-size:var(--text-2xs);letter-spacing:0.2em;" data-i18n="ingestion.languages.label">200+ LANGUAGES</span>
-            <div style="display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-4);">
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">Hindi</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">Chinese</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">Arabic</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">Urdu</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">Russian</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">Turkish</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">Malay</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">French</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">Persian</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">+ 190 more</span>
+            <div class="badge-row">
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">Hindi</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">Chinese</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">Arabic</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">Urdu</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">Russian</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">Turkish</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">Malay</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">French</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">Persian</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">+ 190 more</span>
             </div>
             <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="ingestion.languages.desc">Every source in every language is auto-detected and translated into a unified semantic space. An analyst monitoring Chinese military blogs and Hindi news sees all narratives clustered together — no linguist required.</p>
           </div>
@@ -422,8 +422,8 @@
                 </div>
                 <p class="moat-card__text" data-i18n="moat.blended.text">Our proprietary blended similarity algorithm combines semantic meaning with structural entity overlap. Dark web posts and CERT-In advisories cluster together despite different vocabularies — because they share entities about the same incident.</p>
                 <div style="display:flex;gap:var(--space-2);">
-                  <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">SEMANTIC</span>
-                  <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">STRUCTURAL</span>
+                  <span class="badge badge--osint badge--padded-sm">SEMANTIC</span>
+                  <span class="badge badge--entry badge--padded-sm">STRUCTURAL</span>
                 </div>
               </div>
             </div>
@@ -447,8 +447,8 @@
                 </div>
                 <p class="moat-card__text" data-i18n="moat.leiden.text">Traditional clustering algorithms fail on uniform-density scenarios. Our approach uses modularity-based community detection — correctly handles bridge articles that reference multiple narratives.</p>
                 <div style="display:flex;gap:var(--space-2);">
-                  <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">MODULARITY</span>
-                  <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">COMMUNITY DETECTION</span>
+                  <span class="badge badge--osint badge--padded-sm">MODULARITY</span>
+                  <span class="badge badge--entry badge--padded-sm">COMMUNITY DETECTION</span>
                 </div>
               </div>
             </div>
@@ -469,7 +469,7 @@
               <div class="moat-card__content">
                 <div class="moat-card__visual" style="min-height:120px;display:flex;align-items:center;justify-content:center;gap:var(--space-6);padding:var(--space-4);flex-wrap:wrap;">
                   <!-- CSS timeline -->
-                  <div style="display:flex;align-items:center;gap:var(--space-3);">
+                  <div class="flex-center gap-3">
                     <div style="width:12px;height:12px;border-radius:50%;background:var(--color-amber);box-shadow:0 0 8px rgba(232,125,20,0.5);"></div>
                     <div style="width:60px;height:1px;background:var(--color-border);"></div>
                     <div style="padding:var(--space-1) var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-sm);font-family:var(--font-mono);font-size:9px;color:var(--color-text-faint);">generated_at SET</div>
@@ -568,7 +568,7 @@
               <div class="moat-card__content">
                 <div class="moat-card__visual" style="min-height:100px;display:flex;flex-direction:column;gap:var(--space-3);padding:var(--space-4);justify-content:center;">
                   <!-- Budget meter -->
-                  <div style="display:flex;align-items:center;gap:var(--space-3);">
+                  <div class="flex-center gap-3">
                     <span style="font-family:var(--font-mono);font-size:9px;color:var(--color-text-faint);min-width:60px;">BUDGET</span>
                     <div style="flex:1;height:8px;background:var(--color-bg-surface);border-radius:var(--radius-full);overflow:hidden;border:1px solid var(--color-border);">
                       <div style="width:65%;height:100%;background:linear-gradient(90deg,var(--color-success),var(--color-warning));border-radius:var(--radius-full);transition:width 1s ease;"></div>
@@ -613,21 +613,21 @@
             <div class="case-panel active" id="panel-mi" role="tabpanel" aria-labelledby="tab-mi">
               <span class="text-mono" style="color:var(--color-amber);font-size:var(--text-2xs);letter-spacing:0.2em;display:block;margin-bottom:var(--space-4);" data-i18n="cases.mi.agency">CASE STUDY · MILITARY INTELLIGENCE</span>
               <h3 class="case-panel__title" data-i18n="cases.mi.title">"Operation Sentinel Eye" — LAC Troop Movement Detection</h3>
-              <div class="case-panel__metrics" style="margin-bottom:var(--space-4);">
+              <div class="case-panel__metrics mb-4">
                 <div class="case-metric"><span class="case-metric__value">17</span><span class="case-metric__label" data-i18n="cases.mi.metric1.label">Sources Monitored</span></div>
                 <div class="case-metric"><span class="case-metric__value">3</span><span class="case-metric__label" data-i18n="cases.mi.metric2.label">Languages</span></div>
                 <div class="case-metric"><span class="case-metric__value">4 hrs</span><span class="case-metric__label" data-i18n="cases.mi.metric3.label">Early Warning</span></div>
                 <div class="case-metric"><span class="case-metric__value">1</span><span class="case-metric__label" data-i18n="cases.mi.metric4.label">Machine Required</span></div>
               </div>
 
-              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+              <div class="card card--glass p-5 mb-4">
                 <span class="text-mono" style="color:var(--color-amber);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="cases.label.situation">THE SITUATION</span>
                 <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;margin-top:var(--space-2);" data-i18n="cases.mi.situation">
                   January, Eastern Ladakh sector. An MI unit at a forward post needs to monitor PLA activity along a 200km stretch of the LAC. Their current method: an analyst manually checking 12 news websites, 3 Telegram channels, and Twitter every 2 hours. Chinese-language sources are ignored — no translator available. By the time a report reaches the commanding officer, it's already 6–8 hours old.
                 </p>
               </div>
 
-              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+              <div class="card card--glass p-5 mb-4">
                 <span class="text-mono" style="color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="cases.label.solution">WHAT ANVESHAK DOES</span>
                 <ul data-i18n="cases.mi.timeline" data-i18n-html style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.8;margin-top:var(--space-2);padding-left:var(--space-5);list-style:disc;">
                   <li><strong style="color:var(--color-text-primary);">07:00 hrs</strong> — Anveshak ingests overnight content from 17 sources including Chinese military blogs, Weibo posts (auto-translated), Indian defence RSS feeds, and monitored Telegram channels. 340 articles processed.</li>
@@ -653,20 +653,20 @@
             <div class="case-panel" id="panel-iaf" role="tabpanel" aria-labelledby="tab-iaf">
               <span class="text-mono" style="color:var(--color-amber);font-size:var(--text-2xs);letter-spacing:0.2em;display:block;margin-bottom:var(--space-4);" data-i18n="cases.iaf.agency">CASE STUDY · INDIAN AIR FORCE</span>
               <h3 class="case-panel__title" data-i18n="cases.iaf.title">"Operation Vayu Shield" — Deepfake Detection During Airspace Incident</h3>
-              <div class="case-panel__metrics" style="margin-bottom:var(--space-4);">
+              <div class="case-panel__metrics mb-4">
                 <div class="case-metric"><span class="case-metric__value">92%</span><span class="case-metric__label" data-i18n="cases.iaf.metric1.label">Deepfake Accuracy</span></div>
                 <div class="case-metric"><span class="case-metric__value">23</span><span class="case-metric__label" data-i18n="cases.iaf.metric2.label">Fake Images Flagged</span></div>
                 <div class="case-metric"><span class="case-metric__value">45 min</span><span class="case-metric__label" data-i18n="cases.iaf.metric3.label">Before TV Media</span></div>
               </div>
 
-              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+              <div class="card card--glass p-5 mb-4">
                 <span class="text-mono" style="color:var(--color-amber);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="cases.label.situation">THE SITUATION</span>
                 <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;margin-top:var(--space-2);" data-i18n="cases.iaf.situation">
                   Following a border airspace incident, social media is flooded with images claiming to show a downed IAF aircraft. Pakistani Telegram channels share "satellite imagery" of wreckage. Indian TV channels are preparing to broadcast. The IAF PRO needs to know within minutes: are these images real or fabricated?
                 </p>
               </div>
 
-              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+              <div class="card card--glass p-5 mb-4">
                 <span class="text-mono" style="color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="cases.label.solution">WHAT ANVESHAK DOES</span>
                 <ul data-i18n="cases.iaf.timeline" data-i18n-html style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.8;margin-top:var(--space-2);padding-left:var(--space-5);list-style:disc;">
                   <li><strong style="color:var(--color-text-primary);">T+0 min</strong> — Anveshak's social monitoring detects a surge of images across 4 Telegram channels and X/Twitter. 47 images and 3 videos collected in the first wave.</li>
@@ -692,20 +692,20 @@
             <div class="case-panel" id="panel-police" role="tabpanel" aria-labelledby="tab-police">
               <span class="text-mono" style="color:var(--color-amber);font-size:var(--text-2xs);letter-spacing:0.2em;display:block;margin-bottom:var(--space-4);" data-i18n="cases.police.agency">CASE STUDY · STATE POLICE</span>
               <h3 class="case-panel__title" data-i18n="cases.police.title">"Operation Rumour Net" — Communal Tension Defused Through Early Detection</h3>
-              <div class="case-panel__metrics" style="margin-bottom:var(--space-4);">
+              <div class="case-panel__metrics mb-4">
                 <div class="case-metric"><span class="case-metric__value">~10s</span><span class="case-metric__label" data-i18n="cases.police.metric1.label">Alert Latency</span></div>
                 <div class="case-metric"><span class="case-metric__value">4</span><span class="case-metric__label" data-i18n="cases.police.metric2.label">Platforms Monitored</span></div>
                 <div class="case-metric"><span class="case-metric__value">3 hrs</span><span class="case-metric__label" data-i18n="cases.police.metric3.label">Before Escalation</span></div>
               </div>
 
-              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+              <div class="card card--glass p-5 mb-4">
                 <span class="text-mono" style="color:var(--color-amber);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="cases.label.situation">THE SITUATION</span>
                 <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;margin-top:var(--space-2);" data-i18n="cases.police.situation">
                   A minor traffic accident between members of two communities in a sensitive district leads to localised tension. Within hours, Telegram groups begin sharing a doctored video of the incident, reframed as a targeted communal attack. The SP needs to know: is this organic outrage or a coordinated amplification campaign?
                 </p>
               </div>
 
-              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+              <div class="card card--glass p-5 mb-4">
                 <span class="text-mono" style="color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="cases.label.solution">WHAT ANVESHAK DOES</span>
                 <ul data-i18n="cases.police.timeline" data-i18n-html style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.8;margin-top:var(--space-2);padding-left:var(--space-5);list-style:disc;">
                   <li><strong style="color:var(--color-text-primary);">14:30 hrs</strong> — Anveshak detects the doctored video appearing simultaneously in 6 Telegram channels within a 20-minute window. Narrative clustering groups all posts into a single cluster.</li>
@@ -731,20 +731,20 @@
             <div class="case-panel" id="panel-cyber" role="tabpanel" aria-labelledby="tab-cyber">
               <span class="text-mono" style="color:var(--color-amber);font-size:var(--text-2xs);letter-spacing:0.2em;display:block;margin-bottom:var(--space-4);" data-i18n="cases.cyber.agency">CASE STUDY · CYBER COMMAND</span>
               <h3 class="case-panel__title" data-i18n="cases.cyber.title">"Operation Dark Nexus" — Connecting Dark Web Chatter to Active Cyber Attack</h3>
-              <div class="case-panel__metrics" style="margin-bottom:var(--space-4);">
+              <div class="case-panel__metrics mb-4">
                 <div class="case-metric"><span class="case-metric__value">2</span><span class="case-metric__label" data-i18n="cases.cyber.metric1.label">Watch Topics Converged</span></div>
                 <div class="case-metric"><span class="case-metric__value">48 hrs</span><span class="case-metric__label" data-i18n="cases.cyber.metric2.label">Advance Warning</span></div>
                 <div class="case-metric"><span class="case-metric__value">HIGH</span><span class="case-metric__label" data-i18n="cases.cyber.metric3.label">Alert Severity</span></div>
               </div>
 
-              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+              <div class="card card--glass p-5 mb-4">
                 <span class="text-mono" style="color:var(--color-amber);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="cases.label.situation">THE SITUATION</span>
                 <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;margin-top:var(--space-2);" data-i18n="cases.cyber.situation">
                   A cyber command unit monitors two separate watch topics: "Critical Infrastructure Threats" (tracking dark web forums) and "CERT-In Advisories" (tracking official vulnerability disclosures). The analysts working these topics don't typically cross-reference each other's intelligence — they're in different teams covering different source pools.
                 </p>
               </div>
 
-              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+              <div class="card card--glass p-5 mb-4">
                 <span class="text-mono" style="color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="cases.label.solution">WHAT ANVESHAK DOES</span>
                 <ul data-i18n="cases.cyber.timeline" data-i18n-html style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.8;margin-top:var(--space-2);padding-left:var(--space-5);list-style:disc;">
                   <li><strong style="color:var(--color-text-primary);">Monday</strong> — Topic 1 (Dark Web) picks up forum posts discussing a specific vulnerability in SCADA systems used by Indian power grid operators. The posts mention entity names: "PowerGrid Corp", "NTPC", and a CVE identifier. These are clustered into a narrative.</li>
@@ -769,21 +769,21 @@
             <div class="case-panel" id="panel-mea" role="tabpanel" aria-labelledby="tab-mea">
               <span class="text-mono" style="color:var(--color-amber);font-size:var(--text-2xs);letter-spacing:0.2em;display:block;margin-bottom:var(--space-4);" data-i18n="cases.mea.agency">CASE STUDY · MINISTRY OF EXTERNAL AFFAIRS</span>
               <h3 class="case-panel__title" data-i18n="cases.mea.title">"Operation Narrative Shield" — Countering a Coordinated Anti-India Influence Campaign</h3>
-              <div class="case-panel__metrics" style="margin-bottom:var(--space-4);">
+              <div class="case-panel__metrics mb-4">
                 <div class="case-metric"><span class="case-metric__value">200+</span><span class="case-metric__label" data-i18n="cases.mea.metric1.label">Languages</span></div>
                 <div class="case-metric"><span class="case-metric__value">14</span><span class="case-metric__label" data-i18n="cases.mea.metric2.label">Countries Covered</span></div>
                 <div class="case-metric"><span class="case-metric__value">72 hrs</span><span class="case-metric__label" data-i18n="cases.mea.metric3.label">Campaign Mapped</span></div>
                 <div class="case-metric"><span class="case-metric__value">Immutable</span><span class="case-metric__label" data-i18n="cases.mea.metric4.label">Evidence Package</span></div>
               </div>
 
-              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+              <div class="card card--glass p-5 mb-4">
                 <span class="text-mono" style="color:var(--color-amber);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="cases.label.situation">THE SITUATION</span>
                 <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;margin-top:var(--space-2);" data-i18n="cases.mea.situation">
                   Ahead of a critical UN General Assembly vote, the MEA's intelligence desk notices a spike in anti-India articles across Turkish, Arabic, and Malay-language media — markets where India's diplomatic engagement has been growing. The desk suspects a coordinated influence operation but lacks the linguistic capacity to confirm it. Currently, only English and French media are systematically monitored. The Foreign Secretary needs a comprehensive assessment within 48 hours.
                 </p>
               </div>
 
-              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+              <div class="card card--glass p-5 mb-4">
                 <span class="text-mono" style="color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="cases.label.solution">WHAT ANVESHAK DOES</span>
                 <ul data-i18n="cases.mea.timeline" data-i18n-html style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.8;margin-top:var(--space-2);padding-left:var(--space-5);list-style:disc;">
                   <li><strong style="color:var(--color-text-primary);">Day 1, 09:00</strong> — Three watch topics are configured: "India UNGA Position" (covering global media in 8 languages), "Anti-India Narratives" (tracking social media and forums), and "Diaspora Sentiment" (monitoring expat community channels). Anveshak begins ingesting from 42 sources.</li>
@@ -818,7 +818,7 @@
         <div class="section-heading section-heading--centre reveal">
           <span class="section-label section-label--centre" data-i18n="sovereign.label">// SOVEREIGN ARCHITECTURE</span>
           <h2 class="section-title" id="sovereign-title" data-i18n="sovereign.title">Zero Cloud Dependencies</h2>
-          <p class="section-sub" style="text-align:center;margin-inline:auto;" data-i18n="sovereign.subtitle">Every component runs on one machine. Intelligence data never leaves the deployment boundary.</p>
+          <p class="section-sub sub-centered" data-i18n="sovereign.subtitle">Every component runs on one machine. Intelligence data never leaves the deployment boundary.</p>
         </div>
 
         <div class="sovereign-stack reveal-stagger">
@@ -853,7 +853,7 @@
         <div class="section-heading section-heading--centre reveal">
           <span class="section-label section-label--centre" data-i18n="tech.label">// UNDER THE HOOD</span>
           <h2 class="section-title" id="tech-title" data-i18n="tech.title">Sovereign by Design</h2>
-          <p class="section-sub" style="text-align:center;margin-inline:auto;" data-i18n="tech.subtitle">All LLM inference runs on Ollama — localhost only. Intelligence data never leaves the deployment boundary.</p>
+          <p class="section-sub sub-centered" data-i18n="tech.subtitle">All LLM inference runs on Ollama — localhost only. Intelligence data never leaves the deployment boundary.</p>
         </div>
 
         <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-3);margin-top:var(--space-8);" class="reveal">

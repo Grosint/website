@@ -74,7 +74,7 @@
     <!-- ══════════════════════════════════════════════════════════
          1. HERO
          ══════════════════════════════════════════════════════════ -->
-    <section class="section" style="min-height:60vh;display:grid;place-items:center;background:var(--color-bg-base);position:relative;overflow:hidden;" aria-label="Product hero">
+    <section class="section section--product-hero" aria-label="Product hero">
       <div class="glow-orb glow-orb--purple" style="width:500px;height:500px;top:-120px;right:-100px;opacity:0.12;" aria-hidden="true"></div>
       <div class="glow-orb glow-orb--cyan"   style="width:250px;height:250px;bottom:-40px;left:8%;opacity:0.06;" aria-hidden="true"></div>
       <div class="glow-orb glow-orb--purple" style="width:200px;height:200px;top:40%;left:2%;opacity:0.06;" aria-hidden="true"></div>
@@ -89,10 +89,10 @@
       <div class="reticle reticle--cyan" style="position:absolute;top:22%;right:22%;transform:scale(2);" aria-hidden="true"></div>
       <div class="reticle reticle--corners" style="position:absolute;bottom:var(--space-12);left:var(--space-16);transform:scale(2.5);" aria-hidden="true"></div>
 
-      <div class="container" style="position:relative;z-index:2;">
-        <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--space-6);">
+      <div class="container z-2">
+        <div class="flex-col-center gap-6">
 
-          <div style="display:flex;align-items:center;gap:var(--space-3);">
+          <div class="flex-center gap-3">
             <span class="badge badge--fusion" data-i18n="drishti.hero.badge.fusion">FUSION PLATFORM</span>
             <span class="badge" style="color:var(--color-text-faint);border-color:var(--color-border);font-size:var(--text-2xs);" data-i18n="drishti.hero.badge.idex">iDEX Programme</span>
           </div>
@@ -106,25 +106,25 @@
           </div>
 
           <h1 class="hero__headline glitch" data-text="Drishti" style="font-size:var(--text-4xl);" data-i18n="drishti.hero.headline">Drishti</h1>
-          <p class="section-sub" style="text-align:center;margin-inline:auto;" data-i18n="drishti.hero.subtitle">
+          <p class="section-sub sub-centered" data-i18n="drishti.hero.subtitle">
             &#x0926;&#x0943;&#x0937;&#x094D;&#x091F;&#x093F; — Every Signal. One Picture.<br>
             Cross-domain entity fusion, real-time decision intelligence, and court-admissible evidence.
             Built for national security. Auditable to a security examiner.
           </p>
 
-          <div style="display:flex;flex-wrap:wrap;gap:var(--space-4);justify-content:center;">
+          <div class="flex-wrap-center gap-4">
             <a href="https://wa.me/919901938800?text=Hi%2C%20I%27d%20like%20to%20request%20a%20classified%20briefing%20on%20Drishti." class="btn btn--primary btn--lg" target="_blank" rel="noopener noreferrer" data-i18n="drishti.hero.cta.briefing">Request Classified Briefing</a>
             <a href="/#products" class="btn btn--ghost btn--lg" data-i18n="drishti.hero.cta.products">&#x2190; All Products</a>
           </div>
 
           <!-- Capability badges -->
-          <div style="display:flex;flex-wrap:wrap;gap:var(--space-3);justify-content:center;margin-top:var(--space-2);">
-            <span class="badge badge--fusion" style="padding:var(--space-1) var(--space-3);">Entity Resolution</span>
-            <span class="badge badge--fusion" style="padding:var(--space-1) var(--space-3);">Multi-Domain Fusion</span>
-            <span class="badge badge--fusion" style="padding:var(--space-1) var(--space-3);">Real-Time Alerts</span>
-            <span class="badge badge--fusion" style="padding:var(--space-1) var(--space-3);">Evidence Bundles</span>
-            <span class="badge badge--fusion" style="padding:var(--space-1) var(--space-3);">Knowledge Graph</span>
-            <span class="badge badge--fusion" style="padding:var(--space-1) var(--space-3);">Sovereign Deployment</span>
+          <div class="badge-row--center mt-2">
+            <span class="badge badge--fusion badge--padded-sm">Entity Resolution</span>
+            <span class="badge badge--fusion badge--padded-sm">Multi-Domain Fusion</span>
+            <span class="badge badge--fusion badge--padded-sm">Real-Time Alerts</span>
+            <span class="badge badge--fusion badge--padded-sm">Evidence Bundles</span>
+            <span class="badge badge--fusion badge--padded-sm">Knowledge Graph</span>
+            <span class="badge badge--fusion badge--padded-sm">Sovereign Deployment</span>
           </div>
 
         </div>
@@ -134,7 +134,7 @@
     <!-- ══════════════════════════════════════════════════════════
          2. STATS BAR
          ══════════════════════════════════════════════════════════ -->
-    <section class="section section--surface" style="padding-block:var(--space-8);" aria-label="Key metrics">
+    <section class="section section--surface py-8" aria-label="Key metrics">
       <div class="container">
         <div class="stats-bar reveal-stagger">
           <div class="stat-box">
@@ -169,17 +169,17 @@
          3. 3D ENTITY RESOLUTION GRAPH
          ══════════════════════════════════════════════════════════ -->
     <!-- Graph heading (outside the pinned section so it scrolls normally) -->
-    <section class="section section--dark" style="padding-bottom:0;" aria-labelledby="graph-title">
+    <section class="section section--dark pb-0" aria-labelledby="graph-title">
       <div class="container">
         <div class="section-heading section-heading--centre reveal">
           <span class="section-label section-label--centre" data-i18n="drishti.graph.label">// ENTITY RESOLUTION GRAPH</span>
           <h2 class="section-title" id="graph-title" data-i18n="drishti.graph.title">Seven Domains. One Knowledge Graph.</h2>
-          <p class="section-sub" style="text-align:center;margin-inline:auto;" data-i18n="drishti.graph.subtitle">Watch how entities are resolved, merged, and fused across seven intelligence domains — with real-time alerts and court-admissible evidence bundles.</p>
+          <p class="section-sub sub-centered" data-i18n="drishti.graph.subtitle">Watch how entities are resolved, merged, and fused across seven intelligence domains — with real-time alerts and court-admissible evidence bundles.</p>
         </div>
       </div>
     </section>
 
-    <section class="section section--dark pipeline-section" id="graph-section" style="padding-top:0;">
+    <section class="section section--dark pipeline-section pt-0" id="graph-section">
       <!-- Three.js Canvas (desktop) -->
       <div class="pipeline-canvas-wrapper" id="graph-canvas-wrapper">
         <canvas id="graph-canvas"></canvas>
@@ -248,93 +248,93 @@
           <h2 class="section-title" id="domains-title" data-i18n="drishti.domains.title">Seven Intelligence Domains. One Unified Graph.</h2>
         </div>
 
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--space-6);margin-top:var(--space-8);" class="reveal-stagger">
+        <div class="grid-auto-fit-280 gap-6 mt-8" class="reveal-stagger">
 
           <!-- Maritime -->
-          <div class="card card--glass card--hud" style="border-top:2px solid var(--color-cyan);">
+          <div class="card card--glass card--hud card--top-cyan">
             <span class="text-mono" style="display:block;margin-bottom:var(--space-4);color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.2em;" data-i18n="drishti.domains.maritime.label">MARITIME</span>
-            <div style="display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-4);">
-              <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">AIS Tracking</span>
-              <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">IMO Registry</span>
-              <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">Dark Gap Detection</span>
-              <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">STS Transfer Alerts</span>
-              <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">Strategic Port Patterns</span>
+            <div class="badge-row">
+              <span class="badge badge--entry badge--padded-sm">AIS Tracking</span>
+              <span class="badge badge--entry badge--padded-sm">IMO Registry</span>
+              <span class="badge badge--entry badge--padded-sm">Dark Gap Detection</span>
+              <span class="badge badge--entry badge--padded-sm">STS Transfer Alerts</span>
+              <span class="badge badge--entry badge--padded-sm">Strategic Port Patterns</span>
             </div>
             <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="drishti.domains.maritime.desc">AIS vessel tracking, IMO registry integration, dark gap detection exceeding 2-hour threshold in EEZ, ship-to-ship transfer alerts, strategic port combination pattern recognition.</p>
           </div>
 
           <!-- Aviation -->
-          <div class="card card--glass card--hud" style="border-top:2px solid var(--color-amber);">
+          <div class="card card--glass card--hud card--top-amber">
             <span class="text-mono" style="display:block;margin-bottom:var(--space-4);color:var(--color-amber);font-size:var(--text-2xs);letter-spacing:0.2em;" data-i18n="drishti.domains.aviation.label">AVIATION</span>
-            <div style="display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-4);">
-              <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">ADS-B Transponders</span>
-              <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">DGCA Registry</span>
-              <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">Rogue UAV Detection</span>
-              <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">Flight Plan Verification</span>
-              <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">Geofence Violations</span>
+            <div class="badge-row">
+              <span class="badge badge--osint badge--padded-sm">ADS-B Transponders</span>
+              <span class="badge badge--osint badge--padded-sm">DGCA Registry</span>
+              <span class="badge badge--osint badge--padded-sm">Rogue UAV Detection</span>
+              <span class="badge badge--osint badge--padded-sm">Flight Plan Verification</span>
+              <span class="badge badge--osint badge--padded-sm">Geofence Violations</span>
             </div>
             <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="drishti.domains.aviation.desc">ADS-B transponder data merged with DGCA registry. Rogue UAV detection fires when aircraft operates without transponder, flight plan, or inside prohibited geofence.</p>
           </div>
 
           <!-- Procurement -->
-          <div class="card card--glass card--hud" style="border-top:2px solid var(--color-pink);">
+          <div class="card card--glass card--hud card--top-pink">
             <span class="text-mono" style="display:block;margin-bottom:var(--space-4);color:var(--color-pink);font-size:var(--text-2xs);letter-spacing:0.2em;" data-i18n="drishti.domains.procurement.label">PROCUREMENT</span>
-            <div style="display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-4);">
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">GeM</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">CPPP</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">IREPS</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">MoD eProcure</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">MCA Registry</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">Beneficial Ownership</span>
+            <div class="badge-row">
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">GeM</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">CPPP</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">IREPS</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">MoD eProcure</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">MCA Registry</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">Beneficial Ownership</span>
             </div>
             <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="drishti.domains.procurement.desc">Government e-Marketplace, public tenders, defence procurement, company registries, beneficial ownership chain tracing through shell company layers.</p>
           </div>
 
           <!-- Financial -->
-          <div class="card card--glass card--hud" style="border-top:2px solid var(--color-success);">
+          <div class="card card--glass card--hud card--top-success">
             <span class="text-mono" style="display:block;margin-bottom:var(--space-4);color:var(--color-success);font-size:var(--text-2xs);letter-spacing:0.2em;" data-i18n="drishti.domains.financial.label">FINANCIAL</span>
-            <div style="display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-4);">
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-success);border-color:rgba(63,185,80,0.2);background:rgba(63,185,80,0.04);">Sanctions Screening</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-success);border-color:rgba(63,185,80,0.2);background:rgba(63,185,80,0.04);">Crypto Intelligence</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-success);border-color:rgba(63,185,80,0.2);background:rgba(63,185,80,0.04);">Transaction Patterns</span>
+            <div class="badge-row">
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-success);border-color:rgba(63,185,80,0.2);background:rgba(63,185,80,0.04);">Sanctions Screening</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-success);border-color:rgba(63,185,80,0.2);background:rgba(63,185,80,0.04);">Crypto Intelligence</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-success);border-color:rgba(63,185,80,0.2);background:rgba(63,185,80,0.04);">Transaction Patterns</span>
             </div>
             <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="drishti.domains.financial.desc">Sanctions screening, crypto intelligence, cross-border transaction pattern detection. Ownership chains traversed for hidden sanctions exposure.</p>
           </div>
 
           <!-- Social Media -->
-          <div class="card card--glass card--hud" style="border-top:2px solid #A78BFA;">
+          <div class="card card--glass card--hud card--top-purple">
             <span class="text-mono" style="display:block;margin-bottom:var(--space-4);color:#A78BFA;font-size:var(--text-2xs);letter-spacing:0.2em;" data-i18n="drishti.domains.social.label">SOCIAL MEDIA</span>
-            <div style="display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-4);">
-              <span class="badge badge--fusion" style="padding:var(--space-1) var(--space-3);">Telegram</span>
-              <span class="badge badge--fusion" style="padding:var(--space-1) var(--space-3);">X / Twitter</span>
-              <span class="badge badge--fusion" style="padding:var(--space-1) var(--space-3);">Instagram</span>
-              <span class="badge badge--fusion" style="padding:var(--space-1) var(--space-3);">LinkedIn</span>
-              <span class="badge badge--fusion" style="padding:var(--space-1) var(--space-3);">Account Clustering</span>
-              <span class="badge badge--fusion" style="padding:var(--space-1) var(--space-3);">Geofence Proximity</span>
+            <div class="badge-row">
+              <span class="badge badge--fusion badge--padded-sm">Telegram</span>
+              <span class="badge badge--fusion badge--padded-sm">X / Twitter</span>
+              <span class="badge badge--fusion badge--padded-sm">Instagram</span>
+              <span class="badge badge--fusion badge--padded-sm">LinkedIn</span>
+              <span class="badge badge--fusion badge--padded-sm">Account Clustering</span>
+              <span class="badge badge--fusion badge--padded-sm">Geofence Proximity</span>
             </div>
             <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="drishti.domains.social.desc">Telegram, X, Instagram, LinkedIn monitoring. Account clustering via shared identifiers. Geotagged posts cross-referenced with restricted facility geofences.</p>
           </div>
 
           <!-- Sanctions -->
-          <div class="card card--glass card--hud" style="border-top:2px solid var(--color-danger);">
+          <div class="card card--glass card--hud card--top-danger">
             <span class="text-mono" style="display:block;margin-bottom:var(--space-4);color:var(--color-danger);font-size:var(--text-2xs);letter-spacing:0.2em;" data-i18n="drishti.domains.sanctions.label">SANCTIONS</span>
-            <div style="display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-4);">
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-danger);border-color:rgba(248,81,73,0.2);background:rgba(248,81,73,0.04);">Global Sanctions Lists</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-danger);border-color:rgba(248,81,73,0.2);background:rgba(248,81,73,0.04);">Indian Enforcement</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-danger);border-color:rgba(248,81,73,0.2);background:rgba(248,81,73,0.04);">PEP Screening</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-danger);border-color:rgba(248,81,73,0.2);background:rgba(248,81,73,0.04);">Watchlist Matching</span>
+            <div class="badge-row">
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-danger);border-color:rgba(248,81,73,0.2);background:rgba(248,81,73,0.04);">Global Sanctions Lists</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-danger);border-color:rgba(248,81,73,0.2);background:rgba(248,81,73,0.04);">Indian Enforcement</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-danger);border-color:rgba(248,81,73,0.2);background:rgba(248,81,73,0.04);">PEP Screening</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-danger);border-color:rgba(248,81,73,0.2);background:rgba(248,81,73,0.04);">Watchlist Matching</span>
             </div>
             <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="drishti.domains.sanctions.desc">Global sanctions lists, Indian enforcement actions, PEP screening, watchlist matching. Ownership chains identify exposure through intermediary entities.</p>
           </div>
 
           <!-- Cyber -->
-          <div class="card card--glass card--hud" style="border-top:2px solid var(--color-text-faint);">
+          <div class="card card--glass card--hud card--top-faint">
             <span class="text-mono" style="display:block;margin-bottom:var(--space-4);color:var(--color-text-faint);font-size:var(--text-2xs);letter-spacing:0.2em;" data-i18n="drishti.domains.cyber.label">CYBER</span>
-            <div style="display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-4);">
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-text-muted);border-color:var(--color-border);background:rgba(200,209,217,0.04);">Threat Indicators</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-text-muted);border-color:var(--color-border);background:rgba(200,209,217,0.04);">Malware Intel</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-text-muted);border-color:var(--color-border);background:rgba(200,209,217,0.04);">Vulnerability Feeds</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-text-muted);border-color:var(--color-border);background:rgba(200,209,217,0.04);">Dark Web Monitoring</span>
+            <div class="badge-row">
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-text-muted);border-color:var(--color-border);background:rgba(200,209,217,0.04);">Threat Indicators</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-text-muted);border-color:var(--color-border);background:rgba(200,209,217,0.04);">Malware Intel</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-text-muted);border-color:var(--color-border);background:rgba(200,209,217,0.04);">Vulnerability Feeds</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-text-muted);border-color:var(--color-border);background:rgba(200,209,217,0.04);">Dark Web Monitoring</span>
             </div>
             <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="drishti.domains.cyber.desc">Threat indicators from MISP, OTX, VirusTotal. Malware intelligence, vulnerability feeds, dark web monitoring. Indicators linked to entity graph for correlation.</p>
           </div>
@@ -367,39 +367,39 @@
           <h2 class="section-title" id="flow-title" data-i18n="drishti.flow.title">From Raw Signal to Court-Ready Evidence</h2>
         </div>
 
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--space-4);margin-top:var(--space-8);" class="reveal-stagger">
+        <div class="grid-auto-fit-280 gap-4 mt-8" class="reveal-stagger">
 
-          <div class="card card--glass" style="border-left:2px solid var(--color-cyan);">
+          <div class="card card--glass card--left-cyan">
             <span class="text-mono" style="font-size:var(--text-2xs);color:var(--color-cyan);letter-spacing:0.2em;display:block;margin-bottom:var(--space-2);" data-i18n="drishti.flow.step1.label">STEP 01</span>
             <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;color:var(--color-text-primary);margin-bottom:var(--space-2);" data-i18n="drishti.flow.step1.title">INGEST</h3>
             <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="drishti.flow.step1.desc">13 connectors collect from all 7 domains. Raw data written to immutable storage. Every byte preserved for chain of custody.</p>
           </div>
 
-          <div class="card card--glass" style="border-left:2px solid var(--color-amber);">
+          <div class="card card--glass card--left-amber">
             <span class="text-mono" style="font-size:var(--text-2xs);color:var(--color-amber);letter-spacing:0.2em;display:block;margin-bottom:var(--space-2);" data-i18n="drishti.flow.step2.label">STEP 02</span>
             <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;color:var(--color-text-primary);margin-bottom:var(--space-2);" data-i18n="drishti.flow.step2.title">NORMALIZE</h3>
             <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="drishti.flow.step2.desc">Domain-specific normalizers convert raw data to canonical event schemas. Schema registry enforces contracts. Breaking changes blocked at the wire level.</p>
           </div>
 
-          <div class="card card--glass" style="border-left:2px solid #A78BFA;">
+          <div class="card card--glass card--left-purple">
             <span class="text-mono" style="font-size:var(--text-2xs);color:#A78BFA;letter-spacing:0.2em;display:block;margin-bottom:var(--space-2);" data-i18n="drishti.flow.step3.label">STEP 03</span>
             <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;color:var(--color-text-primary);margin-bottom:var(--space-2);" data-i18n="drishti.flow.step3.title">RESOLVE</h3>
             <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="drishti.flow.step3.desc">Entity resolver matches and merges entities across domains. Phone match = auto-edge. Username = analyst review. Confidence-based: &#x2265;0.95 auto-merge, 0.75-0.94 review queue.</p>
           </div>
 
-          <div class="card card--glass" style="border-left:2px solid var(--color-pink);">
+          <div class="card card--glass card--left-pink">
             <span class="text-mono" style="font-size:var(--text-2xs);color:var(--color-pink);letter-spacing:0.2em;display:block;margin-bottom:var(--space-2);" data-i18n="drishti.flow.step4.label">STEP 04</span>
             <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;color:var(--color-text-primary);margin-bottom:var(--space-2);" data-i18n="drishti.flow.step4.title">FUSE</h3>
             <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="drishti.flow.step4.desc">Knowledge graph builds. Ownership chains, relationship edges, cross-domain connections materialize. The graph is the intelligence product.</p>
           </div>
 
-          <div class="card card--glass" style="border-left:2px solid var(--color-danger);">
+          <div class="card card--glass card--left-danger">
             <span class="text-mono" style="font-size:var(--text-2xs);color:var(--color-danger);letter-spacing:0.2em;display:block;margin-bottom:var(--space-2);" data-i18n="drishti.flow.step5.label">STEP 05</span>
             <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;color:var(--color-text-primary);margin-bottom:var(--space-2);" data-i18n="drishti.flow.step5.title">ALERT</h3>
             <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="drishti.flow.step5.desc">11 rules fire on every entity update. Event-driven, sub-second latency. CRITICAL alerts require confirmation from &#x2265;2 independent intelligence domains.</p>
           </div>
 
-          <div class="card card--glass" style="border-left:2px solid var(--color-success);">
+          <div class="card card--glass card--left-success">
             <span class="text-mono" style="font-size:var(--text-2xs);color:var(--color-success);letter-spacing:0.2em;display:block;margin-bottom:var(--space-2);" data-i18n="drishti.flow.step6.label">STEP 06</span>
             <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;color:var(--color-text-primary);margin-bottom:var(--space-2);" data-i18n="drishti.flow.step6.title">EVIDENCE</h3>
             <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="drishti.flow.step6.desc">Immutable SHA-256 signed bundles. Alert record + entity snapshots + all raw objects via evidence reference chain. Court-admissible under Indian Evidence Act Section 65B.</p>
@@ -434,21 +434,21 @@
             <div class="case-panel active" id="panel-navy" role="tabpanel">
               <span class="text-mono" style="color:#A78BFA;font-size:var(--text-2xs);letter-spacing:0.2em;display:block;margin-bottom:var(--space-4);" data-i18n="drishti.cases.navy.agency">CASE STUDY · INDIAN NAVY</span>
               <h3 class="case-panel__title" data-i18n="drishti.cases.navy.title">"Operation Dark Waters" — Dark Vessel Detection & Sanctions-Linked Network</h3>
-              <div class="case-panel__metrics" style="margin-bottom:var(--space-4);">
+              <div class="case-panel__metrics mb-4">
                 <div class="case-metric"><span class="case-metric__value">6hr</span><span class="case-metric__label" data-i18n="drishti.cases.navy.metric1.label">Dark Gap</span></div>
                 <div class="case-metric"><span class="case-metric__value">3</span><span class="case-metric__label" data-i18n="drishti.cases.navy.metric2.label">Shell Companies</span></div>
                 <div class="case-metric"><span class="case-metric__value">1</span><span class="case-metric__label" data-i18n="drishti.cases.navy.metric3.label">Sanctions Match</span></div>
                 <div class="case-metric"><span class="case-metric__value">30min</span><span class="case-metric__label" data-i18n="drishti.cases.navy.metric4.label">Response</span></div>
               </div>
 
-              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+              <div class="card card--glass p-5 mb-4">
                 <span class="text-mono" style="color:#A78BFA;font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="drishti.cases.label.situation">THE SITUATION</span>
                 <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;margin-top:var(--space-2);" data-i18n="drishti.cases.navy.situation">
                   A foreign-flagged bulk carrier turns off its AIS transponder for 6 hours while transiting the Indian EEZ near the Andaman Sea. When AIS resumes, the vessel is 40nm from its expected course.
                 </p>
               </div>
 
-              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+              <div class="card card--glass p-5 mb-4">
                 <span class="text-mono" style="color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="drishti.cases.label.solution">WHAT DRISHTI DOES</span>
                 <ul style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.8;margin-top:var(--space-2);padding-left:var(--space-5);list-style:disc;">
                   <li><strong style="color:var(--color-text-primary);">T+2 hrs</strong> — Dark gap engine detects AIS blackout at 2-hour threshold. Vessel flagged for continuous monitoring.</li>
@@ -474,19 +474,19 @@
             <div class="case-panel" id="panel-raw" role="tabpanel">
               <span class="text-mono" style="color:#A78BFA;font-size:var(--text-2xs);letter-spacing:0.2em;display:block;margin-bottom:var(--space-4);" data-i18n="drishti.cases.raw.agency">CASE STUDY · RAW</span>
               <h3 class="case-panel__title" data-i18n="drishti.cases.raw.title">"Operation Phantom Procurement" — Shell Company Network Mapping</h3>
-              <div class="case-panel__metrics" style="margin-bottom:var(--space-4);">
+              <div class="case-panel__metrics mb-4">
                 <div class="case-metric"><span class="case-metric__value">7</span><span class="case-metric__label" data-i18n="drishti.cases.raw.metric1.label">Shell Companies</span></div>
                 <div class="case-metric"><span class="case-metric__value">12</span><span class="case-metric__label" data-i18n="drishti.cases.raw.metric2.label">Directors</span></div>
                 <div class="case-metric"><span class="case-metric__value">4</span><span class="case-metric__label" data-i18n="drishti.cases.raw.metric3.label">Facilities</span></div>
                 <div class="case-metric"><span class="case-metric__value">2hrs</span><span class="case-metric__label" data-i18n="drishti.cases.raw.metric4.label">vs 4 Months</span></div>
               </div>
 
-              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+              <div class="card card--glass p-5 mb-4">
                 <span class="text-mono" style="color:#A78BFA;font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="drishti.cases.label.situation">THE SITUATION</span>
                 <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;margin-top:var(--space-2);" data-i18n="drishti.cases.raw.situation">Intelligence analysis suspects a network of shell companies is systematically winning defence procurement contracts. Manual investigation has identified 2 companies but suspects there are more.</p>
               </div>
 
-              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+              <div class="card card--glass p-5 mb-4">
                 <span class="text-mono" style="color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="drishti.cases.label.solution">WHAT DRISHTI DOES</span>
                 <ul style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.8;margin-top:var(--space-2);padding-left:var(--space-5);list-style:disc;">
                   <li><strong style="color:var(--color-text-primary);">Phase 1</strong> — Entity resolution traces the 2 known companies through phone numbers, director names, and registered addresses. Discovers 5 more companies sharing directors.</li>
@@ -511,19 +511,19 @@
             <div class="case-panel" id="panel-coastguard" role="tabpanel">
               <span class="text-mono" style="color:#A78BFA;font-size:var(--text-2xs);letter-spacing:0.2em;display:block;margin-bottom:var(--space-4);" data-i18n="drishti.cases.coastguard.agency">CASE STUDY · INDIAN COAST GUARD</span>
               <h3 class="case-panel__title" data-i18n="drishti.cases.coastguard.title">"Operation Sea Shield" — Ship-to-Ship Transfer Network Documentation</h3>
-              <div class="case-panel__metrics" style="margin-bottom:var(--space-4);">
+              <div class="case-panel__metrics mb-4">
                 <div class="case-metric"><span class="case-metric__value">4</span><span class="case-metric__label" data-i18n="drishti.cases.coastguard.metric1.label">STS Events</span></div>
                 <div class="case-metric"><span class="case-metric__value">6</span><span class="case-metric__label" data-i18n="drishti.cases.coastguard.metric2.label">Vessels</span></div>
                 <div class="case-metric"><span class="case-metric__value">90d</span><span class="case-metric__label" data-i18n="drishti.cases.coastguard.metric3.label">Pattern</span></div>
                 <div class="case-metric"><span class="case-metric__value">4</span><span class="case-metric__label" data-i18n="drishti.cases.coastguard.metric4.label">Domains</span></div>
               </div>
 
-              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+              <div class="card card--glass p-5 mb-4">
                 <span class="text-mono" style="color:#A78BFA;font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="drishti.cases.label.situation">THE SITUATION</span>
                 <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;margin-top:var(--space-2);" data-i18n="drishti.cases.coastguard.situation">Repeated suspected ship-to-ship transfers in a specific zone of the Arabian Sea. The Coast Guard has satellite imagery showing two vessels in proximity but cannot confirm the pattern or identify the network.</p>
               </div>
 
-              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+              <div class="card card--glass p-5 mb-4">
                 <span class="text-mono" style="color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="drishti.cases.label.solution">WHAT DRISHTI DOES</span>
                 <ul style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.8;margin-top:var(--space-2);padding-left:var(--space-5);list-style:disc;">
                   <li><strong style="color:var(--color-text-primary);">Day 1</strong> — STS detection rule identifies 4 suspected transfer events in the past 90 days. Vessel identifiers resolved against IMO registry.</li>
@@ -548,19 +548,19 @@
             <div class="case-panel" id="panel-ntro" role="tabpanel">
               <span class="text-mono" style="color:#A78BFA;font-size:var(--text-2xs);letter-spacing:0.2em;display:block;margin-bottom:var(--space-4);" data-i18n="drishti.cases.ntro.agency">CASE STUDY · NTRO</span>
               <h3 class="case-panel__title" data-i18n="drishti.cases.ntro.title">"Operation Digital Fortress" — Rogue UAV Operator Identification</h3>
-              <div class="case-panel__metrics" style="margin-bottom:var(--space-4);">
+              <div class="case-panel__metrics mb-4">
                 <div class="case-metric"><span class="case-metric__value">1</span><span class="case-metric__label" data-i18n="drishti.cases.ntro.metric1.label">UAV</span></div>
                 <div class="case-metric"><span class="case-metric__value">4</span><span class="case-metric__label" data-i18n="drishti.cases.ntro.metric2.label">Facilities</span></div>
                 <div class="case-metric"><span class="case-metric__value">6mo</span><span class="case-metric__label" data-i18n="drishti.cases.ntro.metric3.label">Pattern</span></div>
                 <div class="case-metric"><span class="case-metric__value">4</span><span class="case-metric__label" data-i18n="drishti.cases.ntro.metric4.label">Domains</span></div>
               </div>
 
-              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+              <div class="card card--glass p-5 mb-4">
                 <span class="text-mono" style="color:#A78BFA;font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="drishti.cases.label.situation">THE SITUATION</span>
                 <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;margin-top:var(--space-2);" data-i18n="drishti.cases.ntro.situation">A rogue UAV is detected operating near a sensitive research facility without a transponder or filed flight plan. Physical security reports visual sighting but cannot identify the operator.</p>
               </div>
 
-              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+              <div class="card card--glass p-5 mb-4">
                 <span class="text-mono" style="color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="drishti.cases.label.solution">WHAT DRISHTI DOES</span>
                 <ul style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.8;margin-top:var(--space-2);padding-left:var(--space-5);list-style:disc;">
                   <li><strong style="color:var(--color-text-primary);">T+0</strong> — Geofence violation rule fires immediately. Aviation registry queried for nearby registered UAVs — no match found.</li>
@@ -585,19 +585,19 @@
             <div class="case-panel" id="panel-mea" role="tabpanel">
               <span class="text-mono" style="color:#A78BFA;font-size:var(--text-2xs);letter-spacing:0.2em;display:block;margin-bottom:var(--space-4);">CASE STUDY · MEA</span>
               <h3 class="case-panel__title">"Operation Sanctions Web" — Joint Venture Sanctions Exposure Assessment</h3>
-              <div class="case-panel__metrics" style="margin-bottom:var(--space-4);">
+              <div class="case-panel__metrics mb-4">
                 <div class="case-metric"><span class="case-metric__value">3</span><span class="case-metric__label">Vessels</span></div>
                 <div class="case-metric"><span class="case-metric__value">2</span><span class="case-metric__label">Contracts</span></div>
                 <div class="case-metric"><span class="case-metric__value">2</span><span class="case-metric__label">Shell Layers</span></div>
                 <div class="case-metric"><span class="case-metric__value">4hrs</span><span class="case-metric__label">vs 2 Weeks</span></div>
               </div>
 
-              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+              <div class="card card--glass p-5 mb-4">
                 <span class="text-mono" style="color:#A78BFA;font-size:var(--text-2xs);letter-spacing:0.15em;">THE SITUATION</span>
                 <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;margin-top:var(--space-2);">India's delegation to a multilateral forum needs to verify whether a proposed joint venture partner has sanctions exposure. The entity operates across maritime shipping, procurement, and financial services in the Indo-Pacific.</p>
               </div>
 
-              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+              <div class="card card--glass p-5 mb-4">
                 <span class="text-mono" style="color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.15em;">WHAT DRISHTI DOES</span>
                 <ul style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.8;margin-top:var(--space-2);padding-left:var(--space-5);list-style:disc;">
                   <li><strong style="color:var(--color-text-primary);">Hour 1</strong> — Entity resolver finds matches across maritime registry (3 vessels), procurement filings (2 contracts), and financial domain.</li>
@@ -634,34 +634,34 @@
           <h2 class="section-title" id="moat-title" data-i18n="drishti.moat.title">Architectural Defences</h2>
         </div>
 
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--space-4);margin-top:var(--space-8);" class="reveal-stagger">
+        <div class="grid-auto-fit-280 gap-4 mt-8" class="reveal-stagger">
 
-          <div class="card card--glass card--purple" style="border-left:2px solid #A78BFA;">
+          <div class="card card--glass card--purple card--left-purple">
             <span style="font-family:var(--font-mono);font-size:var(--text-2xs);color:#A78BFA;letter-spacing:0.2em;display:block;margin-bottom:var(--space-2);" data-i18n="drishti.moat.structural.title">STRUCTURAL ENFORCEMENT</span>
             <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="drishti.moat.structural.text">Critical architectural rules are enforced by code structure, not documentation. Violations are physically impossible, not just prohibited.</p>
           </div>
 
-          <div class="card card--glass card--purple" style="border-left:2px solid #A78BFA;">
+          <div class="card card--glass card--purple card--left-purple">
             <span style="font-family:var(--font-mono);font-size:var(--text-2xs);color:#A78BFA;letter-spacing:0.2em;display:block;margin-bottom:var(--space-2);" data-i18n="drishti.moat.corroboration.title">MULTI-SOURCE CORROBORATION</span>
             <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="drishti.moat.corroboration.text">CRITICAL alerts require confirmation from 2+ independent intelligence domains. Single-source alerts are rejected at system startup.</p>
           </div>
 
-          <div class="card card--glass card--purple" style="border-left:2px solid #A78BFA;">
+          <div class="card card--glass card--purple card--left-purple">
             <span style="font-family:var(--font-mono);font-size:var(--text-2xs);color:#A78BFA;letter-spacing:0.2em;display:block;margin-bottom:var(--space-2);" data-i18n="drishti.moat.evidence.title">COURT-ADMISSIBLE EVIDENCE</span>
             <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="drishti.moat.evidence.text">Immutable, SHA-256 signed evidence bundles with write-once storage. Defensible under Indian Evidence Act Section 65B.</p>
           </div>
 
-          <div class="card card--glass card--purple" style="border-left:2px solid #A78BFA;">
+          <div class="card card--glass card--purple card--left-purple">
             <span style="font-family:var(--font-mono);font-size:var(--text-2xs);color:#A78BFA;letter-spacing:0.2em;display:block;margin-bottom:var(--space-2);" data-i18n="drishti.moat.eventdriven.title">EVENT-DRIVEN INTELLIGENCE</span>
             <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="drishti.moat.eventdriven.text">Every entity update triggers rule evaluation in sub-second latency. No polling, no batch processing, no lag.</p>
           </div>
 
-          <div class="card card--glass card--purple" style="border-left:2px solid #A78BFA;">
+          <div class="card card--glass card--purple card--left-purple">
             <span style="font-family:var(--font-mono);font-size:var(--text-2xs);color:#A78BFA;letter-spacing:0.2em;display:block;margin-bottom:var(--space-2);" data-i18n="drishti.moat.schema.title">SCHEMA-ENFORCED CONTRACTS</span>
             <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="drishti.moat.schema.text">Every data flowing through the system conforms to strictly versioned schemas. Breaking changes are blocked at the wire level.</p>
           </div>
 
-          <div class="card card--glass card--purple" style="border-left:2px solid #A78BFA;">
+          <div class="card card--glass card--purple card--left-purple">
             <span style="font-family:var(--font-mono);font-size:var(--text-2xs);color:#A78BFA;letter-spacing:0.2em;display:block;margin-bottom:var(--space-2);" data-i18n="drishti.moat.tests.title">689+ CONFORMANCE TESTS</span>
             <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="drishti.moat.tests.text">Every domain normalizer passes a comprehensive automated test suite before deployment. Quality is enforced, not hoped for.</p>
           </div>
@@ -678,7 +678,7 @@
         <div class="section-heading section-heading--centre reveal">
           <span class="section-label section-label--centre" data-i18n="drishti.sovereign.label">// SOVEREIGN ARCHITECTURE</span>
           <h2 class="section-title" id="sovereign-title" data-i18n="drishti.sovereign.title">Zero Foreign Dependencies</h2>
-          <p class="section-sub" style="text-align:center;margin-inline:auto;" data-i18n="drishti.sovereign.subtitle">Every component runs on Indian infrastructure. Intelligence data never leaves the deployment boundary.</p>
+          <p class="section-sub sub-centered" data-i18n="drishti.sovereign.subtitle">Every component runs on Indian infrastructure. Intelligence data never leaves the deployment boundary.</p>
         </div>
 
         <div class="sovereign-stack reveal-stagger">
@@ -713,18 +713,18 @@
         <div class="section-heading section-heading--centre reveal">
           <span class="section-label section-label--centre" data-i18n="drishti.tech.label">// UNDER THE HOOD</span>
           <h2 class="section-title" id="tech-title" data-i18n="drishti.tech.title">Production-Grade Infrastructure</h2>
-          <p class="section-sub" style="text-align:center;margin-inline:auto;" data-i18n="drishti.tech.subtitle">Every component is open-source and self-hostable. No foreign SaaS in the pipeline.</p>
+          <p class="section-sub sub-centered" data-i18n="drishti.tech.subtitle">Every component is open-source and self-hostable. No foreign SaaS in the pipeline.</p>
         </div>
 
-        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-3);margin-top:var(--space-8);" class="reveal">
-          <span class="badge badge--fusion" style="padding:var(--space-2) var(--space-4);">PostgreSQL + Apache AGE</span>
-          <span class="badge badge--fusion" style="padding:var(--space-2) var(--space-4);">ClickHouse</span>
-          <span class="badge badge--fusion" style="padding:var(--space-2) var(--space-4);">Redpanda</span>
-          <span class="badge badge--fusion" style="padding:var(--space-2) var(--space-4);">MinIO</span>
-          <span class="badge badge--fusion" style="padding:var(--space-2) var(--space-4);">React + Cytoscape.js</span>
-          <span class="badge badge--fusion" style="padding:var(--space-2) var(--space-4);">MapLibre GL</span>
-          <span class="badge badge--fusion" style="padding:var(--space-2) var(--space-4);">Docker / k3s</span>
-          <span class="badge badge--fusion" style="padding:var(--space-2) var(--space-4);">Prometheus + Grafana</span>
+        <div class="flex-wrap-center gap-3 mt-8" class="reveal">
+          <span class="badge badge--fusion badge--padded">PostgreSQL + Apache AGE</span>
+          <span class="badge badge--fusion badge--padded">ClickHouse</span>
+          <span class="badge badge--fusion badge--padded">Redpanda</span>
+          <span class="badge badge--fusion badge--padded">MinIO</span>
+          <span class="badge badge--fusion badge--padded">React + Cytoscape.js</span>
+          <span class="badge badge--fusion badge--padded">MapLibre GL</span>
+          <span class="badge badge--fusion badge--padded">Docker / k3s</span>
+          <span class="badge badge--fusion badge--padded">Prometheus + Grafana</span>
         </div>
       </div>
     </section>
@@ -738,7 +738,7 @@
           <span class="section-label section-label--centre" data-i18n="drishti.suite.label">// THE SUITE</span>
           <h2 class="section-title" data-i18n="drishti.suite.title">The Flagship</h2>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--space-4);margin-top:var(--space-8);" class="reveal-stagger">
+        <div class="grid-auto-fit-200 gap-4 mt-8" class="reveal-stagger">
           <a href="./grosint.html" class="card card--glass card--cyan" style="text-align:center;text-decoration:none;">
             <div style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-cyan);margin-bottom:var(--space-2);">ENTRY</div>
             <div style="font-family:var(--font-display);font-size:var(--text-xl);font-weight:700;color:var(--color-text-primary);">Grosint</div>

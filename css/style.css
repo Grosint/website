@@ -28,6 +28,9 @@
 /* Component mixins */
 @import './components.css';
 
+/* Utility classes (extracted from inline styles) */
+@import './utilities.css';
+
 /* Anveshak product page */
 @import './anveshak.css';
 

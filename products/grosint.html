@@ -66,7 +66,7 @@
     <!-- ══════════════════════════════════════════════════════════
          1. HERO
          ══════════════════════════════════════════════════════════ -->
-    <section class="section" style="min-height:60vh;display:grid;place-items:center;background:var(--color-bg-base);position:relative;overflow:hidden;" aria-label="Product hero">
+    <section class="section" class="section--product-hero" aria-label="Product hero">
       <div class="glow-orb glow-orb--cyan"  style="width:450px;height:450px;top:-100px;right:-80px;opacity:0.1;" aria-hidden="true"></div>
       <div class="glow-orb glow-orb--amber" style="width:250px;height:250px;bottom:-40px;left:10%;opacity:0.07;" aria-hidden="true"></div>
       <div class="scan-lines" aria-hidden="true"></div>
@@ -79,8 +79,8 @@
       <div class="reticle reticle--corners" style="position:absolute;bottom:var(--space-16);right:var(--space-16);transform:scale(3);" aria-hidden="true"></div>
       <div class="reticle reticle--pink" style="position:absolute;top:30%;left:40%;transform:scale(0.6);opacity:0.4;" aria-hidden="true"></div>
 
-      <div class="container" style="position:relative;z-index:2;">
-        <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--space-6);">
+      <div class="container" class="z-2">
+        <div class="flex-col-center gap-6">
 
           <span class="badge badge--entry" data-i18n="grosint.hero.badge">SMINT PLATFORM</span>
 
@@ -93,24 +93,24 @@
           </div>
 
           <h1 class="hero__headline glitch" data-text="Grosint SMINT" style="font-size:var(--text-4xl);" data-i18n="grosint.hero.headline">Grosint SMINT</h1>
-          <p class="section-sub" style="text-align:center;margin-inline:auto;" data-i18n="grosint.hero.subtitle">
+          <p class="section-sub sub-centered" data-i18n="grosint.hero.subtitle">
             Identifier to Intelligence. Instantly.<br>
             Drop a mobile number or email — get a full digital intelligence profile, on-premise.
           </p>
 
-          <div style="display:flex;flex-wrap:wrap;gap:var(--space-4);justify-content:center;">
+          <div class="flex-wrap-center gap-4">
             <a href="https://wa.me/919901938800?text=Hi%2C%20I%27d%20like%20to%20request%20an%20evaluation%20of%20Grosint%20SMINT." class="btn btn--neon btn--lg" target="_blank" rel="noopener noreferrer" data-i18n="grosint.hero.cta.eval">Request Evaluation Access</a>
             <a href="/#products" class="btn btn--ghost btn--lg" data-i18n="grosint.hero.cta.products">← All Products</a>
           </div>
 
           <!-- Capability badges -->
-          <div style="display:flex;flex-wrap:wrap;gap:var(--space-3);justify-content:center;margin-top:var(--space-2);">
-            <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">Phone Lookup</span>
-            <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">Email Pivot</span>
-            <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">Social Graph</span>
-            <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">Breach Intel</span>
-            <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">Identity Verification</span>
-            <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">Air-Gap Ready</span>
+          <div class="badge-row--center mt-2">
+            <span class="badge badge--entry badge--padded-sm">Phone Lookup</span>
+            <span class="badge badge--entry badge--padded-sm">Email Pivot</span>
+            <span class="badge badge--entry badge--padded-sm">Social Graph</span>
+            <span class="badge badge--entry badge--padded-sm">Breach Intel</span>
+            <span class="badge badge--entry badge--padded-sm">Identity Verification</span>
+            <span class="badge badge--entry badge--padded-sm">Air-Gap Ready</span>
           </div>
 
         </div>
@@ -159,87 +159,87 @@
         <div class="section-heading section-heading--centre reveal">
           <span class="section-label section-label--centre" data-i18n="grosint.sources.label">// COVERAGE</span>
           <h2 class="section-title" id="sources-title" data-i18n="grosint.sources.title">Every Identifier. Every Platform.</h2>
-          <p class="section-sub" style="text-align:center;margin-inline:auto;" data-i18n="grosint.sources.subtitle">One identifier in, comprehensive intelligence out. Grosint queries across telecom, social, identity, breach, email, and regional databases simultaneously.</p>
+          <p class="section-sub sub-centered" data-i18n="grosint.sources.subtitle">One identifier in, comprehensive intelligence out. Grosint queries across telecom, social, identity, breach, email, and regional databases simultaneously.</p>
         </div>
 
         <!-- Source Categories Grid -->
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--space-6);margin-top:var(--space-8);" class="reveal-stagger">
+        <div class="grid-auto-fit-280 gap-6 mt-8" class="reveal-stagger">
 
           <!-- Telecom Intelligence -->
-          <div class="card card--glass card--hud" style="border-top:2px solid var(--color-cyan);">
+          <div class="card card--glass card--hud card--top-cyan">
             <span class="text-mono" style="display:block;margin-bottom:var(--space-4);color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.2em;" data-i18n="grosint.sources.telecom.label">TELECOM INTELLIGENCE</span>
-            <div style="display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-4);">
-              <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">HLR Lookup</span>
-              <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">Operator Data</span>
-              <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">Caller ID Services</span>
-              <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">Carrier Verification</span>
-              <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">Number Portability</span>
+            <div class="badge-row">
+              <span class="badge badge--entry badge--padded-sm">HLR Lookup</span>
+              <span class="badge badge--entry badge--padded-sm">Operator Data</span>
+              <span class="badge badge--entry badge--padded-sm">Caller ID Services</span>
+              <span class="badge badge--entry badge--padded-sm">Carrier Verification</span>
+              <span class="badge badge--entry badge--padded-sm">Number Portability</span>
             </div>
             <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="grosint.sources.telecom.desc">HLR queries reveal carrier, activation circle, and roaming status. Caller identification services return registered names, profile photos, and tags. Carrier verification confirms number validity and portability history.</p>
           </div>
 
           <!-- Social Media -->
-          <div class="card card--glass card--hud" style="border-top:2px solid var(--color-amber);">
+          <div class="card card--glass card--hud card--top-amber">
             <span class="text-mono" style="display:block;margin-bottom:var(--space-4);color:var(--color-amber);font-size:var(--text-2xs);letter-spacing:0.2em;" data-i18n="grosint.sources.social.label">SOCIAL MEDIA</span>
-            <div style="display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-4);">
-              <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">Messaging Apps</span>
-              <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">Social Networks</span>
-              <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">VoIP Platforms</span>
-              <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">Service Registrations</span>
-              <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">50+ Platforms</span>
+            <div class="badge-row">
+              <span class="badge badge--osint badge--padded-sm">Messaging Apps</span>
+              <span class="badge badge--osint badge--padded-sm">Social Networks</span>
+              <span class="badge badge--osint badge--padded-sm">VoIP Platforms</span>
+              <span class="badge badge--osint badge--padded-sm">Service Registrations</span>
+              <span class="badge badge--osint badge--padded-sm">50+ Platforms</span>
             </div>
             <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="grosint.sources.social.desc">Service enumeration across 50+ platforms reveals account registrations, profile data, display names, and profile photos. Messaging app lookups return online status, about text, and group memberships where available.</p>
           </div>
 
           <!-- Identity Databases -->
-          <div class="card card--glass card--hud" style="border-top:2px solid var(--color-pink);">
+          <div class="card card--glass card--hud card--top-pink">
             <span class="text-mono" style="display:block;margin-bottom:var(--space-4);color:var(--color-pink);font-size:var(--text-2xs);letter-spacing:0.2em;" data-i18n="grosint.sources.identity.label">IDENTITY DATABASES</span>
-            <div style="display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-4);">
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">PAN</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">Voter ID</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">Passport</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">Driving License</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">Vehicle RC</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">Bank Account</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">UPI</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">FASTag</span>
+            <div class="badge-row">
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">PAN</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">Voter ID</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">Passport</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">Driving License</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">Vehicle RC</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">Bank Account</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">UPI</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">FASTag</span>
             </div>
             <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="grosint.sources.identity.desc">Cross-reference identifiers against regional identity databases. Verify document authenticity, extract linked details, and discover connections between identity documents and financial instruments.</p>
           </div>
 
           <!-- Breach Intelligence -->
-          <div class="card card--glass card--hud" style="border-top:2px solid #A78BFA;">
+          <div class="card card--glass card--hud card--top-purple">
             <span class="text-mono" style="display:block;margin-bottom:var(--space-4);color:#A78BFA;font-size:var(--text-2xs);letter-spacing:0.2em;" data-i18n="grosint.sources.breach.label">BREACH INTELLIGENCE</span>
-            <div style="display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-4);">
-              <span class="badge badge--fusion" style="padding:var(--space-1) var(--space-3);">Breach Databases</span>
-              <span class="badge badge--fusion" style="padding:var(--space-1) var(--space-3);">Credential Leaks</span>
-              <span class="badge badge--fusion" style="padding:var(--space-1) var(--space-3);">Data Exposure History</span>
-              <span class="badge badge--fusion" style="padding:var(--space-1) var(--space-3);">Dark Web Mentions</span>
+            <div class="badge-row">
+              <span class="badge badge--fusion badge--padded-sm">Breach Databases</span>
+              <span class="badge badge--fusion badge--padded-sm">Credential Leaks</span>
+              <span class="badge badge--fusion badge--padded-sm">Data Exposure History</span>
+              <span class="badge badge--fusion badge--padded-sm">Dark Web Mentions</span>
             </div>
             <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="grosint.sources.breach.desc">Query breach databases for historical data exposures. Discover email addresses, passwords, and personal data linked to identifiers through past security incidents. Trace digital footprints invisible to traditional tools.</p>
           </div>
 
           <!-- Email Intelligence -->
-          <div class="card card--glass card--hud" style="border-top:2px solid var(--color-success);">
+          <div class="card card--glass card--hud card--top-success">
             <span class="text-mono" style="display:block;margin-bottom:var(--space-4);color:var(--color-success);font-size:var(--text-2xs);letter-spacing:0.2em;" data-i18n="grosint.sources.email.label">EMAIL INTELLIGENCE</span>
-            <div style="display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-4);">
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-success);border-color:rgba(63,185,80,0.2);background:rgba(63,185,80,0.04);">Profile Extraction</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-success);border-color:rgba(63,185,80,0.2);background:rgba(63,185,80,0.04);">Service Enumeration</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-success);border-color:rgba(63,185,80,0.2);background:rgba(63,185,80,0.04);">Alias Discovery</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-success);border-color:rgba(63,185,80,0.2);background:rgba(63,185,80,0.04);">Linked Accounts</span>
+            <div class="badge-row">
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-success);border-color:rgba(63,185,80,0.2);background:rgba(63,185,80,0.04);">Profile Extraction</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-success);border-color:rgba(63,185,80,0.2);background:rgba(63,185,80,0.04);">Service Enumeration</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-success);border-color:rgba(63,185,80,0.2);background:rgba(63,185,80,0.04);">Alias Discovery</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-success);border-color:rgba(63,185,80,0.2);background:rgba(63,185,80,0.04);">Linked Accounts</span>
             </div>
             <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="grosint.sources.email.desc">Email addresses yield profile photos, display names, and registered services. Service enumeration discovers which platforms an email is registered on. Alias detection reveals alternate email addresses tied to the same identity.</p>
           </div>
 
           <!-- Regional Intelligence -->
-          <div class="card card--glass card--hud" style="border-top:2px solid var(--color-warning);">
+          <div class="card card--glass card--hud card--top-warning">
             <span class="text-mono" style="display:block;margin-bottom:var(--space-4);color:var(--color-warning);font-size:var(--text-2xs);letter-spacing:0.2em;" data-i18n="grosint.sources.regional.label">REGIONAL INTELLIGENCE</span>
-            <div style="display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-4);">
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">India</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">Pakistan</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">Philippines</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">Indonesia</span>
-              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">SAARC Region</span>
+            <div class="badge-row">
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">India</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">Pakistan</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">Philippines</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">Indonesia</span>
+              <span class="badge" class="badge--padded-sm" style="color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">SAARC Region</span>
             </div>
             <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="grosint.sources.regional.desc">Specialised data sources for South and Southeast Asia. Region-specific identity databases, telecom registries, and social platforms that global tools miss entirely. Pre-loaded for air-gap deployment.</p>
           </div>
@@ -269,7 +269,7 @@
         <div class="section-heading section-heading--centre reveal">
           <span class="section-label section-label--centre" data-i18n="grosint.flow.label">// LOOKUP FLOW</span>
           <h2 class="section-title" id="flow-title" data-i18n="grosint.flow.title">From Identifier to Intelligence in Under 3 Seconds</h2>
-          <p class="section-sub" style="text-align:center;margin-inline:auto;" data-i18n="grosint.flow.subtitle">One input triggers parallel queries across all data sources. Results are correlated, deduplicated, and delivered as a complete intelligence profile.</p>
+          <p class="section-sub sub-centered" data-i18n="grosint.flow.subtitle">One input triggers parallel queries across all data sources. Results are correlated, deduplicated, and delivered as a complete intelligence profile.</p>
         </div>
 
         <!-- Flow steps -->
@@ -724,7 +724,7 @@
         <div class="section-heading section-heading--centre reveal">
           <span class="section-label section-label--centre" data-i18n="grosint.sovereign.label">// SOVEREIGN ARCHITECTURE</span>
           <h2 class="section-title" id="sovereign-title" data-i18n="grosint.sovereign.title">Zero Cloud Dependencies</h2>
-          <p class="section-sub" style="text-align:center;margin-inline:auto;" data-i18n="grosint.sovereign.subtitle">Deployed within your perimeter. Intelligence data never leaves the deployment boundary.</p>
+          <p class="section-sub sub-centered" data-i18n="grosint.sovereign.subtitle">Deployed within your perimeter. Intelligence data never leaves the deployment boundary.</p>
         </div>
 
         <div class="sovereign-stack reveal-stagger">
@@ -759,19 +759,19 @@
         <div class="section-heading section-heading--centre reveal">
           <span class="section-label section-label--centre" data-i18n="grosint.tech.label">// UNDER THE HOOD</span>
           <h2 class="section-title" id="tech-title" data-i18n="grosint.tech.title">Built on Open Standards</h2>
-          <p class="section-sub" style="text-align:center;margin-inline:auto;" data-i18n="grosint.tech.subtitle">No proprietary black boxes. Every layer is auditable and replaceable.</p>
+          <p class="section-sub sub-centered" data-i18n="grosint.tech.subtitle">No proprietary black boxes. Every layer is auditable and replaceable.</p>
         </div>
 
         <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-3);margin-top:var(--space-8);" class="reveal">
-          <span class="badge badge--entry" style="padding:var(--space-2) var(--space-4);">Python 3.12</span>
-          <span class="badge badge--entry" style="padding:var(--space-2) var(--space-4);">FastAPI</span>
-          <span class="badge badge--entry" style="padding:var(--space-2) var(--space-4);">PostgreSQL 16</span>
-          <span class="badge badge--entry" style="padding:var(--space-2) var(--space-4);">MongoDB</span>
-          <span class="badge badge--entry" style="padding:var(--space-2) var(--space-4);">Redis</span>
-          <span class="badge badge--entry" style="padding:var(--space-2) var(--space-4);">React + TypeScript</span>
-          <span class="badge badge--entry" style="padding:var(--space-2) var(--space-4);">Docker</span>
-          <span class="badge badge--entry" style="padding:var(--space-2) var(--space-4);">Pydantic v2</span>
-          <span class="badge badge--entry" style="padding:var(--space-2) var(--space-4);">Air-Gap Capable</span>
+          <span class="badge badge--entry badge--padded">Python 3.12</span>
+          <span class="badge badge--entry badge--padded">FastAPI</span>
+          <span class="badge badge--entry badge--padded">PostgreSQL 16</span>
+          <span class="badge badge--entry badge--padded">MongoDB</span>
+          <span class="badge badge--entry badge--padded">Redis</span>
+          <span class="badge badge--entry badge--padded">React + TypeScript</span>
+          <span class="badge badge--entry badge--padded">Docker</span>
+          <span class="badge badge--entry badge--padded">Pydantic v2</span>
+          <span class="badge badge--entry badge--padded">Air-Gap Capable</span>
         </div>
       </div>
     </section>
@@ -784,7 +784,7 @@
         <div class="section-heading section-heading--centre reveal">
           <span class="section-label section-label--centre" data-i18n="grosint.suite.label">// THE SUITE</span>
           <h2 class="section-title" data-i18n="grosint.suite.title">Grosint is Just the Beginning</h2>
-          <p class="section-sub" style="text-align:center;margin-inline:auto;" data-i18n="grosint.suite.subtitle">As your intelligence requirements grow, the suite grows with you.</p>
+          <p class="section-sub sub-centered" data-i18n="grosint.suite.subtitle">As your intelligence requirements grow, the suite grows with you.</p>
         </div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--space-4);margin-top:var(--space-8);" class="reveal-stagger">
           <div class="card card--glass card--cyan" style="text-align:center;box-shadow:var(--glow-cyan);">

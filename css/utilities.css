@@ -1,0 +1,244 @@
+/* ============================================================
+   UTILITY CLASSES
+   Extracted from repeated inline style="" patterns across
+   all HTML pages. Grouped by purpose.
+   ============================================================ */
+
+/* ── Layout ─────────────────────────────────────────────── */
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-col-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.flex-wrap-center {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.inline-flex-center {
+  display: inline-flex;
+  align-items: center;
+}
+
+.grid-auto-fit-280 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.grid-auto-fit-200 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.grid-auto-fit-180 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+/* ── Gaps ────────────────────────────────────────────────── */
+
+.gap-2 { gap: var(--space-2); }
+.gap-3 { gap: var(--space-3); }
+.gap-4 { gap: var(--space-4); }
+.gap-6 { gap: var(--space-6); }
+.gap-8 { gap: var(--space-8); }
+
+/* ── Spacing: margin ─────────────────────────────────────── */
+
+.mt-2 { margin-top: var(--space-2); }
+.mt-4 { margin-top: var(--space-4); }
+.mt-6 { margin-top: var(--space-6); }
+.mt-8 { margin-top: var(--space-8); }
+.mt-10 { margin-top: var(--space-10); }
+.mb-2 { margin-bottom: var(--space-2); }
+.mb-3 { margin-bottom: var(--space-3); }
+.mb-4 { margin-bottom: var(--space-4); }
+.mb-6 { margin-bottom: var(--space-6); }
+.mb-8 { margin-bottom: var(--space-8); }
+.mb-12 { margin-bottom: var(--space-12); }
+.mb-16 { margin-bottom: var(--space-16); }
+
+/* ── Spacing: padding ────────────────────────────────────── */
+
+.p-4 { padding: var(--space-4); }
+.p-5 { padding: var(--space-5); }
+.p-8 { padding: var(--space-8); }
+.p-12 { padding: var(--space-12); }
+.py-8 { padding-block: var(--space-8); }
+.py-16 { padding-block: var(--space-16); }
+.pt-0 { padding-top: 0; }
+.pb-0 { padding-bottom: 0; }
+
+/* ── Text ────────────────────────────────────────────────── */
+
+.text-center { text-align: center; }
+.mx-auto { margin-inline: auto; }
+
+/* Section sub centering — used on every section-sub element */
+.sub-centered {
+  text-align: center;
+  margin-inline: auto;
+}
+
+/* Mono label — section domain labels (e.g., MARITIME, AVIATION) */
+.text-mono-label {
+  display: block;
+  margin-bottom: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.2em;
+}
+
+/* Step labels — used on flow/pipeline step numbers */
+.text-mono-step {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.2em;
+  display: block;
+  margin-bottom: var(--space-2);
+}
+
+/* Mono detail text — footers, phone numbers, copyright lines */
+.text-mono-faint {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-faint);
+}
+
+.text-mono-faint-sm {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  color: var(--color-text-faint);
+}
+
+.text-mono-faint-spaced {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-faint);
+  letter-spacing: 0.1em;
+}
+
+/* Card body text */
+.text-body-muted {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+/* Card heading */
+.text-card-heading {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.text-card-heading-xl {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-3);
+}
+
+.text-card-heading-xl-bold {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-2);
+}
+
+/* ── Badge padding overrides ─────────────────────────────── */
+
+.badge--padded {
+  padding: var(--space-2) var(--space-4);
+}
+
+.badge--padded-sm {
+  padding: var(--space-1) var(--space-3);
+}
+
+/* ── Card top border accents ─────────────────────────────── */
+
+.card--top-cyan    { border-top: 2px solid var(--color-cyan); }
+.card--top-amber   { border-top: 2px solid var(--color-amber); }
+.card--top-pink    { border-top: 2px solid var(--color-pink); }
+.card--top-purple  { border-top: 2px solid #A78BFA; }
+.card--top-success { border-top: 2px solid var(--color-success); }
+.card--top-danger  { border-top: 2px solid var(--color-danger); }
+.card--top-warning { border-top: 2px solid var(--color-warning); }
+.card--top-faint   { border-top: 2px solid var(--color-text-faint); }
+
+/* Card left border accents */
+.card--left-cyan    { border-left: 2px solid var(--color-cyan); }
+.card--left-amber   { border-left: 2px solid var(--color-amber); }
+.card--left-pink    { border-left: 2px solid var(--color-pink); }
+.card--left-purple  { border-left: 2px solid #A78BFA; }
+.card--left-danger  { border-left: 2px solid var(--color-danger); }
+.card--left-success { border-left: 2px solid var(--color-success); }
+
+/* ── Section utility ──────────────────────────────────────── */
+
+.section--overflow-hidden {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Product hero section layout */
+.section--product-hero {
+  min-height: 60vh;
+  display: grid;
+  place-items: center;
+  background: var(--color-bg-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.section--bg-surface {
+  background: var(--color-bg-surface);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Badge wrapping container — repeated flex-wrap pattern ── */
+
+.badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.badge-row--center {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  justify-content: center;
+}
+
+/* ── Relative z-index helpers ─────────────────────────────── */
+
+.z-1 { position: relative; z-index: 1; }
+.z-2 { position: relative; z-index: 2; }
+.z-10 { position: relative; z-index: 10; }
+
+/* ── Display block helper ─────────────────────────────────── */
+
+.d-block { display: block; }

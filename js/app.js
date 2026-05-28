@@ -5,11 +5,11 @@
  */
 
 import * as THREE from 'three';
-import { EffectComposer }   from 'three/addons/postprocessing/EffectComposer.js';
-import { RenderPass }       from 'three/addons/postprocessing/RenderPass.js';
-import { UnrealBloomPass }  from 'three/addons/postprocessing/UnrealBloomPass.js';
-import { FilmPass }         from 'three/addons/postprocessing/FilmPass.js';
-import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
+import { CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
+import {
+  createScene,
+  createResizeHandler,
+} from './three-scene.js';
 
 // ─── Constants ──────────────────────────────────────────────────────────────
 
@@ -488,39 +488,21 @@ function initHeroScene() {
   const W = canvas.parentElement.clientWidth;
   const H = canvas.parentElement.clientHeight;
 
-  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  renderer.setSize(W, H);
-  renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.2;
-
-  const labelRenderer = new CSS2DRenderer();
-  labelRenderer.setSize(W, H);
-  labelRenderer.domElement.style.cssText = `
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 2;
-  `;
-  canvas.parentElement.appendChild(labelRenderer.domElement);
-
   const isMobile = W / H < 0.9;
   const heroFov  = isMobile ? 100 : 60;
   const heroCamZ = isMobile ? 42  : 35;
 
-  const scene  = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(heroFov, W / H, 0.1, 500);
+  const { scene, camera, renderer, composer, bloomPass: bloom, labelRenderer } = createScene(canvas, {
+    fov: heroFov,
+    pixelRatio: Math.min(window.devicePixelRatio, 2),
+    bloom: { strength: 0.8, radius: 0.4, threshold: 0.85 },
+    filmGrain: true,
+    filmGrainIntensity: 0.2,
+    exposure: 1.2,
+  });
   camera.position.set(0, 0, heroCamZ);
-
-  const composer = new EffectComposer(renderer);
-  composer.addPass(new RenderPass(scene, camera));
-
-  const bloom = new UnrealBloomPass(
-    new THREE.Vector2(W, H),
-    0.8, 0.4, 0.85
-  );
-  composer.addPass(bloom);
-  composer.addPass(new FilmPass(0.2, false));
+  // Override label renderer z-index style for hero
+  labelRenderer.domElement.style.zIndex = '2';
 
   // Particle field — 800 points
   {
@@ -712,18 +694,15 @@ function initHeroScene() {
 
   animate();
 
-  const resizeObserver = new ResizeObserver(([entry]) => {
-    const { width, height } = entry.contentRect;
-    camera.aspect = width / height;
-    camera.fov = camera.aspect < 0.9 ? 100 : 60;
-    camera.position.z = camera.aspect < 0.9 ? 42 : 35;
-    camera.updateProjectionMatrix();
-    renderer.setSize(width, height);
-    composer.setSize(width, height);
-    labelRenderer.setSize(width, height);
+  createResizeHandler(canvas.parentElement, {
+    camera, renderer, composer, bloomPass: bloom, labelRenderer,
+    onResize: (width, height) => {
+      const mobile = (width / height) < 0.9;
+      camera.fov = mobile ? 100 : 60;
+      camera.position.z = mobile ? 42 : 35;
+      camera.updateProjectionMatrix();
+    },
   });
-
-  resizeObserver.observe(canvas.parentElement);
 }
 
 // ─── Init ────────────────────────────────────────────────────────────────────

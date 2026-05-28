@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "npx concurrently \"npx postcss css/style.css -o dist/style.css --watch\" \"npx serve .\"",
     "build": "NODE_ENV=production npx postcss css/style.css -o dist/style.css",
-    "watch": "npx postcss css/style.css -o dist/style.css --watch"
+    "watch": "npx postcss css/style.css -o dist/style.css --watch",
+    "validate-i18n": "node scripts/validate-i18n.js"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.0",

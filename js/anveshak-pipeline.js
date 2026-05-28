@@ -7,10 +7,13 @@
  */
 
 import * as THREE from 'three';
-import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
-import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
-import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
-import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
+import { CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
+import {
+  createScene,
+  createVisibilityObserver,
+  createResizeHandler,
+  setupScrollPin,
+} from './three-scene.js';
 
 /* ─── Constants ─────────────────────────────────────────────── */
 
@@ -138,39 +141,16 @@ function initPipeline() {
   if (!canvas || !wrapper) return;
   if (window.matchMedia('(max-width: 767px)').matches) return;
 
-  const w = wrapper.clientWidth;
-  const h = wrapper.clientHeight;
-
-  /* ── Scene ── */
-  const scene = new THREE.Scene();
-  // Subtle fog for depth
-  scene.fog = new THREE.FogExp2(0x000000, 0.012);
-
-  const camera = new THREE.PerspectiveCamera(50, w / h, 0.1, 200);
-  camera.position.set(0, 1, 22);
-
-  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-  renderer.setSize(w, h);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-  renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.3;
-
-  /* ── Post-Processing ── */
-  const composer = new EffectComposer(renderer);
-  composer.addPass(new RenderPass(scene, camera));
-  const bloomPass = new UnrealBloomPass(
-    new THREE.Vector2(w / 2, h / 2), 0.9, 0.25, 0.75
-  );
-  composer.addPass(bloomPass);
-
-  /* ── CSS2D ── */
-  const labelRenderer = new CSS2DRenderer();
-  labelRenderer.setSize(w, h);
-  Object.assign(labelRenderer.domElement.style, {
-    position: 'absolute', top: '0', left: '0',
-    pointerEvents: 'none', zIndex: '10',
+  /* ── Scene (shared factory) ── */
+  const { scene, camera, renderer, composer, bloomPass, labelRenderer } = createScene(canvas, {
+    fov: 50,
+    fog: { density: 0.012 },
+    bloom: { strength: 0.9, radius: 0.25, threshold: 0.75 },
+    exposure: 1.3,
+    far: 200,
+    labelParent: wrapper,
   });
-  wrapper.appendChild(labelRenderer.domElement);
+  camera.position.set(0, 1, 22);
 
   /* ── Lighting ── */
   scene.add(new THREE.AmbientLight(0xffffff, 0.25));
@@ -755,32 +735,10 @@ function initPipeline() {
     });
   }
 
-  /* ── ScrollTrigger ── */
-  async function setupScrollTrigger() {
-    let gsap, ScrollTrigger;
-    try {
-      const gsapModule = await import('gsap');
-      const stModule = await import('gsap/ScrollTrigger');
-      gsap = gsapModule.default || gsapModule;
-      ScrollTrigger = stModule.default || stModule.ScrollTrigger;
-      gsap.registerPlugin(ScrollTrigger);
-    } catch {
-      // GSAP failed — show all nodes statically without scroll animation
-      updateActiveStage(0);
-      return;
-    }
-
-    const st = ScrollTrigger.create({
-      trigger: '#pipeline-section',
-      start: 'top top',
-      end: '+=500%',
-      pin: true,
-      scrub: 1,
-      snap: {
-        snapTo: 1 / 11,
-        duration: { min: 0.2, max: 0.5 },
-        ease: 'power2.inOut',
-      },
+  /* ── ScrollTrigger (shared factory) ── */
+  (async () => {
+    const st = await setupScrollPin('#pipeline-section', {
+      snapCount: 11,
       onUpdate: (self) => {
         scrollProgress = self.progress;
         const stageIndex = Math.round(self.progress * 11);
@@ -803,9 +761,13 @@ function initPipeline() {
         if (detailPanel) detailPanel.classList.remove('active');
       },
     });
-    window._pipelineScrollTrigger = st;
-  }
-  setupScrollTrigger();
+    if (st) {
+      window._pipelineScrollTrigger = st;
+    } else {
+      // GSAP failed — show all nodes statically without scroll animation
+      updateActiveStage(0);
+    }
+  })();
 
   /* ── Click-to-Navigate (Labels + 3D Nodes) ── */
   function scrollToStage(stageIndex) {
@@ -849,22 +811,11 @@ function initPipeline() {
     canvas.style.cursor = hits.length > 0 ? 'pointer' : '';
   });
 
-  /* ── Visibility ── */
-  const visObs = new IntersectionObserver(([e]) => { paused = !e.isIntersecting; }, { threshold: 0.05 });
-  visObs.observe(wrapper);
+  /* ── Visibility (shared factory) ── */
+  createVisibilityObserver(wrapper, (isVisible) => { paused = !isVisible; });
 
-  /* ── Resize ── */
-  const resObs = new ResizeObserver(([e]) => {
-    const { width: rw, height: rh } = e.contentRect;
-    if (!rw || !rh) return;
-    camera.aspect = rw / rh;
-    camera.updateProjectionMatrix();
-    renderer.setSize(rw, rh);
-    composer.setSize(rw, rh);
-    labelRenderer.setSize(rw, rh);
-    bloomPass.resolution.set(rw / 2, rh / 2);
-  });
-  resObs.observe(wrapper);
+  /* ── Resize (shared factory) ── */
+  createResizeHandler(wrapper, { camera, renderer, composer, bloomPass, labelRenderer });
 
   /* ── Animation Loop ── */
   function animate() {
