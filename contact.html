@@ -136,11 +136,11 @@
     <div class="reticle reticle--pink" style="position:absolute;bottom:25%;left:15%;" aria-hidden="true"></div>
     <div class="reticle reticle--amber" style="position:absolute;top:55%;right:12%;" aria-hidden="true"></div>
 
-    <div class="container" style="position:relative;z-index:10;">
-      <div style="max-width:640px;margin-inline:auto;text-align:center;padding-block:var(--space-16);">
+    <div class="container" class="z-10">
+      <div class="text-center mx-auto py-16" style="max-width:640px;">
 
         <!-- Garud mark -->
-        <div style="margin-bottom:var(--space-8);">
+        <div class="mb-8">
           <img
             src="./assets/garud-mark.svg"
             alt="Garud Research &amp; Tech"
@@ -150,7 +150,7 @@
           />
         </div>
 
-        <span class="badge badge--entry" style="margin-bottom:var(--space-6);display:inline-block;">SECURE CHANNEL</span>
+        <span class="badge badge--entry" class="mb-6" style="display:inline-block;">SECURE CHANNEL</span>
 
         <h1 style="font-family:var(--font-display);font-size:var(--text-4xl);font-weight:700;color:var(--color-text-primary);margin-bottom:var(--space-6);line-height:1.15;">
           Talk to the<br/><span class="text-gradient">Grosint Team</span>
@@ -167,7 +167,7 @@
         </p>
 
         <!-- Primary WhatsApp CTA -->
-        <div style="display:flex;flex-direction:column;align-items:center;gap:var(--space-4);">
+        <div class="flex-col-center gap-4">
           <a
             href="https://wa.me/919901938800?text=Hello%20Grosint%20team%2C%20I%20would%20like%20to%20request%20a%20product%20briefing."
             class="btn btn--whatsapp"
@@ -188,7 +188,7 @@
         <div style="border-top:1px solid var(--color-border);margin-block:var(--space-12);"></div>
 
         <!-- Context options -->
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--space-4);text-align:left;">
+        <div class="grid-auto-fit-180 gap-4" style="text-align:left;">
 
           <a
             href="https://wa.me/919901938800?text=Hello%2C%20I%20want%20to%20know%20more%20about%20Grosint%20(SMINT%20tool)."
@@ -229,7 +229,7 @@
         </div>
 
         <!-- Trust indicators -->
-        <div style="display:flex;flex-wrap:wrap;gap:var(--space-4);justify-content:center;margin-top:var(--space-10);">
+        <div class="flex-wrap-center gap-4 mt-10">
           <span style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-text-faint);">
             <span style="color:var(--color-cyan);">●</span> No lead capture
           </span>
@@ -251,7 +251,7 @@
   <footer class="footer" role="contentinfo">
     <div class="container footer__inner">
       <div class="footer__brand">
-        <a href="/" class="navbar__logo" aria-label="Grosint home" style="margin-bottom:var(--space-3);display:inline-flex;">
+        <a href="/" class="navbar__logo" aria-label="Grosint home" class="inline-flex-center mb-3">
           <img src="./assets/garud-mark.svg" alt="" width="28" height="28" aria-hidden="true"/>
           <span class="navbar__wordmark" style="font-size:var(--text-base);"><span>GR</span>OSINT</span>
         </a>
