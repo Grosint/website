@@ -14,7 +14,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="../dist/style.css"/>
 
   <script type="importmap">
@@ -32,6 +32,9 @@
   </div>
   <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
   <div class="hud-cursor" id="hud-cursor" aria-hidden="true"><div class="hud-cursor__ring"><span class="hud-cursor__tick hud-cursor__tick--n"></span><span class="hud-cursor__tick hud-cursor__tick--e"></span><span class="hud-cursor__tick hud-cursor__tick--s"></span><span class="hud-cursor__tick hud-cursor__tick--w"></span></div><div class="hud-cursor__dot"></div></div>
+
+  <!-- Language Toggle -->
+  <button class="lang-toggle" id="lang-toggle" aria-label="Toggle language"><span class="lang-toggle__active">EN</span> | हिं</button>
 
   <!-- Navbar -->
   <nav class="navbar" id="navbar" aria-label="Main navigation">
@@ -57,26 +60,26 @@
 
   <main id="main-content">
 
-    <!-- ── PRODUCT HERO ──────────────────────────────────────── -->
+    <!-- ══════════════════════════════════════════════════════════
+         1. HERO
+         ══════════════════════════════════════════════════════════ -->
     <section class="section" style="min-height:60vh;display:grid;place-items:center;background:var(--color-bg-base);position:relative;overflow:hidden;" aria-label="Product hero">
-
-      <!-- Ambient decorations -->
-      <div class="glow-orb glow-orb--cyan"  style="width:400px;height:400px;top:-80px;right:-60px;opacity:0.1;" aria-hidden="true"></div>
-      <div class="glow-orb glow-orb--amber" style="width:250px;height:250px;bottom:-40px;left:5%;opacity:0.08;" aria-hidden="true"></div>
+      <div class="glow-orb glow-orb--cyan"  style="width:450px;height:450px;top:-100px;right:-80px;opacity:0.1;" aria-hidden="true"></div>
+      <div class="glow-orb glow-orb--amber" style="width:250px;height:250px;bottom:-40px;left:10%;opacity:0.07;" aria-hidden="true"></div>
       <div class="scan-lines" aria-hidden="true"></div>
 
-      <!-- Float labels -->
-      <span class="float-label" style="top:20%;left:5%;--float-delay:0s">/mobile-lookup</span>
-      <span class="float-label float-label--amber" style="top:30%;right:8%;--float-delay:0.6s">/email-pivot</span>
-      <span class="float-label float-label--pink" style="bottom:25%;left:8%;--float-delay:1.2s">/profile</span>
+      <span class="float-label" style="top:18%;left:6%;--float-delay:0s">/phone-lookup</span>
+      <span class="float-label float-label--amber" style="top:28%;right:7%;--float-delay:0.8s">/email-pivot</span>
+      <span class="float-label float-label--pink" style="bottom:28%;left:5%;--float-delay:1.4s">/social-graph</span>
+      <span class="float-label float-label--amber" style="bottom:20%;right:8%;--float-delay:2s">/profile</span>
 
-      <!-- Reticle -->
-      <div class="reticle reticle--corners" style="position:absolute;top:var(--space-16);left:var(--space-16);transform:scale(3);" aria-hidden="true"></div>
+      <div class="reticle reticle--corners" style="position:absolute;bottom:var(--space-16);right:var(--space-16);transform:scale(3);" aria-hidden="true"></div>
+      <div class="reticle reticle--pink" style="position:absolute;top:30%;left:40%;transform:scale(0.6);opacity:0.4;" aria-hidden="true"></div>
 
       <div class="container" style="position:relative;z-index:2;">
         <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--space-6);">
 
-          <span class="badge badge--entry">SMINT TOOL</span>
+          <span class="badge badge--entry" data-i18n="grosint.hero.badge">SMINT PLATFORM</span>
 
           <!-- Product icon -->
           <div style="width:80px;height:80px;border-radius:var(--radius-lg);background:var(--color-cyan-dim);border:1px solid var(--color-border-accent);display:grid;place-items:center;color:var(--color-cyan);animation:brand-glow-pulse 3s ease-in-out infinite;">
@@ -86,198 +89,729 @@
             </svg>
           </div>
 
-          <h1 class="hero__headline glitch" data-text="Grosint SMINT" style="font-size:var(--text-4xl);">
-            Grosint SMINT
-          </h1>
-          <p class="section-sub" style="text-align:center;margin-inline:auto;">
+          <h1 class="hero__headline glitch" data-text="Grosint SMINT" style="font-size:var(--text-4xl);" data-i18n="grosint.hero.headline">Grosint SMINT</h1>
+          <p class="section-sub" style="text-align:center;margin-inline:auto;" data-i18n="grosint.hero.subtitle">
             Identifier to Intelligence. Instantly.<br>
             Drop a mobile number or email — get a full digital intelligence profile, on-premise.
           </p>
 
           <div style="display:flex;flex-wrap:wrap;gap:var(--space-4);justify-content:center;">
-            <a href="https://wa.me/919901938800?text=Hi%2C%20I%27d%20like%20to%20request%20an%20evaluation%20of%20Grosint%20SMINT." class="btn btn--neon btn--lg" target="_blank" rel="noopener noreferrer">Request Evaluation Access</a>
-            <a href="/#products" class="btn btn--ghost btn--lg">← All Products</a>
+            <a href="https://wa.me/919901938800?text=Hi%2C%20I%27d%20like%20to%20request%20an%20evaluation%20of%20Grosint%20SMINT." class="btn btn--neon btn--lg" target="_blank" rel="noopener noreferrer" data-i18n="grosint.hero.cta.eval">Request Evaluation Access</a>
+            <a href="/#products" class="btn btn--ghost btn--lg" data-i18n="grosint.hero.cta.products">← All Products</a>
+          </div>
+
+          <!-- Capability badges -->
+          <div style="display:flex;flex-wrap:wrap;gap:var(--space-3);justify-content:center;margin-top:var(--space-2);">
+            <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">Phone Lookup</span>
+            <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">Email Pivot</span>
+            <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">Social Graph</span>
+            <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">Breach Intel</span>
+            <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">Identity Verification</span>
+            <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">Air-Gap Ready</span>
           </div>
 
         </div>
       </div>
     </section>
 
-    <!-- ── CAPABILITIES ──────────────────────────────────────── -->
-    <section class="section section--surface" aria-labelledby="cap-title">
+    <!-- ══════════════════════════════════════════════════════════
+         2. STATS BAR
+         ══════════════════════════════════════════════════════════ -->
+    <section class="section section--surface" style="padding-block:var(--space-8);" aria-label="Key metrics">
+      <div class="container">
+        <div class="stats-bar reveal-stagger">
+          <div class="stat-box">
+            <span class="stat-box__number">50+</span>
+            <span class="stat-box__label" data-i18n="grosint.stats.platforms">Platforms Queried</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-box__number">&lt;3s</span>
+            <span class="stat-box__label" data-i18n="grosint.stats.speed">Lookup Speed</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-box__number">200+</span>
+            <span class="stat-box__label" data-i18n="grosint.stats.datapoints">Data Points Per Profile</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-box__number">1</span>
+            <span class="stat-box__label" data-i18n="grosint.stats.machine">Machine Deployment</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-box__number">0</span>
+            <span class="stat-box__label" data-i18n="grosint.stats.cloud">Cloud Dependencies</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-box__number">100%</span>
+            <span class="stat-box__label" data-i18n="grosint.stats.attribution">Source Attribution</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         3. SOURCE GRID — "Every Identifier. Every Platform."
+         ══════════════════════════════════════════════════════════ -->
+    <section class="section section--dark" aria-labelledby="sources-title">
       <div class="container">
         <div class="section-heading section-heading--centre reveal">
-          <span class="section-label section-label--centre">// CAPABILITIES</span>
-          <h2 class="section-title" id="cap-title">What Grosint Does</h2>
+          <span class="section-label section-label--centre" data-i18n="grosint.sources.label">// COVERAGE</span>
+          <h2 class="section-title" id="sources-title" data-i18n="grosint.sources.title">Every Identifier. Every Platform.</h2>
+          <p class="section-sub" style="text-align:center;margin-inline:auto;" data-i18n="grosint.sources.subtitle">One identifier in, comprehensive intelligence out. Grosint queries across telecom, social, identity, breach, email, and regional databases simultaneously.</p>
         </div>
 
-        <div class="capabilities-grid reveal-stagger">
+        <!-- Source Categories Grid -->
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--space-6);margin-top:var(--space-8);" class="reveal-stagger">
 
-          <div class="card-3d-wrapper">
-            <div class="card card--glass card--cyan card--hud card-3d" data-tilt>
-              <div class="card-3d__layer--front" style="color:var(--color-cyan);margin-bottom:var(--space-4);">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
-              </div>
-              <div class="card-3d__layer--mid">
-                <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;color:var(--color-text-primary);margin-bottom:var(--space-2);">Mobile Intelligence</h3>
-                <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;">
-                  E.164 phone number → operator, location, social registrations, linked accounts, and digital footprint. One input, full picture.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="card-3d-wrapper">
-            <div class="card card--glass card--cyan card--hud card-3d" data-tilt>
-              <div class="card-3d__layer--front" style="color:var(--color-cyan);margin-bottom:var(--space-4);">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-              </div>
-              <div class="card-3d__layer--mid">
-                <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;color:var(--color-text-primary);margin-bottom:var(--space-2);">Email Pivot</h3>
-                <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;">
-                  Email address → registered services, social profiles, aliases, and associated phone numbers. Cross-platform correlation in seconds.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="card-3d-wrapper">
-            <div class="card card--glass card--cyan card--hud card-3d" data-tilt>
-              <div class="card-3d__layer--front" style="color:var(--color-cyan);margin-bottom:var(--space-4);">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="2"/><circle cx="12" cy="5" r="2"/><circle cx="12" cy="19" r="2"/><line x1="12" y1="7" x2="12" y2="10"/><line x1="12" y1="14" x2="12" y2="17"/><circle cx="5" cy="8" r="2"/><line x1="7" y1="8" x2="10" y2="10"/><circle cx="5" cy="16" r="2"/><line x1="7" y1="16" x2="10" y2="14"/></svg>
-              </div>
-              <div class="card-3d__layer--mid">
-                <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;color:var(--color-text-primary);margin-bottom:var(--space-2);">Social Graph Mapping</h3>
-                <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;">
-                  Visualise connections between identifiers, accounts, and entities. Discover hidden relationships across platforms and registries.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="card-3d-wrapper">
-            <div class="card card--glass card--cyan card--hud card-3d" data-tilt>
-              <div class="card-3d__layer--front" style="color:var(--color-cyan);margin-bottom:var(--space-4);">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
-              </div>
-              <div class="card-3d__layer--mid">
-                <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;color:var(--color-text-primary);margin-bottom:var(--space-2);">On-Premise, Air-Gap Ready</h3>
-                <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;">
-                  Deployed within your perimeter. No internet required for core lookups. Your queries never leave your network.
-                </p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ── USE CASES ─────────────────────────────────────────── -->
-    <section class="section section--dark" aria-labelledby="use-title">
-      <div class="glow-orb glow-orb--cyan" style="width:300px;height:300px;top:0;right:0;opacity:0.06;" aria-hidden="true"></div>
-      <div class="container">
-        <div class="section-heading reveal">
-          <span class="section-label">// OPERATIONS</span>
-          <h2 class="section-title" id="use-title">Field Use Cases</h2>
-        </div>
-
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--space-6);" class="reveal-stagger">
-
+          <!-- Telecom Intelligence -->
           <div class="card card--glass card--hud" style="border-top:2px solid var(--color-cyan);">
-            <span class="text-mono" style="display:block;margin-bottom:var(--space-4);">USE CASE 01</span>
-            <h3 style="font-family:var(--font-display);font-size:var(--text-xl);font-weight:600;color:var(--color-text-primary);margin-bottom:var(--space-3);">Counter-Intelligence</h3>
-            <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;">
-              A suspect mobile number surfaces during a border incident. Grosint maps the number to a digital identity within seconds — registered services, aliases, travel patterns, and associated accounts — before the situation escalates.
-            </p>
+            <span class="text-mono" style="display:block;margin-bottom:var(--space-4);color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.2em;" data-i18n="grosint.sources.telecom.label">TELECOM INTELLIGENCE</span>
+            <div style="display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-4);">
+              <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">HLR Lookup</span>
+              <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">Operator Data</span>
+              <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">Caller ID Services</span>
+              <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">Carrier Verification</span>
+              <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">Number Portability</span>
+            </div>
+            <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="grosint.sources.telecom.desc">HLR queries reveal carrier, activation circle, and roaming status. Caller identification services return registered names, profile photos, and tags. Carrier verification confirms number validity and portability history.</p>
           </div>
 
+          <!-- Social Media -->
           <div class="card card--glass card--hud" style="border-top:2px solid var(--color-amber);">
-            <span class="text-mono" style="display:block;margin-bottom:var(--space-4);color:var(--color-amber);">USE CASE 02</span>
-            <h3 style="font-family:var(--font-display);font-size:var(--text-xl);font-weight:600;color:var(--color-text-primary);margin-bottom:var(--space-3);">Background Verification</h3>
-            <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;">
-              Pre-clearance verification for sensitive postings. An email or phone number returns the subject's full digital footprint, enabling analysts to flag inconsistencies in declared identity before access is granted.
-            </p>
+            <span class="text-mono" style="display:block;margin-bottom:var(--space-4);color:var(--color-amber);font-size:var(--text-2xs);letter-spacing:0.2em;" data-i18n="grosint.sources.social.label">SOCIAL MEDIA</span>
+            <div style="display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-4);">
+              <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">Messaging Apps</span>
+              <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">Social Networks</span>
+              <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">VoIP Platforms</span>
+              <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">Service Registrations</span>
+              <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">50+ Platforms</span>
+            </div>
+            <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="grosint.sources.social.desc">Service enumeration across 50+ platforms reveals account registrations, profile data, display names, and profile photos. Messaging app lookups return online status, about text, and group memberships where available.</p>
           </div>
 
+          <!-- Identity Databases -->
           <div class="card card--glass card--hud" style="border-top:2px solid var(--color-pink);">
-            <span class="text-mono" style="display:block;margin-bottom:var(--space-4);color:var(--color-pink);">USE CASE 03</span>
-            <h3 style="font-family:var(--font-display);font-size:var(--text-xl);font-weight:600;color:var(--color-text-primary);margin-bottom:var(--space-3);">Investigative Support</h3>
-            <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;">
-              A fraudulent procurement contact leaves only an email. Grosint traces it to a cluster of linked phone numbers, social accounts, and prior registered entities — building a prosecution-ready digital chain.
-            </p>
+            <span class="text-mono" style="display:block;margin-bottom:var(--space-4);color:var(--color-pink);font-size:var(--text-2xs);letter-spacing:0.2em;" data-i18n="grosint.sources.identity.label">IDENTITY DATABASES</span>
+            <div style="display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-4);">
+              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">PAN</span>
+              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">Voter ID</span>
+              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">Passport</span>
+              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">Driving License</span>
+              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">Vehicle RC</span>
+              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">Bank Account</span>
+              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">UPI</span>
+              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">FASTag</span>
+            </div>
+            <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="grosint.sources.identity.desc">Cross-reference identifiers against regional identity databases. Verify document authenticity, extract linked details, and discover connections between identity documents and financial instruments.</p>
+          </div>
+
+          <!-- Breach Intelligence -->
+          <div class="card card--glass card--hud" style="border-top:2px solid #A78BFA;">
+            <span class="text-mono" style="display:block;margin-bottom:var(--space-4);color:#A78BFA;font-size:var(--text-2xs);letter-spacing:0.2em;" data-i18n="grosint.sources.breach.label">BREACH INTELLIGENCE</span>
+            <div style="display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-4);">
+              <span class="badge badge--fusion" style="padding:var(--space-1) var(--space-3);">Breach Databases</span>
+              <span class="badge badge--fusion" style="padding:var(--space-1) var(--space-3);">Credential Leaks</span>
+              <span class="badge badge--fusion" style="padding:var(--space-1) var(--space-3);">Data Exposure History</span>
+              <span class="badge badge--fusion" style="padding:var(--space-1) var(--space-3);">Dark Web Mentions</span>
+            </div>
+            <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="grosint.sources.breach.desc">Query breach databases for historical data exposures. Discover email addresses, passwords, and personal data linked to identifiers through past security incidents. Trace digital footprints invisible to traditional tools.</p>
+          </div>
+
+          <!-- Email Intelligence -->
+          <div class="card card--glass card--hud" style="border-top:2px solid var(--color-success);">
+            <span class="text-mono" style="display:block;margin-bottom:var(--space-4);color:var(--color-success);font-size:var(--text-2xs);letter-spacing:0.2em;" data-i18n="grosint.sources.email.label">EMAIL INTELLIGENCE</span>
+            <div style="display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-4);">
+              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-success);border-color:rgba(63,185,80,0.2);background:rgba(63,185,80,0.04);">Profile Extraction</span>
+              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-success);border-color:rgba(63,185,80,0.2);background:rgba(63,185,80,0.04);">Service Enumeration</span>
+              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-success);border-color:rgba(63,185,80,0.2);background:rgba(63,185,80,0.04);">Alias Discovery</span>
+              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-success);border-color:rgba(63,185,80,0.2);background:rgba(63,185,80,0.04);">Linked Accounts</span>
+            </div>
+            <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="grosint.sources.email.desc">Email addresses yield profile photos, display names, and registered services. Service enumeration discovers which platforms an email is registered on. Alias detection reveals alternate email addresses tied to the same identity.</p>
+          </div>
+
+          <!-- Regional Intelligence -->
+          <div class="card card--glass card--hud" style="border-top:2px solid var(--color-warning);">
+            <span class="text-mono" style="display:block;margin-bottom:var(--space-4);color:var(--color-warning);font-size:var(--text-2xs);letter-spacing:0.2em;" data-i18n="grosint.sources.regional.label">REGIONAL INTELLIGENCE</span>
+            <div style="display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-4);">
+              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">India</span>
+              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">Pakistan</span>
+              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">Philippines</span>
+              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">Indonesia</span>
+              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">SAARC Region</span>
+            </div>
+            <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="grosint.sources.regional.desc">Specialised data sources for South and Southeast Asia. Region-specific identity databases, telecom registries, and social platforms that global tools miss entirely. Pre-loaded for air-gap deployment.</p>
+          </div>
+
+        </div>
+
+        <!-- Central convergence message -->
+        <div class="reveal" style="text-align:center;margin-top:var(--space-10);">
+          <div style="display:inline-flex;align-items:center;gap:var(--space-4);padding:var(--space-4) var(--space-8);border:1px solid var(--color-border-accent);border-radius:var(--radius-lg);background:var(--color-bg-glass);backdrop-filter:blur(12px);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-cyan)" stroke-width="1.5"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+            <div>
+              <div class="text-mono" style="font-size:var(--text-2xs);color:var(--color-cyan);letter-spacing:0.2em;" data-i18n="grosint.sources.converge.label">ALL SOURCES CONVERGE INTO</div>
+              <div style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:700;color:var(--color-text-primary);" data-i18n="grosint.sources.converge.title">One Aggregated, Source-Attributed Profile</div>
+            </div>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-cyan)" stroke-width="1.5"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         4. HOW IT WORKS — Lookup Flow
+         ══════════════════════════════════════════════════════════ -->
+    <section class="section section--surface" aria-labelledby="flow-title">
+      <div class="container">
+        <div class="section-heading section-heading--centre reveal">
+          <span class="section-label section-label--centre" data-i18n="grosint.flow.label">// LOOKUP FLOW</span>
+          <h2 class="section-title" id="flow-title" data-i18n="grosint.flow.title">From Identifier to Intelligence in Under 3 Seconds</h2>
+          <p class="section-sub" style="text-align:center;margin-inline:auto;" data-i18n="grosint.flow.subtitle">One input triggers parallel queries across all data sources. Results are correlated, deduplicated, and delivered as a complete intelligence profile.</p>
+        </div>
+
+        <!-- Flow steps -->
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--space-6);margin-top:var(--space-8);position:relative;" class="reveal-stagger">
+
+          <!-- Step 1: INPUT -->
+          <div class="card card--glass card--cyan card--hud card-3d" data-tilt style="text-align:center;position:relative;">
+            <div style="color:var(--color-cyan);margin-bottom:var(--space-3);">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+            </div>
+            <span class="text-mono" style="color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.2em;display:block;margin-bottom:var(--space-2);" data-i18n="grosint.flow.step1.label">STEP 01</span>
+            <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;color:var(--color-text-primary);margin-bottom:var(--space-2);" data-i18n="grosint.flow.step1.title">Input</h3>
+            <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="grosint.flow.step1.desc">Analyst enters a phone number, email, or any supported identifier into the system.</p>
+          </div>
+
+          <!-- Step 2: PARALLEL SEARCH -->
+          <div class="card card--glass card--amber card--hud card-3d" data-tilt style="text-align:center;">
+            <div style="color:var(--color-amber);margin-bottom:var(--space-3);">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+            </div>
+            <span class="text-mono" style="color:var(--color-amber);font-size:var(--text-2xs);letter-spacing:0.2em;display:block;margin-bottom:var(--space-2);" data-i18n="grosint.flow.step2.label">STEP 02</span>
+            <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;color:var(--color-text-primary);margin-bottom:var(--space-2);" data-i18n="grosint.flow.step2.title">Parallel Search</h3>
+            <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="grosint.flow.step2.desc">8-12 data sources queried simultaneously. Telecom, social, breach, identity databases — all in parallel.</p>
+          </div>
+
+          <!-- Step 3: AGGREGATION -->
+          <div class="card card--glass card--hud card-3d" data-tilt style="text-align:center;border-top:2px solid var(--color-pink);">
+            <div style="color:var(--color-pink);margin-bottom:var(--space-3);">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+            </div>
+            <span class="text-mono" style="color:var(--color-pink);font-size:var(--text-2xs);letter-spacing:0.2em;display:block;margin-bottom:var(--space-2);" data-i18n="grosint.flow.step3.label">STEP 03</span>
+            <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;color:var(--color-text-primary);margin-bottom:var(--space-2);" data-i18n="grosint.flow.step3.title">Aggregation</h3>
+            <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="grosint.flow.step3.desc">Results correlated across sources, deduplicated, and enriched with source attribution and confidence scores.</p>
+          </div>
+
+          <!-- Step 4: PROFILE -->
+          <div class="card card--glass card--hud card-3d" data-tilt style="text-align:center;border-top:2px solid #A78BFA;">
+            <div style="color:#A78BFA;margin-bottom:var(--space-3);">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <span class="text-mono" style="color:#A78BFA;font-size:var(--text-2xs);letter-spacing:0.2em;display:block;margin-bottom:var(--space-2);" data-i18n="grosint.flow.step4.label">STEP 04</span>
+            <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;color:var(--color-text-primary);margin-bottom:var(--space-2);" data-i18n="grosint.flow.step4.title">Profile</h3>
+            <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="grosint.flow.step4.desc">Complete digital intelligence profile delivered. 200+ data points with full source attribution.</p>
+          </div>
+
+          <!-- Step 5: GRAPH -->
+          <div class="card card--glass card--hud card-3d" data-tilt style="text-align:center;border-top:2px solid var(--color-success);">
+            <div style="color:var(--color-success);margin-bottom:var(--space-3);">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="2"/><circle cx="12" cy="5" r="2"/><circle cx="12" cy="19" r="2"/><line x1="12" y1="7" x2="12" y2="10"/><line x1="12" y1="14" x2="12" y2="17"/><circle cx="5" cy="8" r="2"/><line x1="7" y1="8" x2="10" y2="10"/><circle cx="5" cy="16" r="2"/><line x1="7" y1="16" x2="10" y2="14"/></svg>
+            </div>
+            <span class="text-mono" style="color:var(--color-success);font-size:var(--text-2xs);letter-spacing:0.2em;display:block;margin-bottom:var(--space-2);" data-i18n="grosint.flow.step5.label">STEP 05</span>
+            <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;color:var(--color-text-primary);margin-bottom:var(--space-2);" data-i18n="grosint.flow.step5.title">Graph</h3>
+            <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="grosint.flow.step5.desc">Social connections and linked identifiers mapped. Discover hidden relationships across platforms.</p>
           </div>
 
         </div>
       </div>
     </section>
 
-    <!-- ── TECH STACK ─────────────────────────────────────────── -->
+    <!-- ══════════════════════════════════════════════════════════
+         5. CASE STUDIES (TABS)
+         ══════════════════════════════════════════════════════════ -->
+    <section class="section section--dark" id="case-studies" aria-labelledby="cases-title">
+      <div class="glow-orb glow-orb--cyan" style="width:300px;height:300px;top:10%;right:-5%;opacity:0.05;" aria-hidden="true"></div>
+      <div class="container">
+        <div class="section-heading section-heading--centre reveal">
+          <span class="section-label section-label--centre" data-i18n="grosint.cases.label">// OPERATIONAL SCENARIOS</span>
+          <h2 class="section-title" id="cases-title" data-i18n="grosint.cases.title">See It in Action</h2>
+        </div>
+
+        <div class="case-tabs reveal">
+          <nav class="case-tabs__nav" role="tablist" aria-label="Agency case studies">
+            <button role="tab" class="case-tab active" data-tab="police" aria-selected="true" aria-controls="panel-police" data-i18n="grosint.cases.tab.police">Police</button>
+            <button role="tab" class="case-tab" data-tab="nia" aria-selected="false" aria-controls="panel-nia" data-i18n="grosint.cases.tab.nia">NIA</button>
+            <button role="tab" class="case-tab" data-tab="border" aria-selected="false" aria-controls="panel-border" data-i18n="grosint.cases.tab.border">Border Force</button>
+            <button role="tab" class="case-tab" data-tab="cyber" aria-selected="false" aria-controls="panel-cyber" data-i18n="grosint.cases.tab.cyber">Cyber Crime</button>
+            <button role="tab" class="case-tab" data-tab="ci" aria-selected="false" aria-controls="panel-ci" data-i18n="grosint.cases.tab.ci">Counter-Intel</button>
+          </nav>
+
+          <div class="case-tabs__panels">
+
+            <!-- ─── Police Panel ─── -->
+            <div class="case-panel active" id="panel-police" role="tabpanel" aria-labelledby="tab-police">
+              <span class="text-mono" style="color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.2em;display:block;margin-bottom:var(--space-4);" data-i18n="grosint.cases.police.agency">CASE STUDY · STATE POLICE</span>
+              <h3 class="case-panel__title" data-i18n="grosint.cases.police.title">"Operation Digital Trail" — Kidnapping Suspect Network Mapped</h3>
+              <div class="case-panel__metrics" style="margin-bottom:var(--space-4);">
+                <div class="case-metric"><span class="case-metric__value">1</span><span class="case-metric__label" data-i18n="grosint.cases.police.metric1.label">Phone Number Input</span></div>
+                <div class="case-metric"><span class="case-metric__value">47</span><span class="case-metric__label" data-i18n="grosint.cases.police.metric2.label">Data Points Recovered</span></div>
+                <div class="case-metric"><span class="case-metric__value">4</span><span class="case-metric__label" data-i18n="grosint.cases.police.metric3.label">Linked Suspects</span></div>
+                <div class="case-metric"><span class="case-metric__value">4 min</span><span class="case-metric__label" data-i18n="grosint.cases.police.metric4.label">Total Time</span></div>
+              </div>
+
+              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+                <span class="text-mono" style="color:var(--color-amber);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="grosint.cases.label.situation">THE SITUATION</span>
+                <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;margin-top:var(--space-2);" data-i18n="grosint.cases.police.situation">
+                  A suspect in a kidnapping case has abandoned their primary phone. Police have only a secondary number found on a scrap of paper at the suspect's last known location. The cyber cell has been tasked with building the suspect's digital profile, but manual OSINT would take 2-3 days.
+                </p>
+              </div>
+
+              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+                <span class="text-mono" style="color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="grosint.cases.label.solution">WHAT GROSINT DOES</span>
+                <ul data-i18n="grosint.cases.police.timeline" data-i18n-html style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.8;margin-top:var(--space-2);padding-left:var(--space-5);list-style:disc;">
+                  <li><strong style="color:var(--color-text-primary);">T+0s</strong> — Number entered into Grosint. Parallel queries fire across telecom, social, and breach databases simultaneously.</li>
+                  <li><strong style="color:var(--color-text-primary);">T+3s</strong> — Telecom intelligence reveals the registered name and activation circle. Caller ID services return a profile photo and associated tags.</li>
+                  <li><strong style="color:var(--color-text-primary);">T+8s</strong> — Messaging app search discovers an active account with a display name and profile photo. Social enumeration reveals the number is registered on 6 platforms.</li>
+                  <li><strong style="color:var(--color-text-primary);">T+15s</strong> — Breach database returns an email address associated with the number from a 2021 data exposure incident.</li>
+                  <li><strong style="color:var(--color-text-primary);">T+30s</strong> — Email pivot triggered on the discovered email. Service enumeration discovers 3 more linked social accounts with different display names.</li>
+                  <li><strong style="color:var(--color-text-primary);">T+2min</strong> — Social graph analysis maps connections between the suspect's accounts and reveals associations with 4 other individuals through group memberships and shared contacts.</li>
+                  <li><strong style="color:var(--color-text-primary);">T+4min</strong> — Complete suspect network mapped. Full evidence package generated with source attribution for every data point.</li>
+                </ul>
+              </div>
+
+              <div class="case-outcome">
+                <div class="case-outcome__label" data-i18n="grosint.cases.label.impact">OPERATIONAL IMPACT</div>
+                <p class="case-outcome__text" data-i18n="grosint.cases.police.impact">Complete suspect network mapped in <strong>4 minutes from a single phone number</strong>. The cyber cell would have taken 2-3 days of manual OSINT to achieve the same result. 47 data points recovered, 4 linked suspects identified, and a prosecution-ready evidence chain generated with full source attribution. The kidnapping victim was recovered within 6 hours using the network intelligence.</p>
+              </div>
+
+              <button class="btn btn--ghost btn--sm" style="margin-top:var(--space-4);" onclick="window.__downloadGrosintCaseStudy && window.__downloadGrosintCaseStudy('police')" data-i18n="grosint.cases.download">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                Download Case Study (PDF)
+              </button>
+            </div>
+
+            <!-- ─── NIA Panel ─── -->
+            <div class="case-panel" id="panel-nia" role="tabpanel" aria-labelledby="tab-nia">
+              <span class="text-mono" style="color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.2em;display:block;margin-bottom:var(--space-4);" data-i18n="grosint.cases.nia.agency">CASE STUDY · NATIONAL INVESTIGATION AGENCY</span>
+              <h3 class="case-panel__title" data-i18n="grosint.cases.nia.title">"Operation Shadow Network" — Burner SIM to Watch-Listed Entity</h3>
+              <div class="case-panel__metrics" style="margin-bottom:var(--space-4);">
+                <div class="case-metric"><span class="case-metric__value">1</span><span class="case-metric__label" data-i18n="grosint.cases.nia.metric1.label">Burner SIM</span></div>
+                <div class="case-metric"><span class="case-metric__value">3</span><span class="case-metric__label" data-i18n="grosint.cases.nia.metric2.label">Identity Layers</span></div>
+                <div class="case-metric"><span class="case-metric__value">2</span><span class="case-metric__label" data-i18n="grosint.cases.nia.metric3.label">Watch-List Matches</span></div>
+                <div class="case-metric"><span class="case-metric__value">6 min</span><span class="case-metric__label" data-i18n="grosint.cases.nia.metric4.label">Total Time</span></div>
+              </div>
+
+              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+                <span class="text-mono" style="color:var(--color-amber);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="grosint.cases.label.situation">THE SITUATION</span>
+                <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;margin-top:var(--space-2);" data-i18n="grosint.cases.nia.situation">
+                  NIA intercepts a burner SIM number from a hawala transaction. The number appears clean — no obvious social media presence, no caller ID registration. Traditional investigative tools return nothing. The number appears to be a dead end.
+                </p>
+              </div>
+
+              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+                <span class="text-mono" style="color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="grosint.cases.label.solution">WHAT GROSINT DOES</span>
+                <ul data-i18n="grosint.cases.nia.timeline" data-i18n-html style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.8;margin-top:var(--space-2);padding-left:var(--space-5);list-style:disc;">
+                  <li><strong style="color:var(--color-text-primary);">T+0s</strong> — Burner SIM number entered. Parallel lookups initiated across all available data sources.</li>
+                  <li><strong style="color:var(--color-text-primary);">T+3s</strong> — HLR query reveals the operator, activation circle, and SIM activation date. The number was activated 72 hours ago — consistent with a burner pattern.</li>
+                  <li><strong style="color:var(--color-text-primary);">T+12s</strong> — Breach database returns a hit: this number appeared in a 2022 data exposure linked to an email address. The email was not registered under the same name as the SIM.</li>
+                  <li><strong style="color:var(--color-text-primary);">T+30s</strong> — Email pivot on the discovered address reveals a VoIP account registered under a different name — a second identity layer.</li>
+                  <li><strong style="color:var(--color-text-primary);">T+1min</strong> — Messaging app search finds the number registered in 3 private groups. Group names and membership patterns suggest coordination activity.</li>
+                  <li><strong style="color:var(--color-text-primary);">T+4min</strong> — Social graph analysis connects the discovered identities to 2 entities on watch lists. The connection path traverses 3 identity layers that would have been invisible to manual investigation.</li>
+                  <li><strong style="color:var(--color-text-primary);">T+6min</strong> — Complete intelligence package generated with full evidence chain from burner SIM to watch-listed entities.</li>
+                </ul>
+              </div>
+
+              <div class="case-outcome">
+                <div class="case-outcome__label" data-i18n="grosint.cases.label.impact">OPERATIONAL IMPACT</div>
+                <p class="case-outcome__text" data-i18n="grosint.cases.nia.impact">A "clean" burner number led to <strong>identification of the end user and their network in under 6 minutes</strong>. The breach intelligence connection — invisible to traditional tools — was the critical pivot point. Three identity layers were uncovered, leading to 2 watch-list matches. The evidence chain, with full source attribution and timestamps, was used to escalate the investigation to a formal case.</p>
+              </div>
+
+              <button class="btn btn--ghost btn--sm" style="margin-top:var(--space-4);" onclick="window.__downloadGrosintCaseStudy && window.__downloadGrosintCaseStudy('nia')" data-i18n="grosint.cases.download">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                Download Case Study (PDF)
+              </button>
+            </div>
+
+            <!-- ─── Border Force Panel ─── -->
+            <div class="case-panel" id="panel-border" role="tabpanel" aria-labelledby="tab-border">
+              <span class="text-mono" style="color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.2em;display:block;margin-bottom:var(--space-4);" data-i18n="grosint.cases.border.agency">CASE STUDY · BORDER FORCE</span>
+              <h3 class="case-panel__title" data-i18n="grosint.cases.border.title">"Operation Gateway" — Fraudulent Identity Detected at Checkpoint</h3>
+              <div class="case-panel__metrics" style="margin-bottom:var(--space-4);">
+                <div class="case-metric"><span class="case-metric__value">2</span><span class="case-metric__label" data-i18n="grosint.cases.border.metric1.label">Identifiers Checked</span></div>
+                <div class="case-metric"><span class="case-metric__value">3</span><span class="case-metric__label" data-i18n="grosint.cases.border.metric2.label">Discrepancies Found</span></div>
+                <div class="case-metric"><span class="case-metric__value">90s</span><span class="case-metric__label" data-i18n="grosint.cases.border.metric3.label">Detection Time</span></div>
+                <div class="case-metric"><span class="case-metric__value">1</span><span class="case-metric__label" data-i18n="grosint.cases.border.metric4.label">Fraudulent Entry Prevented</span></div>
+              </div>
+
+              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+                <span class="text-mono" style="color:var(--color-amber);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="grosint.cases.label.situation">THE SITUATION</span>
+                <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;margin-top:var(--space-2);" data-i18n="grosint.cases.border.situation">
+                  A traveller at an international checkpoint presents documents that pass visual inspection. The border officer wants a rapid digital footprint check on the passport number and declared phone number before clearance. The queue is growing — the officer has less than 2 minutes for a decision.
+                </p>
+              </div>
+
+              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+                <span class="text-mono" style="color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="grosint.cases.label.solution">WHAT GROSINT DOES</span>
+                <ul data-i18n="grosint.cases.border.timeline" data-i18n-html style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.8;margin-top:var(--space-2);padding-left:var(--space-5);list-style:disc;">
+                  <li><strong style="color:var(--color-text-primary);">T+0s</strong> — Phone number and passport details entered into Grosint. Both lookups fire simultaneously.</li>
+                  <li><strong style="color:var(--color-text-primary);">T+3s</strong> — Telecom intelligence confirms the number's operator data matches the declared nationality. Initial check appears clean.</li>
+                  <li><strong style="color:var(--color-text-primary);">T+8s</strong> — Caller ID lookup returns a different name than the one on the passport. First discrepancy flagged.</li>
+                  <li><strong style="color:var(--color-text-primary);">T+15s</strong> — Messaging app profile photo does not match the passport photo. Second discrepancy flagged automatically by the system.</li>
+                  <li><strong style="color:var(--color-text-primary);">T+45s</strong> — Breach database check reveals the phone number was previously linked to a flagged email address associated with document fraud. Third discrepancy.</li>
+                  <li><strong style="color:var(--color-text-primary);">T+90s</strong> — Grosint presents the border officer with a concise alert: 3 identity discrepancies detected, with source attribution for each. Traveller referred for secondary screening.</li>
+                </ul>
+              </div>
+
+              <div class="case-outcome">
+                <div class="case-outcome__label" data-i18n="grosint.cases.label.impact">OPERATIONAL IMPACT</div>
+                <p class="case-outcome__text" data-i18n="grosint.cases.border.impact">Identity discrepancy detected in <strong>90 seconds</strong>. The traveller was referred for secondary screening, which confirmed the documents were fraudulent. Without Grosint, the traveller would have been cleared — the documents passed visual inspection and the name on the passport matched the boarding pass. The digital footprint told a different story. One fraudulent entry prevented.</p>
+              </div>
+
+              <button class="btn btn--ghost btn--sm" style="margin-top:var(--space-4);" onclick="window.__downloadGrosintCaseStudy && window.__downloadGrosintCaseStudy('border')" data-i18n="grosint.cases.download">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                Download Case Study (PDF)
+              </button>
+            </div>
+
+            <!-- ─── Cyber Crime Panel ─── -->
+            <div class="case-panel" id="panel-cyber" role="tabpanel" aria-labelledby="tab-cyber">
+              <span class="text-mono" style="color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.2em;display:block;margin-bottom:var(--space-4);" data-i18n="grosint.cases.cyber.agency">CASE STUDY · CYBER CRIME CELL</span>
+              <h3 class="case-panel__title" data-i18n="grosint.cases.cyber.title">"Operation Phish Net" — 12 Numbers, 1 Operator</h3>
+              <div class="case-panel__metrics" style="margin-bottom:var(--space-4);">
+                <div class="case-metric"><span class="case-metric__value">12</span><span class="case-metric__label" data-i18n="grosint.cases.cyber.metric1.label">Numbers Input</span></div>
+                <div class="case-metric"><span class="case-metric__value">1</span><span class="case-metric__label" data-i18n="grosint.cases.cyber.metric2.label">Operator Identified</span></div>
+                <div class="case-metric"><span class="case-metric__value">15 min</span><span class="case-metric__label" data-i18n="grosint.cases.cyber.metric3.label">Total Time</span></div>
+                <div class="case-metric"><span class="case-metric__value">Court-Ready</span><span class="case-metric__label" data-i18n="grosint.cases.cyber.metric4.label">Evidence Package</span></div>
+              </div>
+
+              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+                <span class="text-mono" style="color:var(--color-amber);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="grosint.cases.label.situation">THE SITUATION</span>
+                <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;margin-top:var(--space-2);" data-i18n="grosint.cases.cyber.situation">
+                  A phishing campaign targeting Indian banks uses rotating phone numbers for OTP collection. The cyber crime cell has extracted a list of 12 phone numbers from phishing kits. Each number appears unrelated to the others. Manual investigation of each would take the team weeks.
+                </p>
+              </div>
+
+              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+                <span class="text-mono" style="color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="grosint.cases.label.solution">WHAT GROSINT DOES</span>
+                <ul data-i18n="grosint.cases.cyber.timeline" data-i18n-html style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.8;margin-top:var(--space-2);padding-left:var(--space-5);list-style:disc;">
+                  <li><strong style="color:var(--color-text-primary);">T+0s</strong> — All 12 phone numbers entered for batch lookup. 12 parallel query sets fire simultaneously — over 100 individual lookups in total.</li>
+                  <li><strong style="color:var(--color-text-primary);">T+30s</strong> — Initial results arrive. 7 of the 12 numbers share the same breach history pattern — all appeared in the same data exposure incident from the same source.</li>
+                  <li><strong style="color:var(--color-text-primary);">T+2min</strong> — Messaging app analysis reveals 4 of the numbers are registered under similar naming conventions — sequential alphanumeric patterns suggesting automated registration.</li>
+                  <li><strong style="color:var(--color-text-primary);">T+5min</strong> — Email pivot from breach data reveals a common recovery email address shared across 5 of the accounts. This email becomes the primary identifier for the operator.</li>
+                  <li><strong style="color:var(--color-text-primary);">T+10min</strong> — Social graph analysis maps all 12 numbers to a single operator cluster. The operator's real identity surfaces through a UPI registration linked to the recovery email.</li>
+                  <li><strong style="color:var(--color-text-primary);">T+15min</strong> — Complete evidence package generated. Every connection between the 12 numbers, the shared breach history, the common email, and the operator's identity is documented with source attribution.</li>
+                </ul>
+              </div>
+
+              <div class="case-outcome">
+                <div class="case-outcome__label" data-i18n="grosint.cases.label.impact">OPERATIONAL IMPACT</div>
+                <p class="case-outcome__text" data-i18n="grosint.cases.cyber.impact"><strong>12 seemingly unrelated numbers traced to a single operator within 15 minutes</strong>. The breach intelligence cross-reference was the critical breakthrough — it revealed a shared digital history invisible to telecom-only analysis. A prosecution-ready evidence package was generated with full source attribution for every data point. The operator was arrested within 48 hours. The evidence package withstood legal scrutiny due to complete source chain documentation.</p>
+              </div>
+
+              <button class="btn btn--ghost btn--sm" style="margin-top:var(--space-4);" onclick="window.__downloadGrosintCaseStudy && window.__downloadGrosintCaseStudy('cyber')" data-i18n="grosint.cases.download">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                Download Case Study (PDF)
+              </button>
+            </div>
+
+            <!-- ─── Counter-Intelligence Panel ─── -->
+            <div class="case-panel" id="panel-ci" role="tabpanel" aria-labelledby="tab-ci">
+              <span class="text-mono" style="color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.2em;display:block;margin-bottom:var(--space-4);" data-i18n="grosint.cases.ci.agency">CASE STUDY · COUNTER-INTELLIGENCE</span>
+              <h3 class="case-panel__title" data-i18n="grosint.cases.ci.title">"Operation Mirror" — Foreign Contact Network Mapped</h3>
+              <div class="case-panel__metrics" style="margin-bottom:var(--space-4);">
+                <div class="case-metric"><span class="case-metric__value">1</span><span class="case-metric__label" data-i18n="grosint.cases.ci.metric1.label">International Number</span></div>
+                <div class="case-metric"><span class="case-metric__value">2</span><span class="case-metric__label" data-i18n="grosint.cases.ci.metric2.label">Mutual Connections</span></div>
+                <div class="case-metric"><span class="case-metric__value">Full</span><span class="case-metric__label" data-i18n="grosint.cases.ci.metric3.label">Network Mapped</span></div>
+                <div class="case-metric"><span class="case-metric__value">Court-Ready</span><span class="case-metric__label" data-i18n="grosint.cases.ci.metric4.label">Evidence Chain</span></div>
+              </div>
+
+              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+                <span class="text-mono" style="color:var(--color-amber);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="grosint.cases.label.situation">THE SITUATION</span>
+                <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;margin-top:var(--space-2);" data-i18n="grosint.cases.ci.situation">
+                  A defence establishment employee is suspected of unauthorized contact with a foreign national. Counter-Intelligence has the foreign number but no other leads. The employee denies any such contact. CI needs to establish the relationship and map the foreign contact's identity — without alerting either party.
+                </p>
+              </div>
+
+              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+                <span class="text-mono" style="color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="grosint.cases.label.solution">WHAT GROSINT DOES</span>
+                <ul data-i18n="grosint.cases.ci.timeline" data-i18n-html style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.8;margin-top:var(--space-2);padding-left:var(--space-5);list-style:disc;">
+                  <li><strong style="color:var(--color-text-primary);">T+0s</strong> — International number entered. Grosint initiates lookups adjusted for the foreign carrier and registration country.</li>
+                  <li><strong style="color:var(--color-text-primary);">T+5s</strong> — Telecom intelligence reveals the carrier and country of registration. The activation pattern is consistent with the declared nationality.</li>
+                  <li><strong style="color:var(--color-text-primary);">T+20s</strong> — Messaging app search finds the number registered in 2 groups with themes related to defence procurement. Group membership lists provide additional identifiers.</li>
+                  <li><strong style="color:var(--color-text-primary);">T+1min</strong> — Breach database reveals the number's associated email appeared in a diplomatic contact list exposure. The email is linked to a specific institutional affiliation.</li>
+                  <li><strong style="color:var(--color-text-primary);">T+3min</strong> — Email pivot discovers the foreign contact is registered on 3 messaging platforms. Profile data and display names are collected across all three.</li>
+                  <li><strong style="color:var(--color-text-primary);">T+5min</strong> — Social graph analysis reveals mutual connections between the foreign contact's network and the suspect employee's known digital contacts. Two mutual connections confirmed.</li>
+                  <li><strong style="color:var(--color-text-primary);">T+8min</strong> — Complete intelligence package: foreign contact's digital identity, institutional affiliation, group memberships, and mutual connections with the suspect. All evidence timestamped and source-attributed for CI reporting.</li>
+                </ul>
+              </div>
+
+              <div class="case-outcome">
+                <div class="case-outcome__label" data-i18n="grosint.cases.label.impact">OPERATIONAL IMPACT</div>
+                <p class="case-outcome__text" data-i18n="grosint.cases.ci.impact">The foreign contact's digital identity and network were <strong>fully mapped from a single international phone number</strong>. Mutual connections confirmed the unauthorized relationship that the employee had denied. The breach intelligence pivot — revealing institutional affiliation through a diplomatic contact list exposure — was invisible to any other investigative tool. All evidence was timestamped and source-attributed, creating a court-admissible evidence chain for CI reporting. The investigation was escalated based on the Grosint evidence package.</p>
+              </div>
+
+              <button class="btn btn--ghost btn--sm" style="margin-top:var(--space-4);" onclick="window.__downloadGrosintCaseStudy && window.__downloadGrosintCaseStudy('ci')" data-i18n="grosint.cases.download">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                Download Case Study (PDF)
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         6. TECHNICAL MOAT
+         ══════════════════════════════════════════════════════════ -->
+    <section class="section section--surface" aria-labelledby="moat-title">
+      <div class="glow-orb glow-orb--cyan" style="width:300px;height:300px;top:10%;left:-5%;opacity:0.05;" aria-hidden="true"></div>
+      <div class="container">
+        <div class="section-heading section-heading--centre reveal">
+          <span class="section-label section-label--centre" data-i18n="grosint.moat.label">// TECHNICAL MOAT</span>
+          <h2 class="section-title" id="moat-title" data-i18n="grosint.moat.title">Why We're Different</h2>
+        </div>
+
+        <div class="moat-grid reveal-stagger">
+
+          <!-- Moat 1: Parallel Multi-Source Search -->
+          <div class="moat-card" data-moat="parallel">
+            <div class="moat-card__header">
+              <div class="moat-card__header-left">
+                <div class="moat-card__icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                </div>
+                <span class="moat-card__title" data-i18n="grosint.moat.parallel.title">Parallel Multi-Source Search</span>
+              </div>
+              <svg class="moat-card__chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
+            <div class="moat-card__body">
+              <div class="moat-card__content">
+                <div class="moat-card__visual" style="min-height:120px;display:flex;align-items:center;justify-content:center;padding:var(--space-4);">
+                  <div style="display:flex;flex-direction:column;gap:var(--space-2);width:100%;">
+                    <div style="display:flex;align-items:center;gap:var(--space-3);">
+                      <span style="font-family:var(--font-mono);font-size:9px;color:var(--color-cyan);min-width:60px;">TELECOM</span>
+                      <div style="flex:1;height:6px;background:var(--color-bg-surface);border-radius:var(--radius-full);overflow:hidden;border:1px solid var(--color-border);"><div style="width:95%;height:100%;background:var(--color-cyan);border-radius:var(--radius-full);"></div></div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:var(--space-3);">
+                      <span style="font-family:var(--font-mono);font-size:9px;color:var(--color-amber);min-width:60px;">SOCIAL</span>
+                      <div style="flex:1;height:6px;background:var(--color-bg-surface);border-radius:var(--radius-full);overflow:hidden;border:1px solid var(--color-border);"><div style="width:88%;height:100%;background:var(--color-amber);border-radius:var(--radius-full);"></div></div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:var(--space-3);">
+                      <span style="font-family:var(--font-mono);font-size:9px;color:var(--color-pink);min-width:60px;">BREACH</span>
+                      <div style="flex:1;height:6px;background:var(--color-bg-surface);border-radius:var(--radius-full);overflow:hidden;border:1px solid var(--color-border);"><div style="width:92%;height:100%;background:var(--color-pink);border-radius:var(--radius-full);"></div></div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:var(--space-3);">
+                      <span style="font-family:var(--font-mono);font-size:9px;color:#A78BFA;min-width:60px;">IDENTITY</span>
+                      <div style="flex:1;height:6px;background:var(--color-bg-surface);border-radius:var(--radius-full);overflow:hidden;border:1px solid var(--color-border);"><div style="width:85%;height:100%;background:#A78BFA;border-radius:var(--radius-full);"></div></div>
+                    </div>
+                    <div style="font-family:var(--font-mono);font-size:9px;color:var(--color-text-faint);text-align:center;margin-top:var(--space-1);">ALL QUERIES COMPLETE IN &lt;3 SECONDS</div>
+                  </div>
+                </div>
+                <p class="moat-card__text" data-i18n="grosint.moat.parallel.text">One query triggers 8-12 simultaneous lookups across telecom, social, breach, and identity databases. Results arrive in under 3 seconds. No sequential bottleneck — every source is queried in parallel.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Moat 2: Source Attribution -->
+          <div class="moat-card" data-moat="attribution">
+            <div class="moat-card__header">
+              <div class="moat-card__header-left">
+                <div class="moat-card__icon" style="color:var(--color-amber);">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+                </div>
+                <span class="moat-card__title" data-i18n="grosint.moat.attribution.title">Source Attribution</span>
+              </div>
+              <svg class="moat-card__chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
+            <div class="moat-card__body">
+              <div class="moat-card__content">
+                <div class="moat-card__visual" style="min-height:120px;display:flex;align-items:center;justify-content:center;gap:var(--space-6);padding:var(--space-4);flex-wrap:wrap;">
+                  <div style="display:flex;align-items:center;gap:var(--space-3);">
+                    <div style="width:12px;height:12px;border-radius:50%;background:var(--color-amber);box-shadow:0 0 8px rgba(232,125,20,0.5);"></div>
+                    <div style="width:60px;height:1px;background:var(--color-border);"></div>
+                    <div style="padding:var(--space-1) var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-sm);font-family:var(--font-mono);font-size:9px;color:var(--color-text-faint);">SOURCE + TIMESTAMP</div>
+                    <div style="width:60px;height:1px;background:var(--color-border);"></div>
+                    <div style="padding:var(--space-1) var(--space-3);border:1px solid var(--color-success);border-radius:var(--radius-sm);font-family:var(--font-mono);font-size:9px;color:var(--color-success);">CONFIDENCE 0.95</div>
+                  </div>
+                </div>
+                <p class="moat-card__text" data-i18n="grosint.moat.attribution.text">Every data point carries its source, timestamp, and confidence level. Full provenance chain from raw query to final profile. Prosecution-ready evidence that withstands legal scrutiny.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Moat 3: Social Graph Discovery -->
+          <div class="moat-card" data-moat="graph">
+            <div class="moat-card__header">
+              <div class="moat-card__header-left">
+                <div class="moat-card__icon" style="color:var(--color-pink);">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="18" r="3"/><path d="M9 6h6M6 9v6M18 9v6M9 18h6"/></svg>
+                </div>
+                <span class="moat-card__title" data-i18n="grosint.moat.graph.title">Social Graph Discovery</span>
+              </div>
+              <svg class="moat-card__chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
+            <div class="moat-card__body">
+              <div class="moat-card__content">
+                <div class="moat-card__visual" style="min-height:120px;display:flex;align-items:center;justify-content:center;padding:var(--space-4);">
+                  <div style="display:flex;align-items:center;gap:var(--space-4);">
+                    <div style="display:flex;flex-direction:column;align-items:center;gap:var(--space-2);">
+                      <div style="width:48px;height:48px;border-radius:50%;border:2px solid var(--color-cyan);display:grid;place-items:center;font-family:var(--font-mono);font-size:9px;color:var(--color-cyan);">ID</div>
+                      <span style="font-family:var(--font-mono);font-size:8px;color:var(--color-text-faint);">PHONE</span>
+                    </div>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-border)" stroke-width="1"><path d="M5 12h14M14 7l5 5-5 5"/></svg>
+                    <div style="display:flex;flex-direction:column;align-items:center;gap:var(--space-2);">
+                      <div style="width:48px;height:48px;border-radius:50%;border:2px solid var(--color-amber);display:grid;place-items:center;font-family:var(--font-mono);font-size:9px;color:var(--color-amber);">EMAIL</div>
+                      <span style="font-family:var(--font-mono);font-size:8px;color:var(--color-text-faint);">PIVOT</span>
+                    </div>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-border)" stroke-width="1"><path d="M5 12h14M14 7l5 5-5 5"/></svg>
+                    <div style="display:flex;flex-direction:column;align-items:center;gap:var(--space-2);">
+                      <div style="width:48px;height:48px;border-radius:50%;border:2px solid var(--color-pink);display:grid;place-items:center;font-family:var(--font-mono);font-size:9px;color:var(--color-pink);">GRAPH</div>
+                      <span style="font-family:var(--font-mono);font-size:8px;color:var(--color-text-faint);">NETWORK</span>
+                    </div>
+                  </div>
+                </div>
+                <p class="moat-card__text" data-i18n="grosint.moat.graph.text">Not just flat data — Grosint maps relationships between identifiers, accounts, and entities across platforms. Discover hidden connections that link seemingly unrelated individuals through shared digital footprints.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Moat 4: Air-Gap Deployment -->
+          <div class="moat-card" data-moat="airgap">
+            <div class="moat-card__header">
+              <div class="moat-card__header-left">
+                <div class="moat-card__icon" style="color:var(--color-success);">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a4 4 0 0 0-8 0v2"/></svg>
+                </div>
+                <span class="moat-card__title" data-i18n="grosint.moat.airgap.title">Air-Gap Deployment</span>
+              </div>
+              <svg class="moat-card__chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
+            <div class="moat-card__body">
+              <div class="moat-card__content">
+                <div class="moat-card__visual" style="min-height:160px;display:flex;flex-direction:column;gap:var(--space-3);padding:var(--space-4);justify-content:center;">
+                  <div class="sovereign-cloud-blocked" style="border:1px dashed var(--color-danger);border-radius:var(--radius-md);padding:var(--space-2) var(--space-4);text-align:center;font-family:var(--font-mono);font-size:var(--text-2xs);color:var(--color-danger);opacity:0.5;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+                    CLOUD BLOCKED
+                  </div>
+                  <div style="padding:var(--space-2) var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-md);text-align:center;">
+                    <span style="font-family:var(--font-mono);font-size:9px;color:var(--color-cyan);letter-spacing:0.2em;">REGIONAL DB PRE-LOADED</span>
+                  </div>
+                  <div style="padding:var(--space-2) var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-md);text-align:center;">
+                    <span style="font-family:var(--font-mono);font-size:9px;color:var(--color-amber);letter-spacing:0.2em;">CORE LOOKUPS OFFLINE</span>
+                  </div>
+                  <div style="padding:var(--space-2) var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-md);text-align:center;">
+                    <span style="font-family:var(--font-mono);font-size:9px;color:var(--color-success);letter-spacing:0.2em;">CLASSIFIED COMPATIBLE</span>
+                  </div>
+                </div>
+                <p class="moat-card__text" data-i18n="grosint.moat.airgap.text">Core lookups work without internet. Regional databases pre-loaded for offline access. Classified environment compatible. Your queries never leave your network perimeter.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         7. SOVEREIGN ARCHITECTURE
+         ══════════════════════════════════════════════════════════ -->
+    <section class="section section--dark" aria-labelledby="sovereign-title">
+      <div class="container">
+        <div class="section-heading section-heading--centre reveal">
+          <span class="section-label section-label--centre" data-i18n="grosint.sovereign.label">// SOVEREIGN ARCHITECTURE</span>
+          <h2 class="section-title" id="sovereign-title" data-i18n="grosint.sovereign.title">Zero Cloud Dependencies</h2>
+          <p class="section-sub" style="text-align:center;margin-inline:auto;" data-i18n="grosint.sovereign.subtitle">Deployed within your perimeter. Intelligence data never leaves the deployment boundary.</p>
+        </div>
+
+        <div class="sovereign-stack reveal-stagger">
+          <div class="sovereign-cloud-blocked">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/><line x1="4" y1="4" x2="20" y2="20"/></svg>
+            <span data-i18n="grosint.sovereign.cloud">CLOUD BLOCKED</span>
+          </div>
+          <div class="sovereign-layer">
+            <div class="sovereign-layer__label" data-i18n="grosint.sovereign.app.label">APPLICATION LAYER</div>
+            <div class="sovereign-layer__title" data-i18n="grosint.sovereign.app.title">Lookup Engine + API Gateway</div>
+            <div class="sovereign-layer__desc" data-i18n="grosint.sovereign.app.desc">FastAPI services, parallel query orchestration, result aggregation — all Docker containers</div>
+          </div>
+          <div class="sovereign-layer">
+            <div class="sovereign-layer__label" style="color:var(--color-amber);" data-i18n="grosint.sovereign.data.label">DATA LAYER</div>
+            <div class="sovereign-layer__title" data-i18n="grosint.sovereign.data.title">PostgreSQL + MongoDB + Redis</div>
+            <div class="sovereign-layer__desc" data-i18n="grosint.sovereign.data.desc">Profile storage, pre-loaded regional databases, result caching, query audit logs</div>
+          </div>
+          <div class="sovereign-layer">
+            <div class="sovereign-layer__label" style="color:var(--color-success);" data-i18n="grosint.sovereign.hw.label">HARDWARE</div>
+            <div class="sovereign-layer__title" data-i18n="grosint.sovereign.hw.title">Single Machine Deployment</div>
+            <div class="sovereign-layer__desc" data-i18n="grosint.sovereign.hw.desc">Minimal footprint. CPU-only capable. Air-gapped compatible.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         8. TECH STACK
+         ══════════════════════════════════════════════════════════ -->
     <section class="section section--surface" aria-labelledby="tech-title">
       <div class="container">
         <div class="section-heading section-heading--centre reveal">
-          <span class="section-label section-label--centre">// UNDER THE HOOD</span>
-          <h2 class="section-title" id="tech-title">Built on Open Standards</h2>
-          <p class="section-sub" style="text-align:center;margin-inline:auto;">
-            No proprietary black boxes. Every layer is auditable and replaceable.
-          </p>
+          <span class="section-label section-label--centre" data-i18n="grosint.tech.label">// UNDER THE HOOD</span>
+          <h2 class="section-title" id="tech-title" data-i18n="grosint.tech.title">Built on Open Standards</h2>
+          <p class="section-sub" style="text-align:center;margin-inline:auto;" data-i18n="grosint.tech.subtitle">No proprietary black boxes. Every layer is auditable and replaceable.</p>
         </div>
 
         <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-3);margin-top:var(--space-8);" class="reveal">
-          <!-- Tech badges -->
-          <span class="badge badge--entry" style="padding:var(--space-2) var(--space-4);font-size:var(--text-xs);">Python 3.12</span>
-          <span class="badge badge--entry" style="padding:var(--space-2) var(--space-4);font-size:var(--text-xs);">FastAPI</span>
-          <span class="badge badge--entry" style="padding:var(--space-2) var(--space-4);font-size:var(--text-xs);">PostgreSQL 16</span>
-          <span class="badge badge--entry" style="padding:var(--space-2) var(--space-4);font-size:var(--text-xs);">Redis</span>
-          <span class="badge badge--entry" style="padding:var(--space-2) var(--space-4);font-size:var(--text-xs);">Docker</span>
-          <span class="badge badge--entry" style="padding:var(--space-2) var(--space-4);font-size:var(--text-xs);">Pydantic v2</span>
-          <span class="badge badge--entry" style="padding:var(--space-2) var(--space-4);font-size:var(--text-xs);">React + TypeScript</span>
-          <span class="badge badge--entry" style="padding:var(--space-2) var(--space-4);font-size:var(--text-xs);">Air-gap capable</span>
+          <span class="badge badge--entry" style="padding:var(--space-2) var(--space-4);">Python 3.12</span>
+          <span class="badge badge--entry" style="padding:var(--space-2) var(--space-4);">FastAPI</span>
+          <span class="badge badge--entry" style="padding:var(--space-2) var(--space-4);">PostgreSQL 16</span>
+          <span class="badge badge--entry" style="padding:var(--space-2) var(--space-4);">MongoDB</span>
+          <span class="badge badge--entry" style="padding:var(--space-2) var(--space-4);">Redis</span>
+          <span class="badge badge--entry" style="padding:var(--space-2) var(--space-4);">React + TypeScript</span>
+          <span class="badge badge--entry" style="padding:var(--space-2) var(--space-4);">Docker</span>
+          <span class="badge badge--entry" style="padding:var(--space-2) var(--space-4);">Pydantic v2</span>
+          <span class="badge badge--entry" style="padding:var(--space-2) var(--space-4);">Air-Gap Capable</span>
         </div>
       </div>
     </section>
 
-    <!-- ── SUITE POSITIONING ─────────────────────────────────── -->
-    <section class="section section--dark" aria-label="Suite positioning">
+    <!-- ══════════════════════════════════════════════════════════
+         9. SUITE UPSELL
+         ══════════════════════════════════════════════════════════ -->
+    <section class="section section--dark" aria-label="Suite">
       <div class="container">
         <div class="section-heading section-heading--centre reveal">
-          <span class="section-label section-label--centre">// THE SUITE</span>
-          <h2 class="section-title">Grosint is Just the Beginning</h2>
-          <p class="section-sub" style="text-align:center;margin-inline:auto;">
-            As your intelligence requirements grow, the suite grows with you.
-          </p>
+          <span class="section-label section-label--centre" data-i18n="grosint.suite.label">// THE SUITE</span>
+          <h2 class="section-title" data-i18n="grosint.suite.title">Grosint is Just the Beginning</h2>
+          <p class="section-sub" style="text-align:center;margin-inline:auto;" data-i18n="grosint.suite.subtitle">As your intelligence requirements grow, the suite grows with you.</p>
         </div>
-
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--space-4);margin-top:var(--space-8);" class="reveal-stagger">
-          <div class="card card--glass card--cyan" style="text-align:center;">
-            <div style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-cyan);letter-spacing:0.2em;margin-bottom:var(--space-2);">ENTRY</div>
+          <div class="card card--glass card--cyan" style="text-align:center;box-shadow:var(--glow-cyan);">
+            <div style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-cyan);margin-bottom:var(--space-2);">YOU ARE HERE</div>
             <div style="font-family:var(--font-display);font-size:var(--text-xl);font-weight:700;color:var(--color-text-primary);">Grosint</div>
-            <div style="font-size:var(--text-xs);color:var(--color-text-faint);margin-top:var(--space-1);">SMINT tool</div>
           </div>
           <div style="display:flex;align-items:center;justify-content:center;color:var(--color-border);font-size:var(--text-2xl);">→</div>
-          <div class="card card--glass card--amber" style="text-align:center;">
-            <div style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-amber);letter-spacing:0.2em;margin-bottom:var(--space-2);">OSINT</div>
+          <a href="./anveshak.html" class="card card--glass card--amber" style="text-align:center;text-decoration:none;">
+            <div style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-amber);margin-bottom:var(--space-2);">OSINT</div>
             <div style="font-family:var(--font-display);font-size:var(--text-xl);font-weight:700;color:var(--color-text-primary);">Anveshak</div>
-            <div style="font-size:var(--text-xs);color:var(--color-text-faint);margin-top:var(--space-1);">AI-OSINT platform</div>
-          </div>
+          </a>
           <div style="display:flex;align-items:center;justify-content:center;color:var(--color-border);font-size:var(--text-2xl);">→</div>
-          <div class="card card--glass card--purple" style="text-align:center;">
-            <div style="font-family:var(--font-mono);font-size:var(--text-xs);color:#A78BFA;letter-spacing:0.2em;margin-bottom:var(--space-2);">FUSION</div>
+          <a href="./drishti.html" class="card card--glass card--purple" style="text-align:center;text-decoration:none;">
+            <div style="font-family:var(--font-mono);font-size:var(--text-xs);color:#A78BFA;margin-bottom:var(--space-2);">FUSION</div>
             <div style="font-family:var(--font-display);font-size:var(--text-xl);font-weight:700;color:var(--color-text-primary);">Drishti</div>
-            <div style="font-size:var(--text-xs);color:var(--color-text-faint);margin-top:var(--space-1);">Sovereign fusion</div>
-          </div>
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- ── CTA ───────────────────────────────────────────────── -->
+    <!-- ══════════════════════════════════════════════════════════
+         10. CTA
+         ══════════════════════════════════════════════════════════ -->
     <section class="section section--surface" aria-label="CTA">
       <div class="container">
         <div class="cta-card reveal">
-          <span class="section-label section-label--centre">// ENGAGE</span>
-          <h2 class="cta-card__title">Request Evaluation Access</h2>
-          <p class="cta-card__sub">Reach our team directly on WhatsApp.</p>
-          <a href="https://wa.me/919901938800?text=Hi%2C%20I%27d%20like%20to%20request%20an%20evaluation%20of%20Grosint%20SMINT." class="btn btn--whatsapp" target="_blank" rel="noopener noreferrer">
+          <span class="section-label section-label--centre" data-i18n="grosint.cta.label">// ENGAGE</span>
+          <h2 class="cta-card__title" data-i18n="grosint.cta.title">Request Evaluation Access</h2>
+          <p class="cta-card__sub" data-i18n="grosint.cta.sub">Reach our team directly on WhatsApp.</p>
+          <a href="https://wa.me/919901938800?text=Hi%2C%20I%27d%20like%20to%20request%20an%20evaluation%20of%20Grosint%20SMINT." class="btn btn--whatsapp" target="_blank" rel="noopener noreferrer" data-i18n="grosint.cta.button">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
             Message us on WhatsApp
           </a>
@@ -308,7 +842,7 @@
           </ul>
         </nav>
         <div class="footer__tagline">
-          <p>Made in Bharat. For Bharat.</p>
+          <p data-i18n="footer.tagline">Made in Bharat. For Bharat.</p>
           <p style="font-size:var(--text-2xs);">🇮🇳 © 2025 Garud Research &amp; Tech Pvt. Ltd.</p>
         </div>
       </div>
@@ -316,5 +850,11 @@
   </footer>
 
   <script type="module" src="../js/app.js"></script>
+  <script src="../js/grosint-casepdf.js"></script>
+  <script src="../js/anveshak-tabs.js"></script>
+  <script type="module">
+    import { initI18n } from '../js/i18n.js';
+    initI18n();
+  </script>
 </body>
 </html>

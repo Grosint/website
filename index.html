@@ -24,7 +24,7 @@
   <!-- Fonts — preconnect for zero layout shift -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 
   <!-- Compiled CSS -->
   <link rel="stylesheet" href="./dist/style.css"/>
@@ -88,6 +88,8 @@
     </div>
     <div class="hud-cursor__dot"></div>
   </div>
+
+  <button class="lang-toggle" id="lang-toggle" aria-label="Toggle language"><span class="lang-toggle__active">EN</span> | हिं</button>
 
   <!-- ═══════════════════════════════════════════════════════
        NAVBAR
@@ -175,22 +177,24 @@
       <!-- Hero content -->
       <div class="container hero__content">
 
-        <span class="hero__label">// EYES THAT NEVER CLOSE</span>
+        <span class="hero__label" data-i18n="home.hero.label">// EYES THAT NEVER CLOSE</span>
 
         <h1
           class="hero__headline glitch"
           data-text="Bharat's Sovereign Intelligence Infrastructure"
+          data-i18n="home.hero.headline"
+          data-i18n-html
         >
           Bharat's Sovereign<br>Intelligence<br>Infrastructure
         </h1>
 
-        <p class="hero__sub">
+        <p class="hero__sub" data-i18n="home.hero.subtitle">
           End-to-end OSINT, fusion, and decision intelligence —
           built for Indian defence, operated on Indian soil.
         </p>
 
         <div class="hero__actions">
-          <a href="#products" class="btn btn--primary btn--lg">
+          <a href="#products" class="btn btn--primary btn--lg" data-i18n="home.hero.cta1">
             Explore the Platform
           </a>
           <a
@@ -198,6 +202,7 @@
             class="btn btn--neon btn--lg"
             target="_blank"
             rel="noopener noreferrer"
+            data-i18n="home.hero.cta2"
           >
             Request Briefing
           </a>
@@ -205,18 +210,18 @@
 
         <!-- Trust indicators -->
         <div style="display:flex;align-items:center;gap:var(--space-6);flex-wrap:wrap;justify-content:center;margin-top:var(--space-4);">
-          <span class="text-mono" style="font-size:var(--text-2xs);">✦ AIR-GAP CAPABLE</span>
+          <span class="text-mono" style="font-size:var(--text-2xs);" data-i18n="home.hero.trust1">✦ AIR-GAP CAPABLE</span>
           <span class="text-mono" style="font-size:var(--text-2xs);color:var(--color-border);">|</span>
-          <span class="text-mono" style="font-size:var(--text-2xs);">✦ NO FOREIGN CLOUD</span>
+          <span class="text-mono" style="font-size:var(--text-2xs);" data-i18n="home.hero.trust2">✦ NO FOREIGN CLOUD</span>
           <span class="text-mono" style="font-size:var(--text-2xs);color:var(--color-border);">|</span>
-          <span class="text-mono" style="font-size:var(--text-2xs);">✦ NO FOREIGN RAILS. NO COMPROMISE.</span>
+          <span class="text-mono" style="font-size:var(--text-2xs);" data-i18n="home.hero.trust3">✦ NO FOREIGN RAILS. NO COMPROMISE.</span>
         </div>
 
       </div>
 
       <!-- Scroll hint -->
       <div class="hero__scroll-hint" aria-hidden="true">
-        <span>SCROLL</span>
+        <span data-i18n="home.hero.scroll">SCROLL</span>
         <div class="hero__scroll-line"></div>
       </div>
 
@@ -233,9 +238,9 @@
       <div class="container">
 
         <div class="section-heading reveal">
-          <span class="section-label">// THE SUITE</span>
-          <h2 class="section-title" id="products-title">Intelligence at Every Layer</h2>
-          <p class="section-sub">
+          <span class="section-label" data-i18n="home.suite.label">// THE SUITE</span>
+          <h2 class="section-title" id="products-title" data-i18n="home.suite.title">Intelligence at Every Layer</h2>
+          <p class="section-sub" data-i18n="home.suite.subtitle">
             Three precision tools — from identifier lookup to full sovereign fusion.
             Deploy one, grow into all three.
           </p>
@@ -258,14 +263,14 @@
               </div>
               <div class="card-3d__layer--mid">
                 <h3 class="product-card__name">Grosint</h3>
-                <p class="product-card__tagline">Identifier to Intelligence. Instantly.</p>
+                <p class="product-card__tagline" data-i18n="home.grosint.tagline">Identifier to Intelligence. Instantly.</p>
               </div>
               <ul class="product-card__bullets card-3d__layer--back">
-                <li>Mobile number → full digital profile</li>
-                <li>Email address → social graph pivot</li>
-                <li>On-premise, air-gap capable</li>
+                <li data-i18n="home.grosint.b1">Mobile number → full digital profile</li>
+                <li data-i18n="home.grosint.b2">Email address → social graph pivot</li>
+                <li data-i18n="home.grosint.b3">On-premise, air-gap capable</li>
               </ul>
-              <a href="./products/grosint.html" class="product-card__link">
+              <a href="./products/grosint.html" class="product-card__link" data-i18n="home.grosint.link">
                 Explore Grosint <span aria-hidden="true">→</span>
               </a>
             </article>
@@ -286,14 +291,14 @@
               </div>
               <div class="card-3d__layer--mid">
                 <h3 class="product-card__name">Anveshak</h3>
-                <p class="product-card__tagline">Eyes Across the Open Web.</p>
+                <p class="product-card__tagline" data-i18n="home.anveshak.tagline">Eyes Across the Open Web.</p>
               </div>
               <ul class="product-card__bullets card-3d__layer--back">
-                <li>AI-powered multi-source monitoring</li>
-                <li>Deepfake detection + media verification</li>
-                <li>LLM report generation — fully local</li>
+                <li data-i18n="home.anveshak.b1">AI-powered multi-source monitoring</li>
+                <li data-i18n="home.anveshak.b2">Deepfake detection + media verification</li>
+                <li data-i18n="home.anveshak.b3">LLM report generation — fully local</li>
               </ul>
-              <a href="./products/anveshak.html" class="product-card__link">
+              <a href="./products/anveshak.html" class="product-card__link" data-i18n="home.anveshak.link">
                 Explore Anveshak <span aria-hidden="true">→</span>
               </a>
             </article>
@@ -314,14 +319,14 @@
               </div>
               <div class="card-3d__layer--mid">
                 <h3 class="product-card__name">Drishti</h3>
-                <p class="product-card__tagline">Every Signal. One Picture.</p>
+                <p class="product-card__tagline" data-i18n="home.drishti.tagline">Every Signal. One Picture.</p>
               </div>
               <ul class="product-card__bullets card-3d__layer--back">
-                <li>Cross-domain entity fusion at scale</li>
-                <li>Real-time alert engine — ACID compliant</li>
-                <li>Court-admissible evidence bundles</li>
+                <li data-i18n="home.drishti.b1">Cross-domain entity fusion at scale</li>
+                <li data-i18n="home.drishti.b2">Real-time alert engine — ACID compliant</li>
+                <li data-i18n="home.drishti.b3">Court-admissible evidence bundles</li>
               </ul>
-              <a href="./products/drishti.html" class="product-card__link">
+              <a href="./products/drishti.html" class="product-card__link" data-i18n="home.drishti.link">
                 Explore Drishti <span aria-hidden="true">→</span>
               </a>
             </article>
@@ -344,9 +349,9 @@
       <div class="container">
 
         <div class="section-heading section-heading--centre reveal">
-          <span class="section-label section-label--centre">// DOCTRINE</span>
-          <h2 class="section-title" id="sovereign-title">Why Sovereign</h2>
-          <p class="section-sub">
+          <span class="section-label section-label--centre" data-i18n="home.sovereign.label">// DOCTRINE</span>
+          <h2 class="section-title" id="sovereign-title" data-i18n="home.sovereign.title">Why Sovereign</h2>
+          <p class="section-sub" data-i18n="home.sovereign.subtitle">
             Intelligence infrastructure that leaves Indian soil is a liability.
             Every Grosint product is designed to operate within your perimeter.
           </p>
@@ -366,8 +371,8 @@
                 <div class="cube__face cube__face--back">NO FOREIGN<br>CLOUD</div>
               </div>
             </div>
-            <h3 class="pillar__title">No Foreign Cloud</h3>
-            <p class="pillar__text">
+            <h3 class="pillar__title" data-i18n="home.pillar1.title">No Foreign Cloud</h3>
+            <p class="pillar__text" data-i18n="home.pillar1.text">
               Intelligence data never leaves Indian infrastructure.
               No AWS, no Azure, no GCP. Your data stays within your perimeter — always.
             </p>
@@ -387,8 +392,8 @@
                 <div class="cube__face cube__face--back">AIR-GAP<br>CAPABLE</div>
               </div>
             </div>
-            <h3 class="pillar__title">Air-Gap Capable</h3>
-            <p class="pillar__text">
+            <h3 class="pillar__title" data-i18n="home.pillar2.title">Air-Gap Capable</h3>
+            <p class="pillar__text" data-i18n="home.pillar2.text">
               Anveshak runs on a single machine with no internet.
               Drishti deploys on k3s on-premise. One officer, one machine, full capability.
             </p>
@@ -410,8 +415,8 @@
                 <div class="cube__face cube__face--back">AUDIT<br>READY</div>
               </div>
             </div>
-            <h3 class="pillar__title">Audit-Ready</h3>
-            <p class="pillar__text">
+            <h3 class="pillar__title" data-i18n="home.pillar3.title">Audit-Ready</h3>
+            <p class="pillar__text" data-i18n="home.pillar3.text">
               SHA-256 immutable evidence chain. Every raw payload stored to MinIO,
               every alert backed by a court-admissible evidence bundle.
             </p>
@@ -430,8 +435,8 @@
                 <div class="cube__face cube__face--back">OPEN<br>STACK</div>
               </div>
             </div>
-            <h3 class="pillar__title">Open Stack</h3>
-            <p class="pillar__text">
+            <h3 class="pillar__title" data-i18n="home.pillar4.title">Open Stack</h3>
+            <p class="pillar__text" data-i18n="home.pillar4.text">
               No vendor lock-in. Redpanda, MinIO, PostgreSQL, Ollama — all open-source.
               You own the infrastructure. We build the intelligence layer on top.
             </p>
@@ -448,9 +453,9 @@
       <div class="container">
 
         <div class="section-heading section-heading--centre reveal">
-          <span class="section-label section-label--centre">// ARCHITECTURE</span>
-          <h2 class="section-title" id="pipeline-title">The Intelligence Pipeline</h2>
-          <p class="section-sub">
+          <span class="section-label section-label--centre" data-i18n="home.pipeline.label">// ARCHITECTURE</span>
+          <h2 class="section-title" id="pipeline-title" data-i18n="home.pipeline.title">The Intelligence Pipeline</h2>
+          <p class="section-sub" data-i18n="home.pipeline.subtitle">
             From raw signal to actionable alert — every stage is auditable,
             immutable, and defensible.
           </p>
@@ -545,7 +550,7 @@
         </div>
 
         <!-- Pipeline footnote -->
-        <p style="text-align:center;font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-text-faint);margin-top:var(--space-8);letter-spacing:0.1em;" class="reveal">
+        <p style="text-align:center;font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-text-faint);margin-top:var(--space-8);letter-spacing:0.1em;" class="reveal" data-i18n="home.pipeline.footnote">
           EVERY STAGE — IMMUTABLE · AUDITABLE · DEFENSIBLE
         </p>
 
@@ -562,9 +567,9 @@
       <div class="container">
 
         <div class="section-heading section-heading--centre reveal">
-          <span class="section-label section-label--centre">// DOMAIN</span>
-          <h2 class="section-title" id="serve-title">Who We Serve</h2>
-          <p class="section-sub">
+          <span class="section-label section-label--centre" data-i18n="home.domain.label">// DOMAIN</span>
+          <h2 class="section-title" id="serve-title" data-i18n="home.domain.title">Who We Serve</h2>
+          <p class="section-sub" data-i18n="home.domain.subtitle">
             Purpose-built for Indian national security — across every domain of operations.
           </p>
         </div>
@@ -578,7 +583,7 @@
                 <path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
               </svg>
             </div>
-            <span class="domain-tile__name">Indian Air Force</span>
+            <span class="domain-tile__name" data-i18n="home.domain.iaf">Indian Air Force</span>
           </div>
 
           <!-- Indian Army — crossed swords / military star -->
@@ -588,7 +593,7 @@
                 <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
               </svg>
             </div>
-            <span class="domain-tile__name">Indian Army</span>
+            <span class="domain-tile__name" data-i18n="home.domain.army">Indian Army</span>
           </div>
 
           <!-- Indian Navy — anchor -->
@@ -600,7 +605,7 @@
                 <path d="M5 12H2a10 10 0 0 0 20 0h-3"/>
               </svg>
             </div>
-            <span class="domain-tile__name">Indian Navy</span>
+            <span class="domain-tile__name" data-i18n="home.domain.navy">Indian Navy</span>
           </div>
 
           <!-- Paramilitary — shield + badge -->
@@ -612,7 +617,7 @@
                 <path d="M8.5 16.5c.8-1.5 2-2.5 3.5-2.5s2.7 1 3.5 2.5"/>
               </svg>
             </div>
-            <span class="domain-tile__name">Paramilitary</span>
+            <span class="domain-tile__name" data-i18n="home.domain.para">Paramilitary</span>
           </div>
 
           <!-- State Intelligence — radar sweep -->
@@ -623,7 +628,7 @@
                 <circle cx="12" cy="11" r="2"/>
               </svg>
             </div>
-            <span class="domain-tile__name">State Intelligence</span>
+            <span class="domain-tile__name" data-i18n="home.domain.intel">State Intelligence</span>
           </div>
 
           <!-- Critical Infrastructure — power grid / cpu -->
@@ -642,7 +647,7 @@
                 <line x1="1" y1="14" x2="4" y2="14"/>
               </svg>
             </div>
-            <span class="domain-tile__name">Critical Infrastructure</span>
+            <span class="domain-tile__name" data-i18n="home.domain.infra">Critical Infrastructure</span>
           </div>
 
         </div>
@@ -660,13 +665,13 @@
           <div class="reticle reticle--corners" style="position:absolute;top:var(--space-6);left:var(--space-6);transform:scale(2.5);" aria-hidden="true"></div>
           <div class="reticle reticle--corners" style="position:absolute;bottom:var(--space-6);right:var(--space-6);transform:scale(2.5) rotate(180deg);" aria-hidden="true"></div>
 
-          <span class="section-label section-label--centre">// ENGAGE</span>
+          <span class="section-label section-label--centre" data-i18n="home.cta.label">// ENGAGE</span>
 
-          <h2 class="cta-card__title" id="cta-title">
+          <h2 class="cta-card__title" id="cta-title" data-i18n="home.cta.title" data-i18n-html>
             Request a<br>Classified Briefing
           </h2>
 
-          <p class="cta-card__sub">
+          <p class="cta-card__sub" data-i18n="home.cta.subtitle">
             Engagements are by direct outreach.
             Reach our team on WhatsApp — we respond fast.
           </p>
@@ -682,7 +687,7 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
             </svg>
-            Message us on WhatsApp
+            <span data-i18n="home.cta.button">Message us on WhatsApp</span>
           </a>
 
           <p style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-text-faint);letter-spacing:0.1em;">
@@ -726,14 +731,14 @@
 
         <!-- Tagline -->
         <div class="footer__tagline">
-          <p style="margin-bottom:var(--space-2);">Made in Bharat. For Bharat.</p>
+          <p style="margin-bottom:var(--space-2);" data-i18n="footer.tagline">Made in Bharat. For Bharat.</p>
           <p style="font-size:var(--text-2xs);">🇮🇳 © 2025 Garud Research &amp; Tech Pvt. Ltd.</p>
         </div>
 
       </div>
 
       <div class="footer-bottom" style="margin-top:var(--space-8);padding-top:var(--space-6);border-top:1px solid var(--color-border);">
-        <span style="font-family:var(--font-mono);font-size:var(--text-2xs);color:var(--color-text-faint);letter-spacing:0.1em;">
+        <span style="font-family:var(--font-mono);font-size:var(--text-2xs);color:var(--color-text-faint);letter-spacing:0.1em;" data-i18n="home.footer.values">
           SOVEREIGN · AUDITABLE · IMMUTABLE
         </span>
         <nav aria-label="Legal">
@@ -752,6 +757,10 @@
        JAVASCRIPT
        ═══════════════════════════════════════════════════════ -->
   <script type="module" src="./js/app.js"></script>
+  <script type="module">
+    import { initI18n } from './js/i18n.js';
+    initI18n();
+  </script>
 
 </body>
 </html>

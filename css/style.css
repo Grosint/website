@@ -28,6 +28,9 @@
 /* Component mixins */
 @import './components.css';
 
+/* Anveshak product page */
+@import './anveshak.css';
+
 /* Tailwind directives — after all imports */
 @tailwind base;
 @tailwind components;

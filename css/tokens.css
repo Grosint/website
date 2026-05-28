@@ -136,4 +136,8 @@
   --anim-reveal:    0.6s;
   --anim-pipeline:  3s;
   --anim-glitch:    4s;
+  --anim-pipeline-flow: 2s;
+
+  /* ── Pipeline Perspective ────────────────────────────────── */
+  --perspective-pipeline: 1600px;
 }

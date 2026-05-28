@@ -14,7 +14,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="../dist/style.css"/>
 
   <script type="importmap">
@@ -32,6 +32,19 @@
   </div>
   <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
   <div class="hud-cursor" id="hud-cursor" aria-hidden="true"><div class="hud-cursor__ring"><span class="hud-cursor__tick hud-cursor__tick--n"></span><span class="hud-cursor__tick hud-cursor__tick--e"></span><span class="hud-cursor__tick hud-cursor__tick--s"></span><span class="hud-cursor__tick hud-cursor__tick--w"></span></div><div class="hud-cursor__dot"></div></div>
+
+  <!-- Language Toggle -->
+  <button class="lang-toggle" id="lang-toggle" aria-label="Toggle language"><span class="lang-toggle__active">EN</span> | हिं</button>
+
+  <!-- Pipeline Detail Panel (fixed position, controlled by JS) -->
+  <div class="pipeline-detail" id="pipeline-detail">
+    <div class="pipeline-detail__card">
+      <span class="pipeline-detail__step" id="detail-step"></span>
+      <h3 class="pipeline-detail__title" id="detail-title"></h3>
+      <p class="pipeline-detail__desc" id="detail-desc"></p>
+      <div class="pipeline-detail__tech" id="detail-tech"></div>
+    </div>
+  </div>
 
   <nav class="navbar" id="navbar" aria-label="Main navigation">
     <div class="container navbar__inner">
@@ -56,7 +69,9 @@
 
   <main id="main-content">
 
-    <!-- ── PRODUCT HERO ──────────────────────────────────────── -->
+    <!-- ══════════════════════════════════════════════════════════
+         1. HERO
+         ══════════════════════════════════════════════════════════ -->
     <section class="section" style="min-height:60vh;display:grid;place-items:center;background:var(--color-bg-base);position:relative;overflow:hidden;" aria-label="Product hero">
       <div class="glow-orb glow-orb--amber" style="width:450px;height:450px;top:-100px;right:-80px;opacity:0.1;" aria-hidden="true"></div>
       <div class="glow-orb glow-orb--pink"  style="width:250px;height:250px;bottom:-40px;left:10%;opacity:0.07;" aria-hidden="true"></div>
@@ -74,8 +89,8 @@
         <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--space-6);">
 
           <div style="display:flex;align-items:center;gap:var(--space-3);">
-            <span class="badge badge--osint">OSINT PLATFORM</span>
-            <span class="badge" style="color:var(--color-text-faint);border-color:var(--color-border);font-size:var(--text-2xs);">iDEX ADITI 4.0 · PS-18</span>
+            <span class="badge badge--osint" data-i18n="hero.badge.osint">OSINT PLATFORM</span>
+            <span class="badge" style="color:var(--color-text-faint);border-color:var(--color-border);font-size:var(--text-2xs);" data-i18n="hero.badge.idex">iDEX ADITI 4.0 · PS-18</span>
           </div>
 
           <div style="width:80px;height:80px;border-radius:var(--radius-lg);background:var(--color-amber-subtle);border:1px solid var(--color-border-amber);display:grid;place-items:center;color:var(--color-amber);animation:brand-glow-pulse 3s ease-in-out infinite;">
@@ -86,155 +101,756 @@
             </svg>
           </div>
 
-          <h1 class="hero__headline glitch" data-text="Anveshak" style="font-size:var(--text-4xl);">Anveshak</h1>
-          <p class="section-sub" style="text-align:center;margin-inline:auto;">
+          <h1 class="hero__headline glitch" data-text="Anveshak" style="font-size:var(--text-4xl);" data-i18n="hero.headline">Anveshak</h1>
+          <p class="section-sub" style="text-align:center;margin-inline:auto;" data-i18n="hero.subtitle">
             अन्वेषक — Eyes Across the Open Web.<br>
             AI-powered OSINT monitoring, media verification, and local LLM reporting.
             Runs on one machine. No internet required.
           </p>
 
           <div style="display:flex;flex-wrap:wrap;gap:var(--space-4);justify-content:center;">
-            <a href="https://wa.me/919901938800?text=Hi%2C%20I%27d%20like%20to%20request%20an%20evaluation%20of%20Anveshak." class="btn btn--primary btn--lg" target="_blank" rel="noopener noreferrer">Request Evaluation</a>
-            <a href="/#products" class="btn btn--ghost btn--lg">← All Products</a>
+            <a href="https://wa.me/919901938800?text=Hi%2C%20I%27d%20like%20to%20request%20an%20evaluation%20of%20Anveshak." class="btn btn--primary btn--lg" target="_blank" rel="noopener noreferrer" data-i18n="hero.cta.eval">Request Evaluation</a>
+            <a href="/#products" class="btn btn--ghost btn--lg" data-i18n="hero.cta.products">← All Products</a>
           </div>
 
-          <!-- Module count callout -->
-          <div style="display:flex;flex-wrap:wrap;gap:var(--space-4);justify-content:center;margin-top:var(--space-2);">
-            <span class="text-mono">M1 · SOURCE CREDIBILITY</span>
-            <span style="color:var(--color-border);">·</span>
-            <span class="text-mono">M2 · WEB CRAWLER</span>
-            <span style="color:var(--color-border);">·</span>
-            <span class="text-mono">M3 · SOCIAL</span>
-            <span style="color:var(--color-border);">·</span>
-            <span class="text-mono">M4 · VISION</span>
-            <span style="color:var(--color-border);">·</span>
-            <span class="text-mono">M5 · REPORTER</span>
+          <!-- Capability badges -->
+          <div style="display:flex;flex-wrap:wrap;gap:var(--space-3);justify-content:center;margin-top:var(--space-2);">
+            <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">Multi-Source Monitoring</span>
+            <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">Deepfake Detection</span>
+            <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">200+ Languages</span>
+            <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">Real-Time Alerts</span>
+            <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">Sovereign AI</span>
+            <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">Court-Ready Evidence</span>
           </div>
 
         </div>
       </div>
     </section>
 
-    <!-- ── CAPABILITIES ──────────────────────────────────────── -->
-    <section class="section section--surface" aria-labelledby="cap-title">
+    <!-- ══════════════════════════════════════════════════════════
+         2. STATS BAR
+         ══════════════════════════════════════════════════════════ -->
+    <section class="section section--surface" style="padding-block:var(--space-8);" aria-label="Key metrics">
+      <div class="container">
+        <div class="stats-bar reveal-stagger">
+          <div class="stat-box">
+            <span class="stat-box__number">ANY</span>
+            <span class="stat-box__label" data-i18n="stats.sources">Open Source</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-box__number" data-count="200">200+</span>
+            <span class="stat-box__label" data-i18n="stats.languages">Languages</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-box__number">&lt;10s</span>
+            <span class="stat-box__label" data-i18n="stats.latency">Alert Latency</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-box__number">1</span>
+            <span class="stat-box__label" data-i18n="stats.machine">Machine Deployment</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-box__number">0</span>
+            <span class="stat-box__label" data-i18n="stats.cloud">Cloud Dependencies</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-box__number">100%</span>
+            <span class="stat-box__label" data-i18n="stats.audit">Audit Trail</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         3. 3D PIPELINE VISUALIZATION
+         ══════════════════════════════════════════════════════════ -->
+    <!-- Pipeline heading (outside the pinned section so it scrolls normally) -->
+    <section class="section section--dark" style="padding-bottom:0;" aria-labelledby="pipeline-title">
       <div class="container">
         <div class="section-heading section-heading--centre reveal">
-          <span class="section-label section-label--centre">// FIVE MODULES</span>
-          <h2 class="section-title" id="cap-title">What Anveshak Does</h2>
-        </div>
-
-        <div class="capabilities-grid reveal-stagger">
-
-          <div class="card-3d-wrapper">
-            <div class="card card--glass card--amber card--hud card-3d" data-tilt>
-              <div class="card-3d__layer--front" style="color:var(--color-amber);margin-bottom:var(--space-4);">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M8 12l-4 8h16l-4-8"/><path d="M12 12v8"/></svg>
-              </div>
-              <div class="card-3d__layer--mid">
-                <span style="font-family:var(--font-mono);font-size:var(--text-2xs);color:var(--color-amber);letter-spacing:0.2em;">MODULE M1</span>
-                <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;color:var(--color-text-primary);margin:var(--space-2) 0;">Source Credibility</h3>
-                <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;">
-                  Automated credibility scoring with analyst feedback loop. Every score change is audit-logged — court-admissible chain of custody for source reliability.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="card-3d-wrapper">
-            <div class="card card--glass card--amber card--hud card-3d" data-tilt>
-              <div class="card-3d__layer--front" style="color:var(--color-amber);margin-bottom:var(--space-4);">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-              </div>
-              <div class="card-3d__layer--mid">
-                <span style="font-family:var(--font-mono);font-size:var(--text-2xs);color:var(--color-amber);letter-spacing:0.2em;">MODULE M2</span>
-                <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;color:var(--color-text-primary);margin:var(--space-2) 0;">Web Intelligence</h3>
-                <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;">
-                  Crawl4AI-powered open-web crawling with multilingual NLP, entity extraction, and narrative clustering. Monitors defined topics continuously.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="card-3d-wrapper">
-            <div class="card card--glass card--amber card--hud card-3d" data-tilt>
-              <div class="card-3d__layer--front" style="color:var(--color-amber);margin-bottom:var(--space-4);">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-              </div>
-              <div class="card-3d__layer--mid">
-                <span style="font-family:var(--font-mono);font-size:var(--text-2xs);color:var(--color-amber);letter-spacing:0.2em;">MODULE M3</span>
-                <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;color:var(--color-text-primary);margin:var(--space-2) 0;">Social Monitoring</h3>
-                <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;">
-                  Real-time adapters: Telegram, Reddit, Bluesky, X/Twitter. Configurable signal thresholds fire alerts when narrative clusters breach your watch criteria.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="card-3d-wrapper">
-            <div class="card card--glass card--amber card--hud card-3d" data-tilt>
-              <div class="card-3d__layer--front" style="color:var(--color-amber);margin-bottom:var(--space-4);">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="m2 3 10 9 10-9"/></svg>
-              </div>
-              <div class="card-3d__layer--mid">
-                <span style="font-family:var(--font-mono);font-size:var(--text-2xs);color:var(--color-amber);letter-spacing:0.2em;">MODULES M4 + M5</span>
-                <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;color:var(--color-text-primary);margin:var(--space-2) 0;">Vision + Reports</h3>
-                <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;">
-                  YOLOv8 object detection, CLIP similarity, deepfake probability scoring (float 0–1, not boolean), EXIF forensics. LLM report generation via local Ollama — data never leaves.
-                </p>
-              </div>
-            </div>
-          </div>
-
+          <span class="section-label section-label--centre" data-i18n="pipeline.label">// INTELLIGENCE PIPELINE</span>
+          <h2 class="section-title" id="pipeline-title" data-i18n="pipeline.title">12-Stage Processing Pipeline</h2>
+          <p class="section-sub" style="text-align:center;margin-inline:auto;" data-i18n="pipeline.subtitle">From raw OSINT data to actionable intelligence — every stage automated, audit-logged, and sovereign.</p>
         </div>
       </div>
     </section>
 
-    <!-- ── USE CASES ─────────────────────────────────────────── -->
-    <section class="section section--dark" aria-labelledby="use-title">
-      <div class="glow-orb glow-orb--amber" style="width:300px;height:300px;bottom:0;right:5%;opacity:0.07;" aria-hidden="true"></div>
+    <section class="section section--dark pipeline-section" id="pipeline-section" style="padding-top:0;">
+      <!-- Three.js Canvas (desktop) — this entire section gets pinned -->
+      <div class="pipeline-canvas-wrapper" id="pipeline-canvas-wrapper">
+        <canvas id="pipeline-canvas"></canvas>
+        <!-- Pipeline progress dots -->
+        <div class="pipeline-progress" id="pipeline-progress" aria-hidden="true"></div>
+      </div>
+
+      <!-- Mobile Fallback Timeline -->
+      <div class="pipeline-mobile" id="pipeline-mobile">
+        <div class="container">
+          <div class="pipeline-timeline">
+
+            <div class="timeline-node timeline-node--ingestion reveal">
+              <span class="timeline-node__step" style="color:var(--color-amber);">STEP 01</span>
+              <h3 class="timeline-node__title" data-i18n="pipeline.step1.title">Multi-Source Ingestion</h3>
+              <p class="timeline-node__desc" data-i18n="pipeline.step1.desc">Simultaneously collects intelligence from web pages, news feeds, Telegram channels, Reddit, Bluesky, and X/Twitter. Cryptographic deduplication ensures every piece of content is processed exactly once.</p>
+            </div>
+
+            <div class="timeline-node timeline-node--nlp reveal">
+              <span class="timeline-node__step" style="color:var(--color-cyan);">STEP 02</span>
+              <h3 class="timeline-node__title" data-i18n="pipeline.step2.title">Multilingual Translation</h3>
+              <p class="timeline-node__desc" data-i18n="pipeline.step2.desc">Our custom-built translation engine automatically detects and translates 200+ languages into a unified semantic space. Language is no longer a barrier to intelligence analysis.</p>
+            </div>
+
+            <div class="timeline-node timeline-node--nlp reveal">
+              <span class="timeline-node__step" style="color:var(--color-cyan);">STEP 03</span>
+              <h3 class="timeline-node__title" data-i18n="pipeline.step3.title">Entity Extraction</h3>
+              <p class="timeline-node__desc" data-i18n="pipeline.step3.desc">Proprietary entity extraction identifies people, organisations, locations, and dates. These entities form a structural fingerprint that connects articles discussing the same incident in different words.</p>
+            </div>
+
+            <div class="timeline-node timeline-node--nlp reveal">
+              <span class="timeline-node__step" style="color:var(--color-cyan);">STEP 04</span>
+              <h3 class="timeline-node__title" data-i18n="pipeline.step4.title">Semantic Vectorisation</h3>
+              <p class="timeline-node__desc" data-i18n="pipeline.step4.desc">Each article is transformed into a high-dimensional mathematical representation capturing its meaning, not just words. The system understands conceptual similarity across languages and writing styles.</p>
+            </div>
+
+            <div class="timeline-node timeline-node--nlp reveal">
+              <span class="timeline-node__step" style="color:var(--color-cyan);">STEP 05</span>
+              <h3 class="timeline-node__title" data-i18n="pipeline.step5.title">Sentiment & Keyword Analysis</h3>
+              <p class="timeline-node__desc" data-i18n="pipeline.step5.desc">Every piece of content is scored for emotional tone and key phrases are extracted. This enables trend analysis — is sentiment shifting? Are new keywords signalling a developing situation?</p>
+            </div>
+
+            <div class="timeline-node timeline-node--nlp reveal">
+              <span class="timeline-node__step" style="color:var(--color-cyan);">STEP 06</span>
+              <h3 class="timeline-node__title" data-i18n="pipeline.step6.title">Relevance Scoring</h3>
+              <p class="timeline-node__desc" data-i18n="pipeline.step6.desc">An intelligent scoring system determines relevance to the analyst's watch topics. The threshold self-calibrates based on data distribution — no manual tuning required.</p>
+            </div>
+
+            <div class="timeline-node timeline-node--vision reveal">
+              <span class="timeline-node__step" style="color:var(--color-pink);">STEP 07</span>
+              <h3 class="timeline-node__title" data-i18n="pipeline.step7.title">Visual Intelligence</h3>
+              <p class="timeline-node__desc" data-i18n="pipeline.step7.desc">Images and videos are analysed for object detection, deepfake probability scoring on a continuous scale, metadata forensics, and perceptual fingerprinting for reverse image search.</p>
+            </div>
+
+            <div class="timeline-node timeline-node--vision reveal">
+              <span class="timeline-node__step" style="color:var(--color-pink);">STEP 08</span>
+              <h3 class="timeline-node__title" data-i18n="pipeline.step8.title">Quality Assurance Gates</h3>
+              <p class="timeline-node__desc" data-i18n="pipeline.step8.desc">Content passes through 11 independent quality checkpoints across 4 stages. This defence-in-depth approach ensures only genuine, substantive intelligence reaches the analyst.</p>
+            </div>
+
+            <div class="timeline-node timeline-node--output reveal">
+              <span class="timeline-node__step" style="color:var(--color-purple);">STEP 09</span>
+              <h3 class="timeline-node__title" data-i18n="pipeline.step9.title">Duplicate Elimination</h3>
+              <p class="timeline-node__desc" data-i18n="pipeline.step9.desc">When multiple outlets paraphrase the same story, the system detects semantic near-duplicates and prevents them from inflating the source diversity count. True independent corroboration only.</p>
+            </div>
+
+            <div class="timeline-node timeline-node--output reveal">
+              <span class="timeline-node__step" style="color:var(--color-purple);">STEP 10</span>
+              <h3 class="timeline-node__title" data-i18n="pipeline.step10.title">Narrative Clustering</h3>
+              <p class="timeline-node__desc" data-i18n="pipeline.step10.desc">Our proprietary blended similarity algorithm combines semantic meaning with entity overlap to group related articles into narrative clusters. New articles are assigned in real-time without reprocessing.</p>
+            </div>
+
+            <div class="timeline-node timeline-node--output reveal">
+              <span class="timeline-node__step" style="color:var(--color-purple);">STEP 11</span>
+              <h3 class="timeline-node__title" data-i18n="pipeline.step11.title">Automated Labelling</h3>
+              <p class="timeline-node__desc" data-i18n="pipeline.step11.desc">A sovereign, locally-hosted AI generates concise human-readable labels for each narrative cluster. The system auto-detects significant composition changes and regenerates labels.</p>
+            </div>
+
+            <div class="timeline-node timeline-node--output reveal">
+              <span class="timeline-node__step" style="color:var(--color-purple);">STEP 12</span>
+              <h3 class="timeline-node__title" data-i18n="pipeline.step12.title">Intelligence Alerts</h3>
+              <p class="timeline-node__desc" data-i18n="pipeline.step12.desc">When a narrative is confirmed by independent sources across multiple platforms, the system fires an intelligence alert. Real-time push to analysts. Cross-topic convergence detects the same event across separate watch streams.</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         4. DATA INGESTION — COMPREHENSIVE SOURCE GRID
+         ══════════════════════════════════════════════════════════ -->
+    <section class="section section--surface" aria-labelledby="ingestion-title">
       <div class="container">
-        <div class="section-heading reveal">
-          <span class="section-label">// OPERATIONS</span>
-          <h2 class="section-title" id="use-title">Field Use Cases</h2>
+        <div class="section-heading section-heading--centre reveal">
+          <span class="section-label section-label--centre" data-i18n="ingestion.label">// DATA INGESTION</span>
+          <h2 class="section-title" id="ingestion-title" data-i18n="ingestion.title">We Ingest Everything</h2>
+          <p class="section-sub" style="text-align:center;margin-inline:auto;" data-i18n="ingestion.subtitle">Any open-source intelligence — from global news to dark web forums, from satellite imagery metadata to encrypted messaging channels. If it's on the open web, Anveshak can collect, deduplicate, translate, and analyse it.</p>
         </div>
 
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--space-6);" class="reveal-stagger">
+        <!-- Source Categories Grid -->
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--space-6);margin-top:var(--space-8);" class="reveal-stagger">
 
-          <div class="card card--glass card--hud" style="border-top:2px solid var(--color-amber);">
-            <span class="text-mono" style="display:block;margin-bottom:var(--space-4);color:var(--color-amber);">USE CASE 01</span>
-            <h3 style="font-family:var(--font-display);font-size:var(--text-xl);font-weight:600;color:var(--color-text-primary);margin-bottom:var(--space-3);">Narrative Tracking</h3>
-            <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;">
-              A coordinated disinformation campaign surfaces across Telegram and Reddit. Anveshak clusters narratives by independent source count, fires a signal when the threshold is breached, and generates a sourced LLM report — fully offline.
-            </p>
-          </div>
-
+          <!-- Social Media -->
           <div class="card card--glass card--hud" style="border-top:2px solid var(--color-cyan);">
-            <span class="text-mono" style="display:block;margin-bottom:var(--space-4);">USE CASE 02</span>
-            <h3 style="font-family:var(--font-display);font-size:var(--text-xl);font-weight:600;color:var(--color-text-primary);margin-bottom:var(--space-3);">Media Verification</h3>
-            <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;">
-              A video claiming to show an IAF incident circulates online. Anveshak's M4 module runs YOLO detection, deepfake probability scoring, and EXIF forensics — delivering a verifiable technical assessment before the news cycle moves.
-            </p>
+            <span class="text-mono" style="display:block;margin-bottom:var(--space-4);color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.2em;" data-i18n="ingestion.social.label">SOCIAL MEDIA</span>
+            <div style="display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-4);">
+              <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">Telegram</span>
+              <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">X / Twitter</span>
+              <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">Reddit</span>
+              <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">Bluesky</span>
+              <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">Facebook</span>
+              <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">Instagram</span>
+              <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">VKontakte</span>
+              <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">Weibo</span>
+            </div>
+            <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="ingestion.social.desc">Real-time adapters monitor public channels, groups, and feeds. Keyword-based and channel-based collection. Engagement metrics captured for amplification analysis.</p>
           </div>
 
+          <!-- News & Web -->
+          <div class="card card--glass card--hud" style="border-top:2px solid var(--color-amber);">
+            <span class="text-mono" style="display:block;margin-bottom:var(--space-4);color:var(--color-amber);font-size:var(--text-2xs);letter-spacing:0.2em;" data-i18n="ingestion.news.label">NEWS & WEB</span>
+            <div style="display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-4);">
+              <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">News Websites</span>
+              <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">RSS / Atom Feeds</span>
+              <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">Online Newspapers</span>
+              <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">Government Portals</span>
+              <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">Press Releases</span>
+              <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">Think Tank Reports</span>
+              <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">Academic Papers</span>
+              <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">Blogs & Forums</span>
+            </div>
+            <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="ingestion.news.desc">Headless browser rendering handles JavaScript-heavy sites. Follow-link crawling for deep content extraction. Paywall and boilerplate detection. 30-second polling cycles.</p>
+          </div>
+
+          <!-- Messaging & Encrypted -->
           <div class="card card--glass card--hud" style="border-top:2px solid var(--color-pink);">
-            <span class="text-mono" style="display:block;margin-bottom:var(--space-4);color:var(--color-pink);">USE CASE 03</span>
-            <h3 style="font-family:var(--font-display);font-size:var(--text-xl);font-weight:600;color:var(--color-text-primary);margin-bottom:var(--space-3);">Watch Topic Monitoring</h3>
-            <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;">
-              An analyst defines a watch topic — keywords, platforms, signal threshold. Anveshak monitors continuously, fires WebSocket alerts to connected sessions in real-time, and maintains an auditable credibility log for every source.
-            </p>
+            <span class="text-mono" style="display:block;margin-bottom:var(--space-4);color:var(--color-pink);font-size:var(--text-2xs);letter-spacing:0.2em;" data-i18n="ingestion.messaging.label">MESSAGING & FORUMS</span>
+            <div style="display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-4);">
+              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">Telegram Channels</span>
+              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">Discord Servers</span>
+              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">Dark Web Forums</span>
+              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">Paste Sites</span>
+              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">IRC Channels</span>
+              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">Hacker Forums</span>
+            </div>
+            <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="ingestion.messaging.desc">Monitor public channels in messaging platforms. Dark web collection via Tor-routed adapters. Paste site monitoring for leaked data and threat indicators.</p>
+          </div>
+
+          <!-- Visual & Media -->
+          <div class="card card--glass card--hud" style="border-top:2px solid #A78BFA;">
+            <span class="text-mono" style="display:block;margin-bottom:var(--space-4);color:#A78BFA;font-size:var(--text-2xs);letter-spacing:0.2em;" data-i18n="ingestion.visual.label">VISUAL & MEDIA</span>
+            <div style="display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-4);">
+              <span class="badge badge--fusion" style="padding:var(--space-1) var(--space-3);">Images & Photos</span>
+              <span class="badge badge--fusion" style="padding:var(--space-1) var(--space-3);">Video Streams</span>
+              <span class="badge badge--fusion" style="padding:var(--space-1) var(--space-3);">Satellite Imagery</span>
+              <span class="badge badge--fusion" style="padding:var(--space-1) var(--space-3);">PDF Documents</span>
+              <span class="badge badge--fusion" style="padding:var(--space-1) var(--space-3);">Infographics</span>
+              <span class="badge badge--fusion" style="padding:var(--space-1) var(--space-3);">Maps & GeoData</span>
+            </div>
+            <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="ingestion.visual.desc">Automatic media download from all text sources. Object detection on images, deepfake analysis on photos and video frames, EXIF metadata extraction, and perceptual hashing for reverse search.</p>
+          </div>
+
+          <!-- Structured Data -->
+          <div class="card card--glass card--hud" style="border-top:2px solid var(--color-success);">
+            <span class="text-mono" style="display:block;margin-bottom:var(--space-4);color:var(--color-success);font-size:var(--text-2xs);letter-spacing:0.2em;" data-i18n="ingestion.structured.label">STRUCTURED DATA</span>
+            <div style="display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-4);">
+              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-success);border-color:rgba(63,185,80,0.2);background:rgba(63,185,80,0.04);">CERT-In Advisories</span>
+              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-success);border-color:rgba(63,185,80,0.2);background:rgba(63,185,80,0.04);">CVE Databases</span>
+              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-success);border-color:rgba(63,185,80,0.2);background:rgba(63,185,80,0.04);">Sanctions Lists</span>
+              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-success);border-color:rgba(63,185,80,0.2);background:rgba(63,185,80,0.04);">Company Registries</span>
+              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-success);border-color:rgba(63,185,80,0.2);background:rgba(63,185,80,0.04);">Court Records</span>
+              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-success);border-color:rgba(63,185,80,0.2);background:rgba(63,185,80,0.04);">Patent Filings</span>
+            </div>
+            <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="ingestion.structured.desc">Ingest from structured databases, government registries, vulnerability databases, and official advisories. Data normalised and merged into the same pipeline as unstructured content.</p>
+          </div>
+
+          <!-- Multilingual -->
+          <div class="card card--glass card--hud" style="border-top:2px solid var(--color-warning);">
+            <span class="text-mono" style="display:block;margin-bottom:var(--space-4);color:var(--color-warning);font-size:var(--text-2xs);letter-spacing:0.2em;" data-i18n="ingestion.languages.label">200+ LANGUAGES</span>
+            <div style="display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-4);">
+              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">Hindi</span>
+              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">Chinese</span>
+              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">Arabic</span>
+              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">Urdu</span>
+              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">Russian</span>
+              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">Turkish</span>
+              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">Malay</span>
+              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">French</span>
+              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">Persian</span>
+              <span class="badge" style="padding:var(--space-1) var(--space-3);color:var(--color-warning);border-color:rgba(210,153,34,0.2);background:rgba(210,153,34,0.04);">+ 190 more</span>
+            </div>
+            <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="ingestion.languages.desc">Every source in every language is auto-detected and translated into a unified semantic space. An analyst monitoring Chinese military blogs and Hindi news sees all narratives clustered together — no linguist required.</p>
+          </div>
+
+        </div>
+
+        <!-- Central convergence message -->
+        <div class="reveal" style="text-align:center;margin-top:var(--space-10);">
+          <div style="display:inline-flex;align-items:center;gap:var(--space-4);padding:var(--space-4) var(--space-8);border:1px solid var(--color-border-amber);border-radius:var(--radius-lg);background:var(--color-bg-glass);backdrop-filter:blur(12px);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-amber)" stroke-width="1.5"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+            <div>
+              <div class="text-mono" style="font-size:var(--text-2xs);color:var(--color-amber);letter-spacing:0.2em;" data-i18n="ingestion.converge.label">ALL SOURCES CONVERGE INTO</div>
+              <div style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:700;color:var(--color-text-primary);" data-i18n="ingestion.converge.title">One Unified, Deduplicated Pipeline</div>
+            </div>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-amber)" stroke-width="1.5"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         5. TECHNICAL MOAT
+         ══════════════════════════════════════════════════════════ -->
+    <section class="section section--dark" aria-labelledby="moat-title">
+      <div class="glow-orb glow-orb--cyan" style="width:300px;height:300px;top:10%;left:-5%;opacity:0.05;" aria-hidden="true"></div>
+      <div class="container">
+        <div class="section-heading section-heading--centre reveal">
+          <span class="section-label section-label--centre" data-i18n="moat.label">// TECHNICAL MOAT</span>
+          <h2 class="section-title" id="moat-title" data-i18n="moat.title">Why We're Different</h2>
+        </div>
+
+        <div class="moat-grid reveal-stagger">
+
+          <!-- Moat 1: Blended Similarity -->
+          <div class="moat-card" data-moat="blended">
+            <div class="moat-card__header">
+              <div class="moat-card__header-left">
+                <div class="moat-card__icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="9" r="6"/><circle cx="15" cy="15" r="6"/></svg>
+                </div>
+                <span class="moat-card__title" data-i18n="moat.blended.title">Blended Similarity</span>
+              </div>
+              <svg class="moat-card__chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
+            <div class="moat-card__body">
+              <div class="moat-card__content">
+                <div class="moat-card__visual" id="moat-blended-vis">
+                  <canvas id="moat-blended-canvas"></canvas>
+                </div>
+                <p class="moat-card__text" data-i18n="moat.blended.text">Our proprietary blended similarity algorithm combines semantic meaning with structural entity overlap. Dark web posts and CERT-In advisories cluster together despite different vocabularies — because they share entities about the same incident.</p>
+                <div style="display:flex;gap:var(--space-2);">
+                  <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">SEMANTIC</span>
+                  <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">STRUCTURAL</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Moat 2: Leiden vs HDBSCAN -->
+          <div class="moat-card" data-moat="leiden">
+            <div class="moat-card__header">
+              <div class="moat-card__header-left">
+                <div class="moat-card__icon" style="color:var(--color-amber);">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="18" r="3"/><path d="M9 6h6M6 9v6M18 9v6M9 18h6"/></svg>
+                </div>
+                <span class="moat-card__title" data-i18n="moat.leiden.title">Leiden vs. HDBSCAN</span>
+              </div>
+              <svg class="moat-card__chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
+            <div class="moat-card__body">
+              <div class="moat-card__content">
+                <div class="moat-card__visual" id="moat-leiden-vis">
+                  <canvas id="moat-leiden-canvas"></canvas>
+                </div>
+                <p class="moat-card__text" data-i18n="moat.leiden.text">Traditional clustering algorithms fail on uniform-density scenarios. Our approach uses modularity-based community detection — correctly handles bridge articles that reference multiple narratives.</p>
+                <div style="display:flex;gap:var(--space-2);">
+                  <span class="badge badge--osint" style="padding:var(--space-1) var(--space-3);">MODULARITY</span>
+                  <span class="badge badge--entry" style="padding:var(--space-1) var(--space-3);">COMMUNITY DETECTION</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Moat 3: Immutable Reports -->
+          <div class="moat-card" data-moat="immutable">
+            <div class="moat-card__header">
+              <div class="moat-card__header-left">
+                <div class="moat-card__icon" style="color:var(--color-pink);">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <span class="moat-card__title" data-i18n="moat.immutable.title">Immutable Reports</span>
+              </div>
+              <svg class="moat-card__chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
+            <div class="moat-card__body">
+              <div class="moat-card__content">
+                <div class="moat-card__visual" style="min-height:120px;display:flex;align-items:center;justify-content:center;gap:var(--space-6);padding:var(--space-4);flex-wrap:wrap;">
+                  <!-- CSS timeline -->
+                  <div style="display:flex;align-items:center;gap:var(--space-3);">
+                    <div style="width:12px;height:12px;border-radius:50%;background:var(--color-amber);box-shadow:0 0 8px rgba(232,125,20,0.5);"></div>
+                    <div style="width:60px;height:1px;background:var(--color-border);"></div>
+                    <div style="padding:var(--space-1) var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-sm);font-family:var(--font-mono);font-size:9px;color:var(--color-text-faint);">generated_at SET</div>
+                    <div style="width:60px;height:1px;background:var(--color-border);"></div>
+                    <div style="width:12px;height:12px;border-radius:50%;border:2px solid var(--color-danger);"></div>
+                    <div style="padding:var(--space-1) var(--space-3);border:1px dashed var(--color-danger);border-radius:var(--radius-sm);font-family:var(--font-mono);font-size:9px;color:var(--color-danger);opacity:0.6;">UPDATE BLOCKED</div>
+                  </div>
+                </div>
+                <p class="moat-card__text" data-i18n="moat.immutable.text">Reports are FROZEN the moment they're generated. Credibility scores are captured at generation time. If sources downgrade later, warnings fire — the report itself remains untouched. Court-admissible audit trail.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Moat 4: Sovereign Deployment -->
+          <div class="moat-card" data-moat="sovereign">
+            <div class="moat-card__header">
+              <div class="moat-card__header-left">
+                <div class="moat-card__icon" style="color:var(--color-success);">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a4 4 0 0 0-8 0v2"/></svg>
+                </div>
+                <span class="moat-card__title" data-i18n="moat.sovereign.title">Sovereign Deployment</span>
+              </div>
+              <svg class="moat-card__chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
+            <div class="moat-card__body">
+              <div class="moat-card__content">
+                <div class="moat-card__visual" style="min-height:160px;display:flex;flex-direction:column;gap:var(--space-3);padding:var(--space-4);justify-content:center;">
+                  <div class="sovereign-cloud-blocked" style="border:1px dashed var(--color-danger);border-radius:var(--radius-md);padding:var(--space-2) var(--space-4);text-align:center;font-family:var(--font-mono);font-size:var(--text-2xs);color:var(--color-danger);opacity:0.5;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+                    ☁ CLOUD → BLOCKED
+                  </div>
+                  <div style="padding:var(--space-2) var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-md);text-align:center;">
+                    <span style="font-family:var(--font-mono);font-size:9px;color:var(--color-cyan);letter-spacing:0.2em;">APP LAYER</span>
+                  </div>
+                  <div style="padding:var(--space-2) var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-md);text-align:center;">
+                    <span style="font-family:var(--font-mono);font-size:9px;color:var(--color-amber);letter-spacing:0.2em;">DATA LAYER</span>
+                  </div>
+                  <div style="padding:var(--space-2) var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-md);text-align:center;">
+                    <span style="font-family:var(--font-mono);font-size:9px;color:var(--color-success);letter-spacing:0.2em;">HARDWARE</span>
+                  </div>
+                </div>
+                <p class="moat-card__text" data-i18n="moat.sovereign.text">Every component runs locally. Ollama (local LLM), all models pre-downloaded. Intelligence data never leaves the deployment boundary. Works in air-gapped environments, classified settings, sanction-proof.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Moat 5: Credibility Feedback Loop -->
+          <div class="moat-card" data-moat="credibility">
+            <div class="moat-card__header">
+              <div class="moat-card__header-left">
+                <div class="moat-card__icon" style="color:var(--color-warning);">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+                </div>
+                <span class="moat-card__title" data-i18n="moat.credibility.title">Credibility Feedback Loop</span>
+              </div>
+              <svg class="moat-card__chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
+            <div class="moat-card__body">
+              <div class="moat-card__content">
+                <div class="moat-card__visual" style="min-height:140px;display:flex;align-items:center;justify-content:center;padding:var(--space-4);">
+                  <!-- Circular diagram -->
+                  <div style="display:flex;align-items:center;gap:var(--space-4);">
+                    <div style="display:flex;flex-direction:column;align-items:center;gap:var(--space-2);">
+                      <div style="width:48px;height:48px;border-radius:50%;border:2px solid var(--color-danger);display:grid;place-items:center;font-family:var(--font-mono);font-size:9px;color:var(--color-danger);">DF↑</div>
+                      <span style="font-family:var(--font-mono);font-size:8px;color:var(--color-text-faint);">DEEPFAKE AMP</span>
+                    </div>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-border)" stroke-width="1"><path d="M5 12h14M14 7l5 5-5 5"/></svg>
+                    <div style="display:flex;flex-direction:column;align-items:center;gap:var(--space-2);">
+                      <div style="width:48px;height:48px;border-radius:50%;border:2px solid var(--color-success);display:grid;place-items:center;font-family:var(--font-mono);font-size:9px;color:var(--color-success);">XV↑</div>
+                      <span style="font-family:var(--font-mono);font-size:8px;color:var(--color-text-faint);">CROSS-VERIFY</span>
+                    </div>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-border)" stroke-width="1"><path d="M5 12h14M14 7l5 5-5 5"/></svg>
+                    <div style="display:flex;flex-direction:column;align-items:center;gap:var(--space-2);">
+                      <div style="width:48px;height:48px;border-radius:50%;border:2px solid var(--color-warning);display:grid;place-items:center;font-family:var(--font-mono);font-size:9px;color:var(--color-warning);">CT↓</div>
+                      <span style="font-family:var(--font-mono);font-size:8px;color:var(--color-text-faint);">CONTRADICT</span>
+                    </div>
+                  </div>
+                </div>
+                <p class="moat-card__text" data-i18n="moat.credibility.text">Three-pass auto-adjustment: deepfake amplification → score drops, cross-verification → score rises, contradiction penalty. All changes audit-logged with immutable trail.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Moat 6: X/Twitter Spend Guard -->
+          <div class="moat-card" data-moat="spend">
+            <div class="moat-card__header">
+              <div class="moat-card__header-left">
+                <div class="moat-card__icon" style="color:var(--color-danger);">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M12 8v4M12 16h.01"/></svg>
+                </div>
+                <span class="moat-card__title" data-i18n="moat.spend.title">X/Twitter Spend Guard</span>
+              </div>
+              <svg class="moat-card__chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
+            <div class="moat-card__body">
+              <div class="moat-card__content">
+                <div class="moat-card__visual" style="min-height:100px;display:flex;flex-direction:column;gap:var(--space-3);padding:var(--space-4);justify-content:center;">
+                  <!-- Budget meter -->
+                  <div style="display:flex;align-items:center;gap:var(--space-3);">
+                    <span style="font-family:var(--font-mono);font-size:9px;color:var(--color-text-faint);min-width:60px;">BUDGET</span>
+                    <div style="flex:1;height:8px;background:var(--color-bg-surface);border-radius:var(--radius-full);overflow:hidden;border:1px solid var(--color-border);">
+                      <div style="width:65%;height:100%;background:linear-gradient(90deg,var(--color-success),var(--color-warning));border-radius:var(--radius-full);transition:width 1s ease;"></div>
+                    </div>
+                    <span style="font-family:var(--font-mono);font-size:9px;color:var(--color-warning);">65%</span>
+                  </div>
+                  <div style="font-family:var(--font-mono);font-size:9px;color:var(--color-text-faint);text-align:center;">
+                    BUDGET CHECK → monthly_reads: 6,500 / 10,000
+                  </div>
+                </div>
+                <p class="moat-card__text" data-i18n="moat.spend.text">Atomic budget controls enforce monthly read caps. Budget check before every API call — silently prevents cost overruns. Per-account tracking with automatic expiry.</p>
+              </div>
+            </div>
           </div>
 
         </div>
       </div>
     </section>
 
-    <!-- ── TECH STACK ─────────────────────────────────────────── -->
+    <!-- ══════════════════════════════════════════════════════════
+         6. LEA CASE STUDIES (TABS)
+         ══════════════════════════════════════════════════════════ -->
+    <section class="section section--surface" id="case-studies" aria-labelledby="cases-title">
+      <div class="container">
+        <div class="section-heading section-heading--centre reveal">
+          <span class="section-label section-label--centre" data-i18n="cases.label">// OPERATIONAL SCENARIOS</span>
+          <h2 class="section-title" id="cases-title" data-i18n="cases.title">See It in Action</h2>
+        </div>
+
+        <div class="case-tabs reveal">
+          <nav class="case-tabs__nav" role="tablist" aria-label="Agency case studies">
+            <button role="tab" class="case-tab active" data-tab="mi" aria-selected="true" aria-controls="panel-mi" data-i18n="cases.tab.mi">Military Intelligence</button>
+            <button role="tab" class="case-tab" data-tab="iaf" aria-selected="false" aria-controls="panel-iaf" data-i18n="cases.tab.iaf">Air Force</button>
+            <button role="tab" class="case-tab" data-tab="police" aria-selected="false" aria-controls="panel-police" data-i18n="cases.tab.police">Police</button>
+            <button role="tab" class="case-tab" data-tab="cyber" aria-selected="false" aria-controls="panel-cyber" data-i18n="cases.tab.cyber">Cyber</button>
+            <button role="tab" class="case-tab" data-tab="mea" aria-selected="false" aria-controls="panel-mea" data-i18n="cases.tab.mea">MEA</button>
+          </nav>
+
+          <div class="case-tabs__panels">
+
+            <!-- ─── MI Panel ─── -->
+            <div class="case-panel active" id="panel-mi" role="tabpanel" aria-labelledby="tab-mi">
+              <span class="text-mono" style="color:var(--color-amber);font-size:var(--text-2xs);letter-spacing:0.2em;display:block;margin-bottom:var(--space-4);" data-i18n="cases.mi.agency">CASE STUDY · MILITARY INTELLIGENCE</span>
+              <h3 class="case-panel__title" data-i18n="cases.mi.title">"Operation Sentinel Eye" — LAC Troop Movement Detection</h3>
+              <div class="case-panel__metrics" style="margin-bottom:var(--space-4);">
+                <div class="case-metric"><span class="case-metric__value">17</span><span class="case-metric__label" data-i18n="cases.mi.metric1.label">Sources Monitored</span></div>
+                <div class="case-metric"><span class="case-metric__value">3</span><span class="case-metric__label" data-i18n="cases.mi.metric2.label">Languages</span></div>
+                <div class="case-metric"><span class="case-metric__value">4 hrs</span><span class="case-metric__label" data-i18n="cases.mi.metric3.label">Early Warning</span></div>
+                <div class="case-metric"><span class="case-metric__value">1</span><span class="case-metric__label" data-i18n="cases.mi.metric4.label">Machine Required</span></div>
+              </div>
+
+              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+                <span class="text-mono" style="color:var(--color-amber);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="cases.label.situation">THE SITUATION</span>
+                <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;margin-top:var(--space-2);" data-i18n="cases.mi.situation">
+                  January, Eastern Ladakh sector. An MI unit at a forward post needs to monitor PLA activity along a 200km stretch of the LAC. Their current method: an analyst manually checking 12 news websites, 3 Telegram channels, and Twitter every 2 hours. Chinese-language sources are ignored — no translator available. By the time a report reaches the commanding officer, it's already 6–8 hours old.
+                </p>
+              </div>
+
+              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+                <span class="text-mono" style="color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="cases.label.solution">WHAT ANVESHAK DOES</span>
+                <ul data-i18n="cases.mi.timeline" data-i18n-html style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.8;margin-top:var(--space-2);padding-left:var(--space-5);list-style:disc;">
+                  <li><strong style="color:var(--color-text-primary);">07:00 hrs</strong> — Anveshak ingests overnight content from 17 sources including Chinese military blogs, Weibo posts (auto-translated), Indian defence RSS feeds, and monitored Telegram channels. 340 articles processed.</li>
+                  <li><strong style="color:var(--color-text-primary);">07:02 hrs</strong> — Entity extraction identifies mentions of "PLA Western Theatre Command", "Aksai Chin Highway", and "Type 15 Tank" across 9 independent articles in 3 languages.</li>
+                  <li><strong style="color:var(--color-text-primary);">07:03 hrs</strong> — Narrative clustering groups these into a single cluster: "PLA armoured vehicle movement near Depsang Plains". Independent source count reaches 4.</li>
+                  <li><strong style="color:var(--color-text-primary);">07:03 hrs</strong> — Intelligence alert fires. The MI analyst receives a real-time push notification on their workstation with a summary, source list, and confidence assessment.</li>
+                  <li><strong style="color:var(--color-text-primary);">07:05 hrs</strong> — The commanding officer receives a one-page auto-generated brief with a map overlay showing mentioned locations. The report is timestamped and immutable — admissible as intelligence evidence.</li>
+                </ul>
+              </div>
+
+              <div class="case-outcome">
+                <div class="case-outcome__label" data-i18n="cases.label.impact">OPERATIONAL IMPACT</div>
+                <p class="case-outcome__text" data-i18n="cases.mi.impact">The MI unit detected PLA forward positioning <strong>4 hours before mainstream Indian media reported it</strong> and 6 hours before the unit would have caught it manually. The Chinese-language sources — previously invisible to the unit — provided the earliest indicators. All from a single laptop running Anveshak, with no internet dependency for the AI analysis.</p>
+              </div>
+
+              <button class="btn btn--ghost btn--sm" style="margin-top:var(--space-4);" onclick="window.__downloadCaseStudy && window.__downloadCaseStudy('mi')" data-i18n="cases.download">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                Download Case Study (PDF)
+              </button>
+            </div>
+
+            <!-- ─── IAF Panel ─── -->
+            <div class="case-panel" id="panel-iaf" role="tabpanel" aria-labelledby="tab-iaf">
+              <span class="text-mono" style="color:var(--color-amber);font-size:var(--text-2xs);letter-spacing:0.2em;display:block;margin-bottom:var(--space-4);" data-i18n="cases.iaf.agency">CASE STUDY · INDIAN AIR FORCE</span>
+              <h3 class="case-panel__title" data-i18n="cases.iaf.title">"Operation Vayu Shield" — Deepfake Detection During Airspace Incident</h3>
+              <div class="case-panel__metrics" style="margin-bottom:var(--space-4);">
+                <div class="case-metric"><span class="case-metric__value">92%</span><span class="case-metric__label" data-i18n="cases.iaf.metric1.label">Deepfake Accuracy</span></div>
+                <div class="case-metric"><span class="case-metric__value">23</span><span class="case-metric__label" data-i18n="cases.iaf.metric2.label">Fake Images Flagged</span></div>
+                <div class="case-metric"><span class="case-metric__value">45 min</span><span class="case-metric__label" data-i18n="cases.iaf.metric3.label">Before TV Media</span></div>
+              </div>
+
+              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+                <span class="text-mono" style="color:var(--color-amber);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="cases.label.situation">THE SITUATION</span>
+                <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;margin-top:var(--space-2);" data-i18n="cases.iaf.situation">
+                  Following a border airspace incident, social media is flooded with images claiming to show a downed IAF aircraft. Pakistani Telegram channels share "satellite imagery" of wreckage. Indian TV channels are preparing to broadcast. The IAF PRO needs to know within minutes: are these images real or fabricated?
+                </p>
+              </div>
+
+              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+                <span class="text-mono" style="color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="cases.label.solution">WHAT ANVESHAK DOES</span>
+                <ul data-i18n="cases.iaf.timeline" data-i18n-html style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.8;margin-top:var(--space-2);padding-left:var(--space-5);list-style:disc;">
+                  <li><strong style="color:var(--color-text-primary);">T+0 min</strong> — Anveshak's social monitoring detects a surge of images across 4 Telegram channels and X/Twitter. 47 images and 3 videos collected in the first wave.</li>
+                  <li><strong style="color:var(--color-text-primary);">T+2 min</strong> — Visual intelligence pipeline analyses every image. 23 out of 47 images flagged with deepfake probability scores above 0.7. Metadata forensics reveals EXIF data inconsistencies — timestamps predate the incident by 3 days.</li>
+                  <li><strong style="color:var(--color-text-primary);">T+3 min</strong> — Perceptual fingerprinting matches 8 images to a 2019 drone crash in a different country. The "satellite imagery" is a digitally altered version of commercially available imagery.</li>
+                  <li><strong style="color:var(--color-text-primary);">T+5 min</strong> — An immutable report is generated: "23 fabricated images detected. 8 traceable to prior incidents. 3 videos show frame-level manipulation artefacts." The report includes side-by-side comparisons and confidence scores.</li>
+                  <li><strong style="color:var(--color-text-primary);">T+8 min</strong> — The IAF PRO issues a press statement citing the analysis. TV channels that were about to broadcast retract their coverage.</li>
+                </ul>
+              </div>
+
+              <div class="case-outcome">
+                <div class="case-outcome__label" data-i18n="cases.label.impact">OPERATIONAL IMPACT</div>
+                <p class="case-outcome__text" data-i18n="cases.iaf.impact">The IAF countered a coordinated disinformation campaign <strong>within 8 minutes of the first fake image appearing</strong> — 45 minutes before any TV channel would have aired it. The immutable, timestamped report with forensic evidence was later used in a diplomatic demarche. Every source that amplified the fakes had their credibility score automatically downgraded, improving future signal quality.</p>
+              </div>
+
+              <button class="btn btn--ghost btn--sm" style="margin-top:var(--space-4);" onclick="window.__downloadCaseStudy && window.__downloadCaseStudy('iaf')" data-i18n="cases.download">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                Download Case Study (PDF)
+              </button>
+            </div>
+
+            <!-- ─── Police Panel ─── -->
+            <div class="case-panel" id="panel-police" role="tabpanel" aria-labelledby="tab-police">
+              <span class="text-mono" style="color:var(--color-amber);font-size:var(--text-2xs);letter-spacing:0.2em;display:block;margin-bottom:var(--space-4);" data-i18n="cases.police.agency">CASE STUDY · STATE POLICE</span>
+              <h3 class="case-panel__title" data-i18n="cases.police.title">"Operation Rumour Net" — Communal Tension Defused Through Early Detection</h3>
+              <div class="case-panel__metrics" style="margin-bottom:var(--space-4);">
+                <div class="case-metric"><span class="case-metric__value">~10s</span><span class="case-metric__label" data-i18n="cases.police.metric1.label">Alert Latency</span></div>
+                <div class="case-metric"><span class="case-metric__value">4</span><span class="case-metric__label" data-i18n="cases.police.metric2.label">Platforms Monitored</span></div>
+                <div class="case-metric"><span class="case-metric__value">3 hrs</span><span class="case-metric__label" data-i18n="cases.police.metric3.label">Before Escalation</span></div>
+              </div>
+
+              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+                <span class="text-mono" style="color:var(--color-amber);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="cases.label.situation">THE SITUATION</span>
+                <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;margin-top:var(--space-2);" data-i18n="cases.police.situation">
+                  A minor traffic accident between members of two communities in a sensitive district leads to localised tension. Within hours, Telegram groups begin sharing a doctored video of the incident, reframed as a targeted communal attack. The SP needs to know: is this organic outrage or a coordinated amplification campaign?
+                </p>
+              </div>
+
+              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+                <span class="text-mono" style="color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="cases.label.solution">WHAT ANVESHAK DOES</span>
+                <ul data-i18n="cases.police.timeline" data-i18n-html style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.8;margin-top:var(--space-2);padding-left:var(--space-5);list-style:disc;">
+                  <li><strong style="color:var(--color-text-primary);">14:30 hrs</strong> — Anveshak detects the doctored video appearing simultaneously in 6 Telegram channels within a 20-minute window. Narrative clustering groups all posts into a single cluster.</li>
+                  <li><strong style="color:var(--color-text-primary);">14:32 hrs</strong> — Deepfake analysis scores the video at 0.83 probability of manipulation. Frame analysis reveals a spliced audio track that doesn't match lip movements.</li>
+                  <li><strong style="color:var(--color-text-primary);">14:33 hrs</strong> — Sentiment analysis shows a sharp spike in negative tone across monitored channels. The system identifies 3 accounts that appear to be coordinating the amplification — posting identical text within seconds of each other.</li>
+                  <li><strong style="color:var(--color-text-primary);">14:34 hrs</strong> — Intelligence alert fires. The SP receives a real-time notification with the analysis: "Coordinated amplification of manipulated video detected. 6 channels, 3 probable coordination accounts. Deepfake confidence: HIGH."</li>
+                  <li><strong style="color:var(--color-text-primary);">14:45 hrs</strong> — Based on the Anveshak brief, the SP deploys additional forces to the sensitive area and instructs the cyber cell to pursue the coordination accounts. A counter-narrative is prepared using the forensic analysis as evidence.</li>
+                </ul>
+              </div>
+
+              <div class="case-outcome">
+                <div class="case-outcome__label" data-i18n="cases.label.impact">OPERATIONAL IMPACT</div>
+                <p class="case-outcome__text" data-i18n="cases.police.impact">The police identified and responded to the coordinated disinformation campaign <strong>3 hours before it could escalate into street violence</strong>. The forensic evidence — timestamped, immutable, and court-admissible — was later used in an FIR against the coordination accounts. Source credibility scoring automatically flagged the amplifying channels, so future content from those sources is treated with appropriate scepticism.</p>
+              </div>
+
+              <button class="btn btn--ghost btn--sm" style="margin-top:var(--space-4);" onclick="window.__downloadCaseStudy && window.__downloadCaseStudy('police')" data-i18n="cases.download">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                Download Case Study (PDF)
+              </button>
+            </div>
+
+            <!-- ─── Cyber Panel ─── -->
+            <div class="case-panel" id="panel-cyber" role="tabpanel" aria-labelledby="tab-cyber">
+              <span class="text-mono" style="color:var(--color-amber);font-size:var(--text-2xs);letter-spacing:0.2em;display:block;margin-bottom:var(--space-4);" data-i18n="cases.cyber.agency">CASE STUDY · CYBER COMMAND</span>
+              <h3 class="case-panel__title" data-i18n="cases.cyber.title">"Operation Dark Nexus" — Connecting Dark Web Chatter to Active Cyber Attack</h3>
+              <div class="case-panel__metrics" style="margin-bottom:var(--space-4);">
+                <div class="case-metric"><span class="case-metric__value">2</span><span class="case-metric__label" data-i18n="cases.cyber.metric1.label">Watch Topics Converged</span></div>
+                <div class="case-metric"><span class="case-metric__value">48 hrs</span><span class="case-metric__label" data-i18n="cases.cyber.metric2.label">Advance Warning</span></div>
+                <div class="case-metric"><span class="case-metric__value">HIGH</span><span class="case-metric__label" data-i18n="cases.cyber.metric3.label">Alert Severity</span></div>
+              </div>
+
+              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+                <span class="text-mono" style="color:var(--color-amber);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="cases.label.situation">THE SITUATION</span>
+                <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;margin-top:var(--space-2);" data-i18n="cases.cyber.situation">
+                  A cyber command unit monitors two separate watch topics: "Critical Infrastructure Threats" (tracking dark web forums) and "CERT-In Advisories" (tracking official vulnerability disclosures). The analysts working these topics don't typically cross-reference each other's intelligence — they're in different teams covering different source pools.
+                </p>
+              </div>
+
+              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+                <span class="text-mono" style="color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="cases.label.solution">WHAT ANVESHAK DOES</span>
+                <ul data-i18n="cases.cyber.timeline" data-i18n-html style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.8;margin-top:var(--space-2);padding-left:var(--space-5);list-style:disc;">
+                  <li><strong style="color:var(--color-text-primary);">Monday</strong> — Topic 1 (Dark Web) picks up forum posts discussing a specific vulnerability in SCADA systems used by Indian power grid operators. The posts mention entity names: "PowerGrid Corp", "NTPC", and a CVE identifier. These are clustered into a narrative.</li>
+                  <li><strong style="color:var(--color-text-primary);">Wednesday</strong> — Topic 2 (CERT-In) ingests an official advisory mentioning the same CVE, the same organisations, and recommends patching. This forms its own cluster under a different topic.</li>
+                  <li><strong style="color:var(--color-text-primary);">Wednesday +15 min</strong> — Anveshak's cross-topic convergence engine detects that the cluster centroids from Topic 1 and Topic 2 are semantically converging. Despite completely different vocabularies (hacker slang vs. formal advisory language), the shared entities (CVE ID, organisation names) trigger the blended similarity match.</li>
+                  <li><strong style="color:var(--color-text-primary);">Wednesday +15 min</strong> — A HIGH severity convergence alert fires to both teams simultaneously: "Two independent intelligence streams have surfaced the same threat. Dark web activity predates the official advisory by 48 hours — suggesting active threat actor interest before public disclosure."</li>
+                </ul>
+              </div>
+
+              <div class="case-outcome">
+                <div class="case-outcome__label" data-i18n="cases.label.impact">OPERATIONAL IMPACT</div>
+                <p class="case-outcome__text" data-i18n="cases.cyber.impact">The convergence alert revealed that <strong>threat actors were discussing the vulnerability 48 hours before CERT-In's public advisory</strong> — indicating active pre-exploitation reconnaissance. The cyber command escalated the patching timeline from "routine" to "emergency", protecting critical infrastructure. Without Anveshak's cross-topic convergence, these two intelligence streams would never have been connected — they were in different teams, different languages, different source pools.</p>
+              </div>
+
+              <button class="btn btn--ghost btn--sm" style="margin-top:var(--space-4);" onclick="window.__downloadCaseStudy && window.__downloadCaseStudy('cyber')" data-i18n="cases.download">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                Download Case Study (PDF)
+              </button>
+            </div>
+
+            <!-- ─── MEA Panel ─── -->
+            <div class="case-panel" id="panel-mea" role="tabpanel" aria-labelledby="tab-mea">
+              <span class="text-mono" style="color:var(--color-amber);font-size:var(--text-2xs);letter-spacing:0.2em;display:block;margin-bottom:var(--space-4);" data-i18n="cases.mea.agency">CASE STUDY · MINISTRY OF EXTERNAL AFFAIRS</span>
+              <h3 class="case-panel__title" data-i18n="cases.mea.title">"Operation Narrative Shield" — Countering a Coordinated Anti-India Influence Campaign</h3>
+              <div class="case-panel__metrics" style="margin-bottom:var(--space-4);">
+                <div class="case-metric"><span class="case-metric__value">200+</span><span class="case-metric__label" data-i18n="cases.mea.metric1.label">Languages</span></div>
+                <div class="case-metric"><span class="case-metric__value">14</span><span class="case-metric__label" data-i18n="cases.mea.metric2.label">Countries Covered</span></div>
+                <div class="case-metric"><span class="case-metric__value">72 hrs</span><span class="case-metric__label" data-i18n="cases.mea.metric3.label">Campaign Mapped</span></div>
+                <div class="case-metric"><span class="case-metric__value">Immutable</span><span class="case-metric__label" data-i18n="cases.mea.metric4.label">Evidence Package</span></div>
+              </div>
+
+              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+                <span class="text-mono" style="color:var(--color-amber);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="cases.label.situation">THE SITUATION</span>
+                <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;margin-top:var(--space-2);" data-i18n="cases.mea.situation">
+                  Ahead of a critical UN General Assembly vote, the MEA's intelligence desk notices a spike in anti-India articles across Turkish, Arabic, and Malay-language media — markets where India's diplomatic engagement has been growing. The desk suspects a coordinated influence operation but lacks the linguistic capacity to confirm it. Currently, only English and French media are systematically monitored. The Foreign Secretary needs a comprehensive assessment within 48 hours.
+                </p>
+              </div>
+
+              <div class="card card--glass" style="padding:var(--space-5);margin-bottom:var(--space-4);">
+                <span class="text-mono" style="color:var(--color-cyan);font-size:var(--text-2xs);letter-spacing:0.15em;" data-i18n="cases.label.solution">WHAT ANVESHAK DOES</span>
+                <ul data-i18n="cases.mea.timeline" data-i18n-html style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.8;margin-top:var(--space-2);padding-left:var(--space-5);list-style:disc;">
+                  <li><strong style="color:var(--color-text-primary);">Day 1, 09:00</strong> — Three watch topics are configured: "India UNGA Position" (covering global media in 8 languages), "Anti-India Narratives" (tracking social media and forums), and "Diaspora Sentiment" (monitoring expat community channels). Anveshak begins ingesting from 42 sources.</li>
+                  <li><strong style="color:var(--color-text-primary);">Day 1, 14:00</strong> — Within 5 hours, Anveshak has processed 1,200+ articles across Turkish, Arabic, Malay, Urdu, Chinese, Russian, English, and French. The translation engine converts everything into a unified semantic space. Narrative clustering reveals a distinct pattern: 3 core anti-India narratives are appearing simultaneously across all 8 languages.</li>
+                  <li><strong style="color:var(--color-text-primary);">Day 1, 14:30</strong> — Cross-topic convergence fires: the same narrative cluster is appearing in all three watch topics — diplomatic media, social channels, AND diaspora forums. Entity extraction reveals the same 4 think-tanks and 2 PR firms are cited across languages. This is not organic coverage — it's coordinated.</li>
+                  <li><strong style="color:var(--color-text-primary);">Day 2</strong> — Sentiment trending shows the anti-India narrative peaked in Turkish media first (14 hours before others), suggesting the campaign originated there and was amplified outward. Source credibility analysis identifies 6 outlets with a pattern of coordinated publishing — identical articles posted within a 30-minute window across 4 countries.</li>
+                  <li><strong style="color:var(--color-text-primary);">Day 3, 08:00</strong> — An immutable intelligence package is generated: narrative timeline, source network map, entity relationship diagram, sentiment trend charts, and forensic evidence of coordination. Every claim is backed by source snapshots frozen at collection time — the evidence cannot be disputed even if the original articles are taken down.</li>
+                </ul>
+              </div>
+
+              <div class="case-outcome">
+                <div class="case-outcome__label" data-i18n="cases.label.impact">OPERATIONAL IMPACT</div>
+                <p class="case-outcome__text" data-i18n="cases.mea.impact">The Foreign Secretary's delegation arrived at UNGA with a <strong>comprehensive, evidence-backed counter-narrative package</strong> identifying the campaign's origin, amplification network, and coordination timeline. Indian missions in 14 countries received tailored talking points in local languages. The immutable evidence package — with frozen source snapshots and unbroken audit trails — was shared with friendly delegations as diplomatic evidence of the influence operation. The vote passed in India's favour. <strong>Without Anveshak, this campaign would have been invisible</strong> — the MEA had no capacity to monitor Turkish, Arabic, or Malay-language media at the speed required.</p>
+              </div>
+
+              <button class="btn btn--ghost btn--sm" style="margin-top:var(--space-4);" onclick="window.__downloadCaseStudy && window.__downloadCaseStudy('mea')" data-i18n="cases.download">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                Download Case Study (PDF)
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         7. SOVEREIGN ARCHITECTURE
+         ══════════════════════════════════════════════════════════ -->
+    <section class="section section--dark" aria-labelledby="sovereign-title">
+      <div class="container">
+        <div class="section-heading section-heading--centre reveal">
+          <span class="section-label section-label--centre" data-i18n="sovereign.label">// SOVEREIGN ARCHITECTURE</span>
+          <h2 class="section-title" id="sovereign-title" data-i18n="sovereign.title">Zero Cloud Dependencies</h2>
+          <p class="section-sub" style="text-align:center;margin-inline:auto;" data-i18n="sovereign.subtitle">Every component runs on one machine. Intelligence data never leaves the deployment boundary.</p>
+        </div>
+
+        <div class="sovereign-stack reveal-stagger">
+          <div class="sovereign-cloud-blocked">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/><line x1="4" y1="4" x2="20" y2="20"/></svg>
+            <span data-i18n="sovereign.cloud">☁ CLOUD → BLOCKED</span>
+          </div>
+          <div class="sovereign-layer">
+            <div class="sovereign-layer__label" data-i18n="sovereign.app.label">APPLICATION LAYER</div>
+            <div class="sovereign-layer__title" data-i18n="sovereign.app.title">5 Service Modules</div>
+            <div class="sovereign-layer__desc" data-i18n="sovereign.app.desc">Scraper, Social, Analyst, Reporter, Vision — all Docker containers</div>
+          </div>
+          <div class="sovereign-layer">
+            <div class="sovereign-layer__label" style="color:var(--color-amber);" data-i18n="sovereign.data.label">DATA LAYER</div>
+            <div class="sovereign-layer__title" data-i18n="sovereign.data.title">PostgreSQL + Redis + Ollama</div>
+            <div class="sovereign-layer__desc" data-i18n="sovereign.data.desc">pgvector embeddings, ARQ task queue, local LLM inference</div>
+          </div>
+          <div class="sovereign-layer">
+            <div class="sovereign-layer__label" style="color:var(--color-success);" data-i18n="sovereign.hw.label">HARDWARE</div>
+            <div class="sovereign-layer__title" data-i18n="sovereign.hw.title">Single Machine Deployment</div>
+            <div class="sovereign-layer__desc" data-i18n="sovereign.hw.desc">~22 GB baseline memory. CPU or GPU. Air-gapped compatible.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         8. TECH STACK
+         ══════════════════════════════════════════════════════════ -->
     <section class="section section--surface" aria-labelledby="tech-title">
       <div class="container">
         <div class="section-heading section-heading--centre reveal">
-          <span class="section-label section-label--centre">// UNDER THE HOOD</span>
-          <h2 class="section-title" id="tech-title">Sovereign by Design</h2>
-          <p class="section-sub" style="text-align:center;margin-inline:auto;">All LLM inference runs on Ollama — localhost only. Intelligence data never leaves the deployment boundary.</p>
+          <span class="section-label section-label--centre" data-i18n="tech.label">// UNDER THE HOOD</span>
+          <h2 class="section-title" id="tech-title" data-i18n="tech.title">Sovereign by Design</h2>
+          <p class="section-sub" style="text-align:center;margin-inline:auto;" data-i18n="tech.subtitle">All LLM inference runs on Ollama — localhost only. Intelligence data never leaves the deployment boundary.</p>
         </div>
 
         <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-3);margin-top:var(--space-8);" class="reveal">
@@ -246,47 +862,54 @@
           <span class="badge badge--osint" style="padding:var(--space-2) var(--space-4);">YOLOv8 + CLIP</span>
           <span class="badge badge--osint" style="padding:var(--space-2) var(--space-4);">spaCy 3 (multilingual)</span>
           <span class="badge badge--osint" style="padding:var(--space-2) var(--space-4);">Crawl4AI</span>
+          <span class="badge badge--osint" style="padding:var(--space-2) var(--space-4);">NLLB-200 (200+ languages)</span>
           <span class="badge badge--osint" style="padding:var(--space-2) var(--space-4);">Telethon / PRAW / atproto</span>
           <span class="badge badge--osint" style="padding:var(--space-2) var(--space-4);">React + MapLibre GL</span>
           <span class="badge badge--osint" style="padding:var(--space-2) var(--space-4);">Docker Compose / k3s</span>
+          <span class="badge badge--osint" style="padding:var(--space-2) var(--space-4);">Prometheus + Grafana</span>
+          <span class="badge badge--osint" style="padding:var(--space-2) var(--space-4);">sentence-transformers</span>
         </div>
       </div>
     </section>
 
-    <!-- ── SUITE ─────────────────────────────────────────────── -->
+    <!-- ══════════════════════════════════════════════════════════
+         9. SUITE UPSELL
+         ══════════════════════════════════════════════════════════ -->
     <section class="section section--dark" aria-label="Suite">
       <div class="container">
         <div class="section-heading section-heading--centre reveal">
-          <span class="section-label section-label--centre">// THE SUITE</span>
-          <h2 class="section-title">Scale When Ready</h2>
+          <span class="section-label section-label--centre" data-i18n="suite.label">// THE SUITE</span>
+          <h2 class="section-title" data-i18n="suite.title">Scale When Ready</h2>
         </div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--space-4);margin-top:var(--space-8);" class="reveal-stagger">
-          <div class="card card--glass card--cyan" style="text-align:center;">
+          <a href="./grosint.html" class="card card--glass card--cyan" style="text-align:center;text-decoration:none;">
             <div style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-cyan);margin-bottom:var(--space-2);">ENTRY</div>
             <div style="font-family:var(--font-display);font-size:var(--text-xl);font-weight:700;color:var(--color-text-primary);">Grosint</div>
-          </div>
+          </a>
           <div style="display:flex;align-items:center;justify-content:center;color:var(--color-border);font-size:var(--text-2xl);">→</div>
           <div class="card card--glass card--amber" style="text-align:center;box-shadow:var(--glow-amber);">
             <div style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-amber);margin-bottom:var(--space-2);">YOU ARE HERE</div>
             <div style="font-family:var(--font-display);font-size:var(--text-xl);font-weight:700;color:var(--color-text-primary);">Anveshak</div>
           </div>
           <div style="display:flex;align-items:center;justify-content:center;color:var(--color-border);font-size:var(--text-2xl);">→</div>
-          <div class="card card--glass card--purple" style="text-align:center;">
+          <a href="./drishti.html" class="card card--glass card--purple" style="text-align:center;text-decoration:none;">
             <div style="font-family:var(--font-mono);font-size:var(--text-xs);color:#A78BFA;margin-bottom:var(--space-2);">FUSION</div>
             <div style="font-family:var(--font-display);font-size:var(--text-xl);font-weight:700;color:var(--color-text-primary);">Drishti</div>
-          </div>
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- ── CTA ───────────────────────────────────────────────── -->
+    <!-- ══════════════════════════════════════════════════════════
+         10. CTA
+         ══════════════════════════════════════════════════════════ -->
     <section class="section section--surface" aria-label="CTA">
       <div class="container">
         <div class="cta-card reveal">
-          <span class="section-label section-label--centre">// ENGAGE</span>
-          <h2 class="cta-card__title">Request an Anveshak Briefing</h2>
-          <p class="cta-card__sub">Built for iDEX ADITI 4.0 PS-18 — reach us directly on WhatsApp.</p>
-          <a href="https://wa.me/919901938800?text=Hi%2C%20I%27d%20like%20to%20request%20an%20evaluation%20of%20Anveshak." class="btn btn--whatsapp" target="_blank" rel="noopener noreferrer">
+          <span class="section-label section-label--centre" data-i18n="cta.label">// ENGAGE</span>
+          <h2 class="cta-card__title" data-i18n="cta.title">Request an Anveshak Briefing</h2>
+          <p class="cta-card__sub" data-i18n="cta.sub">Built for iDEX ADITI 4.0 PS-18 — reach us directly on WhatsApp.</p>
+          <a href="https://wa.me/919901938800?text=Hi%2C%20I%27d%20like%20to%20request%20an%20evaluation%20of%20Anveshak." class="btn btn--whatsapp" target="_blank" rel="noopener noreferrer" data-i18n="cta.button">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
             Message us on WhatsApp
           </a>
@@ -316,7 +939,7 @@
           </ul>
         </nav>
         <div class="footer__tagline">
-          <p>Made in Bharat. For Bharat.</p>
+          <p data-i18n="footer.tagline">Made in Bharat. For Bharat.</p>
           <p style="font-size:var(--text-2xs);">🇮🇳 © 2025 Garud Research &amp; Tech Pvt. Ltd.</p>
         </div>
       </div>
@@ -324,5 +947,13 @@
   </footer>
 
   <script type="module" src="../js/app.js"></script>
+  <script type="module" src="../js/anveshak-pipeline.js"></script>
+  <script type="module" src="../js/anveshak-tabs.js"></script>
+  <script type="module" src="../js/anveshak-moat.js"></script>
+  <script src="../js/anveshak-casepdf.js"></script>
+  <script type="module">
+    import { initI18n } from '../js/i18n.js';
+    initI18n();
+  </script>
 </body>
 </html>
