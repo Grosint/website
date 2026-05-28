@@ -18,6 +18,7 @@ function loadJsPDF() {
     const s = document.createElement('script');
     s.src = 'https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js';
     s.crossOrigin = 'anonymous';
+    s.integrity = 'sha384-en/ztfPSRkGfME4KIm05joYXynqzUgbsG5nMrj/xEFAHXkeZfO3yMK8QQ+mP7p1/';
     s.onload = () => {
       if (window.jspdf && window.jspdf.jsPDF) resolve(window.jspdf.jsPDF);
       else reject(new Error('jsPDF failed to initialize'));

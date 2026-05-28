@@ -24,17 +24,18 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/></noscript>
 
   <!-- Compiled CSS -->
+  <link rel="preload" as="style" href="./dist/style.css"/>
+  <link rel="preload" as="script" href="./js/app.js" crossorigin/>
   <link rel="stylesheet" href="./dist/style.css"/>
 
-  <!-- Three.js + GSAP + Lenis via CDN -->
+  <!-- GSAP + Lenis via CDN (no Three.js needed on this page) -->
   <script type="importmap">
     {
       "imports": {
-        "three":                   "https://unpkg.com/three@0.165.0/build/three.module.js",
-        "three/addons/":           "https://unpkg.com/three@0.165.0/examples/jsm/",
         "gsap":                    "https://cdn.jsdelivr.net/npm/gsap@3.12.7/index.js",
         "gsap/ScrollTrigger":      "https://cdn.jsdelivr.net/npm/gsap@3.12.7/ScrollTrigger.js",
         "lenis":                   "https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.mjs"

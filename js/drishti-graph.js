@@ -447,11 +447,17 @@ function initGraph() {
 
   /* ── ScrollTrigger ── */
   async function setupScrollTrigger() {
-    const gsapModule = await import('gsap');
-    const stModule = await import('gsap/ScrollTrigger');
-    const gsap = gsapModule.default || gsapModule;
-    const ScrollTrigger = stModule.default || stModule.ScrollTrigger;
-    gsap.registerPlugin(ScrollTrigger);
+    let gsap, ScrollTrigger;
+    try {
+      const gsapModule = await import('gsap');
+      const stModule = await import('gsap/ScrollTrigger');
+      gsap = gsapModule.default || gsapModule;
+      ScrollTrigger = stModule.default || stModule.ScrollTrigger;
+      gsap.registerPlugin(ScrollTrigger);
+    } catch {
+      updateActiveStage(0);
+      return;
+    }
 
     const st = ScrollTrigger.create({
       trigger: '#graph-section',

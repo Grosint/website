@@ -318,6 +318,20 @@
     box-shadow: var(--glow-card);
   }
 
+  /* Contact page cards — hover states (replaces inline onmouseover) */
+  .card--contact-cyan:hover {
+    border-color: rgba(0, 200, 255, 0.4) !important;
+    box-shadow: var(--glow-cyan);
+  }
+  .card--contact-amber:hover {
+    border-color: rgba(232, 125, 20, 0.5) !important;
+    box-shadow: var(--glow-amber);
+  }
+  .card--contact-purple:hover {
+    border-color: rgba(123, 47, 190, 0.5) !important;
+    box-shadow: var(--glow-purple);
+  }
+
   /* ── Badges ─────────────────────────────────────────────── */
 
   .badge {

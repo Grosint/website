@@ -3,7 +3,31 @@
     "allow": [
       "Bash(npm run:*)",
       "WebFetch(domain:www.armory.in)",
-      "Bash(git tag:*)"
+      "Bash(git tag:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(python3 -c \"import sys,json; d=json.loads\\(sys.stdin.read\\(\\)\\); print\\(d.get\\(''''message'''',{}\\).get\\(''''content'''',[{}]\\)[0].get\\(''''text'''',''''''''\\)[:200] if isinstance\\(d.get\\(''''message'''',{}\\).get\\(''''content''''\\), list\\) else ''''no text''''\\)\")",
+      "Bash(find /Users/navitas28/Work/grosint -name *.py -path */core-api/* -not -path */venv/* -not -path */__pycache__/*)",
+      "Bash(python3 -c \":*)",
+      "Bash(curl -sI \"https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js\")",
+      "Bash(curl -sI \"https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js\")",
+      "Bash(curl -sI \"https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js\")",
+      "Bash(curl -sI \"https://unpkg.com/jspdf@2.5.2/dist/jspdf.umd.min.js\")",
+      "Bash(wc -l /Users/navitas28/Work/grosint/website/js/*.js /Users/navitas28/Work/grosint/website/css/*.css)",
+      "Bash(grep -i \"minif\\\\|min\\\\.css\\\\|min\\\\.js\" /Users/navitas28/Work/grosint/website/*.html)",
+      "Bash(grep -r \"import.*jspdf\\\\|jsPDF\\\\|pdfkit\" js/ --include=*.js)",
+      "Bash(grep -r \"\\\\.split\\\\|\\\\.replace\\\\|regex\" js/ --include=*.js)",
+      "Bash(find . -name *.map -o -name *.min.js)",
+      "Bash(find /Users/navitas28/Work/grosint/website -name *.webp -o -name *.png -o -name *.jpg -o -name *.jpeg)",
+      "Bash(wc:*)",
+      "Bash(grep -r \"http\" /Users/navitas28/Work/grosint/website/*.html)",
+      "Bash(grep -r \"fonts.googleapis\\\\|fonts.gstatic\\\\|cdnjs\\\\|cdn.jsdelivr\\\\|unpkg\\\\|cdnjs\" /Users/navitas28/Work/grosint/website/*.html)",
+      "Bash(npm install:*)",
+      "Bash(curl -s \"https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js\")",
+      "Bash(openssl dgst:*)",
+      "Bash(openssl base64:*)",
+      "Bash(git reset:*)"
     ]
   }
 }
