@@ -16,7 +16,7 @@ function loadJsPDF() {
       return;
     }
     const s = document.createElement('script');
-    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js';
+    s.src = 'https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js';
     s.crossOrigin = 'anonymous';
     s.onload = () => {
       if (window.jspdf && window.jspdf.jsPDF) resolve(window.jspdf.jsPDF);
