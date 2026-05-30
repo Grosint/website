@@ -1,98 +1,110 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 600" fill="none">
   <!--
-    Simplified geometric India outline for hero radar overlay.
-    Intentionally abstracted — used at low opacity as a visual motif.
-    Not a precise cartographic representation.
+    India outline — recognizable geographic silhouette for hero background.
+    Simplified but accurate enough to be immediately identifiable.
+    Includes J&K, Northeast, Gujarat coast, Kerala tip, Sri Lanka.
   -->
+
+  <!-- Main India outline -->
   <path
     d="
-      M 160,20
-      L 200,15
-      L 240,22
-      L 265,35
-      L 275,55
-      L 290,70
-      L 295,90
-      L 310,100
-      L 320,120
-      L 315,140
-      L 305,155
-      L 310,175
-      L 300,195
-      L 295,220
-      L 280,240
-      L 270,260
-      L 255,275
-      L 240,295
-      L 225,315
-      L 215,335
-      L 210,360
-      L 205,385
-      L 200,410
-      L 195,385
-      L 190,360
-      L 185,335
-      L 175,315
-      L 160,295
-      L 145,275
-      L 130,260
-      L 118,240
-      L 105,220
-      L 100,195
-      L 90,175
-      L 95,155
-      L 85,140
-      L 80,120
-      L 90,100
-      L 105,90
-      L 108,70
-      L 120,55
-      L 135,35
-      Z
+      M 195,45 L 185,40 L 175,35 L 165,28 L 155,22 L 148,18 L 140,20
+      L 135,28 L 130,38 L 128,48 L 132,55 L 138,58 L 145,55 L 150,50
+      L 158,48 L 165,52 L 170,58 L 175,52 L 180,48 L 188,50 L 195,45
+
+      M 195,45 L 202,48 L 210,52 L 218,58 L 225,65 L 230,72 L 238,78
+      L 248,82 L 260,85 L 268,80 L 275,75 L 280,70 L 288,72 L 295,78
+      L 302,85 L 308,92 L 315,98 L 310,105 L 305,112
+
+      L 312,118 L 320,115 L 328,112 L 335,108 L 342,112 L 348,118
+      L 352,125 L 355,132 L 350,138 L 345,135 L 338,132 L 332,128
+      L 325,125 L 318,128 L 312,132 L 308,138
+
+      L 312,145 L 318,148 L 325,152 L 330,158 L 332,165 L 328,172
+      L 322,178 L 318,185 L 322,192 L 328,198 L 332,205
+      L 335,215 L 332,225 L 328,232 L 325,240 L 328,248
+      L 332,255 L 335,265 L 332,275
+
+      L 325,282 L 318,288 L 312,295 L 308,305 L 305,315
+      L 298,325 L 292,332 L 285,340 L 278,348 L 272,358
+      L 268,368 L 262,378 L 258,388 L 255,398 L 250,408
+      L 248,418 L 245,428 L 242,438 L 240,448 L 238,458
+      L 235,468 L 232,478 L 228,485 L 225,490 L 222,495
+      L 218,498 L 215,502 L 218,508 L 222,512 L 225,518
+      L 222,522 L 218,525 L 212,520 L 208,515 L 205,508
+
+      L 202,498 L 198,488 L 195,478 L 192,468 L 188,458
+      L 185,448 L 180,440 L 175,435 L 168,432 L 162,428
+      L 155,422 L 148,415 L 142,408
+
+      L 135,400 L 128,395 L 122,388 L 115,382 L 108,378
+      L 102,372 L 98,365 L 95,358 L 92,348 L 88,340
+      L 85,332 L 82,322 L 78,312 L 75,302 L 72,292
+
+      L 70,282 L 68,272 L 72,262 L 75,252 L 72,242
+      L 68,232 L 65,222 L 62,212 L 58,205 L 52,198
+      L 48,192 L 42,188 L 38,182 L 35,175 L 32,168
+      L 28,162 L 25,155 L 28,148 L 32,142
+
+      L 38,138 L 45,135 L 52,132 L 58,128 L 62,122
+      L 58,115 L 52,108 L 48,102 L 52,95 L 58,88
+
+      L 65,82 L 72,78 L 78,72 L 82,65 L 88,60
+      L 95,58 L 102,55 L 108,52 L 115,55 L 122,58
+      L 128,62 L 135,65
+
+      L 142,68 L 148,72 L 152,78 L 158,82 L 165,78
+      L 168,72 L 172,65 L 178,60 L 185,55 L 190,50
+      L 195,45
     "
     stroke="#E87D14"
-    stroke-width="1.2"
+    stroke-width="1"
     stroke-linejoin="round"
-    opacity="0.6"
+    opacity="0.5"
   />
-  <!-- Kashmir region (approximate upper notch) -->
-  <path
-    d="M 155,22 L 145,10 L 160,5 L 175,8 L 185,18 L 200,15"
-    stroke="#E87D14"
-    stroke-width="0.8"
-    opacity="0.4"
-  />
-  <!-- Northeast region (approximate bump) -->
-  <path
-    d="M 265,60 L 285,55 L 300,65 L 310,80 L 295,90"
-    stroke="#E87D14"
-    stroke-width="0.8"
-    opacity="0.4"
-  />
-  <!-- Sri Lanka (separate small island) -->
-  <ellipse cx="215" cy="435" rx="8" ry="14" stroke="#E87D14" stroke-width="0.8" opacity="0.3"/>
 
-  <!-- Scatter data points across India -->
-  <g fill="#00C8FF" opacity="0.7">
-    <circle cx="200" cy="120" r="2.5"/>  <!-- Delhi -->
-    <circle cx="165" cy="200" r="2"/>    <!-- Mumbai -->
-    <circle cx="240" cy="200" r="2"/>    <!-- Kolkata -->
-    <circle cx="195" cy="310" r="2"/>    <!-- Hyderabad -->
-    <circle cx="175" cy="370" r="2"/>    <!-- Bengaluru -->
-    <circle cx="215" cy="380" r="2"/>    <!-- Chennai -->
-    <circle cx="140" cy="160" r="1.5"/> <!-- Ahmedabad -->
-    <circle cx="260" cy="140" r="1.5"/> <!-- Patna -->
-    <circle cx="220" cy="260" r="1.5"/> <!-- Bhubaneswar -->
-    <circle cx="130" cy="240" r="1.5"/> <!-- Pune -->
+  <!-- Gujarat / Kutch region -->
+  <path
+    d="M 52,198 L 42,205 L 35,212 L 28,218 L 22,225 L 18,232 L 22,238 L 28,235 L 35,230 L 42,225 L 48,218 L 52,212 L 58,205"
+    stroke="#E87D14"
+    stroke-width="0.8"
+    opacity="0.35"
+  />
+
+  <!-- Sri Lanka -->
+  <ellipse cx="228" cy="540" rx="12" ry="18" stroke="#E87D14" stroke-width="0.8" opacity="0.25"/>
+
+  <!-- City nodes -->
+  <g fill="#00C8FF" opacity="0.8">
+    <circle cx="195" cy="95" r="3"/>    <!-- Delhi -->
+    <circle cx="108" cy="245" r="2.5"/> <!-- Mumbai -->
+    <circle cx="312" cy="148" r="2.5"/> <!-- Kolkata -->
+    <circle cx="218" cy="358" r="2.5"/> <!-- Hyderabad -->
+    <circle cx="195" cy="435" r="2.5"/> <!-- Bengaluru -->
+    <circle cx="242" cy="428" r="2.5"/> <!-- Chennai -->
+    <circle cx="82" cy="195" r="2"/>    <!-- Ahmedabad -->
+    <circle cx="275" cy="108" r="2"/>   <!-- Lucknow -->
+    <circle cx="288" cy="285" r="2"/>   <!-- Bhubaneswar -->
+    <circle cx="135" cy="295" r="2"/>   <!-- Pune -->
+    <circle cx="172" cy="478" r="2"/>   <!-- Kochi -->
+    <circle cx="348" cy="125" r="1.8"/> <!-- Guwahati -->
   </g>
 
-  <!-- Pulse rings on major nodes -->
-  <circle cx="200" cy="120" r="6" stroke="#00C8FF" stroke-width="0.8" opacity="0.3">
-    <animate attributeName="r" from="4" to="14" dur="3s" repeatCount="indefinite"/>
+  <!-- Pulse rings on Delhi and Bengaluru -->
+  <circle cx="195" cy="95" r="6" stroke="#00C8FF" stroke-width="0.8" opacity="0.4">
+    <animate attributeName="r" from="5" to="16" dur="3s" repeatCount="indefinite"/>
     <animate attributeName="opacity" from="0.5" to="0" dur="3s" repeatCount="indefinite"/>
   </circle>
-  <circle cx="175" cy="370" r="5" stroke="#E87D14" stroke-width="0.8" opacity="0.3">
-    <animate attributeName="r" from="3" to="12" dur="4s" begin="1s" repeatCount="indefinite"/>
+  <circle cx="195" cy="435" r="5" stroke="#E87D14" stroke-width="0.8" opacity="0.4">
+    <animate attributeName="r" from="4" to="14" dur="4s" begin="1s" repeatCount="indefinite"/>
     <animate attributeName="opacity" from="0.5" to="0" dur="4s" begin="1s" repeatCount="indefinite"/>
   </circle>
+
+  <!-- Faint grid lines for HUD feel -->
+  <line x1="0" y1="150" x2="500" y2="150" stroke="#00C8FF" stroke-width="0.3" opacity="0.08"/>
+  <line x1="0" y1="300" x2="500" y2="300" stroke="#00C8FF" stroke-width="0.3" opacity="0.08"/>
+  <line x1="0" y1="450" x2="500" y2="450" stroke="#00C8FF" stroke-width="0.3" opacity="0.08"/>
+  <line x1="150" y1="0" x2="150" y2="600" stroke="#00C8FF" stroke-width="0.3" opacity="0.08"/>
+  <line x1="250" y1="0" x2="250" y2="600" stroke="#00C8FF" stroke-width="0.3" opacity="0.08"/>
+  <line x1="350" y1="0" x2="350" y2="600" stroke="#00C8FF" stroke-width="0.3" opacity="0.08"/>
 </svg>

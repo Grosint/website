@@ -162,6 +162,54 @@
     </section>
 
     <!-- ══════════════════════════════════════════════════════════
+         2b. 3D LOOKUP CONVERGENCE VISUALIZATION
+         ══════════════════════════════════════════════════════════ -->
+    <section class="section section--dark pb-0" aria-labelledby="lookup-title">
+      <div class="container">
+        <div class="section-heading section-heading--centre reveal">
+          <span class="section-label section-label--centre" data-i18n="grosint.lookup.label">// INTELLIGENCE CONVERGENCE</span>
+          <h2 class="section-title" id="lookup-title" data-i18n="grosint.lookup.title">Every Source. One Profile.</h2>
+          <p class="section-sub sub-centered" data-i18n="grosint.lookup.subtitle">One identifier triggers parallel queries across telecom, social media, financial, identity, breach, and email databases — all converging into a single intelligence profile in under 3 seconds.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--dark pt-0 pipeline-section">
+      <!-- Three.js Canvas (desktop) -->
+      <div class="pipeline-canvas-wrapper" id="grosint-canvas-wrapper" style="height:70vh;">
+        <canvas id="grosint-canvas"></canvas>
+      </div>
+
+      <!-- Mobile Fallback -->
+      <div class="pipeline-mobile" id="grosint-mobile">
+        <div class="container">
+          <div class="pipeline-timeline">
+            <div class="timeline-node timeline-node--ingestion reveal">
+              <span class="timeline-node__step" style="color:var(--color-cyan);">SOURCE 01</span>
+              <h3 class="timeline-node__title">📱 Telecom Intelligence</h3>
+              <p class="timeline-node__desc">HLR lookups, caller ID services, carrier verification, number portability history. Real-time operator data from the telecom backbone.</p>
+            </div>
+            <div class="timeline-node timeline-node--nlp reveal">
+              <span class="timeline-node__step" style="color:var(--color-amber);">SOURCE 02</span>
+              <h3 class="timeline-node__title">💬 Social Media</h3>
+              <p class="timeline-node__desc">Service enumeration across 50+ platforms — messaging apps, social networks, VoIP services. Profile photos, display names, online status.</p>
+            </div>
+            <div class="timeline-node timeline-node--output reveal">
+              <span class="timeline-node__step" style="color:var(--color-success);">SOURCE 03</span>
+              <h3 class="timeline-node__title">₹ Financial &amp; Identity</h3>
+              <p class="timeline-node__desc">Authorized KYC verification APIs — UPI, PAN, bank account cross-reference. Identity document linkage through government-approved services.</p>
+            </div>
+            <div class="timeline-node timeline-node--vision reveal">
+              <span class="timeline-node__step" style="color:var(--color-pink);">SOURCE 04</span>
+              <h3 class="timeline-node__title">🔓 Breach &amp; Email Intel</h3>
+              <p class="timeline-node__desc">Breach exposure monitoring, email profile extraction, service enumeration, alias discovery. Digital footprints invisible to traditional tools.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
          3. SOURCE GRID — "Every Identifier. Every Platform."
          ══════════════════════════════════════════════════════════ -->
     <section class="section section--dark" aria-labelledby="sources-title">
@@ -872,6 +920,7 @@
   </footer>
 
   <script type="module" src="../js/app.js"></script>
+  <script type="module" src="../js/grosint-lookup.js"></script>
   <script src="../js/casepdf-shared.js"></script>
   <script src="../js/grosint-casepdf.js"></script>
   <script src="../js/anveshak-tabs.js"></script>
