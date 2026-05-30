@@ -48,7 +48,7 @@
   <!-- Prevent flash on load -->
   <style>
     html { background: #000; }
-    body { opacity: 0; transition: opacity 0.6s ease; }
+    body { opacity: 0; transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
     body.loaded { opacity: 1; }
   </style>
 
@@ -64,7 +64,7 @@
 <body>
 
   <!-- ═══════════════════════════════════════════════════════
-       PRELOADER — radar-themed loading overlay
+       PRELOADER — radar-themed loading overlay (enhanced)
        ═══════════════════════════════════════════════════════ -->
   <div class="preloader" id="preloader" aria-hidden="true">
     <div class="preloader__ring">
@@ -76,7 +76,16 @@
     </div>
     <img src="./assets/garud-mark.svg" alt="" class="preloader__icon" width="48" height="48"/>
     <span class="preloader__text" id="preloader-text">INITIALIZING</span>
+    <div class="preloader__progress">
+      <div class="preloader__progress-bar" id="preloader-progress"></div>
+    </div>
   </div>
+
+  <!-- Film grain noise overlay -->
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <!-- Horizontal scan sweep -->
+  <div class="h-scan" aria-hidden="true"></div>
 
   <!-- Scroll progress indicator -->
   <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
@@ -235,8 +244,13 @@
          ═══════════════════════════════════════════════════ -->
     <section class="section section--surface" id="products" aria-labelledby="products-title">
 
-      <!-- Ambient orb -->
+      <!-- Ambient orbs -->
       <div class="glow-orb glow-orb--cyan" style="width:300px;height:300px;top:0;right:10%;opacity:0.08;" aria-hidden="true"></div>
+      <div class="glow-orb glow-orb--amber" style="width:200px;height:200px;bottom:10%;left:5%;opacity:0.05;" aria-hidden="true"></div>
+
+      <!-- HUD data tags -->
+      <span class="data-tag" style="top:var(--space-8);right:var(--space-8);" aria-hidden="true">PLATFORM.SUITE.v3</span>
+      <span class="data-tag" style="bottom:var(--space-8);left:var(--space-8);" aria-hidden="true">SOVEREIGN // PLATFORM</span>
 
       <div class="container">
 
@@ -339,15 +353,27 @@
       </div>
     </section>
 
+    <!-- Section Divider -->
+    <div class="section-divider container" aria-hidden="true">
+      <div class="section-divider__line"></div>
+      <span class="section-divider__marker">SYS.02 // DOCTRINE</span>
+      <div class="section-divider__line"></div>
+    </div>
+
     <!-- ═══════════════════════════════════════════════════
          WHY SOVEREIGN — 4 pillars with 3D cube icon
          ═══════════════════════════════════════════════════ -->
     <section class="section section--dark" id="sovereign" aria-labelledby="sovereign-title">
 
       <div class="glow-orb glow-orb--amber" style="width:350px;height:350px;bottom:0;left:5%;opacity:0.07;" aria-hidden="true"></div>
+      <div class="glow-orb glow-orb--pink" style="width:250px;height:250px;top:20%;right:0;opacity:0.04;" aria-hidden="true"></div>
 
-      <!-- HUD reticle decoration -->
+      <!-- HUD reticle decorations -->
       <div class="reticle reticle--corners" style="position:absolute;top:var(--space-12);right:var(--space-12);transform:scale(2);" aria-hidden="true"></div>
+      <div class="reticle reticle--corners" style="position:absolute;bottom:var(--space-12);left:var(--space-12);transform:scale(1.5) rotate(180deg);" aria-hidden="true"></div>
+
+      <!-- HUD data tag -->
+      <span class="data-tag" style="top:var(--space-8);left:var(--space-8);" aria-hidden="true">DOCTRINE.SOVEREIGN</span>
 
       <div class="container">
 
@@ -420,8 +446,8 @@
             </div>
             <h3 class="pillar__title" data-i18n="home.pillar3.title">Audit-Ready</h3>
             <p class="pillar__text" data-i18n="home.pillar3.text">
-              SHA-256 immutable evidence chain. Every raw payload stored to MinIO,
-              every alert backed by a court-admissible evidence bundle.
+              SHA-256 immutable evidence chain. Every raw payload stored to write-once object storage,
+              every alert backed by an evidence bundle designed for court admissibility.
             </p>
           </div>
 
@@ -440,14 +466,21 @@
             </div>
             <h3 class="pillar__title" data-i18n="home.pillar4.title">Open Stack</h3>
             <p class="pillar__text" data-i18n="home.pillar4.text">
-              No vendor lock-in. Redpanda, MinIO, PostgreSQL, Ollama — all open-source.
-              You own the infrastructure. We build the intelligence layer on top.
+              No vendor lock-in. Every infrastructure component is open-source, self-hostable, and auditable.
+              You own the stack — we build the intelligence layer on top.
             </p>
           </div>
 
         </div>
       </div>
     </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider container" aria-hidden="true">
+      <div class="section-divider__line"></div>
+      <span class="section-divider__marker">SYS.03 // ARCHITECTURE</span>
+      <div class="section-divider__line"></div>
+    </div>
 
     <!-- ═══════════════════════════════════════════════════
          PIPELINE — 3D isometric intelligence flow
@@ -560,6 +593,13 @@
       </div>
     </section>
 
+    <!-- Section Divider -->
+    <div class="section-divider container" aria-hidden="true">
+      <div class="section-divider__line"></div>
+      <span class="section-divider__marker">SYS.04 // DOMAIN</span>
+      <div class="section-divider__line"></div>
+    </div>
+
     <!-- ═══════════════════════════════════════════════════
          WHO WE SERVE — 6 domain tiles
          ═══════════════════════════════════════════════════ -->
@@ -657,10 +697,28 @@
       </div>
     </section>
 
+    <!-- Section Divider -->
+    <div class="section-divider container" aria-hidden="true">
+      <div class="section-divider__line"></div>
+      <span class="section-divider__marker">SYS.05 // ENGAGE</span>
+      <div class="section-divider__line"></div>
+    </div>
+
     <!-- ═══════════════════════════════════════════════════
          CTA SECTION — WhatsApp briefing request
          ═══════════════════════════════════════════════════ -->
-    <section class="section section--surface" id="cta" aria-labelledby="cta-title">
+    <section class="section section--surface" id="cta" aria-labelledby="cta-title" style="position:relative;overflow:hidden;">
+
+      <!-- Ambient depth -->
+      <div class="glow-orb glow-orb--amber" style="width:400px;height:400px;top:-100px;right:-100px;opacity:0.08;" aria-hidden="true"></div>
+      <div class="glow-orb glow-orb--cyan" style="width:300px;height:300px;bottom:-60px;left:-60px;opacity:0.05;" aria-hidden="true"></div>
+      <div class="scan-lines" aria-hidden="true"></div>
+
+      <!-- Floating HUD labels -->
+      <span class="float-label" style="top:20%;left:8%;--float-delay:0s">/briefing</span>
+      <span class="float-label float-label--amber" style="top:35%;right:6%;--float-delay:1.2s">/secure-channel</span>
+      <span class="float-label float-label--pink" style="bottom:25%;left:12%;--float-delay:2s">/direct</span>
+
       <div class="container">
         <div class="cta-card reveal">
 
@@ -718,6 +776,11 @@
             <span class="footer__wordmark">GROSINT</span>
           </div>
           <p class="footer__registered">Garud Research &amp; Tech Private Limited</p>
+          <p class="footer__registered" style="margin-top:var(--space-2);line-height:1.5;">
+            No. 14, Bhattrahalli, Old Madras Road<br/>
+            K R Puram, Bengaluru 560049<br/>
+            Karnataka, India
+          </p>
         </div>
 
         <!-- Links -->
@@ -735,7 +798,7 @@
         <!-- Tagline -->
         <div class="footer__tagline">
           <p class="mb-2" data-i18n="footer.tagline">Made in Bharat. For Bharat.</p>
-          <p style="font-size:var(--text-2xs);">🇮🇳 © 2025 Garud Research &amp; Tech Pvt. Ltd.</p>
+          <p style="font-size:var(--text-2xs);">🇮🇳 © 2026 Garud Research &amp; Tech Pvt. Ltd.</p>
         </div>
 
       </div>
@@ -746,8 +809,8 @@
         </span>
         <nav aria-label="Legal">
           <ul class="footer-links" role="list" class="gap-4">
-            <li><a class="text-mono-faint">Privacy</a></li>
-            <li><a class="text-mono-faint">Security</a></li>
+            <li><a href="/privacy.html" class="text-mono-faint">Privacy</a></li>
+            <li><a href="/security.html" class="text-mono-faint">Security</a></li>
             <li><a href="/contact.html" class="text-mono-faint">Contact</a></li>
           </ul>
         </nav>

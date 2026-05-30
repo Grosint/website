@@ -23,7 +23,7 @@
   <script type="importmap">
     { "imports": { "three": "https://unpkg.com/three@0.165.0/build/three.module.js", "three/addons/": "https://unpkg.com/three@0.165.0/examples/jsm/", "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.12.7/index.js", "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.12.7/ScrollTrigger.js", "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.mjs" } }
   </script>
-  <style> html{background:#000} body{opacity:0;transition:opacity .6s ease} body.loaded{opacity:1} html.lenis,html.lenis body{height:auto} .lenis.lenis-smooth{scroll-behavior:auto!important} .lenis.lenis-stopped{overflow:clip} </style>
+  <style> html{background:#000} body{opacity:0;transition:opacity .8s cubic-bezier(0.16,1,0.3,1)} body.loaded{opacity:1} html.lenis,html.lenis body{height:auto} .lenis.lenis-smooth{scroll-behavior:auto!important} .lenis.lenis-stopped{overflow:clip} </style>
 </head>
 <body>
 
@@ -32,7 +32,17 @@
     <div class="preloader__ring"><div class="preloader__sweep"></div><div class="preloader__tick preloader__tick--n"></div><div class="preloader__tick preloader__tick--e"></div><div class="preloader__tick preloader__tick--s"></div><div class="preloader__tick preloader__tick--w"></div></div>
     <img src="../assets/garud-mark.svg" alt="" class="preloader__icon" width="48" height="48"/>
     <span class="preloader__text" id="preloader-text">INITIALIZING</span>
+    <div class="preloader__progress">
+      <div class="preloader__progress-bar" id="preloader-progress"></div>
+    </div>
   </div>
+
+  <!-- Film grain noise overlay -->
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <!-- Horizontal scan sweep -->
+  <div class="h-scan" aria-hidden="true"></div>
+
   <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
   <div class="hud-cursor" id="hud-cursor" aria-hidden="true"><div class="hud-cursor__ring"><span class="hud-cursor__tick hud-cursor__tick--n"></span><span class="hud-cursor__tick hud-cursor__tick--e"></span><span class="hud-cursor__tick hud-cursor__tick--s"></span><span class="hud-cursor__tick hud-cursor__tick--w"></span></div><div class="hud-cursor__dot"></div></div>
 
@@ -325,7 +335,7 @@
               <span class="badge" class="badge--padded-sm" style="color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">IRC Channels</span>
               <span class="badge" class="badge--padded-sm" style="color:var(--color-pink);border-color:var(--color-pink-dim);background:rgba(255,45,120,0.04);">Hacker Forums</span>
             </div>
-            <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="ingestion.messaging.desc">Monitor public channels in messaging platforms. Dark web collection via Tor-routed adapters. Paste site monitoring for leaked data and threat indicators.</p>
+            <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="ingestion.messaging.desc">Monitor public channels in messaging platforms. Dark web collection via Tor-routed adapters for authorized law enforcement and intelligence operations. Paste site monitoring for threat indicators in compliance with applicable legal frameworks.</p>
           </div>
 
           <!-- Visual & Media -->
@@ -511,7 +521,7 @@
                     <span style="font-family:var(--font-mono);font-size:9px;color:var(--color-success);letter-spacing:0.2em;">HARDWARE</span>
                   </div>
                 </div>
-                <p class="moat-card__text" data-i18n="moat.sovereign.text">Every component runs locally. Ollama (local LLM), all models pre-downloaded. Intelligence data never leaves the deployment boundary. Works in air-gapped environments, classified settings, sanction-proof.</p>
+                <p class="moat-card__text" data-i18n="moat.sovereign.text">Every component runs locally. A locally-hosted sovereign AI runtime powers all inference, with all models pre-downloaded. Intelligence data never leaves the deployment boundary. Works in air-gapped environments, classified settings, sanction-proof.</p>
               </div>
             </div>
           </div>
@@ -598,6 +608,10 @@
           <h2 class="section-title" id="cases-title" data-i18n="cases.title">See It in Action</h2>
         </div>
 
+        <p style="font-family:var(--font-mono);font-size:var(--text-2xs);color:var(--color-text-faint);text-align:center;max-width:60ch;margin:0 auto var(--space-6);letter-spacing:0.05em;line-height:1.6;">
+          These are illustrative operational scenarios. Agency names are used to demonstrate capability relevance — they do not represent actual engagements or endorsements.
+        </p>
+
         <div class="case-tabs reveal">
           <nav class="case-tabs__nav" role="tablist" aria-label="Agency case studies">
             <button role="tab" class="case-tab active" data-tab="mi" aria-selected="true" aria-controls="panel-mi" data-i18n="cases.tab.mi">Military Intelligence</button>
@@ -640,7 +654,7 @@
 
               <div class="case-outcome">
                 <div class="case-outcome__label" data-i18n="cases.label.impact">OPERATIONAL IMPACT</div>
-                <p class="case-outcome__text" data-i18n="cases.mi.impact">The MI unit detected PLA forward positioning <strong>4 hours before mainstream Indian media reported it</strong> and 6 hours before the unit would have caught it manually. The Chinese-language sources — previously invisible to the unit — provided the earliest indicators. All from a single laptop running Anveshak, with no internet dependency for the AI analysis.</p>
+                <p class="case-outcome__text" data-i18n="cases.mi.impact">The MI unit accelerated detection of PLA forward positioning indicators — <strong>surfacing open-source signals 4 hours before mainstream media coverage</strong> and 6 hours before the unit would have caught it manually. The Chinese-language sources — previously invisible to the unit — provided the earliest indicators. All from a single laptop running Anveshak, with no internet dependency for the AI analysis.</p>
               </div>
 
               <button class="btn btn--ghost btn--sm" style="margin-top:var(--space-4);" onclick="window.__downloadCaseStudy && window.__downloadCaseStudy('mi')" data-i18n="cases.download">
@@ -654,7 +668,7 @@
               <span class="text-mono" style="color:var(--color-amber);font-size:var(--text-2xs);letter-spacing:0.2em;display:block;margin-bottom:var(--space-4);" data-i18n="cases.iaf.agency">CASE STUDY · INDIAN AIR FORCE</span>
               <h3 class="case-panel__title" data-i18n="cases.iaf.title">"Operation Vayu Shield" — Deepfake Detection During Airspace Incident</h3>
               <div class="case-panel__metrics mb-4">
-                <div class="case-metric"><span class="case-metric__value">92%</span><span class="case-metric__label" data-i18n="cases.iaf.metric1.label">Deepfake Accuracy</span></div>
+                <div class="case-metric"><span class="case-metric__value">92%</span><span class="case-metric__label" data-i18n="cases.iaf.metric1.label">Deepfake Detection</span></div>
                 <div class="case-metric"><span class="case-metric__value">23</span><span class="case-metric__label" data-i18n="cases.iaf.metric2.label">Fake Images Flagged</span></div>
                 <div class="case-metric"><span class="case-metric__value">45 min</span><span class="case-metric__label" data-i18n="cases.iaf.metric3.label">Before TV Media</span></div>
               </div>
@@ -796,7 +810,7 @@
 
               <div class="case-outcome">
                 <div class="case-outcome__label" data-i18n="cases.label.impact">OPERATIONAL IMPACT</div>
-                <p class="case-outcome__text" data-i18n="cases.mea.impact">The Foreign Secretary's delegation arrived at UNGA with a <strong>comprehensive, evidence-backed counter-narrative package</strong> identifying the campaign's origin, amplification network, and coordination timeline. Indian missions in 14 countries received tailored talking points in local languages. The immutable evidence package — with frozen source snapshots and unbroken audit trails — was shared with friendly delegations as diplomatic evidence of the influence operation. The vote passed in India's favour. <strong>Without Anveshak, this campaign would have been invisible</strong> — the MEA had no capacity to monitor Turkish, Arabic, or Malay-language media at the speed required.</p>
+                <p class="case-outcome__text" data-i18n="cases.mea.impact">The Foreign Secretary's delegation arrived at UNGA with a <strong>comprehensive, evidence-backed counter-narrative package</strong> identifying the campaign's origin, amplification network, and coordination timeline. Indian missions in 14 countries received tailored talking points in local languages. The immutable evidence package — with frozen source snapshots and unbroken audit trails — was shared with friendly delegations as diplomatic evidence of the influence operation. The delegation arrived fully prepared with evidence-backed counter-narratives. <strong>Without Anveshak, this campaign would have been invisible</strong> — the MEA had no capacity to monitor Turkish, Arabic, or Malay-language media at the speed required.</p>
               </div>
 
               <button class="btn btn--ghost btn--sm" style="margin-top:var(--space-4);" onclick="window.__downloadCaseStudy && window.__downloadCaseStudy('mea')" data-i18n="cases.download">
@@ -833,7 +847,7 @@
           </div>
           <div class="sovereign-layer">
             <div class="sovereign-layer__label" style="color:var(--color-amber);" data-i18n="sovereign.data.label">DATA LAYER</div>
-            <div class="sovereign-layer__title" data-i18n="sovereign.data.title">PostgreSQL + Redis + Ollama</div>
+            <div class="sovereign-layer__title" data-i18n="sovereign.data.title">PostgreSQL + Redis + Local LLM Engine</div>
             <div class="sovereign-layer__desc" data-i18n="sovereign.data.desc">pgvector embeddings, ARQ task queue, local LLM inference</div>
           </div>
           <div class="sovereign-layer">
@@ -853,7 +867,7 @@
         <div class="section-heading section-heading--centre reveal">
           <span class="section-label section-label--centre" data-i18n="tech.label">// UNDER THE HOOD</span>
           <h2 class="section-title" id="tech-title" data-i18n="tech.title">Sovereign by Design</h2>
-          <p class="section-sub sub-centered" data-i18n="tech.subtitle">All LLM inference runs on Ollama — localhost only. Intelligence data never leaves the deployment boundary.</p>
+          <p class="section-sub sub-centered" data-i18n="tech.subtitle">All LLM inference runs on a locally-hosted sovereign AI runtime — localhost only. Intelligence data never leaves the deployment boundary.</p>
         </div>
 
         <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-3);margin-top:var(--space-8);" class="reveal">
@@ -861,16 +875,16 @@
           <span class="badge badge--osint" style="padding:var(--space-2) var(--space-4);">FastAPI + Pydantic v2</span>
           <span class="badge badge--osint" style="padding:var(--space-2) var(--space-4);">PostgreSQL + pgvector</span>
           <span class="badge badge--osint" style="padding:var(--space-2) var(--space-4);">Redis + ARQ</span>
-          <span class="badge badge--osint" style="padding:var(--space-2) var(--space-4);">Ollama (local LLM)</span>
-          <span class="badge badge--osint" style="padding:var(--space-2) var(--space-4);">YOLOv8 + CLIP</span>
-          <span class="badge badge--osint" style="padding:var(--space-2) var(--space-4);">spaCy 3 (multilingual)</span>
-          <span class="badge badge--osint" style="padding:var(--space-2) var(--space-4);">Crawl4AI</span>
-          <span class="badge badge--osint" style="padding:var(--space-2) var(--space-4);">NLLB-200 (200+ languages)</span>
-          <span class="badge badge--osint" style="padding:var(--space-2) var(--space-4);">Telethon / PRAW / atproto</span>
+          <span class="badge badge--osint" style="padding:var(--space-2) var(--space-4);">Sovereign AI Runtime</span>
+          <span class="badge badge--osint" style="padding:var(--space-2) var(--space-4);">Sovereign Vision Pipeline</span>
+          <span class="badge badge--osint" style="padding:var(--space-2) var(--space-4);">Multilingual NLP Engine</span>
+          <span class="badge badge--osint" style="padding:var(--space-2) var(--space-4);">Intelligent Web Collector</span>
+          <span class="badge badge--osint" style="padding:var(--space-2) var(--space-4);">200+ Language Translation</span>
+          <span class="badge badge--osint" style="padding:var(--space-2) var(--space-4);">Multi-Platform Adapters</span>
           <span class="badge badge--osint" style="padding:var(--space-2) var(--space-4);">React + MapLibre GL</span>
           <span class="badge badge--osint" style="padding:var(--space-2) var(--space-4);">Docker Compose / k3s</span>
           <span class="badge badge--osint" style="padding:var(--space-2) var(--space-4);">Prometheus + Grafana</span>
-          <span class="badge badge--osint" style="padding:var(--space-2) var(--space-4);">sentence-transformers</span>
+          <span class="badge badge--osint" style="padding:var(--space-2) var(--space-4);">Neural Embedding Engine</span>
         </div>
       </div>
     </section>
@@ -906,7 +920,13 @@
     <!-- ══════════════════════════════════════════════════════════
          10. CTA
          ══════════════════════════════════════════════════════════ -->
-    <section class="section section--surface" aria-label="CTA">
+    <section class="section section--surface" aria-label="CTA" style="position:relative;overflow:hidden;">
+      <!-- Ambient depth -->
+      <div class="glow-orb glow-orb--amber" style="width:350px;height:350px;top:-80px;left:-80px;opacity:0.07;" aria-hidden="true"></div>
+      <div class="glow-orb glow-orb--pink" style="width:250px;height:250px;bottom:-50px;right:-50px;opacity:0.05;" aria-hidden="true"></div>
+      <div class="scan-lines" aria-hidden="true"></div>
+      <span class="float-label" style="top:22%;right:6%;--float-delay:0s">/briefing</span>
+      <span class="float-label float-label--amber" style="bottom:28%;left:8%;--float-delay:1.4s">/idex-ps18</span>
       <div class="container">
         <div class="cta-card reveal">
           <span class="section-label section-label--centre" data-i18n="cta.label">// ENGAGE</span>
@@ -932,6 +952,7 @@
             <span class="footer__wordmark">GROSINT</span>
           </div>
           <p class="footer__registered">Garud Research &amp; Tech Private Limited</p>
+          <p class="footer__registered" style="margin-top:var(--space-2);line-height:1.5;">No. 14, Bhattrahalli, Old Madras Road, K R Puram, Bengaluru 560049</p>
         </div>
         <nav aria-label="Footer navigation">
           <ul class="footer-links" role="list">
@@ -943,7 +964,7 @@
         </nav>
         <div class="footer__tagline">
           <p data-i18n="footer.tagline">Made in Bharat. For Bharat.</p>
-          <p style="font-size:var(--text-2xs);">🇮🇳 © 2025 Garud Research &amp; Tech Pvt. Ltd.</p>
+          <p style="font-size:var(--text-2xs);">🇮🇳 © 2026 Garud Research &amp; Tech Pvt. Ltd.</p>
         </div>
       </div>
     </div>

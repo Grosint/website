@@ -23,7 +23,7 @@
   <script type="importmap">
     { "imports": { "three": "https://unpkg.com/three@0.165.0/build/three.module.js", "three/addons/": "https://unpkg.com/three@0.165.0/examples/jsm/", "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.12.7/index.js", "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.12.7/ScrollTrigger.js", "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.mjs" } }
   </script>
-  <style> html{background:#000} body{opacity:0;transition:opacity .6s ease} body.loaded{opacity:1} html.lenis,html.lenis body{height:auto} .lenis.lenis-smooth{scroll-behavior:auto!important} .lenis.lenis-stopped{overflow:clip} </style>
+  <style> html{background:#000} body{opacity:0;transition:opacity .8s cubic-bezier(0.16,1,0.3,1)} body.loaded{opacity:1} html.lenis,html.lenis body{height:auto} .lenis.lenis-smooth{scroll-behavior:auto!important} .lenis.lenis-stopped{overflow:clip} </style>
 </head>
 <body>
 
@@ -32,7 +32,17 @@
     <div class="preloader__ring"><div class="preloader__sweep"></div><div class="preloader__tick preloader__tick--n"></div><div class="preloader__tick preloader__tick--e"></div><div class="preloader__tick preloader__tick--s"></div><div class="preloader__tick preloader__tick--w"></div></div>
     <img src="../assets/garud-mark.svg" alt="" class="preloader__icon" width="48" height="48"/>
     <span class="preloader__text" id="preloader-text">INITIALIZING</span>
+    <div class="preloader__progress">
+      <div class="preloader__progress-bar" id="preloader-progress"></div>
+    </div>
   </div>
+
+  <!-- Film grain noise overlay -->
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <!-- Horizontal scan sweep -->
+  <div class="h-scan" aria-hidden="true"></div>
+
   <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
   <div class="hud-cursor" id="hud-cursor" aria-hidden="true"><div class="hud-cursor__ring"><span class="hud-cursor__tick hud-cursor__tick--n"></span><span class="hud-cursor__tick hud-cursor__tick--e"></span><span class="hud-cursor__tick hud-cursor__tick--s"></span><span class="hud-cursor__tick hud-cursor__tick--w"></span></div><div class="hud-cursor__dot"></div></div>
 
@@ -402,7 +412,7 @@
           <div class="card card--glass card--left-success">
             <span class="text-mono" style="font-size:var(--text-2xs);color:var(--color-success);letter-spacing:0.2em;display:block;margin-bottom:var(--space-2);" data-i18n="drishti.flow.step6.label">STEP 06</span>
             <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;color:var(--color-text-primary);margin-bottom:var(--space-2);" data-i18n="drishti.flow.step6.title">EVIDENCE</h3>
-            <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="drishti.flow.step6.desc">Immutable SHA-256 signed bundles. Alert record + entity snapshots + all raw objects via evidence reference chain. Court-admissible under Indian Evidence Act Section 65B.</p>
+            <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;" data-i18n="drishti.flow.step6.desc">Immutable SHA-256 signed evidence bundles. Alert record + entity snapshots + all raw objects via evidence reference chain. Designed to comply with Indian Evidence Act Section 65B requirements.</p>
           </div>
 
         </div>
@@ -418,6 +428,10 @@
           <span class="section-label section-label--centre" data-i18n="drishti.cases.label">// OPERATIONAL SCENARIOS</span>
           <h2 class="section-title" id="cases-title" data-i18n="drishti.cases.title">See It in Action</h2>
         </div>
+
+        <p style="font-family:var(--font-mono);font-size:var(--text-2xs);color:var(--color-text-faint);text-align:center;max-width:60ch;margin:0 auto var(--space-6);letter-spacing:0.05em;line-height:1.6;">
+          These are illustrative operational scenarios. Agency names are used to demonstrate capability relevance — they do not represent actual engagements or endorsements.
+        </p>
 
         <div class="case-tabs reveal">
           <nav class="case-tabs__nav" role="tablist" aria-label="Agency case studies">
@@ -760,7 +774,13 @@
     <!-- ══════════════════════════════════════════════════════════
          11. CTA
          ══════════════════════════════════════════════════════════ -->
-    <section class="section section--dark" aria-label="CTA">
+    <section class="section section--dark" aria-label="CTA" style="position:relative;overflow:hidden;">
+      <!-- Ambient depth -->
+      <div class="glow-orb glow-orb--purple" style="width:350px;height:350px;top:-80px;right:-80px;opacity:0.07;" aria-hidden="true"></div>
+      <div class="glow-orb glow-orb--cyan" style="width:250px;height:250px;bottom:-50px;left:-50px;opacity:0.05;" aria-hidden="true"></div>
+      <div class="scan-lines" aria-hidden="true"></div>
+      <span class="float-label" style="top:22%;left:6%;--float-delay:0s">/classified</span>
+      <span class="float-label" style="bottom:28%;right:8%;--float-delay:1.4s;color:#A78BFA">/fusion-briefing</span>
       <div class="container">
         <div class="cta-card reveal" style="border-color:rgba(123,47,190,0.4);">
           <div class="reticle reticle--corners" style="position:absolute;top:var(--space-6);left:var(--space-6);transform:scale(2.5);" aria-hidden="true"></div>
@@ -788,6 +808,7 @@
             <span class="footer__wordmark">GROSINT</span>
           </div>
           <p class="footer__registered">Garud Research &amp; Tech Private Limited</p>
+          <p class="footer__registered" style="margin-top:var(--space-2);line-height:1.5;">No. 14, Bhattrahalli, Old Madras Road, K R Puram, Bengaluru 560049</p>
         </div>
         <nav aria-label="Footer navigation">
           <ul class="footer-links" role="list">
@@ -799,7 +820,7 @@
         </nav>
         <div class="footer__tagline">
           <p data-i18n="footer.tagline">Made in Bharat. For Bharat.</p>
-          <p style="font-size:var(--text-2xs);">&#x1F1EE;&#x1F1F3; &copy; 2025 Garud Research &amp; Tech Pvt. Ltd.</p>
+          <p style="font-size:var(--text-2xs);">&#x1F1EE;&#x1F1F3; &copy; 2026 Garud Research &amp; Tech Pvt. Ltd.</p>
         </div>
       </div>
     </div>

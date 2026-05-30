@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="#000000"/>
+  <title>Security Policy — Grosint | Garud Research &amp; Tech Private Limited</title>
+  <meta name="description" content="Security policy and architecture principles for Grosint — Garud Research &amp; Tech Private Limited. Sovereign, air-gapped, zero-trust."/>
+
+  <meta property="og:title"       content="Security Policy — Grosint"/>
+  <meta property="og:description" content="Security architecture and deployment model for the Grosint platform suite."/>
+  <meta property="og:type"        content="website"/>
+  <meta property="og:url"         content="https://grosint.in/security.html"/>
+
+  <link rel="canonical" href="https://grosint.in/security.html"/>
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/></noscript>
+
+  <link rel="preload" as="style" href="./dist/style.css"/>
+  <link rel="preload" as="script" href="./js/app.js" crossorigin/>
+  <link rel="stylesheet" href="./dist/style.css"/>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "gsap":                    "https://cdn.jsdelivr.net/npm/gsap@3.12.7/index.js",
+        "gsap/ScrollTrigger":      "https://cdn.jsdelivr.net/npm/gsap@3.12.7/ScrollTrigger.js",
+        "lenis":                   "https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.mjs"
+      }
+    }
+  </script>
+
+  <style>
+    html { background: #000; }
+    body { opacity: 0; transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    body.loaded { opacity: 1; }
+    html.lenis, html.lenis body { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto !important; }
+    .lenis.lenis-stopped { overflow: clip; }
+  </style>
+</head>
+
+<body>
+
+  <!-- Preloader -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__ring"><div class="preloader__sweep"></div><div class="preloader__tick preloader__tick--n"></div><div class="preloader__tick preloader__tick--e"></div><div class="preloader__tick preloader__tick--s"></div><div class="preloader__tick preloader__tick--w"></div></div>
+    <img src="./assets/garud-mark.svg" alt="" class="preloader__icon" width="48" height="48"/>
+    <span class="preloader__text" id="preloader-text">INITIALIZING</span>
+    <div class="preloader__progress">
+      <div class="preloader__progress-bar" id="preloader-progress"></div>
+    </div>
+  </div>
+
+  <div class="noise-overlay" aria-hidden="true"></div>
+  <div class="h-scan" aria-hidden="true"></div>
+
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+  <div class="hud-cursor" id="hud-cursor" aria-hidden="true"><div class="hud-cursor__ring"><span class="hud-cursor__tick hud-cursor__tick--n"></span><span class="hud-cursor__tick hud-cursor__tick--e"></span><span class="hud-cursor__tick hud-cursor__tick--s"></span><span class="hud-cursor__tick hud-cursor__tick--w"></span></div><div class="hud-cursor__dot"></div></div>
+
+  <nav class="navbar" id="navbar" aria-label="Main navigation">
+    <div class="container navbar__inner">
+      <a href="/" class="navbar__logo" aria-label="Grosint home">
+        <img src="./assets/garud-mark.svg" alt="" class="navbar__logo-mark" aria-hidden="true" width="36" height="36"/>
+        <div class="navbar__logo-text">
+          <span class="navbar__wordmark"><span>GR</span>OSINT</span>
+          <span class="navbar__subtitle">Sovereign Intelligence Platform</span>
+        </div>
+      </a>
+      <ul class="navbar__links" role="list">
+        <li><a href="/#products">Products</a></li>
+        <li><a href="/#sovereign">Why Sovereign</a></li>
+        <li><a href="/about.html">About</a></li>
+      </ul>
+      <div class="navbar__actions">
+        <a href="https://wa.me/919901938800?text=I%20want%20to%20know%20more%20about%20Grosint%20products" class="btn btn--primary btn--sm" target="_blank" rel="noopener">
+          Request Briefing
+        </a>
+        <button class="navbar__hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="section" style="min-height:55svh;display:grid;place-items:center;position:relative;overflow:hidden;">
+      <div class="scan-lines" aria-hidden="true"></div>
+
+      <!-- Ambient glows -->
+      <div class="glow-orb glow-orb--amber" style="width:500px;height:500px;top:-120px;left:-150px;" aria-hidden="true"></div>
+      <div class="glow-orb glow-orb--cyan" style="width:350px;height:350px;bottom:-80px;right:-80px;opacity:0.06;" aria-hidden="true"></div>
+      <div class="glow-orb glow-orb--pink" style="width:200px;height:200px;top:30%;right:10%;opacity:0.04;" aria-hidden="true"></div>
+
+      <!-- Float labels -->
+      <span class="float-label" style="top:18%;left:6%;--float-delay:0s">/zero-trust</span>
+      <span class="float-label" style="top:30%;right:8%;--float-delay:1.2s">/air-gapped</span>
+      <span class="float-label float-label--pink" style="bottom:28%;left:10%;--float-delay:2s">/sha-256</span>
+      <span class="float-label float-label--amber" style="bottom:22%;right:6%;--float-delay:0.6s">/sovereign</span>
+      <span class="float-label" style="top:50%;left:4%;--float-delay:1.8s">/rbac</span>
+
+      <!-- Reticles -->
+      <div class="reticle" style="position:absolute;top:22%;right:20%;transform:scale(1.3);" aria-hidden="true"></div>
+      <div class="reticle reticle--amber" style="position:absolute;bottom:25%;left:15%;transform:scale(0.9);" aria-hidden="true"></div>
+      <div class="reticle reticle--corners" style="position:absolute;top:var(--space-12);left:var(--space-12);transform:scale(2);" aria-hidden="true"></div>
+
+      <!-- Data tag -->
+      <span class="data-tag" style="top:var(--space-8);right:var(--space-8);" aria-hidden="true">SEC.POLICY.v1</span>
+
+      <div class="container" style="position:relative;z-index:10;">
+        <div class="hero__content" style="padding-block:var(--space-16);">
+          <span class="badge badge--osint" style="margin-bottom:var(--space-4);display:inline-block;">SECURITY</span>
+          <h1 class="glitch" data-text="Security Policy" style="font-family:var(--font-display);font-size:var(--text-4xl);font-weight:700;color:var(--color-text-primary);text-align:center;">
+            Security Policy
+          </h1>
+          <p style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-text-faint);text-align:center;margin-top:var(--space-4);letter-spacing:0.1em;">
+            LAST UPDATED: 30 MAY 2026
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider container" aria-hidden="true">
+      <div class="section-divider__line"></div>
+      <span class="section-divider__marker">SEC.01 // POLICY</span>
+      <div class="section-divider__line"></div>
+    </div>
+
+    <!-- Content -->
+    <section class="section">
+      <div class="container" style="max-width:800px;">
+
+        <div class="reveal-stagger" style="display:flex;flex-direction:column;gap:var(--space-10);">
+
+          <!-- 1. Security Philosophy -->
+          <div>
+            <h2 style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;color:var(--color-text-primary);margin-bottom:var(--space-4);">1. Security Philosophy</h2>
+            <p style="color:var(--color-text-muted);line-height:1.8;">
+              Security is not a feature of Grosint products — it is the architectural foundation. Every product
+              in the Grosint suite is designed to operate within a zero-trust, sovereign deployment model where
+              intelligence data never leaves the client's infrastructure boundary.
+            </p>
+            <p style="color:var(--color-text-muted);line-height:1.8;margin-top:var(--space-3);">
+              We do not offer cloud-hosted or SaaS versions of our intelligence products. There is no "Grosint
+              Cloud." Every deployment is on-premise, under the client's physical and administrative control.
+            </p>
+          </div>
+
+          <!-- 2. Deployment Model -->
+          <div>
+            <h2 style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;color:var(--color-text-primary);margin-bottom:var(--space-4);">2. Deployment Model</h2>
+
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--space-4);margin-top:var(--space-4);">
+              <div class="card card--glass card--top-cyan" style="padding:var(--space-5);">
+                <h3 style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-cyan);letter-spacing:0.15em;margin-bottom:var(--space-2);">ON-PREMISE</h3>
+                <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;">
+                  All products deploy as Docker containers on client-owned hardware. No external cloud infrastructure required.
+                </p>
+              </div>
+              <div class="card card--glass card--top-amber" style="padding:var(--space-5);">
+                <h3 style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-amber);letter-spacing:0.15em;margin-bottom:var(--space-2);">AIR-GAP CAPABLE</h3>
+                <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;">
+                  Products function fully without internet connectivity. All models, databases, and dependencies are pre-loaded for offline operation.
+                </p>
+              </div>
+              <div class="card card--glass card--top-purple" style="padding:var(--space-5);">
+                <h3 style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-purple);letter-spacing:0.15em;margin-bottom:var(--space-2);">ZERO PHONE-HOME</h3>
+                <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;">
+                  No telemetry, no usage reporting, no licence check callbacks. Once deployed, the system operates independently.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Data Sovereignty -->
+          <div>
+            <h2 style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;color:var(--color-text-primary);margin-bottom:var(--space-4);">3. Data Sovereignty</h2>
+            <ul style="color:var(--color-text-muted);line-height:1.8;padding-left:var(--space-5);list-style:disc;">
+              <li>Intelligence data is processed and stored exclusively within the client's infrastructure</li>
+              <li>No data is transmitted to Grosint servers, third-party services, or foreign infrastructure</li>
+              <li>All AI/ML inference runs on locally-hosted models with no external API dependencies</li>
+              <li>Database engines, message brokers, and object storage are all self-hosted open-source components</li>
+              <li>No foreign SaaS dependencies in the data pipeline</li>
+            </ul>
+          </div>
+
+          <!-- 4. Access Control -->
+          <div>
+            <h2 style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;color:var(--color-text-primary);margin-bottom:var(--space-4);">4. Access Control</h2>
+            <p style="color:var(--color-text-muted);line-height:1.8;">
+              All platform products implement role-based access control (RBAC) with the following principles:
+            </p>
+            <ul style="color:var(--color-text-muted);line-height:1.8;margin-top:var(--space-3);padding-left:var(--space-5);list-style:disc;">
+              <li><strong style="color:var(--color-text-primary);">Principle of least privilege</strong> — users are granted only the minimum access required for their operational role</li>
+              <li><strong style="color:var(--color-text-primary);">Per-query authorization</strong> — every lookup and query is individually authorized and logged</li>
+              <li><strong style="color:var(--color-text-primary);">No standing permissions</strong> — elevated access is time-bounded and purpose-specific</li>
+              <li><strong style="color:var(--color-text-primary);">Classification-aware</strong> — data access respects security classification levels</li>
+              <li><strong style="color:var(--color-text-primary);">Complete audit trail</strong> — every action is logged with user identity, timestamp, and operation details</li>
+            </ul>
+          </div>
+
+          <!-- 5. Cryptographic Integrity -->
+          <div>
+            <h2 style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;color:var(--color-text-primary);margin-bottom:var(--space-4);">5. Cryptographic Integrity</h2>
+            <ul style="color:var(--color-text-muted);line-height:1.8;padding-left:var(--space-5);list-style:disc;">
+              <li><strong style="color:var(--color-text-primary);">SHA-256 signing</strong> — all stored records and evidence bundles are cryptographically signed</li>
+              <li><strong style="color:var(--color-text-primary);">Write-once storage</strong> — raw intelligence payloads are stored in immutable object storage</li>
+              <li><strong style="color:var(--color-text-primary);">Evidence chain integrity</strong> — evidence bundles maintain an unbroken chain of custody from raw data to final alert, designed to comply with Indian Evidence Act Section 65B requirements</li>
+              <li><strong style="color:var(--color-text-primary);">Tamper detection</strong> — any modification to stored records is detectable through hash verification</li>
+            </ul>
+          </div>
+
+          <!-- 6. Network Security -->
+          <div>
+            <h2 style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;color:var(--color-text-primary);margin-bottom:var(--space-4);">6. Network Security</h2>
+            <p style="color:var(--color-text-muted);line-height:1.8;">
+              In standard on-premise deployments:
+            </p>
+            <ul style="color:var(--color-text-muted);line-height:1.8;margin-top:var(--space-3);padding-left:var(--space-5);list-style:disc;">
+              <li>All inter-service communication occurs within the deployment boundary</li>
+              <li>No inbound network ports are required from external networks</li>
+              <li>Outbound connections (for OSINT collection) are configurable and can be restricted or routed through agency-approved proxies</li>
+              <li>Air-gapped deployments have zero network connectivity — all data is pre-loaded</li>
+              <li>TLS encryption for all internal API communication</li>
+            </ul>
+          </div>
+
+          <!-- 7. Open-Source Stack -->
+          <div>
+            <h2 style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;color:var(--color-text-primary);margin-bottom:var(--space-4);">7. Open-Source Infrastructure</h2>
+            <p style="color:var(--color-text-muted);line-height:1.8;">
+              All infrastructure components are open-source and auditable. There are no proprietary black-box
+              dependencies in the data pipeline. This means:
+            </p>
+            <ul style="color:var(--color-text-muted);line-height:1.8;margin-top:var(--space-3);padding-left:var(--space-5);list-style:disc;">
+              <li>No vendor lock-in — every component can be replaced or audited independently</li>
+              <li>Source code for infrastructure components is publicly available for security review</li>
+              <li>No licence key servers or external activation dependencies</li>
+              <li>Full compatibility with government security audits and accreditation processes</li>
+            </ul>
+          </div>
+
+          <!-- 8. Vulnerability Disclosure -->
+          <div>
+            <h2 style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;color:var(--color-text-primary);margin-bottom:var(--space-4);">8. Vulnerability Disclosure</h2>
+            <p style="color:var(--color-text-muted);line-height:1.8;">
+              If you discover a security vulnerability in any Grosint product or this website, please report it
+              responsibly:
+            </p>
+            <div class="card card--glass" style="margin-top:var(--space-4);padding:var(--space-5);">
+              <p style="font-family:var(--font-display);font-weight:600;color:var(--color-text-primary);">Security Contact</p>
+              <p style="color:var(--color-text-muted);margin-top:var(--space-2);">
+                Email: <a href="mailto:contact@grosint.in" style="color:var(--color-cyan);">contact@grosint.in</a><br/>
+                Subject line: <span style="font-family:var(--font-mono);color:var(--color-amber);">SECURITY — [Brief Description]</span>
+              </p>
+              <p style="color:var(--color-text-muted);margin-top:var(--space-3);font-size:var(--text-sm);">
+                We will acknowledge receipt within 48 hours and provide an initial assessment within 7 business days.
+                We request that you do not publicly disclose the vulnerability until we have had an opportunity to
+                address it.
+              </p>
+            </div>
+          </div>
+
+          <!-- 9. Compliance -->
+          <div>
+            <h2 style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;color:var(--color-text-primary);margin-bottom:var(--space-4);">9. Compliance Framework</h2>
+            <p style="color:var(--color-text-muted);line-height:1.8;">
+              Our security architecture is designed to align with:
+            </p>
+            <ul style="color:var(--color-text-muted);line-height:1.8;margin-top:var(--space-3);padding-left:var(--space-5);list-style:disc;">
+              <li>Information Technology Act, 2000 and associated rules</li>
+              <li>Digital Personal Data Protection Act, 2023 (DPDP Act)</li>
+              <li>CERT-In guidelines for responsible vulnerability disclosure</li>
+              <li>Indian Evidence Act, 1872 — Section 65B (electronic evidence)</li>
+              <li>Defence procurement security requirements as applicable</li>
+              <li>MeitY guidelines on government cloud and data security</li>
+            </ul>
+          </div>
+
+          <!-- 10. Website Security -->
+          <div>
+            <h2 style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;color:var(--color-text-primary);margin-bottom:var(--space-4);">10. Website Security</h2>
+            <p style="color:var(--color-text-muted);line-height:1.8;">
+              This website (grosint.in) implements the following security measures:
+            </p>
+            <ul style="color:var(--color-text-muted);line-height:1.8;margin-top:var(--space-3);padding-left:var(--space-5);list-style:disc;">
+              <li>HTTPS with HSTS (HTTP Strict Transport Security)</li>
+              <li>X-Content-Type-Options: nosniff</li>
+              <li>X-Frame-Options: DENY</li>
+              <li>Referrer-Policy: strict-origin-when-cross-origin</li>
+              <li>Permissions-Policy restricting camera, microphone, and geolocation access</li>
+              <li>Subresource Integrity (SRI) hashes on critical external scripts</li>
+              <li>No server-side code execution — static site deployment only</li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+<footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer__logo">
+            <img src="./assets/garud-mark.svg" alt="" width="28" height="28" aria-hidden="true"/>
+            <span class="footer__wordmark">GROSINT</span>
+          </div>
+          <p class="footer__registered">Garud Research &amp; Tech Private Limited</p>
+          <p class="footer__registered" style="margin-top:var(--space-2);line-height:1.5;">
+            No. 14, Bhattrahalli, Old Madras Road<br/>
+            K R Puram, Bengaluru 560049<br/>
+            Karnataka, India
+          </p>
+        </div>
+        <nav aria-label="Footer navigation">
+          <ul class="footer-links footer__links flex-col gap-3" role="list">
+            <li class="text-mono-faint-spaced" style="text-transform:uppercase;">Products</li>
+            <ul class="footer-links footer__links footer__links--products" role="list">
+              <li><a href="./products/grosint.html">Grosint</a></li>
+              <li><a href="./products/anveshak.html">Anveshak</a></li>
+              <li><a href="./products/drishti.html">Drishti</a></li>
+            </ul>
+          </ul>
+        </nav>
+        <div class="footer__tagline">
+          <p class="mb-2">Made in Bharat. For Bharat.</p>
+          <p style="font-size:var(--text-2xs);">&#x1F1EE;&#x1F1F3; &copy; 2026 Garud Research &amp; Tech Pvt. Ltd.</p>
+        </div>
+      </div>
+      <div class="footer-bottom mt-8" style="padding-top:var(--space-6);border-top:1px solid var(--color-border);">
+        <span class="text-mono-faint-sm" style="letter-spacing:0.1em;">
+          SOVEREIGN &middot; AUDITABLE &middot; IMMUTABLE
+        </span>
+        <nav aria-label="Legal">
+          <ul class="footer-links" role="list">
+            <li><a href="/privacy.html" class="text-mono-faint">Privacy</a></li>
+            <li><a href="/security.html" class="text-mono-faint">Security</a></li>
+            <li><a href="/contact.html" class="text-mono-faint">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="./js/app.js"></script>
+
+</body>
+</html>

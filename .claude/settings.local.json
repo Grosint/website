@@ -27,7 +27,12 @@
       "Bash(curl -s \"https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js\")",
       "Bash(openssl dgst:*)",
       "Bash(openssl base64:*)",
-      "Bash(git reset:*)"
+      "Bash(git reset:*)",
+      "Bash(node scripts/validate-i18n.js)",
+      "Bash(for f:*)",
+      "Bash(do echo:*)",
+      "Read(//private/tmp/claude-501/-Users-navitas28-Work-grosint-website/bc523895-32c9-4fe8-8bdb-b219969c029b/tasks/**)",
+      "Bash(done)"
     ]
   }
 }

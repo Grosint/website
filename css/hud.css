@@ -256,13 +256,15 @@
   align-items: center;
   justify-content: center;
   gap: var(--space-6);
-  transition: opacity 0.5s ease, visibility 0.5s ease;
+  transition: opacity 0.6s ease, visibility 0.6s ease, transform 0.6s ease, filter 0.6s ease;
 }
 
 .preloader.done {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+  transform: scale(1.05);
+  filter: blur(4px);
 }
 
 .preloader__ring {
@@ -330,6 +332,25 @@
 @keyframes preloader-pulse {
   0%, 100% { border-color: rgba(232, 125, 20, 0.3); box-shadow: 0 0 30px rgba(232, 125, 20, 0.15), inset 0 0 30px rgba(232, 125, 20, 0.08); }
   50%      { border-color: rgba(232, 125, 20, 0.6); box-shadow: 0 0 50px rgba(232, 125, 20, 0.3), inset 0 0 40px rgba(232, 125, 20, 0.12); }
+}
+
+/* ── Preloader Progress Bar ────────────────────────────────── */
+.preloader__progress {
+  width: 160px;
+  height: 2px;
+  background: rgba(232, 125, 20, 0.15);
+  border-radius: 1px;
+  overflow: hidden;
+  margin-top: var(--space-3);
+}
+
+.preloader__progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--color-amber), var(--color-cyan));
+  border-radius: 1px;
+  transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 0 8px rgba(232, 125, 20, 0.5);
 }
 
 /* ── Custom HUD Cursor ─────────────────────────────────────── */
@@ -420,6 +441,143 @@
 
 .hud-cursor.clicking .hud-cursor__ring {
   transform: translate(-50%, -50%) scale(0.85);
+}
+
+/* ── Film Grain Noise Overlay ──────────────────────────────── */
+.noise-overlay {
+  position: fixed;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: noise-shift 0.3s steps(4) infinite;
+  mix-blend-mode: overlay;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .noise-overlay { display: none; }
+}
+
+/* ── Horizontal Scan Line (cinematic sweep) ────────────────── */
+.h-scan {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 3px;
+  pointer-events: none;
+  z-index: 9997;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 200, 255, 0.08) 20%,
+    rgba(0, 200, 255, 0.15) 50%,
+    rgba(0, 200, 255, 0.08) 80%,
+    transparent 100%
+  );
+  animation: h-scan 6s linear infinite;
+  opacity: 0.6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .h-scan { display: none; }
+}
+
+/* ── Section Divider — HUD data line ───────────────────────── */
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding-block: var(--space-2);
+  user-select: none;
+}
+
+.section-divider__line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-border) 20%,
+    var(--color-border) 80%,
+    transparent
+  );
+}
+
+.section-divider__marker {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  color: var(--color-text-faint);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ── Classified Stamp ──────────────────────────────────────── */
+.classified-stamp {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  color: var(--color-text-faint);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-text-faint);
+  padding: var(--space-1) var(--space-3);
+  opacity: 0.4;
+  transform: rotate(-2deg);
+  user-select: none;
+}
+
+/* ── Data Tag — floating corner info ───────────────────────── */
+.data-tag {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--color-text-faint);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.35;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.data-tag::before {
+  content: '//';
+  margin-right: 0.5em;
+  color: var(--color-cyan);
+  opacity: 0.5;
+}
+
+/* ── Enhanced Glitch — more aggressive variant ─────────────── */
+.glitch--intense {
+  position: relative;
+}
+
+.glitch--intense::before,
+.glitch--intense::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch--intense::before {
+  color: var(--color-cyan);
+  animation: glitch-1 2.5s infinite steps(1);
+  clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+  opacity: 0;
+}
+
+.glitch--intense::after {
+  color: var(--color-pink);
+  animation: glitch-2 2.5s infinite steps(1);
+  clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+  opacity: 0;
 }
 
 /* ── Ambient Glow Orbs (decorative background spots) ────────── */

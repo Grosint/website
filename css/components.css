@@ -238,6 +238,7 @@
     background: var(--color-amber-glow);
     border-color: var(--color-amber-glow);
     box-shadow: var(--glow-amber);
+    transform: translateY(-1px);
   }
 
   /* Ghost — cyan border */
@@ -250,6 +251,7 @@
     border-color: var(--color-cyan);
     color: var(--color-cyan);
     box-shadow: 0 0 16px rgba(0, 200, 255, 0.15);
+    transform: translateY(-1px);
   }
 
   /* Neon cyan */
@@ -261,6 +263,7 @@
   .btn--neon:hover {
     background: rgba(0, 200, 255, 0.12);
     box-shadow: var(--glow-cyan);
+    transform: translateY(-1px);
   }
 
   /* WhatsApp */
@@ -291,7 +294,8 @@
     position: relative;
     transition:
       border-color var(--transition-base),
-      box-shadow   var(--transition-base);
+      box-shadow   var(--transition-base),
+      transform    var(--transition-base);
   }
 
   .card--amber {
@@ -316,6 +320,7 @@
   .card--glass:hover {
     border-color: var(--color-border-accent);
     box-shadow: var(--glow-card);
+    transform: translateY(-2px);
   }
 
   /* Contact page cards — hover states (replaces inline onmouseover) */

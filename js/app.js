@@ -1,15 +1,29 @@
 /**
- * GROSINT — Main Application Script
- * Handles: Preloader, Lenis smooth scroll, GSAP scroll reveals,
- * custom HUD cursor, scroll-aware nav, 3D card tilt, Three.js hero + background scenes.
+ * GROSINT — Main Application Script (Elevated Visual Experience)
+ * Handles: Preloader, Lenis smooth scroll, cinematic GSAP scroll reveals,
+ * custom HUD cursor, scroll-aware nav, 3D card tilt, immersive Three.js hero + background scenes.
  */
 
-import * as THREE from 'three';
-import { CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
-import {
-  createScene,
-  createResizeHandler,
-} from './three-scene.js';
+// Three.js imports are dynamic — only loaded on pages that include Three.js
+// in their importmap (index, product pages). About & contact pages skip these.
+let THREE = null;
+let CSS2DObject = null;
+let createScene = null;
+let createResizeHandler = null;
+
+async function loadThree() {
+  try {
+    THREE = await import('three');
+    const css2d = await import('three/addons/renderers/CSS2DRenderer.js');
+    CSS2DObject = css2d.CSS2DObject;
+    const factory = await import('./three-scene.js');
+    createScene = factory.createScene;
+    createResizeHandler = factory.createResizeHandler;
+    return true;
+  } catch {
+    return false;
+  }
+}
 
 // ─── Constants ──────────────────────────────────────────────────────────────
 
@@ -32,29 +46,38 @@ const PRELOADER_WORDS = [
   'RESOLVING', 'TRIANGULATING', 'LOCKING',
 ];
 
-// ─── Preloader ──────────────────────────────────────────────────────────────
+// ─── Preloader (enhanced with progress bar) ────────────────────────────────
 
 const preloader = document.getElementById('preloader');
 const preloaderText = document.getElementById('preloader-text');
+const preloaderProgress = document.getElementById('preloader-progress');
 let preloaderWordIndex = 0;
+let progressValue = 0;
 
 const preloaderInterval = setInterval(() => {
   preloaderWordIndex = (preloaderWordIndex + 1) % PRELOADER_WORDS.length;
   if (preloaderText) preloaderText.textContent = PRELOADER_WORDS[preloaderWordIndex];
+  // Animate progress bar
+  progressValue = Math.min(progressValue + 12 + Math.random() * 8, 95);
+  if (preloaderProgress) preloaderProgress.style.width = `${progressValue}%`;
 }, 400);
 
 function dismissPreloader() {
   clearInterval(preloaderInterval);
-  if (preloader) {
-    preloader.classList.add('done');
-    setTimeout(() => { preloader.remove(); }, 600);
-  }
-  document.body.classList.add('loaded');
+  // Flash progress to 100%
+  if (preloaderProgress) preloaderProgress.style.width = '100%';
+
+  setTimeout(() => {
+    if (preloader) {
+      preloader.classList.add('done');
+      setTimeout(() => { preloader.remove(); }, 800);
+    }
+    document.body.classList.add('loaded');
+  }, 200);
 }
 
-// Dismiss after load + minimum display time
 const loadStart = performance.now();
-const MIN_DISPLAY = 1500;
+const MIN_DISPLAY = 1800;
 
 window.addEventListener('load', () => {
   const elapsed = performance.now() - loadStart;
@@ -62,7 +85,6 @@ window.addEventListener('load', () => {
   setTimeout(dismissPreloader, remaining);
 });
 
-// Fallback: dismiss after 4s regardless
 setTimeout(dismissPreloader, 4000);
 
 // ─── Lenis Smooth Scroll ────────────────────────────────────────────────────
@@ -73,7 +95,7 @@ async function initLenis() {
   try {
     const { default: Lenis } = await import('lenis');
     lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.4,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       touchMultiplier: 2,
       infinite: false,
@@ -96,23 +118,19 @@ initLenis();
 const navbar     = document.getElementById('navbar');
 const hamburger  = document.getElementById('hamburger');
 
-// Scroll-aware nav: hide on scroll down, show on scroll up
 let lastScrollY = 0;
 const NAV_THRESHOLD = 100;
 
 window.addEventListener('scroll', () => {
   const currentY = window.scrollY;
 
-  // Scrolled state (background change)
   navbar.classList.toggle('scrolled', currentY > 20);
 
-  // Don't hide nav when mobile menu is open
   if (navbar.classList.contains('open')) {
     lastScrollY = currentY;
     return;
   }
 
-  // Hide/show based on direction
   if (currentY > NAV_THRESHOLD) {
     if (currentY > lastScrollY) {
       navbar.classList.add('nav-hidden');
@@ -126,16 +144,13 @@ window.addEventListener('scroll', () => {
   lastScrollY = currentY;
 }, { passive: true });
 
-// Mobile menu toggle
 hamburger?.addEventListener('click', () => {
   const isOpen = navbar.classList.toggle('open');
   hamburger.setAttribute('aria-expanded', isOpen);
   document.body.style.overflow = isOpen ? 'hidden' : '';
-  // Always show nav when menu is open
   navbar.classList.remove('nav-hidden');
 });
 
-// Close on nav link click (mobile)
 document.querySelectorAll('.navbar__links a').forEach(link => {
   link.addEventListener('click', () => {
     navbar.classList.remove('open');
@@ -168,16 +183,14 @@ if (hudCursor && !isTouch) {
     cursorY = e.clientY;
   }, { passive: true });
 
-  // Smooth follow with lerp
   function updateCursor() {
-    renderX += (cursorX - renderX) * 0.15;
-    renderY += (cursorY - renderY) * 0.15;
+    renderX += (cursorX - renderX) * 0.12;
+    renderY += (cursorY - renderY) * 0.12;
     hudCursor.style.transform = `translate(${renderX}px, ${renderY}px)`;
     requestAnimationFrame(updateCursor);
   }
   requestAnimationFrame(updateCursor);
 
-  // Hover state on interactive elements
   const interactiveSelector = 'a, button, [data-tilt], input, textarea, select, .navbar__hamburger';
 
   document.addEventListener('mouseover', (e) => {
@@ -192,12 +205,11 @@ if (hudCursor && !isTouch) {
     }
   }, { passive: true });
 
-  // Click pulse
   document.addEventListener('mousedown', () => hudCursor.classList.add('clicking'), { passive: true });
   document.addEventListener('mouseup',   () => hudCursor.classList.remove('clicking'), { passive: true });
 }
 
-// ─── GSAP Scroll Reveals ────────────────────────────────────────────────────
+// ─── Cinematic GSAP Scroll Animations ──────────────────────────────────────
 
 async function initScrollAnimations() {
   try {
@@ -216,38 +228,42 @@ async function initScrollAnimations() {
       gsap.ticker.lagSmoothing(0);
     }
 
-    // ── Section heading reveals ──
-    gsap.utils.toArray('.reveal').forEach(el => {
-      gsap.from(el, {
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 88%',
-          toggleActions: 'play none none none',
-          once: true,
+    // Helper: safe scroll-triggered animation using set+onEnter pattern
+    // Elements stay visible by default; only animate when confirmed in view
+    function revealFrom(elements, fromVars, triggerEl, staggerVal) {
+      if (!triggerEl) return;
+      const targets = elements.length !== undefined ? Array.from(elements) : [elements];
+      if (targets.length === 0) return;
+
+      // Pre-set elements to hidden state
+      gsap.set(targets, { opacity: 0, ...fromVars });
+
+      ScrollTrigger.create({
+        trigger: triggerEl,
+        start: 'top 88%',
+        once: true,
+        onEnter: () => {
+          gsap.to(targets, {
+            opacity: 1,
+            x: 0, y: 0, scale: 1, rotateX: 0, rotateY: 0, scaleX: 1,
+            duration: fromVars.duration || 0.8,
+            stagger: staggerVal || 0,
+            ease: fromVars.ease || 'power3.out',
+            delay: fromVars.delay || 0,
+            overwrite: true,
+          });
         },
       });
+    }
+
+    // ── Section heading reveals ──
+    gsap.utils.toArray('.reveal').forEach(el => {
+      revealFrom(el, { y: 50, duration: 0.9 }, el);
     });
 
     // ── Stagger grid children ──
     gsap.utils.toArray('.reveal-stagger').forEach(container => {
-      const children = container.children;
-      gsap.from(children, {
-        y: 30,
-        opacity: 0,
-        duration: 0.6,
-        stagger: 0.12,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: container,
-          start: 'top 85%',
-          toggleActions: 'play none none none',
-          once: true,
-        },
-      });
+      revealFrom(container.children, { y: 35, duration: 0.7 }, container, 0.12);
     });
 
     // ── Border trace reveals ──
@@ -257,6 +273,26 @@ async function initScrollAnimations() {
         start: 'top 85%',
         once: true,
         onEnter: () => el.classList.add('visible'),
+      });
+    });
+
+    // ── Section divider animations ──
+    gsap.utils.toArray('.section-divider').forEach(el => {
+      revealFrom(el, { scaleX: 0, duration: 1.0, ease: 'power2.inOut' }, el);
+    });
+
+    // ── Parallax glow orbs (safe — uses gsap.to, no hiding) ──
+    gsap.utils.toArray('.glow-orb').forEach(orb => {
+      if (!orb.parentElement) return;
+      gsap.to(orb, {
+        y: -40,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: orb.parentElement,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1.5,
+        },
       });
     });
 
@@ -271,8 +307,34 @@ async function initScrollAnimations() {
     // ── Word-by-word CTA title reveal ──
     splitAndAnimate('.cta-card__title', gsap, true);
 
+    // ── Pipeline nodes — staggered entry (only if container exists) ──
+    const pipelineScene = document.querySelector('.pipeline-3d-scene');
+    if (pipelineScene) {
+      const nodes = gsap.utils.toArray('.pipeline-node-3d');
+      revealFrom(nodes, { y: 30, scale: 0.85, duration: 0.8, ease: 'back.out(1.7)' }, pipelineScene, 0.1);
+    }
+
+    // ── Domain tiles — wave entry (only if grid exists) ──
+    const serveGrid = document.querySelector('.serve-grid');
+    if (serveGrid) {
+      const tiles = gsap.utils.toArray('.domain-tile');
+      revealFrom(tiles, { y: 25, duration: 0.6 }, serveGrid, 0.08);
+    }
+
+    // ── Pillar cubes — flip entry (only if grid exists) ──
+    const pillarsGrid = document.querySelector('.pillars-grid');
+    if (pillarsGrid) {
+      const cubes = gsap.utils.toArray('.cube-wrapper');
+      revealFrom(cubes, { rotateY: 90, duration: 0.8, ease: 'back.out(1.4)' }, pillarsGrid, 0.12);
+    }
+
+    // ── CTA card — scale entry ──
+    const ctaCard = document.querySelector('.cta-card');
+    if (ctaCard) {
+      revealFrom(ctaCard, { scale: 0.92, duration: 1.0 }, ctaCard);
+    }
+
   } catch (e) {
-    // GSAP failed to load — fall back to CSS-based IntersectionObserver reveals
     initFallbackReveals();
   }
 }
@@ -281,12 +343,8 @@ function splitAndAnimate(target, gsap, useScrollTrigger = false) {
   const el = typeof target === 'string' ? document.querySelector(target) : target;
   if (!el) return;
 
-  // Preserve the data-text attribute for glitch effect
   const dataText = el.getAttribute('data-text');
-
-  // Get the content, preserving line breaks and inline HTML elements
   const html = el.innerHTML;
-  // Split by <br> tags and inline HTML elements (e.g. <span class="...">...</span>)
   const parts = html.split(/(<br\s*\/?>|<[^>]+>.*?<\/[^>]+>)/gi);
 
   el.innerHTML = '';
@@ -296,7 +354,6 @@ function splitAndAnimate(target, gsap, useScrollTrigger = false) {
     if (part.match(/^<br\s*\/?>$/i)) {
       el.appendChild(document.createElement('br'));
     } else if (part.match(/^<[^>]+>.*<\/[^>]+>$/i)) {
-      // Inline HTML element — wrap it in an animated span preserving inner HTML
       const wrapper = document.createElement('span');
       wrapper.innerHTML = part;
       wrapper.style.display = 'inline-block';
@@ -315,33 +372,33 @@ function splitAndAnimate(target, gsap, useScrollTrigger = false) {
     }
   });
 
-  // Re-apply data-text for glitch
   if (dataText) el.setAttribute('data-text', dataText);
 
-  const animConfig = {
-    y: 30,
-    opacity: 0,
-    rotateX: -15,
+  // Set hidden initial state
+  gsap.set(words, { opacity: 0, y: 30, rotateX: -15 });
+
+  const animTo = {
+    opacity: 1,
+    y: 0,
+    rotateX: 0,
     duration: 0.5,
     stagger: 0.04,
     ease: 'power3.out',
   };
 
   if (useScrollTrigger) {
-    animConfig.scrollTrigger = {
+    ScrollTrigger.create({
       trigger: el,
       start: 'top 85%',
-      toggleActions: 'play none none none',
       once: true,
-    };
+      onEnter: () => gsap.to(words, animTo),
+    });
   } else {
-    animConfig.delay = 0.5;
+    // Hero: animate after short delay
+    setTimeout(() => gsap.to(words, animTo), 500);
   }
-
-  gsap.from(words, animConfig);
 }
 
-// Fallback for when GSAP doesn't load
 function initFallbackReveals() {
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -384,7 +441,7 @@ document.querySelectorAll('[data-tilt]').forEach(card => {
   });
 });
 
-// ─── Shared Background Three.js — Drifting Particle Field ───────────────────
+// ─── Shared Background Three.js — Immersive Particle Field ────────────────
 
 function initBackgroundScene() {
   const canvas = document.createElement('canvas');
@@ -406,29 +463,35 @@ function initBackgroundScene() {
   const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
   camera.position.z = 40;
 
-  const count  = 600;
+  // More particles, subtle connections
+  const count  = 800;
   const positions = new Float32Array(count * 3);
   const colours   = new Float32Array(count * 3);
+  const sizes     = new Float32Array(count);
   const velocities = [];
 
   const cyanC  = new THREE.Color(COLORS.cyan);
   const amberC = new THREE.Color(COLORS.amber);
+  const pinkC  = new THREE.Color(COLORS.pink);
 
   for (let i = 0; i < count; i++) {
-    positions[i * 3]     = (Math.random() - 0.5) * 120;
-    positions[i * 3 + 1] = (Math.random() - 0.5) * 80;
-    positions[i * 3 + 2] = (Math.random() - 0.5) * 60;
+    positions[i * 3]     = (Math.random() - 0.5) * 140;
+    positions[i * 3 + 1] = (Math.random() - 0.5) * 100;
+    positions[i * 3 + 2] = (Math.random() - 0.5) * 80;
 
-    const col = Math.random() > 0.35 ? cyanC : amberC;
+    const r = Math.random();
+    const col = r < 0.5 ? cyanC : r < 0.8 ? amberC : pinkC;
     colours[i * 3]     = col.r;
     colours[i * 3 + 1] = col.g;
     colours[i * 3 + 2] = col.b;
 
+    sizes[i] = 0.1 + Math.random() * 0.15;
+
     velocities.push({
-      x: (Math.random() - 0.5) * 0.005,
-      y: (Math.random() - 0.5) * 0.005,
+      x: (Math.random() - 0.5) * 0.006,
+      y: (Math.random() - 0.5) * 0.006,
       phase: Math.random() * Math.PI * 2,
-      speed: 0.3 + Math.random() * 0.4,
+      speed: 0.2 + Math.random() * 0.5,
     });
   }
 
@@ -437,14 +500,21 @@ function initBackgroundScene() {
   geo.setAttribute('color',    new THREE.BufferAttribute(colours, 3));
 
   const mat = new THREE.PointsMaterial({
-    size: 0.18,
+    size: 0.16,
     vertexColors: true,
     transparent: true,
-    opacity: 0.3,
+    opacity: 0.25,
     sizeAttenuation: true,
   });
 
   scene.add(new THREE.Points(geo, mat));
+
+  // Scroll-reactive camera depth
+  let scrollFactor = 0;
+  window.addEventListener('scroll', () => {
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    scrollFactor = docHeight > 0 ? window.scrollY / docHeight : 0;
+  }, { passive: true });
 
   let paused = false;
 
@@ -467,6 +537,11 @@ function initBackgroundScene() {
     }
 
     geo.attributes.position.needsUpdate = true;
+
+    // Subtle camera drift based on scroll position
+    camera.position.z = 40 - scrollFactor * 8;
+    camera.rotation.x = scrollFactor * 0.05;
+
     renderer.render(scene, camera);
   }
 
@@ -479,7 +554,7 @@ function initBackgroundScene() {
   }, { passive: true });
 }
 
-// ─── Hero Three.js WebGL Scene ───────────────────────────────────────────────
+// ─── Hero Three.js WebGL Scene (Elevated) ──────────────────────────────────
 
 function initHeroScene() {
   const canvas = document.getElementById('hero-canvas');
@@ -495,18 +570,18 @@ function initHeroScene() {
   const { scene, camera, renderer, composer, bloomPass: bloom, labelRenderer } = createScene(canvas, {
     fov: heroFov,
     pixelRatio: Math.min(window.devicePixelRatio, 2),
-    bloom: { strength: 0.8, radius: 0.4, threshold: 0.85 },
+    bloom: { strength: 1.0, radius: 0.5, threshold: 0.8 },
     filmGrain: true,
-    filmGrainIntensity: 0.2,
-    exposure: 1.2,
+    filmGrainIntensity: 0.25,
+    exposure: 1.3,
   });
   camera.position.set(0, 0, heroCamZ);
-  // Override label renderer z-index style for hero
   labelRenderer.domElement.style.zIndex = '2';
 
-  // Particle field — 800 points
+  // ── Enhanced particle field — 1200 points with depth ──
+  const particleData = [];
   {
-    const count = 800;
+    const count = 1200;
     const pos   = new Float32Array(count * 3);
     const col   = new Float32Array(count * 3);
     const cC = new THREE.Color(COLORS.cyan);
@@ -514,14 +589,25 @@ function initHeroScene() {
     const pC = new THREE.Color(COLORS.pink);
 
     for (let i = 0; i < count; i++) {
-      pos[i*3]   = (Math.random() - 0.5) * 80;
-      pos[i*3+1] = (Math.random() - 0.5) * 50;
-      pos[i*3+2] = (Math.random() - 0.5) * 30;
+      const x = (Math.random() - 0.5) * 90;
+      const y = (Math.random() - 0.5) * 55;
+      const z = (Math.random() - 0.5) * 40;
+      pos[i*3]   = x;
+      pos[i*3+1] = y;
+      pos[i*3+2] = z;
+
       const r = Math.random();
-      const c = r < 0.6 ? cC : r < 0.85 ? aC : pC;
+      const c = r < 0.55 ? cC : r < 0.85 ? aC : pC;
       col[i*3]   = c.r;
       col[i*3+1] = c.g;
       col[i*3+2] = c.b;
+
+      particleData.push({
+        origX: x, origY: y, origZ: z,
+        phase: Math.random() * Math.PI * 2,
+        speed: 0.2 + Math.random() * 0.5,
+        amplitude: 0.5 + Math.random() * 1.5,
+      });
     }
 
     const geo = new THREE.BufferGeometry();
@@ -532,12 +618,29 @@ function initHeroScene() {
       size: 0.12,
       vertexColors: true,
       transparent: true,
-      opacity: 0.6,
+      opacity: 0.65,
       sizeAttenuation: true,
     })));
+
+    geo.userData = { particleData, count };
   }
 
-  // Floating intelligence labels (CSS2DObjects)
+  // ── Wire grid ground plane ──
+  {
+    const gridGeo = new THREE.PlaneGeometry(80, 80, 40, 40);
+    const gridMat = new THREE.MeshBasicMaterial({
+      color: COLORS.cyan,
+      wireframe: true,
+      transparent: true,
+      opacity: 0.04,
+    });
+    const grid = new THREE.Mesh(gridGeo, gridMat);
+    grid.rotation.x = -Math.PI / 2;
+    grid.position.y = -20;
+    scene.add(grid);
+  }
+
+  // ── Floating intelligence labels ──
   const labelObjects = [];
   if (isMobile) labelRenderer.domElement.style.display = 'none';
   INTEL_LABELS.forEach((text, i) => {
@@ -569,7 +672,7 @@ function initHeroScene() {
     }, delay);
   });
 
-  // Crosshair reticles
+  // ── Crosshair reticles ──
   function makeReticle(color, x, y, z, scale = 1) {
     const mat = new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.7 });
     const s = scale * 2;
@@ -597,7 +700,7 @@ function initHeroScene() {
     makeReticle(COLORS.cyan,   14,  7,  1, 0.6),
   ];
 
-  // Garud eagle wireframe
+  // ── Garud eagle wireframe ──
   {
     const pts = [
       [0,  10], [-3,  8], [-6,  6], [-14,  8], [-20, 5], [-22, 2],
@@ -616,7 +719,38 @@ function initHeroScene() {
     eagle.userData.rotate = true;
   }
 
-  // Radar sweep
+  // ── Orbiting ring geometry — adds depth ──
+  {
+    const ringGeo = new THREE.TorusGeometry(18, 0.03, 8, 120);
+    const ringMat = new THREE.MeshBasicMaterial({
+      color: COLORS.cyan,
+      transparent: true,
+      opacity: 0.12,
+    });
+    const ring = new THREE.Mesh(ringGeo, ringMat);
+    ring.rotation.x = Math.PI * 0.45;
+    ring.position.z = -5;
+    ring.userData.isOrbitRing = true;
+    scene.add(ring);
+  }
+
+  // ── Second orbital ring — perpendicular ──
+  {
+    const ringGeo2 = new THREE.TorusGeometry(14, 0.02, 8, 100);
+    const ringMat2 = new THREE.MeshBasicMaterial({
+      color: COLORS.amber,
+      transparent: true,
+      opacity: 0.08,
+    });
+    const ring2 = new THREE.Mesh(ringGeo2, ringMat2);
+    ring2.rotation.x = Math.PI * 0.7;
+    ring2.rotation.y = Math.PI * 0.3;
+    ring2.position.z = -3;
+    ring2.userData.isOrbitRing = true;
+    scene.add(ring2);
+  }
+
+  // ── Radar sweep ──
   {
     const sweepGeo = new THREE.CircleGeometry(22, 64, 0, Math.PI * 0.15);
     const sweep = new THREE.Mesh(sweepGeo, new THREE.MeshBasicMaterial({
@@ -630,7 +764,6 @@ function initHeroScene() {
     sweep.userData.isSweep = true;
     scene.add(sweep);
 
-    // Radar ring
     const ring = new THREE.Mesh(
       new THREE.RingGeometry(21.5, 22, 64),
       new THREE.MeshBasicMaterial({ color: COLORS.amber, transparent: true, opacity: 0.3, side: THREE.DoubleSide })
@@ -638,7 +771,6 @@ function initHeroScene() {
     ring.position.z = -6;
     scene.add(ring);
 
-    // Inner rings
     [14, 8].forEach(r => {
       const m = new THREE.Mesh(
         new THREE.RingGeometry(r - 0.2, r, 64),
@@ -651,7 +783,14 @@ function initHeroScene() {
 
   scene.add(new THREE.AmbientLight(0xffffff, 0.1));
 
-  // Animation loop
+  // ── Mouse tracking for reactive camera ──
+  let mouseX = 0, mouseY = 0;
+  document.addEventListener('mousemove', (e) => {
+    mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+    mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+  }, { passive: true });
+
+  // ── Animation loop ──
   let paused = false;
 
   document.addEventListener('visibilitychange', () => {
@@ -665,12 +804,28 @@ function initHeroScene() {
 
     const t = performance.now() * 0.001;
 
+    // Reactive particles — gentle wave motion
     scene.traverse(obj => {
+      if (obj.isPoints && obj.geometry.userData?.particleData) {
+        const data = obj.geometry.userData.particleData;
+        const pos = obj.geometry.attributes.position.array;
+        for (let i = 0; i < data.length; i++) {
+          const d = data[i];
+          pos[i*3]     = d.origX + Math.sin(t * d.speed + d.phase) * d.amplitude * 0.3;
+          pos[i*3 + 1] = d.origY + Math.cos(t * d.speed * 0.8 + d.phase) * d.amplitude * 0.4;
+          pos[i*3 + 2] = d.origZ + Math.sin(t * d.speed * 0.5 + d.phase * 1.5) * d.amplitude * 0.2;
+        }
+        obj.geometry.attributes.position.needsUpdate = true;
+      }
+
       if (obj.userData?.isSweep) {
         obj.rotation.z = -t * (Math.PI / 2);
       }
       if (obj.userData?.rotate) {
         obj.rotation.y = Math.sin(t * 0.1) * 0.15;
+      }
+      if (obj.userData?.isOrbitRing) {
+        obj.rotation.z = t * 0.08;
       }
     });
 
@@ -684,8 +839,11 @@ function initHeroScene() {
       label.position.x += Math.cos(t * speed * 0.6 + phase) * 0.002;
     });
 
-    camera.position.x = Math.sin(t * 0.07) * 1.5;
-    camera.position.y = Math.cos(t * 0.05) * 0.8;
+    // Mouse-reactive camera with smooth lerp
+    const targetX = Math.sin(t * 0.07) * 1.5 + mouseX * 2;
+    const targetY = Math.cos(t * 0.05) * 0.8 - mouseY * 1;
+    camera.position.x += (targetX - camera.position.x) * 0.03;
+    camera.position.y += (targetY - camera.position.y) * 0.03;
     camera.lookAt(0, 0, 0);
 
     composer.render();
@@ -707,10 +865,17 @@ function initHeroScene() {
 
 // ─── Init ────────────────────────────────────────────────────────────────────
 
-initBackgroundScene();
+async function initThreeScenes() {
+  const hasThree = await loadThree();
+  if (!hasThree) return; // Pages without Three.js (about, contact) skip gracefully
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initHeroScene);
-} else {
-  initHeroScene();
+  initBackgroundScene();
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHeroScene);
+  } else {
+    initHeroScene();
+  }
 }
+
+initThreeScenes();

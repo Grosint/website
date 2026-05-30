@@ -106,7 +106,7 @@
 }
 
 .tile-3d:hover {
-  transform: translateY(-10px) rotateX(6deg);
+  transform: translateY(-10px) rotateX(6deg) scale(1.02);
   box-shadow:
     0 24px 48px rgba(0, 0, 0, 0.7),
     0  0   0 1px rgba(0, 200, 255, 0.25),

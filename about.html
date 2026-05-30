@@ -46,7 +46,7 @@
   <!-- Prevent flash -->
   <style>
     html { background: #000; }
-    body { opacity: 0; transition: opacity 0.6s ease; }
+    body { opacity: 0; transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
     body.loaded { opacity: 1; }
     html.lenis, html.lenis body { height: auto; }
     .lenis.lenis-smooth { scroll-behavior: auto !important; }
@@ -61,7 +61,17 @@
     <div class="preloader__ring"><div class="preloader__sweep"></div><div class="preloader__tick preloader__tick--n"></div><div class="preloader__tick preloader__tick--e"></div><div class="preloader__tick preloader__tick--s"></div><div class="preloader__tick preloader__tick--w"></div></div>
     <img src="./assets/garud-mark.svg" alt="" class="preloader__icon" width="48" height="48"/>
     <span class="preloader__text" id="preloader-text">INITIALIZING</span>
+    <div class="preloader__progress">
+      <div class="preloader__progress-bar" id="preloader-progress"></div>
+    </div>
   </div>
+
+  <!-- Film grain noise overlay -->
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <!-- Horizontal scan sweep -->
+  <div class="h-scan" aria-hidden="true"></div>
+
   <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
   <div class="hud-cursor" id="hud-cursor" aria-hidden="true"><div class="hud-cursor__ring"><span class="hud-cursor__tick hud-cursor__tick--n"></span><span class="hud-cursor__tick hud-cursor__tick--e"></span><span class="hud-cursor__tick hud-cursor__tick--s"></span><span class="hud-cursor__tick hud-cursor__tick--w"></span></div><div class="hud-cursor__dot"></div></div>
 
@@ -177,6 +187,13 @@
     </div>
   </section>
 
+  <!-- Section Divider -->
+  <div class="section-divider container" aria-hidden="true">
+    <div class="section-divider__line"></div>
+    <span class="section-divider__marker">SYS.02 // ORIGIN</span>
+    <div class="section-divider__line"></div>
+  </div>
+
   <!-- ═══════════════════════════════════════
        ORIGIN STORY
        ═══════════════════════════════════════ -->
@@ -222,7 +239,7 @@
               The iDEX moment
             </h3>
             <p style="color:var(--color-text-muted);line-height:1.7;">
-              When we submitted Anveshak under iDEX ADITI 4.0 Problem Statement PS-18 (IAF), it validated
+              When we presented Anveshak under iDEX ADITI 4.0 Problem Statement PS-18 (IAF), it validated
               what we already knew: the Indian Air Force needed exactly this — an AI-powered, locally-run
               OSINT platform that did not phone home. The recognition accelerated everything.
               It confirmed that sovereign intelligence infrastructure is not a niche idea — it is a strategic imperative.
@@ -250,6 +267,13 @@
       </div>
     </div>
   </section>
+
+  <!-- Section Divider -->
+  <div class="section-divider container" aria-hidden="true">
+    <div class="section-divider__line"></div>
+    <span class="section-divider__marker">SYS.03 // PRINCIPLES</span>
+    <div class="section-divider__line"></div>
+  </div>
 
   <!-- ═══════════════════════════════════════
        PRINCIPLES
@@ -349,6 +373,13 @@
       </div>
     </div>
   </section>
+
+  <!-- Section Divider -->
+  <div class="section-divider container" aria-hidden="true">
+    <div class="section-divider__line"></div>
+    <span class="section-divider__marker">SYS.04 // SUITE</span>
+    <div class="section-divider__line"></div>
+  </div>
 
   <!-- ═══════════════════════════════════════
        THE PRODUCT SUITE
@@ -457,6 +488,13 @@
     </div>
   </section>
 
+  <!-- Section Divider -->
+  <div class="section-divider container" aria-hidden="true">
+    <div class="section-divider__line"></div>
+    <span class="section-divider__marker">SYS.06 // ENGAGE</span>
+    <div class="section-divider__line"></div>
+  </div>
+
   <!-- ═══════════════════════════════════════
        CONTACT CTA
        ═══════════════════════════════════════ -->
@@ -500,45 +538,48 @@
   <!-- ═══════════════════════════════════════
        FOOTER
        ═══════════════════════════════════════ -->
-  <footer class="footer" role="contentinfo">
-    <div class="container footer__inner">
-      <div class="footer__brand">
-        <a href="/" class="navbar__logo" aria-label="Grosint home" class="inline-flex-center mb-3">
-          <img src="./assets/garud-mark.svg" alt="" width="28" height="28" aria-hidden="true"/>
-          <span class="navbar__wordmark" style="font-size:var(--text-base);"><span>GR</span>OSINT</span>
-        </a>
-        <p style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-text-faint);max-width:28ch;line-height:1.6;">
-          Garud Research &amp; Tech<br/>Private Limited
-        </p>
+<footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer__logo">
+            <img src="./assets/garud-mark.svg" alt="" width="28" height="28" aria-hidden="true"/>
+            <span class="footer__wordmark">GROSINT</span>
+          </div>
+          <p class="footer__registered">Garud Research &amp; Tech Private Limited</p>
+          <p class="footer__registered" style="margin-top:var(--space-2);line-height:1.5;">
+            No. 14, Bhattrahalli, Old Madras Road<br/>
+            K R Puram, Bengaluru 560049<br/>
+            Karnataka, India
+          </p>
+        </div>
+        <nav aria-label="Footer navigation">
+          <ul class="footer-links footer__links flex-col gap-3" role="list">
+            <li class="text-mono-faint-spaced" style="text-transform:uppercase;">Products</li>
+            <ul class="footer-links footer__links footer__links--products" role="list">
+              <li><a href="./products/grosint.html">Grosint</a></li>
+              <li><a href="./products/anveshak.html">Anveshak</a></li>
+              <li><a href="./products/drishti.html">Drishti</a></li>
+            </ul>
+          </ul>
+        </nav>
+        <div class="footer__tagline">
+          <p class="mb-2">Made in Bharat. For Bharat.</p>
+          <p style="font-size:var(--text-2xs);">&#x1F1EE;&#x1F1F3; &copy; 2026 Garud Research &amp; Tech Pvt. Ltd.</p>
+        </div>
       </div>
-
-      <nav class="footer__links" aria-label="Footer navigation">
-        <a href="./products/grosint.html">Grosint</a>
-        <a href="./products/anveshak.html">Anveshak</a>
-        <a href="./products/drishti.html">Drishti</a>
-        <a href="./about.html">About</a>
-      </nav>
-
-      <div style="text-align:right;">
-        <a
-          href="https://wa.me/919901938800?text=Hello%20Grosint%20team%2C%20I%20would%20like%20to%20discuss%20your%20intelligence%20platform."
-          class="btn btn--whatsapp btn--sm"
-          target="_blank"
-          rel="noopener"
-        >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-          Get Briefing
-        </a>
+      <div class="footer-bottom mt-8" style="padding-top:var(--space-6);border-top:1px solid var(--color-border);">
+        <span class="text-mono-faint-sm" style="letter-spacing:0.1em;">
+          SOVEREIGN &middot; AUDITABLE &middot; IMMUTABLE
+        </span>
+        <nav aria-label="Legal">
+          <ul class="footer-links" role="list">
+            <li><a href="/privacy.html" class="text-mono-faint">Privacy</a></li>
+            <li><a href="/security.html" class="text-mono-faint">Security</a></li>
+            <li><a href="/contact.html" class="text-mono-faint">Contact</a></li>
+          </ul>
+        </nav>
       </div>
-    </div>
-
-    <div class="container footer__bottom">
-      <p style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-text-faint);">
-        © 2025 Garud Research &amp; Tech Private Limited. All rights reserved.
-      </p>
-      <p style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-text-faint);">
-        Made in Bharat 🇮🇳 · Sovereign by Design
-      </p>
     </div>
   </footer>
 
